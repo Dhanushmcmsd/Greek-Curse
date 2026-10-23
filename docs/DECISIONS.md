@@ -80,3 +80,10 @@ Cursor appends new decisions as `D-0xx` (next free number) with date and stage. 
 ## C. Deferred (not prerequisites, not stubs)
 
 Online rollback and matchmaking; ranked; server-checked Chronicle; 4-player brawl; co-op bosses; spectator; the other 6 fighters; 5 other arenas; 29 other abilities; 5 other regrown limbs; Death Match; Thunder Strike cinematic; Last Stand; Execution; Legacy; Hall of the Fallen; cosmetic and title unlocks; Chronicle share card; emote wheel and taunts; voice acting; one-handed layouts; modding; code signing; store submission.
+
+## D. Owner approvals
+
+| Date | Item | Record |
+|---|---|---|
+| 2026-10-24 | D-003 | Approved. Keep 2.5D lane combat. No sidestep into the background. |
+| 2026-10-24 | D-009 | Approved. Keep the five regrown limbs on the shared skeleton and sockets. Do not add limbs without a new approval. |

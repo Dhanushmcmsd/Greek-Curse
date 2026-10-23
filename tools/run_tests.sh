@@ -21,4 +21,4 @@ PY=python3
 if ! command -v python3 >/dev/null 2>&1; then
   PY=python
 fi
-"$PY" -m unittest tools.validate.test_validators
+"$PY" -m unittest discover -s tools/validate -p "test_*.py"

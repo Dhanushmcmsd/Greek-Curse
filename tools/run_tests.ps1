@@ -39,5 +39,5 @@ if ($args.Count -gt 0) {
 $godotCode = $LASTEXITCODE
 if ($godotCode -ne 0) { exit $godotCode }
 
-python -m unittest tools.validate.test_validators
+python -m unittest discover -s tools/validate -p "test_*.py"
 exit $LASTEXITCODE

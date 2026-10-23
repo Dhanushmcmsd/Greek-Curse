@@ -15,7 +15,7 @@
 - Dev machine specs (for performance notes): AMD Ryzen 5 5600X, 6 cores / 12 threads. WMI `TotalPhysicalMemory` 17103278080 bytes (~15.9 GiB). GPU: NVIDIA GeForce GTX 1650, WMI `AdapterRAM` 4293918720 bytes (~4.0 GB; WMI VRAM figures are often inaccurate).
 
 ## Current Stage
-- Stage: 02 (COMPLETE)
+- Stage: 03 (COMPLETE)
 - Started / last updated: 2026-10-24
 
 ## Stage Table
@@ -24,7 +24,7 @@
 | 00 | Readme And Execution Guide | COMPLETE | 2026-10-24 | docs/handoff/00_README_AND_EXECUTION_GUIDE.md |
 | 01 | Project Audit And Technical Plan | COMPLETE | 2026-10-24 | docs/handoff/01_PROJECT_AUDIT_AND_TECHNICAL_PLAN.md |
 | 02 | Project Scaffold And Development Tools | COMPLETE | 2026-10-24 | docs/handoff/02_PROJECT_SCAFFOLD_AND_DEVELOPMENT_TOOLS.md |
-| 03 | Core Architecture And Coding Rules | NOT_STARTED | | |
+| 03 | Core Architecture And Coding Rules | COMPLETE | 2026-10-24 | docs/handoff/03_CORE_ARCHITECTURE_AND_CODING_RULES.md |
 | 04 | Progress Tracker And Handoff Protocol | NOT_STARTED | | |
 | 05 | First Playable Prototype | NOT_STARTED | | |
 | 06 | Combat Simulation And Hit Detection | NOT_STARTED | | |
@@ -56,10 +56,11 @@
 - 00: confirmed existing byte copies of `RESUME_PROMPT.md`, `docs/DECISIONS.md`, `docs/source/GDD_extracted.txt`, `docs/source/BUILD_REQUIREMENTS_extracted.txt`, and both revised PDFs in `docs/source/`. Copied the read-only pack to `Severed_Cursor_Prompt_Pack/` (the D: pack was the opened source and was not modified). Wrote `docs/handoff/00_README_AND_EXECUTION_GUIDE.md`. Rewrote this tracker so it matches commands run in this session. No game code, Godot project, or Blender script was created.
 - 01: pinned Godot 4.7.2.stable.official.ed1daf0bf and Blender 5.2.3 LTS after running them. Wrote `docs/TECHNICAL_PLAN.md`. Appended D-035–D-039 and C-19–C-25 in `docs/DECISIONS.md`. Chose Compatibility. No game code or Godot project was created.
 - 02: created the Godot 4.7.2 Compatibility project, log autoload, headless test runner, Python validator, and launchers. Launchers refuse Godot 4.0. No gameplay.
+- 03: added the integer toolkit, seeded RNG, FNV-1a hash, JSON `Result` loader, architecture note, and sim purity check. `SimConstants` has the tick rate and millimetre scale only. No combat.
 
 ## Tests (latest run)
-- Date / command: 2026-10-24. `powershell -NoProfile -File tools/check_all.ps1` using `D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`. Godot suite: 4 passed, 0 failed. `python -m unittest tools.validate.test_validators`: 3 tests, OK. `validate_all.py`: PASS. `--check-only` on `tests/run_all.gd` and `src/core/log.gd` ran. Exit 0.
-- Passed / failed / skipped: check_all PASS. A temporary `assert_true(false, "deliberate")` made `tools/run_tests.ps1` exit 1 (`4 passed, 1 failed`); that assertion was removed before the green run.
+- Date / command: 2026-10-24. `powershell -NoProfile -File tools/check_all.ps1` using `D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`. Godot suite: 25 passed, 0 failed, 0 skipped. `python -m unittest discover -s tools/validate -p "test_*.py"`: 7 tests, OK. `validate_all.py`: PASS. `--check-only` on `tests/run_all.gd` and `src/core/log.gd` ran. Exit 0.
+- Passed / failed / skipped: check_all PASS. An earlier run the same night failed one Python case because `\bENet\b` missed `ENetMultiplayerPeer`; the pattern is now a prefix. A temporary `randf()` in `src/sim/sim_constants.gd` made `validate_all.py` exit 1 (`forbidden randf`) and was removed before the green run. The stage 02 deliberate assertion failure is historical and is not in the tree.
 - Fast suite / full suite: fast suite is `tools/check_all.ps1`. Full regression suite is stage 21.
 - Notes (UNVERIFIED items): bash launchers were not run (B-005). `gdtoolkit` is absent (B-004). Windowed Godot, screenshots, and a Blender render were not run. Export templates are absent (B-003). A real glTF file was not exported.
 
@@ -74,16 +75,17 @@
 
 ## Decisions Made
 - Stage 01 added D-035 (DEFAULT, sever rule), D-036 (DEFAULT, both-arms moves), D-037 (PROPOSED, no CC0 claim), D-038 (DEFAULT, stamina), and D-039 (DEFAULT, Compatibility renderer). Rows C-19 through C-25 record the resolutions. No LOCKED row was edited.
-- Reference `docs/DECISIONS.md`. Locked MVP and D-001 through D-034 stand as written. D-003 and D-009 still need the owner's approval or override before stage 05. D-032 and D-037 remain PROPOSED.
+- 2026-10-24: the owner approved D-003 (2.5D lane, no sidestep) and D-009 (five regrown limbs, shared skeleton and sockets, no extra limbs without a new approval). The record is section D of `docs/DECISIONS.md`. Locked wording was not rewritten.
+- Reference `docs/DECISIONS.md`. Locked MVP and D-001 through D-034 stand as written. D-032 and D-037 remain PROPOSED.
 
 ## Deferred / Proposed Work
 - Deferred per scope: see `docs/DECISIONS.md` section C.
-- Proposed (needs owner decision): D-032 Career quit rule. D-037 audio wording (do not call generated audio CC0). Pre-flight approval or override of D-003 (2.5D lane combat) and D-009 (the five regrown limbs). D-035 is the working sever rule and can be overridden before stage 07.
+- Proposed (needs owner decision): D-032 Career quit rule. D-037 audio wording (do not call generated audio CC0). D-035 is the working sever rule and can be overridden before stage 07.
 
 ## Owner Actions and Checkpoints
 | Item | When | Status | Evidence returned |
 |---|---|---|---|
-| Pre-flight installs and approvals | before 00 | PENDING | 2026-10-24: Git 2.54.0.windows.1, Python 3.14.5, Godot 4.7.2.stable.official.ed1daf0bf, and Blender 5.2.3 LTS are verified. D-003 and D-009 have no owner reply. Export templates are not installed (B-003). |
+| Pre-flight installs and approvals | before 00 | PENDING | 2026-10-24: Git 2.54.0.windows.1, Python 3.14.5, Godot 4.7.2.stable.official.ed1daf0bf, and Blender 5.2.3 LTS are verified. D-003 and D-009 were approved the same date. Export templates are not installed (B-003), so this row stays pending. |
 | Checkpoint A | after 05 | PENDING | |
 | Checkpoint B | after 13 | PENDING | |
 | Checkpoint C | after 20 | PENDING | |
@@ -92,10 +94,10 @@
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-Open a new Cursor Agent chat and run prompt `03_CORE_ARCHITECTURE_AND_CODING_RULES.md`. Keep using the pinned Godot 4.7.2 console executable. Reply with approval or an override for D-003 and D-009 before stage 05. Install Godot 4.7.2 export templates before stage 23.
+Open a new Cursor Agent chat and run prompt `04_PROGRESS_TRACKER_AND_HANDOFF_PROTOCOL.md`. Keep using the pinned Godot 4.7.2 console executable. Install Godot 4.7.2 export templates before stage 23. Do not add limbs or sidestep movement without a new approval.
 
 ## Next Prompt Filename
-03_CORE_ARCHITECTURE_AND_CODING_RULES.md
+04_PROGRESS_TRACKER_AND_HANDOFF_PROTOCOL.md
 
 ## Session Log
 | Date | Stage | Summary | Result |
@@ -104,3 +106,4 @@ Open a new Cursor Agent chat and run prompt `03_CORE_ARCHITECTURE_AND_CODING_RUL
 | 2026-10-24 | 01 | Ran the owner-supplied Godot 4.0 console binary and Blender 5.2.3 LTS. Headless Godot and background Blender both exited 0. Rejected Godot 4.0 under D-001. Did not pin versions, choose a renderer, or write the technical plan. | BLOCKED |
 | 2026-10-24 | 01 | Pinned Godot 4.7.2.stable.official.ed1daf0bf and Blender 5.2.3 LTS. Headless smoke printed GODOT_SMOKE_OK. Wrote the technical plan, chose Compatibility, and recorded D-035 through D-039. | COMPLETE |
 | 2026-10-24 | 02 | Audited the 4.7.2 and Blender binaries, confirmed no project and no 4.0 project references, then added the scaffold. check_all.ps1 exited 0. A deliberate failing assertion exited 1 and was removed. | COMPLETE |
+| 2026-10-24 | 03 | Added the integer toolkit, RNG, hash, data loader, and sim purity check. The first purity test missed `ENetMultiplayerPeer`; the prefix pattern fixed it. A temporary `randf()` failed validation and was removed. The later `check_all.ps1` exited 0 (25 Godot tests, 7 Python tests). Owner approvals for D-003 and D-009 were recorded. | COMPLETE |

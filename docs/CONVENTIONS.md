@@ -26,3 +26,34 @@ Renderer: Compatibility (`gl_compatibility`). No Decal nodes. Blood uses pooled 
 - Bash launchers exist for Linux and macOS and are unverified here.
 - Logging may use the wall clock. Combat rules may not.
 - Input actions are added in stage 08. This project has no default InputMap entries.
+
+## Typing
+
+Public functions and variables in `src/` have type hints. `int` is the combat number. `float` stays out of `src/sim/`. JSON integer fields are converted in `DataLoader` before sim code reads them.
+
+## Signals
+
+Signals are for presentation and UI. Sim code returns a `Result` or writes events from `step`. It does not emit Godot signals to report a hit.
+
+## Errors
+
+`Result.success` and `Result.failure` carry `ok`, `value`, and `error`. Callers check `ok`. They do not crash the process on bad data. `DataLoader` also writes an ERROR log with the resource path and the field path.
+
+## Logging categories
+
+Use a short category string: `data`, `sim`, `input`, `ai`, `ui`, `save`. ERROR increments `Log.error_count`. INFO and WARN do not.
+
+## Adding content
+
+1. Add `data/<area>/<name>.json`.
+2. Add `data/schema/<area>/<name>.schema.json` using `type`, `required`, `properties`, `enum`, `minimum`, `maximum`, and `items`.
+3. Add a headless test that loads the file and checks one invariant.
+4. Run `tools/check_all.ps1`.
+
+## Commits
+
+One sentence on why the change exists, then a second sentence only if the first would hide a constraint. Do not amend published commits. Do not commit `.godot/` or `build/`.
+
+## Owner approvals recorded with stage 03
+
+D-003 stays 2.5D: one combat lane, no sidestep into the background. D-009 stays the five regrown limbs on the shared skeleton and sockets. More limbs need a new owner approval.

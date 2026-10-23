@@ -13,6 +13,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.validate.check_sim_purity import check_sim
+
+
 DATA = ROOT / "data"
 
 
@@ -92,6 +98,7 @@ def check_data(data_root: Path = DATA) -> list[str]:
 
 def main() -> int:
     errors = check_data()
+    errors.extend(check_sim())
     if errors:
         print(f"validate_all: {len(errors)} error(s)")
         for error in errors:
