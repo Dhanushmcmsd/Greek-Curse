@@ -22,6 +22,8 @@ var spawn_x: Array[int] = [-900, 900]
 var fighters: Array[SimFighter] = []
 var moves: Array[Dictionary] = []
 var combat: Dictionary = {}
+var limb_rules: Dictionary = {}
+var amputations: Array = []
 var hitstop_remaining: int = 0
 var rng: SimRng = SimRng.new(1)
 
@@ -32,7 +34,8 @@ static func from_data(
 	fighter_rows: Array,
 	move_rows: Array,
 	combat_row: Dictionary,
-	seed_value: int = 1
+	seed_value: int = 1,
+	limb_row: Dictionary = {}
 ) -> SimWorld:
 	var world := SimWorld.new()
 	world.rng = SimRng.new(seed_value)
@@ -45,6 +48,7 @@ static func from_data(
 	world.floor_y = int(rules["floor_y"])
 	world.spawn_x = [int(rules["spawn_x"][0]), int(rules["spawn_x"][1])]
 	world.combat = combat_row
+	world.limb_rules = limb_row
 	var speeds: Array = curves["speed_mm_per_tick"]
 	var powers: Array = curves["power_percent"]
 	world.moves = []
@@ -73,7 +77,8 @@ func _make_fighter(
 	fighter.health = max_health
 	fighter.stamina = stamina_value
 	fighter.stamina_max = stamina_value
-	fighter.limbs.setup(row, combat, fighter.limb_toughness)
+	fighter.limbs.setup(row, limb_rules, fighter.limb_toughness)
+	fighter.limbs.rules = limb_rules
 	fighter.y = floor_y
 	fighter.x = spawn_x[index]
 	fighter.facing = 1 if index == 0 else -1
@@ -149,7 +154,59 @@ func snapshot_hash() -> int:
 		values.append_array(fighter.limbs.hash_values())
 		values.append_array(fighter.chain.hash_values())
 		values.append_array(fighter.buffer.hash_values())
+		values.append(StateHash.hash_string(fighter.attack_slot))
+		values.append(fighter.modifiers.size())
+		for modifier in fighter.modifiers:
+			values.append_array(
+				[
+					StateHash.hash_string(modifier.id),
+					modifier.expires_tick,
+					modifier.damage_percent,
+					modifier.speed_percent
+				]
+			)
+	for record in amputations:
+		values.append_array(
+			[
+				StateHash.hash_string(record["limb"]),
+				record["attacker"],
+				record["victim"],
+				record["tick"],
+				record["chain_hits"]
+			]
+		)
 	return StateHash.hash_ints(values)
+
+
+func setup(match_config: Dictionary) -> void:
+	var initial: Array = match_config.get("initial_limb_states", [])
+	for index in mini(initial.size(), fighters.size()):
+		fighters[index].limbs.restore_state(initial[index])
+
+
+func export_limb_state() -> Array:
+	var result: Array = []
+	for fighter in fighters:
+		result.append(fighter.limbs.export_state())
+	return result
+
+
+func reset_for_match(mode: String) -> void:
+	tick = 0
+	round_index = 1
+	phase = PHASE_FIGHTING
+	wins = [0, 0]
+	draw_uses = 0
+	amputations = []
+	for fighter in fighters:
+		var rows := fighter.limbs.export_state() if mode == "career" else {}
+		if mode != "career":
+			for zone in SimLimbs.LIMB_NAMES:
+				rows[zone] = {"integrity": fighter.limbs.max_integrity}
+		fighter.limbs.restore_state(rows)
+		fighter.modifiers.clear()
+		fighter.meter = 0
+	_reset_bodies()
 
 
 func _mask_at(inputs: Array, index: int) -> int:

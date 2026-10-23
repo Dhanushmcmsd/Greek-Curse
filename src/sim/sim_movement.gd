@@ -73,7 +73,11 @@ static func _age_move(fighter: SimFighter) -> void:
 
 
 static func _move_or_block(world: SimWorld, fighter: SimFighter, mask: int) -> void:
-	if SimInput.has_bit(mask, SimInput.BLOCK) and not _attack_level(mask):
+	if (
+		SimInput.has_bit(mask, SimInput.BLOCK)
+		and not _attack_level(mask)
+		and fighter.limbs.can_block()
+	):
 		fighter.blocking = true
 		fighter.state = SimFighter.State.IDLE
 		SimStamina.try_spend(fighter, int(world.combat["block_stamina_per_tick"]), world.combat)
@@ -87,7 +91,10 @@ static func _move_or_block(world: SimWorld, fighter: SimFighter, mask: int) -> v
 		fighter.state = SimFighter.State.IDLE
 		return
 	fighter.state = SimFighter.State.WALK
-	fighter.x += direction * fighter.walk_speed
+	fighter.x += (
+		direction
+		* Fx.percent(fighter.walk_speed, SimModifier.percent_for(fighter, world.tick, true))
+	)
 
 
 static func _attack_level(mask: int) -> bool:
@@ -164,10 +171,19 @@ static func _begin_named(world: SimWorld, fighter: SimFighter, move_id: String) 
 	if found < 0:
 		return
 	var move: Dictionary = world.moves[found]
+	var slot := "leg_l" if move_id == "pegasus_kick" else "arm_l"
+	if not fighter.limbs.usable(slot):
+		return
 	if not SimStamina.try_spend(fighter, int(move["cost"]), world.combat):
 		return
 	var scaled := Fx.percent(int(move["damage"]), fighter.power_percent)
 	var scaled_limb := Fx.percent(int(move.get("limb_damage", 0)), fighter.power_percent)
+	var percent := SimModifier.percent_for(fighter, world.tick)
+	if fighter.limbs.parts[slot].state == "bruised":
+		percent = Fx.percent(percent, int(world.limb_rules["bruised_damage_percent"]))
+	scaled = Fx.percent(scaled, percent)
+	scaled_limb = Fx.percent(scaled_limb, percent)
+	fighter.attack_slot = slot
 	fighter.begin_move(found + 1, move, scaled, scaled_limb)
 	_age_move(fighter)
 	_consume_edges(fighter, move_id)

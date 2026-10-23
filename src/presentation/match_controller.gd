@@ -132,7 +132,8 @@ func _require(loader: DataLoader, path: String) -> Dictionary:
 
 
 func _make_world() -> SimWorld:
-	return SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1)
+	var limbs := _require(DataLoader.new(), "res://data/balance/limbs.json")
+	return SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1, limbs)
 
 
 func _restart() -> void:
@@ -154,7 +155,7 @@ func _build_stage() -> void:
 	for index in _fighter_rows.size():
 		var view := FighterView.new()
 		var row: Dictionary = _fighter_rows[index]
-		view.setup(colors[index], int(row["height_mm"]), int(row["body_width_mm"]))
+		view.setup(colors[index], int(row["height_mm"]), int(row["body_width_mm"]), str(row["id"]))
 		add_child(view)
 		_views.append(view)
 	_hud = HudPrototype.new()

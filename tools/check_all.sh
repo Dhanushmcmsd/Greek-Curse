@@ -4,8 +4,8 @@ set -eu
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 "$(dirname "$0")/run_tests.sh" "$@"
-PY=python3
-if ! command -v python3 >/dev/null 2>&1; then
+PY="${PYTHON_BIN:-python3}"
+if ! "$PY" --version >/dev/null 2>&1; then
   PY=python
 fi
 "$PY" tools/validate/validate_all.py

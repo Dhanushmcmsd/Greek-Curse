@@ -20,7 +20,8 @@ static func world_with(rules_override: Dictionary = {}, seed_value: int = 1) -> 
 		_dict(loader, "res://data/moves/grab.json"),
 	]
 	var combat := _dict(loader, "res://data/balance/combat.json")
-	return SimWorld.from_data(rules, curves, fighters, moves, combat, seed_value)
+	var limbs := _dict(loader, "res://data/balance/limbs.json")
+	return SimWorld.from_data(rules, curves, fighters, moves, combat, seed_value, limbs)
 
 
 static func move_dict(resource_path: String) -> Dictionary:

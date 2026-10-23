@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "required": [
+    "integrity_base",
+    "toughness_percent",
+    "healthy_above",
+    "bruised_min",
+    "bruised_damage_percent",
+    "combo_min_hits",
+    "combo_gap_ticks",
+    "grace_ticks",
+    "limb_cap",
+    "fury_ticks",
+    "fury_damage_percent",
+    "fury_speed_percent",
+    "loss_meter_percent",
+    "regrown_integrity_percent"
+  ],
+  "properties": {
+    "integrity_base": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "toughness_percent": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 200
+      }
+    },
+    "healthy_above": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "bruised_min": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "bruised_damage_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "combo_min_hits": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "combo_gap_ticks": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "grace_ticks": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "limb_cap": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "fury_ticks": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "fury_damage_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "fury_speed_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "loss_meter_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    },
+    "regrown_integrity_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000
+    }
+  }
+}

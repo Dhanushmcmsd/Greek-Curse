@@ -17,8 +17,8 @@ fi
 echo "GODOT_BIN=$GODOT"
 "$GODOT" --headless --path "$ROOT" --import
 "$GODOT" --headless --path "$ROOT" --script res://tests/run_all.gd -- "$@"
-PY=python3
-if ! command -v python3 >/dev/null 2>&1; then
+PY="${PYTHON_BIN:-python3}"
+if ! "$PY" --version >/dev/null 2>&1; then
   PY=python
 fi
 "$PY" -m unittest discover -s tools/validate -p "test_*.py"

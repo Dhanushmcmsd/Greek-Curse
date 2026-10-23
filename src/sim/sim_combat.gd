@@ -64,8 +64,7 @@ static func _connect(
 	defender.health -= main
 	if defender.health < 0:
 		defender.health = 0
-	var applied := defender.limbs.apply_limb_damage(zone, limb)
-	defender.chain.note(world.tick, int(world.combat["combo_gap_ticks"]), zone, applied)
+	SimSeverance.hit(world, 1 - attacker_index, attacker_index, zone, limb, events)
 	_fill_meter(world, attacker, Fx.percent(main, int(world.combat["meter_dealt_percent"])), events)
 	_fill_meter(world, defender, Fx.percent(main, int(world.combat["meter_taken_percent"])), events)
 	if attacker.attack_is_grab:

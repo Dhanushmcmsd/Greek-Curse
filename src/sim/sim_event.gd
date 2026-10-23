@@ -2,7 +2,21 @@ class_name SimEvent
 extends RefCounted
 ## A fact the presentation may read. It cannot change the simulation.
 
-enum Kind { HIT, KO, ROUND_START, ROUND_END, MATCH_END, BLOCK, METER, GRAB }
+enum Kind {
+	HIT,
+	KO,
+	ROUND_START,
+	ROUND_END,
+	MATCH_END,
+	BLOCK,
+	METER,
+	GRAB,
+	LIMB_STATE_CHANGED,
+	LIMB_SEVERED,
+	DESPERATE_FURY_STARTED,
+	LIMB_CAP_BLOCKED,
+	COMBO_EXTENDED
+}
 
 var kind: int = Kind.HIT
 var actor: int = -1
@@ -10,6 +24,7 @@ var other: int = -1
 var amount: int = 0
 var round_index: int = 1
 var winner: int = -1
+var payload: Dictionary = {}
 
 
 static func make(

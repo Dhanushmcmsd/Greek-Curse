@@ -15,7 +15,7 @@
 - Dev machine specs (for performance notes): AMD Ryzen 5 5600X, 6 cores / 12 threads. WMI `TotalPhysicalMemory` 17103278080 bytes (~15.9 GiB). GPU: NVIDIA GeForce GTX 1650, WMI `AdapterRAM` 4293918720 bytes (~4.0 GB; WMI VRAM figures are often inaccurate).
 
 ## Current Stage
-- Stage: 06 (COMPLETE)
+- Stage: 07 (COMPLETE)
 - Started / last updated: 2026-10-24
 
 ## Stage Table
@@ -28,7 +28,7 @@
 | 04 | Progress Tracker And Handoff Protocol | COMPLETE | 2026-10-24 | docs/handoff/04_PROGRESS_TRACKER_AND_HANDOFF_PROTOCOL.md |
 | 05 | First Playable Prototype | COMPLETE | 2026-10-24 | docs/handoff/05_FIRST_PLAYABLE_PROTOTYPE.md |
 | 06 | Combat Simulation And Hit Detection | COMPLETE | 2026-10-24 | docs/handoff/06_COMBAT_SIMULATION_AND_HIT_DETECTION.md |
-| 07 | Limb Integrity Severing And Stump Caps | NOT_STARTED | | |
+| 07 | Limb Integrity Severing And Stump Caps | COMPLETE | 2026-10-24 | docs/handoff/07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md |
 | 08 | Body State Movement And Input | NOT_STARTED | | |
 | 09 | Fighter Ai And Local 1V1 | NOT_STARTED | | |
 | 10 | Combat Ui Feedback And Round Flow | NOT_STARTED | | |
@@ -65,7 +65,7 @@
 - 06: split the combat sim, added limb hurtboxes, block, stamina, dodge, grab, combo records, hit-stop, and replay checks. Golden hash regenerated because the hashed state grew. No severing.
 
 ## Tests (latest run)
-- Machine counts: 49 passed, 0 failed, 0 skipped (2026-10-24T03:12:53+05:30).
+- Machine counts: 65 passed, 0 failed, 0 skipped (2026-10-24T03:27:25+05:30).
 - Date / command: 2026-10-24. `D:\Git\bin\bash.exe tools/check_all.sh` exited 0. Godot suite: 49 passed, 0 failed, 0 skipped. Python validator tests: 7 OK. Status tests: 12 OK. `gdlint` clean. `gdformat --check` reported 42 files unchanged. `validate_all.py`: PASS. `status_check.py`: PASS. Scripted hash `6354485122121618977`, wins 2-0, tick 2096. Replay OK. Fuzz `CRASHES=0`, 480000 ticks, 17334 ticks per second.
 - Passed / failed / skipped: check_all PASS. The historical stage 02 failing assertion and the stage 03 `randf()` probe are not in the tree. `gdtoolkit` 4.5.0 first reported 13 style findings; those lines were fixed and both tools then exited 0.
 - Fast suite / full suite: fast suite is `tools/check_all.ps1` and `tools/check_all.sh`. Full regression suite is stage 21.
@@ -106,8 +106,7 @@
 Stage 06 is complete. Run `07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md`. Keep the fixed lane and the approved limbs. Publish still needs a GitHub login on this machine.
 
 ## Next Prompt Filename
-07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md
-
+08_BODY_STATE_MOVEMENT_AND_INPUT.md
 ## Session Log
 | Date | Stage | Summary | Result |
 |---|---|---|---|
@@ -120,3 +119,4 @@ Stage 06 is complete. Run `07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md`. Keep t
 | 2026-10-24 | 05 | Greybox local 1v1 prototype. Godot 35 passed, scripted hash matched, and one windowed still was saved. Checkpoint A is still pending. | COMPLETE |
 | 2026-10-24 | 05 | Owner replied Pass for Checkpoint A after the first play test. Restored the explicit 60 Hz physics tick the editor had removed. | COMPLETE |
 | 2026-10-24 | 06 | Combat core added. Godot 49 passed. Replay matched. Fuzz reported 0 crashes over 480000 ticks. | COMPLETE |
+| 2026-10-24 | 07 | Stage 07 complete: 65 Godot tests and full check_all passed; early four-fighter three-arena art generated and window inspected. | COMPLETE |

@@ -45,3 +45,17 @@ Hit-stop sets `hitstop_remaining` from the move. While it is above 0, fighter st
 ## Replay
 
 `snapshot_hash()` covers positions, state, health, stamina, meter, integrity, the chain, the buffer, and hit-stop. `tools/sim/replay.gd` checks `tests/golden/*.replay.json`. `tools/sim/record_replay.gd` writes the scripted prototype replay. `--record=<path>` on the match scene writes the inputs from a live session.
+
+## Stage 07 limb rules (supersede stage 06 placeholders)
+
+`data/balance/limbs.json` owns integrity and severance values. Floor(integrity*100/max): >50 Healthy, 26..50 Bruised, 0..25 attached Cracked. Only the severance resolver sets Severed; zero alone never means removed. Head/torso have no limb object. Removed groups have no hurtbox.
+
+A defender's chain includes landed blocked/unblocked hits; 90 ticks continues and 91 restarts. Three hits qualifies. New hits update the chain before sever evaluation. Non-hit damage may use the chain through last_hit+30 inclusive. Zero outside that window sets pending; next same-limb landed hit severs even after a long gap. A hit starting Healthy cannot sever. Match loss cap defaults to 2; further zero limbs remain Cracked and cap_blocked. No integrity regeneration between rounds.
+
+Credit sums actual integrity removed per attacker per limb per chain. Equal totals choose the smallest integer attacker ID. Each limb is credited once per match. Results record limb/attacker/victim/tick/chain_hits. Career input/export persists body damage, while a new match clears credit/cap counters. Fresh Body, Versus and Practice match reset restore integrity.
+
+Bruised attacking limb applies 90% damage. Cracked/Severed limb cannot attack; block needs one usable arm. Fury refreshes one modifier (115% damage, 120% speed) for 360 simulation ticks; no stacking, includes hit-stop. Loss adds 30% of maximum meter, clamped to maximum. Modifiers apply at move startup.
+
+Events are SimEvent objects: actor/other are attacker/victim indices, payload always includes tick. `COMBO_EXTENDED`: chain_hits, zone. `LIMB_STATE_CHANGED`: limb, from, to, integrity. `LIMB_SEVERED`: limb, credit record. `DESPERATE_FURY_STARTED`: expires_tick, meter. `LIMB_CAP_BLOCKED`: limb, emitted once per limb. Order is combo, sever/cap, Fury if severed, state change.
+
+The stage 06 golden input log is unchanged; its hashes are regenerated because limb flags, contributions, modifiers and records now participate. `severance_01` exercises three real jab contacts at ticks 5,22,39.

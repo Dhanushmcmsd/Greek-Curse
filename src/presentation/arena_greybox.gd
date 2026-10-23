@@ -1,12 +1,12 @@
 class_name ArenaGreybox
 extends Node3D
 ## Floor, two walls, and a flat light. No gameplay.
+var arena_id: String = "mount_olympus"
 
 
 func _ready() -> void:
-	_box(Vector3(0.0, -0.1, 0.0), Vector3(10.0, 0.2, 4.0), Color(0.45, 0.42, 0.38))
-	_box(Vector3(-4.7, 1.0, 0.0), Vector3(0.3, 2.0, 4.0), Color(0.32, 0.34, 0.38))
-	_box(Vector3(4.7, 1.0, 0.0), Vector3(0.3, 2.0, 4.0), Color(0.32, 0.34, 0.38))
+	var path := "res://assets/generated/models/arena_%s.glb" % arena_id
+	add_child((load(path) as PackedScene).instantiate())
 	var light := DirectionalLight3D.new()
 	light.rotation_degrees = Vector3(-48.0, 30.0, 0.0)
 	add_child(light)

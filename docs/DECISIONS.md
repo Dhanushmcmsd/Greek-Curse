@@ -87,3 +87,9 @@ Online rollback and matchmaking; ranked; server-checked Chronicle; 4-player braw
 |---|---|---|
 | 2026-10-24 | D-003 | Approved. Keep 2.5D lane combat. No sidestep into the background. |
 | 2026-10-24 | D-009 | Approved. Keep the five regrown limbs on the shared skeleton and sockets. Do not add limbs without a new approval. |
+
+## E. Stage 07 refinements (2026-10-24)
+
+- D-040 DEFAULT: supersedes D-035's rejection of next-hit severing. Follow prompt 07 and GDD 7.3: zero outside a live chain becomes pending; the next landed hit on that same limb severs, subject to the cap. Preserve the healthy-start protection: one hit starting Healthy cannot sever even during an existing chain. The 30-tick grace applies to damage without a new landed hit; a landed hit first extends/restarts the 90-tick chain.
+- D-041 DEFAULT: credit uses actual integrity removed during the current chain, ties use lowest integer attacker ID; if the pending limb has no positive contribution in the new chain the triggering attacker gets credit. Fury damage 115%, speed 120%, expires at tick started+360 (exclusive), including hit-stop.
+- D-042 OWNER REQUEST: bring original four-fighter/three-arena test models forward into stage 07. These Blender-generated modular GLBs are early test art. Shared armature, data-driven proportions, asset manifests and validators remain stage 11/12 acceptance work. No new roster or arena beyond the locked MVP.

@@ -1,4 +1,12 @@
 extends TestBase
+
+
+func test_severance_replay_matches() -> void:
+	assert_eq(
+		ReplayCheck.verify("res://tests/golden/severance_01.replay.json"), "", "severance replay"
+	)
+
+
 ## The stored prototype replay still reaches the same hashes.
 
 

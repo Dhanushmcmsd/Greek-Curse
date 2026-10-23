@@ -10,6 +10,7 @@ static func verify(path: String) -> String:
 		return "replay is not an object"
 	var data: Dictionary = parsed
 	var world := ProtoFixture.world_with({}, int(data["seed"]))
+	configure(world, str(data.get("scenario", "")))
 	var every := int(data["hashes_every"])
 	var inputs: Array = data["inputs"]
 	var hashes: Array = data["hashes"]
@@ -25,3 +26,12 @@ static func verify(path: String) -> String:
 	if seen != hashes.size():
 		return "hash count mismatch"
 	return ""
+
+
+static func configure(world: SimWorld, scenario: String) -> void:
+	if scenario == "severance":
+		world.fighters[0].x = 0
+		world.fighters[1].x = 430
+		world.moves[0]["damage"] = 0
+		world.moves[0]["limb_damage"] = 25
+		world.moves[0]["hitbox"] = {"x": 0, "y": 1424, "w": 500, "h": 150}

@@ -11,6 +11,13 @@ static func hash_ints(values: Array) -> int:
 	return hash
 
 
+static func hash_string(value: String) -> int:
+	var hash := _offset()
+	for byte in value.to_utf8_buffer():
+		hash = _mix(hash, byte)
+	return hash
+
+
 static func _offset() -> int:
 	return (0xCBF29CE4 << 32) | 0x84222325
 
