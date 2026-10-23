@@ -13,12 +13,12 @@ func _ready() -> void:
 	add_child(layer)
 	_label = Label.new()
 	_label.position = Vector2(40.0, 120.0)
-	_label.size = Vector2(900.0, 220.0)
+	_label.size = Vector2(1100.0, 320.0)
 	_label.visible = false
 	_label.add_theme_font_size_override("font_size", 18)
 	_label.add_theme_color_override("font_color", Color(1.0, 0.95, 0.4))
 	layer.add_child(_label)
-	for _i in 4:
+	for _i in 16:
 		var mesh := MeshInstance3D.new()
 		mesh.mesh = BoxMesh.new()
 		var material := StandardMaterial3D.new()
@@ -46,8 +46,27 @@ func refresh(world: SimWorld) -> void:
 	lines.append("tick %d  hash %d" % [world.tick, world.hash_state()])
 	var boxes: Array = []
 	for fighter in world.fighters:
-		lines.append("%s  %s  x=%d" % [fighter.display_name, fighter.state_name(), fighter.x])
-		boxes.append(fighter.hurtbox())
+		(
+			lines
+			. append(
+				(
+					"%s %s x=%d sta=%d meter=%d combo=%d stop=%d"
+					% [
+						fighter.display_name,
+						fighter.state_name(),
+						fighter.x,
+						fighter.stamina,
+						fighter.meter,
+						fighter.chain.combo_hits,
+						world.hitstop_remaining,
+					]
+				)
+			)
+		)
+		for limb_box in fighter.limbs.world_boxes(
+			fighter.x, fighter.y, fighter.body_width_mm, fighter.height_mm, fighter.pose
+		):
+			boxes.append(limb_box["rect"])
 		if fighter.state == SimFighter.State.ACTIVE:
 			boxes.append(fighter.hitbox())
 	_label.text = "\n".join(lines)

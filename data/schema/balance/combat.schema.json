@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "required": [
+    "block_keep_percent", "block_chip_percent", "limb_main_percent", "head_main_percent",
+    "combo_gap_ticks", "input_buffer_ticks", "stamina_regen_per_tick", "block_stamina_per_tick",
+    "stagger_ticks", "dodge_ticks", "dodge_iframe_start", "dodge_iframe_end", "dodge_cost",
+    "dodge_cooldown_ticks", "dodge_mm_per_tick", "grab_ticks", "meter_max",
+    "meter_dealt_percent", "meter_taken_percent", "integrity_base", "toughness_percent",
+    "gravity_mm_per_tick", "zone_order"
+  ],
+  "properties": {
+    "block_keep_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "block_chip_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "limb_main_percent": { "type": "integer", "minimum": 0, "maximum": 200 },
+    "head_main_percent": { "type": "integer", "minimum": 0, "maximum": 300 },
+    "combo_gap_ticks": { "type": "integer", "minimum": 1, "maximum": 300 },
+    "input_buffer_ticks": { "type": "integer", "minimum": 1, "maximum": 30 },
+    "stamina_regen_per_tick": { "type": "integer", "minimum": 0, "maximum": 20 },
+    "block_stamina_per_tick": { "type": "integer", "minimum": 0, "maximum": 20 },
+    "stagger_ticks": { "type": "integer", "minimum": 1, "maximum": 120 },
+    "dodge_ticks": { "type": "integer", "minimum": 1, "maximum": 60 },
+    "dodge_iframe_start": { "type": "integer", "minimum": 0, "maximum": 60 },
+    "dodge_iframe_end": { "type": "integer", "minimum": 1, "maximum": 60 },
+    "dodge_cost": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "dodge_cooldown_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "dodge_mm_per_tick": { "type": "integer", "minimum": 0, "maximum": 200 },
+    "grab_ticks": { "type": "integer", "minimum": 1, "maximum": 60 },
+    "meter_max": { "type": "integer", "minimum": 1, "maximum": 200 },
+    "meter_dealt_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "meter_taken_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "integrity_base": { "type": "integer", "minimum": 1, "maximum": 200 },
+    "toughness_percent": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0, "maximum": 300 }
+    },
+    "gravity_mm_per_tick": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "zone_order": { "type": "array", "items": { "type": "string" } }
+  }
+}

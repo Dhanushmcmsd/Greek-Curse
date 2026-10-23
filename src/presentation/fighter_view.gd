@@ -28,8 +28,12 @@ func show_fighter(fighter: SimFighter) -> void:
 	if _flash_ticks > 0:
 		_flash_ticks -= 1
 		_apply_color(Color(1.0, 0.95, 0.85))
+	elif fighter.blocking:
+		_apply_color(Color(0.45, 0.65, 0.9))
 	else:
 		_apply_color(_rest_color)
+	if fighter.state == SimFighter.State.STAGGER:
+		_apply_color(Color(0.55, 0.2, 0.2))
 	if fighter.state == SimFighter.State.KO:
 		_apply_color(Color(0.35, 0.35, 0.35))
 

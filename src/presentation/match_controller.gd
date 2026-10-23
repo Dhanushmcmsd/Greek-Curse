@@ -59,9 +59,12 @@ var _rules: Dictionary = {}
 var _curves: Dictionary = {}
 var _fighter_rows: Array = []
 var _move_rows: Array = []
+var _combat: Dictionary = {}
 var _last_physics_frame := -1
 var _autoplay := false
 var _shot_path := ""
+var _record_path := ""
+var _recorded: Array = []
 var _autoplay_ticks := 0
 
 
@@ -84,7 +87,10 @@ func _physics_process(_delta: float) -> void:
 	if InputMap.has_action("proto_debug") and Input.is_action_just_pressed("proto_debug"):
 		_debug.set_enabled(not _debug.visible_boxes)
 	if world.phase == SimWorld.PHASE_FIGHTING:
-		var events: Array = world.step(_read_inputs())
+		var masks := _read_inputs()
+		if _record_path != "":
+			_recorded.append(masks)
+		var events: Array = world.step(masks)
 		_consume(events)
 	_sync(false)
 	_maybe_finish_autoplay()
@@ -96,6 +102,8 @@ func _read_flags() -> void:
 			_autoplay = true
 		elif arg.begins_with("--shot="):
 			_shot_path = arg.substr("--shot=".length())
+		elif arg.begins_with("--record="):
+			_record_path = arg.substr("--record=".length())
 
 
 func _load_match() -> void:
@@ -110,7 +118,9 @@ func _load_match() -> void:
 		_require(loader, "res://data/moves/jab_of_hermes.json"),
 		_require(loader, "res://data/moves/cyclops_smash.json"),
 		_require(loader, "res://data/moves/pegasus_kick.json"),
+		_require(loader, "res://data/moves/grab.json"),
 	]
+	_combat = _require(loader, "res://data/balance/combat.json")
 
 
 func _require(loader: DataLoader, path: String) -> Dictionary:
@@ -122,7 +132,7 @@ func _require(loader: DataLoader, path: String) -> Dictionary:
 
 
 func _make_world() -> SimWorld:
-	return SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, 1)
+	return SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1)
 
 
 func _restart() -> void:
@@ -201,7 +211,7 @@ func _axis_bit(action_name: String, bit: int) -> int:
 
 func _consume(events: Array) -> void:
 	for event in events:
-		if event.kind == SimEvent.Kind.HIT:
+		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
 			_views[event.other].flash()
 		elif event.kind == SimEvent.Kind.KO:
 			_banner = "KO"
@@ -229,8 +239,30 @@ func _maybe_finish_autoplay() -> void:
 	_capture_and_quit()
 
 
+func _exit_tree() -> void:
+	_write_recording()
+
+
+func _write_recording() -> void:
+	if _record_path == "" or _recorded.is_empty():
+		return
+	var payload := {
+		"seed": 1,
+		"fighters": ["theron", "atalanta"],
+		"arena": "greybox",
+		"inputs": _recorded,
+		"final_hash": str(world.snapshot_hash()),
+	}
+	var file := FileAccess.open(_record_path, FileAccess.WRITE)
+	if file == null:
+		Log.error("match", "replay record failed")
+		return
+	file.store_string(JSON.stringify(payload))
+
+
 func _capture_and_quit() -> void:
 	await RenderingServer.frame_post_draw
+	_write_recording()
 	if _shot_path != "":
 		var image := get_viewport().get_texture().get_image()
 		var error := image.save_png(_shot_path)

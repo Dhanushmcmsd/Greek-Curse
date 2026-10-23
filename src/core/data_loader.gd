@@ -7,6 +7,7 @@ extends RefCounted
 const DATA_PREFIX := "res://data/"
 
 var _cache: Dictionary = {}
+var _schema_root: Dictionary = {}
 
 
 func load_json(resource_path: String, schema_path: String = "") -> Result:
@@ -32,6 +33,7 @@ func load_json(resource_path: String, schema_path: String = "") -> Result:
 		if schema_parser.parse(schema_text) != OK:
 			return _fail(resource_path, "malformed schema %s" % resolved_schema)
 		var schema: Dictionary = schema_parser.data
+		_schema_root = schema
 		var errors: Array[String] = []
 		var normalized: Variant = _check(payload, schema, "", errors)
 		if not errors.is_empty():
@@ -68,6 +70,11 @@ func _fail(resource_path: String, message: String) -> Result:
 
 
 func _check(value: Variant, schema: Dictionary, path: String, errors: Array[String]) -> Variant:
+	if schema.has("$ref"):
+		var defs: Dictionary = _schema_root.get("$defs", {})
+		var ref_name := str(schema["$ref"]).get_file()
+		if defs.has(ref_name):
+			schema = defs[ref_name]
 	var expected := str(schema.get("type", ""))
 	if expected != "" and not _type_ok(value, expected):
 		errors.append("%s: expected %s" % [path if path != "" else "/", expected])

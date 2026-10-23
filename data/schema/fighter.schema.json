@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "required": ["id", "display_name", "reach", "speed", "power", "limb_toughness", "target_size", "height_mm", "body_width_mm"],
+  "required": ["id", "display_name", "reach", "speed", "power", "limb_toughness", "target_size", "height_mm", "body_width_mm", "hurtboxes"],
   "properties": {
     "id": { "type": "string" },
     "display_name": { "type": "string" },
@@ -10,6 +10,30 @@
     "limb_toughness": { "type": "integer", "minimum": 1, "maximum": 5 },
     "target_size": { "type": "integer", "minimum": 1, "maximum": 5 },
     "height_mm": { "type": "integer", "minimum": 1000, "maximum": 2500 },
-    "body_width_mm": { "type": "integer", "minimum": 200, "maximum": 800 }
+    "body_width_mm": { "type": "integer", "minimum": 200, "maximum": 800 },
+    "hurtboxes": {
+      "type": "object",
+      "required": ["standing", "crouch", "hop", "crawl", "torso"],
+      "properties": {
+        "standing": { "type": "array", "items": { "$ref": "#/$defs/box" } },
+        "crouch": { "type": "array", "items": { "$ref": "#/$defs/box" } },
+        "hop": { "type": "array", "items": { "$ref": "#/$defs/box" } },
+        "crawl": { "type": "array", "items": { "$ref": "#/$defs/box" } },
+        "torso": { "type": "array", "items": { "$ref": "#/$defs/box" } }
+      }
+    }
+  },
+  "$defs": {
+    "box": {
+      "type": "object",
+      "required": ["name", "x_pct", "y_pct", "w_pct", "h_pct"],
+      "properties": {
+        "name": { "type": "string" },
+        "x_pct": { "type": "integer", "minimum": -100, "maximum": 200 },
+        "y_pct": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "w_pct": { "type": "integer", "minimum": 1, "maximum": 200 },
+        "h_pct": { "type": "integer", "minimum": 1, "maximum": 100 }
+      }
+    }
   }
 }

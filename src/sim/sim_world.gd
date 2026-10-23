@@ -21,6 +21,8 @@ var floor_y: int = 0
 var spawn_x: Array[int] = [-900, 900]
 var fighters: Array[SimFighter] = []
 var moves: Array[Dictionary] = []
+var combat: Dictionary = {}
+var hitstop_remaining: int = 0
 var rng: SimRng = SimRng.new(1)
 
 
@@ -29,6 +31,7 @@ static func from_data(
 	curves: Dictionary,
 	fighter_rows: Array,
 	move_rows: Array,
+	combat_row: Dictionary,
 	seed_value: int = 1
 ) -> SimWorld:
 	var world := SimWorld.new()
@@ -41,6 +44,7 @@ static func from_data(
 	world.arena_max_x = int(rules["arena_max_x"])
 	world.floor_y = int(rules["floor_y"])
 	world.spawn_x = [int(rules["spawn_x"][0]), int(rules["spawn_x"][1])]
+	world.combat = combat_row
 	var speeds: Array = curves["speed_mm_per_tick"]
 	var powers: Array = curves["power_percent"]
 	world.moves = []
@@ -68,6 +72,8 @@ func _make_fighter(
 	fighter.power_percent = int(powers[int(row["power"])])
 	fighter.health = max_health
 	fighter.stamina = stamina_value
+	fighter.stamina_max = stamina_value
+	fighter.limbs.setup(row, combat, fighter.limb_toughness)
 	fighter.y = floor_y
 	fighter.x = spawn_x[index]
 	fighter.facing = 1 if index == 0 else -1
@@ -81,19 +87,40 @@ func step(inputs: Array) -> Array:
 	tick += 1
 	round_tick += 1
 	var masks: Array[int] = [_mask_at(inputs, 0), _mask_at(inputs, 1)]
+	var window := int(combat["input_buffer_ticks"])
 	for index in fighters.size():
-		_advance_fighter(fighters[index], masks[index])
+		fighters[index].buffer.push(masks[index], tick, window)
+	if hitstop_remaining > 0:
+		hitstop_remaining -= 1
+		_finish_round(events)
+		return events
+	for index in fighters.size():
+		SimMovement.advance(self, fighters[index], masks[index])
 	_face()
 	_separate()
-	_resolve_hits(events)
+	SimCombat.resolve(self, events)
 	_separate()
+	for fighter in fighters:
+		SimStamina.regen(fighter, combat)
 	_finish_round(events)
 	return events
 
 
 func hash_state() -> int:
+	return snapshot_hash()
+
+
+func snapshot_hash() -> int:
 	var values: Array = [
-		tick, round_tick, phase, round_index, wins[0], wins[1], draw_uses, rng.get_state()
+		tick,
+		round_tick,
+		phase,
+		round_index,
+		wins[0],
+		wins[1],
+		draw_uses,
+		rng.get_state(),
+		hitstop_remaining,
 	]
 	for fighter in fighters:
 		(
@@ -111,9 +138,17 @@ func hash_state() -> int:
 					1 if fighter.has_hit else 0,
 					fighter.stamina,
 					1 if fighter.blocking else 0,
+					fighter.meter,
+					fighter.pose_id(),
+					fighter.cooldown_ticks,
+					fighter.armor_hits,
+					fighter.hits_done,
 				]
 			)
 		)
+		values.append_array(fighter.limbs.hash_values())
+		values.append_array(fighter.chain.hash_values())
+		values.append_array(fighter.buffer.hash_values())
 	return StateHash.hash_ints(values)
 
 
@@ -121,83 +156,6 @@ func _mask_at(inputs: Array, index: int) -> int:
 	if index >= inputs.size():
 		return 0
 	return int(inputs[index])
-
-
-func _advance_fighter(fighter: SimFighter, mask: int) -> void:
-	fighter.blocking = (
-		SimInput.has_bit(mask, SimInput.BLOCK) and fighter.state != SimFighter.State.KO
-	)
-	if fighter.state == SimFighter.State.KO:
-		return
-	if fighter.state == SimFighter.State.HITSTUN:
-		fighter.state_tick -= 1
-		if fighter.state_tick <= 0:
-			fighter.state = SimFighter.State.IDLE
-			fighter.state_tick = 0
-		return
-	if _busy(fighter):
-		_age_move(fighter)
-		fighter.x += fighter.facing * fighter.attack_hop
-		return
-	_walk(fighter, mask)
-	_try_start_move(fighter, mask)
-	if _busy(fighter):
-		fighter.x += fighter.facing * fighter.attack_hop
-
-
-func _busy(fighter: SimFighter) -> bool:
-	return (
-		fighter.state == SimFighter.State.STARTUP
-		or fighter.state == SimFighter.State.ACTIVE
-		or fighter.state == SimFighter.State.RECOVERY
-	)
-
-
-func _age_move(fighter: SimFighter) -> void:
-	var startup := fighter.startup_ticks
-	var active_end := startup + fighter.active_ticks
-	var total := active_end + fighter.recovery_ticks
-	if fighter.move_age < startup:
-		fighter.state = SimFighter.State.STARTUP
-	elif fighter.move_age < active_end:
-		fighter.state = SimFighter.State.ACTIVE
-	elif fighter.move_age < total:
-		fighter.state = SimFighter.State.RECOVERY
-	else:
-		fighter.state = SimFighter.State.IDLE
-		fighter.clear_move()
-		return
-	fighter.state_tick = fighter.move_age
-	fighter.move_age += 1
-
-
-func _walk(fighter: SimFighter, mask: int) -> void:
-	var direction := 0
-	if SimInput.has_bit(mask, SimInput.LEFT):
-		direction -= 1
-	if SimInput.has_bit(mask, SimInput.RIGHT):
-		direction += 1
-	if direction == 0:
-		fighter.state = SimFighter.State.IDLE
-		return
-	fighter.state = SimFighter.State.WALK
-	fighter.x += direction * fighter.walk_speed
-
-
-func _try_start_move(fighter: SimFighter, mask: int) -> void:
-	var index := 0
-	if SimInput.has_bit(mask, SimInput.LIGHT):
-		index = 1
-	elif SimInput.has_bit(mask, SimInput.HEAVY):
-		index = 2
-	elif SimInput.has_bit(mask, SimInput.KICK):
-		index = 3
-	if index == 0 or index > moves.size():
-		return
-	var move: Dictionary = moves[index - 1]
-	var scaled := Fx.percent(int(move["damage"]), fighter.power_percent)
-	fighter.begin_move(index, move, scaled)
-	_age_move(fighter)
 
 
 func _face() -> void:
@@ -248,7 +206,6 @@ func _push_apart() -> void:
 func _clamp_all() -> void:
 	for fighter in fighters:
 		fighter.x = Fx.clamp_i(fighter.x, _low(fighter), _high(fighter))
-		fighter.y = floor_y
 
 
 func _low(fighter: SimFighter) -> int:
@@ -257,58 +214,6 @@ func _low(fighter: SimFighter) -> int:
 
 func _high(fighter: SimFighter) -> int:
 	return arena_max_x - fighter.half_width()
-
-
-func _resolve_hits(events: Array) -> void:
-	for attacker_index in fighters.size():
-		var attacker := fighters[attacker_index]
-		if attacker.state != SimFighter.State.ACTIVE or attacker.has_hit:
-			continue
-		var defender_index := 1 - attacker_index
-		var defender := fighters[defender_index]
-		if defender.state == SimFighter.State.KO:
-			continue
-		if not _boxes_overlap(attacker.hitbox(), defender.hurtbox()):
-			continue
-		attacker.has_hit = true
-		defender.health -= attacker.attack_damage
-		if defender.health < 0:
-			defender.health = 0
-		var sign := 1 if defender.x >= attacker.x else -1
-		defender.x += sign * attacker.attack_knockback
-		defender.clear_move()
-		defender.state = SimFighter.State.HITSTUN
-		defender.state_tick = attacker.attack_hitstun
-		events.append(
-			SimEvent.make(
-				SimEvent.Kind.HIT,
-				attacker_index,
-				defender_index,
-				attacker.attack_damage,
-				round_index,
-				-1
-			)
-		)
-		if defender.health <= 0:
-			defender.state = SimFighter.State.KO
-			defender.state_tick = 0
-			events.append(
-				SimEvent.make(
-					SimEvent.Kind.KO, defender_index, attacker_index, 0, round_index, attacker_index
-				)
-			)
-
-
-func _boxes_overlap(a: Array, b: Array) -> bool:
-	if int(a[0]) + int(a[2]) <= int(b[0]):
-		return false
-	if int(b[0]) + int(b[2]) <= int(a[0]):
-		return false
-	if int(a[1]) + int(a[3]) <= int(b[1]):
-		return false
-	if int(b[1]) + int(b[3]) <= int(a[1]):
-		return false
-	return true
 
 
 func _finish_round(events: Array) -> void:
@@ -366,8 +271,15 @@ func _reset_bodies() -> void:
 		fighter.x = spawn_x[index]
 		fighter.y = floor_y
 		fighter.health = max_health
+		fighter.stamina = fighter.stamina_max
+		fighter.y = floor_y
+		fighter.pose = "standing"
+		fighter.cooldown_ticks = 0
+		fighter.chain = ChainRecord.new()
+		fighter.buffer = SimInputBuffer.new()
 		fighter.state = SimFighter.State.IDLE
 		fighter.state_tick = 0
 		fighter.blocking = false
 		fighter.facing = 1 if index == 0 else -1
 		fighter.clear_move()
+	hitstop_remaining = 0

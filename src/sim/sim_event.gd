@@ -2,7 +2,7 @@ class_name SimEvent
 extends RefCounted
 ## A fact the presentation may read. It cannot change the simulation.
 
-enum Kind { HIT, KO, ROUND_START, ROUND_END, MATCH_END }
+enum Kind { HIT, KO, ROUND_START, ROUND_END, MATCH_END, BLOCK, METER, GRAB }
 
 var kind: int = Kind.HIT
 var actor: int = -1

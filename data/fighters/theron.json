@@ -7,5 +7,43 @@
   "limb_toughness": 5,
   "target_size": 5,
   "height_mm": 2050,
-  "body_width_mm": 500
+  "body_width_mm": 500,
+  "hurtboxes": {
+    "standing": [
+      {"name": "leg_l", "x_pct": -40, "y_pct": 0, "w_pct": 40, "h_pct": 32},
+      {"name": "leg_r", "x_pct": 0, "y_pct": 0, "w_pct": 40, "h_pct": 32},
+      {"name": "torso", "x_pct": -50, "y_pct": 34, "w_pct": 100, "h_pct": 44},
+      {"name": "arm_l", "x_pct": -50, "y_pct": 80, "w_pct": 100, "h_pct": 10},
+      {"name": "arm_r", "x_pct": 60, "y_pct": 80, "w_pct": 30, "h_pct": 10},
+      {"name": "head", "x_pct": -20, "y_pct": 90, "w_pct": 40, "h_pct": 10}
+    ],
+    "crouch": [
+      {"name": "leg_l", "x_pct": -40, "y_pct": 0, "w_pct": 45, "h_pct": 20},
+      {"name": "leg_r", "x_pct": 0, "y_pct": 0, "w_pct": 45, "h_pct": 20},
+      {"name": "torso", "x_pct": -50, "y_pct": 20, "w_pct": 100, "h_pct": 30},
+      {"name": "arm_l", "x_pct": -50, "y_pct": 48, "w_pct": 100, "h_pct": 10},
+      {"name": "arm_r", "x_pct": 60, "y_pct": 48, "w_pct": 30, "h_pct": 10},
+      {"name": "head", "x_pct": -20, "y_pct": 58, "w_pct": 40, "h_pct": 12}
+    ],
+    "hop": [
+      {"name": "leg_l", "x_pct": -40, "y_pct": 12, "w_pct": 40, "h_pct": 28},
+      {"name": "leg_r", "x_pct": 0, "y_pct": 12, "w_pct": 40, "h_pct": 28},
+      {"name": "torso", "x_pct": -50, "y_pct": 42, "w_pct": 100, "h_pct": 36},
+      {"name": "arm_l", "x_pct": -50, "y_pct": 78, "w_pct": 100, "h_pct": 10},
+      {"name": "arm_r", "x_pct": 60, "y_pct": 78, "w_pct": 30, "h_pct": 10},
+      {"name": "head", "x_pct": -20, "y_pct": 88, "w_pct": 40, "h_pct": 10}
+    ],
+    "crawl": [
+      {"name": "leg_l", "x_pct": -40, "y_pct": 0, "w_pct": 40, "h_pct": 10},
+      {"name": "leg_r", "x_pct": 0, "y_pct": 0, "w_pct": 40, "h_pct": 10},
+      {"name": "torso", "x_pct": -50, "y_pct": 0, "w_pct": 100, "h_pct": 16},
+      {"name": "arm_l", "x_pct": -50, "y_pct": 8, "w_pct": 70, "h_pct": 8},
+      {"name": "arm_r", "x_pct": 20, "y_pct": 8, "w_pct": 30, "h_pct": 8},
+      {"name": "head", "x_pct": -15, "y_pct": 14, "w_pct": 30, "h_pct": 10}
+    ],
+    "torso": [
+      {"name": "torso", "x_pct": -40, "y_pct": 0, "w_pct": 80, "h_pct": 36},
+      {"name": "head", "x_pct": -16, "y_pct": 36, "w_pct": 32, "h_pct": 16}
+    ]
+  }
 }

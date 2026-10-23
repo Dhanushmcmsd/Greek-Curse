@@ -38,7 +38,12 @@ def _type_ok(value: object, expected: str) -> bool:
     return False
 
 
-def validate_instance(value: object, schema: dict, path: str) -> list[str]:
+def validate_instance(value: object, schema: dict, path: str, root: dict | None = None) -> list[str]:
+    if root is None:
+        root = schema
+    if "$ref" in schema:
+        ref_name = str(schema["$ref"]).rstrip("/").split("/")[-1]
+        schema = root.get("$defs", {}).get(ref_name, schema)
     errors: list[str] = []
     expected = schema.get("type")
     if expected is not None and not _type_ok(value, expected):
@@ -57,10 +62,10 @@ def validate_instance(value: object, schema: dict, path: str) -> list[str]:
                 errors.append(f"{path}/{key}: missing required property")
         for key, sub in schema.get("properties", {}).items():
             if key in value:
-                errors.extend(validate_instance(value[key], sub, f"{path}/{key}"))
+                errors.extend(validate_instance(value[key], sub, f"{path}/{key}", root))
     if expected == "array" and isinstance(value, list) and "items" in schema:
         for index, item in enumerate(value):
-            errors.extend(validate_instance(item, schema["items"], f"{path}/{index}"))
+            errors.extend(validate_instance(item, schema["items"], f"{path}/{index}", root))
     return errors
 
 

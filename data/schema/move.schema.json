@@ -1,6 +1,12 @@
 {
   "type": "object",
-  "required": ["id", "display_name", "startup_ticks", "active_ticks", "recovery_ticks", "damage", "hitstun_ticks", "blockstun_ticks", "knockback_mm", "hitbox", "cost", "can_cancel", "hop_mm_per_tick"],
+  "required": [
+    "id", "display_name", "startup_ticks", "active_ticks", "recovery_ticks", "damage",
+    "limb_damage", "hitstun_ticks", "blockstun_ticks", "knockback_mm", "on_block_pushback",
+    "hitstop_attacker", "hitstop_defender", "hitbox", "cost", "can_cancel", "cancel_into",
+    "cancel_start", "cancel_end", "armor_hits", "unblockable", "is_grab", "hit_count",
+    "hit_interval", "launch_y", "wall_bounce", "limb_side", "zone_priority", "hop_mm_per_tick"
+  ],
   "properties": {
     "id": { "type": "string" },
     "display_name": { "type": "string" },
@@ -8,9 +14,13 @@
     "active_ticks": { "type": "integer", "minimum": 1, "maximum": 60 },
     "recovery_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
     "damage": { "type": "integer", "minimum": 0, "maximum": 200 },
+    "limb_damage": { "type": "integer", "minimum": 0, "maximum": 200 },
     "hitstun_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
     "blockstun_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
     "knockback_mm": { "type": "integer", "minimum": 0, "maximum": 2000 },
+    "on_block_pushback": { "type": "integer", "minimum": 0, "maximum": 2000 },
+    "hitstop_attacker": { "type": "integer", "minimum": 0, "maximum": 30 },
+    "hitstop_defender": { "type": "integer", "minimum": 0, "maximum": 30 },
     "hitbox": {
       "type": "object",
       "required": ["x", "y", "w", "h"],
@@ -23,6 +33,18 @@
     },
     "cost": { "type": "integer", "minimum": 0, "maximum": 100 },
     "can_cancel": { "type": "boolean" },
+    "cancel_into": { "type": "array", "items": { "type": "string" } },
+    "cancel_start": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "cancel_end": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "armor_hits": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "unblockable": { "type": "boolean" },
+    "is_grab": { "type": "boolean" },
+    "hit_count": { "type": "integer", "minimum": 1, "maximum": 8 },
+    "hit_interval": { "type": "integer", "minimum": 0, "maximum": 30 },
+    "launch_y": { "type": "integer", "minimum": 0, "maximum": 2000 },
+    "wall_bounce": { "type": "boolean" },
+    "limb_side": { "type": "string" },
+    "zone_priority": { "type": "integer", "minimum": 0, "maximum": 10 },
     "hop_mm_per_tick": { "type": "integer", "minimum": 0, "maximum": 200 }
   }
 }
