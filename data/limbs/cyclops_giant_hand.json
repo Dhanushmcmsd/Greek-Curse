@@ -1,0 +1,138 @@
+{
+  "id": "cyclops_giant_hand",
+  "display_name": "Cyclops Giant Hand",
+  "slot": "arm",
+  "integrity_pct": 80,
+  "modifiers": {
+    "heavy_damage_percent": 140,
+    "hurtbox_percent": 140,
+    "idle_wave": 1
+  },
+  "tooltip_lines": {
+    "heavy_damage_percent": "+40% heavy punch damage.",
+    "hurtbox_percent": "Arm hurtbox is 40% wider: easier to hit.",
+    "idle_wave": "Oversized hand waves at idle; no input/view obstruction."
+  },
+  "icon_id": "cyclops_giant_hand",
+  "parts": [
+    {
+      "name": "PART_forearm",
+      "at": [
+        0,
+        0,
+        -0.16
+      ],
+      "size": [
+        0.15,
+        0.15,
+        0.32
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_palm",
+      "at": [
+        0,
+        0,
+        -0.4
+      ],
+      "size": [
+        0.28,
+        0.13,
+        0.2
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_hand_finger_0",
+      "at": [
+        -0.0975,
+        0,
+        -0.53
+      ],
+      "size": [
+        0.055,
+        0.1,
+        0.15
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_hand_finger_1",
+      "at": [
+        -0.0325,
+        0,
+        -0.53
+      ],
+      "size": [
+        0.055,
+        0.1,
+        0.15
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_hand_finger_2",
+      "at": [
+        0.0325,
+        0,
+        -0.53
+      ],
+      "size": [
+        0.055,
+        0.1,
+        0.15
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_hand_finger_3",
+      "at": [
+        0.0975,
+        0,
+        -0.53
+      ],
+      "size": [
+        0.055,
+        0.1,
+        0.15
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "box"
+    }
+  ],
+  "benefit_text": "+40% heavy punch damage.",
+  "twist_text": "Arm hurtbox is 40% wider: easier to hit. Oversized hand waves at idle; no input/view obstruction.",
+  "cosmetic_quirks": [
+    "idle_wave"
+  ]
+}

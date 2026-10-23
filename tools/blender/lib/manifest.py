@@ -28,6 +28,7 @@ def write():
     sources = sorted((ROOT / "tools/blender").rglob("*.py"))
     source_hash = hashlib.sha256(b"".join(p.read_bytes() for p in sources)).hexdigest()
     params = sorted((ROOT / "data/art").glob("*.json")) + sorted((ROOT / "data/fighters").glob("*.json"))
+    params += sorted((ROOT / "data/limbs").glob("*.json"))
     params_hash = hashlib.sha256(b"".join(p.read_bytes() for p in params)).hexdigest()
     import bpy
     payload = {"assets": assets, "source_hash": source_hash, "parameters_hash": params_hash,

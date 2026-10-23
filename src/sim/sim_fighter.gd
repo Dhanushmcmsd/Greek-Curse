@@ -50,6 +50,8 @@ var stamina_max: int = 100
 var meter: int = 0
 var modifiers: Array[SimModifier] = []
 var attack_slot: String = "arm_l"
+var attack_category: String = ""
+var landed_hit: bool = false
 var pose: String = "standing"
 var state: int = State.IDLE
 var state_tick: int = 0
@@ -108,6 +110,7 @@ func pose_id() -> int:
 
 
 func begin_move(index: int, move: Dictionary, scaled_damage: int, scaled_limb: int) -> void:
+	landed_hit = false
 	state = State.STARTUP
 	state_tick = 0
 	move_age = 0
@@ -149,6 +152,8 @@ func begin_move(index: int, move: Dictionary, scaled_damage: int, scaled_limb: i
 
 
 func clear_move() -> void:
+	landed_hit = false
+	attack_category = ""
 	move_id = 0
 	move_name = ""
 	move_age = 0

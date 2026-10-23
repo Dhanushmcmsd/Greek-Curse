@@ -22,7 +22,7 @@ static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 		return
 	if _busy(fighter):
 		if not _try_cancel(world, fighter):
-			_age_move(fighter)
+			_age_move(world, fighter)
 			fighter.x += fighter.facing * fighter.attack_hop
 		_gravity(world, fighter)
 		return
@@ -58,7 +58,7 @@ static func _busy(fighter: SimFighter) -> bool:
 	)
 
 
-static func _age_move(fighter: SimFighter) -> void:
+static func _age_move(world: SimWorld, fighter: SimFighter) -> void:
 	var startup := fighter.startup_ticks
 	var active_end := startup + fighter.active_ticks
 	var total := active_end + fighter.recovery_ticks
@@ -69,8 +69,10 @@ static func _age_move(fighter: SimFighter) -> void:
 	elif fighter.move_age < total:
 		fighter.state = SimFighter.State.RECOVERY
 	else:
-		fighter.state = SimFighter.State.IDLE
+		var stagger := SimRegrown.whiff(world, fighter)
+		fighter.state = SimFighter.State.STAGGER if stagger > 0 else SimFighter.State.IDLE
 		fighter.clear_move()
+		fighter.state_tick = stagger
 		return
 	fighter.state_tick = fighter.move_age
 	fighter.move_age += 1
@@ -190,7 +192,8 @@ static func _begin_named(
 	scaled_limb = Fx.percent(scaled_limb, percent)
 	fighter.attack_slot = slot
 	fighter.begin_move(found + 1, move, scaled, scaled_limb)
-	_age_move(fighter)
+	SimRegrown.begin(fighter, move)
+	_age_move(world, fighter)
 	_consume_edges(fighter, move_id)
 
 
@@ -222,6 +225,9 @@ static func _dodge_motion(world: SimWorld, fighter: SimFighter, mask: int) -> vo
 			int(SimBodyState.movement(fighter, world.body_rules)["dodge_percent"])
 		)
 	)
+	if fighter.state_tick == 0:
+		for slot in ["leg_l", "leg_r"]:
+			fighter.x += direction * int(SimRegrown.effects(fighter, slot).get("dash_mm", 0))
 	fighter.state_tick += 1
 	if fighter.state_tick >= int(world.combat["dodge_ticks"]):
 		fighter.state = SimFighter.State.IDLE

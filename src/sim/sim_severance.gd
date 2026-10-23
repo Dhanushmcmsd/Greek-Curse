@@ -66,6 +66,8 @@ static func _sever(
 	var fighter := world.fighters[victim]
 	var limb: SimLimb = fighter.limbs.parts[zone]
 	limb.state = "severed"
+	fighter.limbs.remove_modifier(zone)
+	limb.regrown_id = ""
 	limb.zero_pending = false
 	fighter.limbs.losses += 1
 	var credit := fighter.chain.credit_for(zone, attacker)

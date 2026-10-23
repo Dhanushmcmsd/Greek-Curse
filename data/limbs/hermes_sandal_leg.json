@@ -1,0 +1,83 @@
+{
+  "id": "hermes_sandal_leg",
+  "display_name": "Hermes Sandal Leg",
+  "slot": "leg",
+  "integrity_pct": 80,
+  "modifiers": {
+    "speed_percent": 125,
+    "dash_mm": 180,
+    "zoom_interval_ticks": 180,
+    "zoom_chance": 10,
+    "zoom_mm": 200
+  },
+  "tooltip_lines": {
+    "speed_percent": "+25% movement speed.",
+    "dash_mm": "Dodge adds a short 180mm dash along the lane.",
+    "zoom_interval_ticks": "While walking, a zoom check occurs every 180 ticks.",
+    "zoom_chance": "Seeded 10% chance of an involuntary zoom.",
+    "zoom_mm": "Zoom moves 200mm left or right at random."
+  },
+  "icon_id": "hermes_sandal_leg",
+  "parts": [
+    {
+      "name": "PART_leg",
+      "at": [
+        0,
+        0,
+        -0.34
+      ],
+      "size": [
+        0.13,
+        0.13,
+        0.68
+      ],
+      "color": [
+        0.57,
+        0.38,
+        0.23
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_sandal",
+      "at": [
+        0,
+        -0.06,
+        -0.73
+      ],
+      "size": [
+        0.17,
+        0.28,
+        0.1
+      ],
+      "color": [
+        0.8,
+        0.6,
+        0.15
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_sandal_wing",
+      "at": [
+        -0.13,
+        0,
+        -0.68
+      ],
+      "size": [
+        0.2,
+        0.035,
+        0.14
+      ],
+      "color": [
+        0.75,
+        0.8,
+        0.83
+      ],
+      "kind": "orb"
+    }
+  ],
+  "benefit_text": "+25% movement speed. Dodge adds a short 180mm dash along the lane.",
+  "twist_text": "While walking, a zoom check occurs every 180 ticks. Seeded 10% chance of an involuntary zoom. Zoom moves 200mm left or right at random.",
+  "cosmetic_quirks": []
+}

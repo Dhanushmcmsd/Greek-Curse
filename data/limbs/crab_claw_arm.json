@@ -1,0 +1,81 @@
+{
+  "id": "crab_claw_arm",
+  "display_name": "Crab Claw Arm",
+  "slot": "arm",
+  "integrity_pct": 80,
+  "modifiers": {
+    "grab_chip_percent": 200,
+    "grab_hold_ticks": 30,
+    "grab_whiff_chance": 25,
+    "grab_whiff_stagger_ticks": 30
+  },
+  "tooltip_lines": {
+    "grab_chip_percent": "Pincer grabs deal double normal grab damage, even through block.",
+    "grab_hold_ticks": "Pincer holds target for 30 ticks.",
+    "grab_whiff_chance": "A missed grab has a seeded 25% chance to pinch your belt.",
+    "grab_whiff_stagger_ticks": "Belt pinch locks you for 30 ticks (0.5s)."
+  },
+  "icon_id": "crab_claw_arm",
+  "parts": [
+    {
+      "name": "PART_forearm",
+      "at": [
+        0,
+        0,
+        -0.15
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.3
+      ],
+      "color": [
+        0.65,
+        0.05,
+        0.03
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_claw_upper",
+      "at": [
+        -0.07,
+        0,
+        -0.4
+      ],
+      "size": [
+        0.11,
+        0.16,
+        0.28
+      ],
+      "color": [
+        0.65,
+        0.05,
+        0.03
+      ],
+      "kind": "orb"
+    },
+    {
+      "name": "PART_claw_lower",
+      "at": [
+        0.07,
+        0,
+        -0.4
+      ],
+      "size": [
+        0.11,
+        0.16,
+        0.28
+      ],
+      "color": [
+        0.65,
+        0.05,
+        0.03
+      ],
+      "kind": "orb"
+    }
+  ],
+  "benefit_text": "Pincer grabs deal double normal grab damage, even through block. Pincer holds target for 30 ticks.",
+  "twist_text": "A missed grab has a seeded 25% chance to pinch your belt. Belt pinch locks you for 30 ticks (0.5s).",
+  "cosmetic_quirks": []
+}

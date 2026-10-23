@@ -73,6 +73,7 @@ def validate_instance(value: object, schema: dict, path: str, root: dict | None 
 SHARED_SCHEMAS = {
     "fighters": "fighter.schema.json",
     "moves": "move.schema.json",
+    "limbs": "limb.schema.json",
 }
 
 

@@ -1,0 +1,83 @@
+{
+  "id": "marble_statue_leg",
+  "display_name": "Marble Statue Leg",
+  "slot": "leg",
+  "integrity_pct": 80,
+  "modifiers": {
+    "integrity_max_percent": 150,
+    "kick_damage_percent": 125,
+    "speed_percent": 80,
+    "idle_pose": 1
+  },
+  "tooltip_lines": {
+    "integrity_max_percent": "+50% maximum leg durability; starts at 80% of normal durability.",
+    "kick_damage_percent": "+25% kick damage.",
+    "speed_percent": "Movement speed reduced by 20%.",
+    "idle_pose": "Dramatic idle pose."
+  },
+  "icon_id": "marble_statue_leg",
+  "parts": [
+    {
+      "name": "PART_thigh",
+      "at": [
+        0,
+        0,
+        -0.2
+      ],
+      "size": [
+        0.19,
+        0.19,
+        0.4
+      ],
+      "color": [
+        0.75,
+        0.8,
+        0.83
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_shin",
+      "at": [
+        0,
+        0,
+        -0.55
+      ],
+      "size": [
+        0.15,
+        0.15,
+        0.3
+      ],
+      "color": [
+        0.75,
+        0.8,
+        0.83
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_foot",
+      "at": [
+        0,
+        -0.07,
+        -0.74
+      ],
+      "size": [
+        0.18,
+        0.3,
+        0.1
+      ],
+      "color": [
+        0.75,
+        0.8,
+        0.83
+      ],
+      "kind": "box"
+    }
+  ],
+  "benefit_text": "+50% maximum leg durability; starts at 80% of normal durability. +25% kick damage.",
+  "twist_text": "Movement speed reduced by 20%. Dramatic idle pose and stone creak caption.",
+  "cosmetic_quirks": [
+    "idle_pose"
+  ]
+}

@@ -67,3 +67,10 @@ Missing means Severed, not Cracked. Profile precedence: >=3 missing -> torso_mod
 J/K alone use left arm; forward+J/K right arm; L uses left leg, down+L right leg. Missing bound side is ignored, never silently remapped. One remaining leg offers flying/low kicks. Torso fallback always attacks. One usable arm grab 65% damage and block keeps 50% main damage. All values/move mappings live in body_states.json. Input buffering stores direction at the button edge. Hold-to-toggle is entirely in PlayerInput. Key remap export/import has no save service yet.
 
 Replay initial_limb_states is optional and backwards-compatible. The recorder captures hashes every 30 ticks. All 16 fixture masks have replay files and matrix evidence of movement and actual damage.
+
+## Stage 13 regrown limbs
+Regrow requires a Severed compatible slot, restores 80% of normal toughness-scaled maximum, and replaces the limb permanently. Marble maximum is 150% of normal; its starting integrity is still 80% of normal. Replacement modifiers are removed on re-sever and restored with career state. Existing once-per-slot credit and match loss cap still apply.
+
+SimRegrown.begin extends chicken light reach to 130%, gives giant-hand heavies 140% damage, marble kicks 125% damage, and claw grabs 200% main damage (including through block). The claw holds both fighters for 30 ticks; ordinary grab has zero limb chip, so the claw benefit deliberately scales main damage rather than multiplying zero. SimRegrown.whiff applies chicken heavy self-stagger 18 ticks; claw missed grabs have seeded 25% chance of 30 ticks self-stagger. Actual contacts, not dodge/armor windows, suppress the whiff penalty.
+
+SimModifier speed factors are marble 80%, Hermes 125%. Hermes adds 180 mm on dodge startup and, every 180 ticks while walking, has seeded 10% chance of a 200 mm left/right zoom. Giant arm hurtbox scales to 140%. All values and disclosure lines are data-driven. Chicken emits a squeak caption, giant hand waves, marble poses and claw/wing/beak parts wobble; audio comes in stage 16. No cosmetic transform affects sim.

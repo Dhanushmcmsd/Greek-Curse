@@ -80,6 +80,7 @@ func _make_fighter(
 	fighter.stamina_max = stamina_value
 	fighter.limbs.setup(row, limb_rules, fighter.limb_toughness)
 	fighter.limbs.rules = limb_rules
+	fighter.limbs.modifiers = fighter.modifiers
 	fighter.y = floor_y
 	fighter.x = spawn_x[index]
 	fighter.facing = 1 if index == 0 else -1
@@ -102,6 +103,7 @@ func step(inputs: Array) -> Array:
 		return events
 	for index in fighters.size():
 		SimMovement.advance(self, fighters[index], masks[index])
+		SimRegrown.after_movement(self, fighters[index], events)
 	_face()
 	_separate()
 	SimCombat.resolve(self, events)
@@ -156,6 +158,8 @@ func snapshot_hash() -> int:
 		values.append_array(fighter.chain.hash_values())
 		values.append_array(fighter.buffer.hash_values())
 		values.append(StateHash.hash_string(fighter.attack_slot))
+		values.append(StateHash.hash_string(fighter.attack_category))
+		values.append(int(fighter.landed_hit))
 		values.append(fighter.modifiers.size())
 		for modifier in fighter.modifiers:
 			values.append_array(
@@ -200,12 +204,12 @@ func reset_for_match(mode: String) -> void:
 	draw_uses = 0
 	amputations = []
 	for fighter in fighters:
+		fighter.modifiers.clear()
 		var rows := fighter.limbs.export_state() if mode == "career" else {}
 		if mode != "career":
 			for zone in SimLimbs.LIMB_NAMES:
 				rows[zone] = {"integrity": fighter.limbs.max_integrity}
 		fighter.limbs.restore_state(rows)
-		fighter.modifiers.clear()
 		fighter.meter = 0
 	_reset_bodies()
 

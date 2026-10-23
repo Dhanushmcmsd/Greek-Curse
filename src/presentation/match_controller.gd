@@ -94,8 +94,8 @@ func _load_match() -> void:
 	_rules = _require(loader, "res://data/rules/match.json")
 	_curves = _require(loader, "res://data/balance/stat_curves.json")
 	_fighter_rows = [
-		_require(loader, "res://data/fighters/theron.json"),
-		_require(loader, "res://data/fighters/atalanta.json"),
+		_require(loader, "res://data/fighters/%s.json" % match_config.fighter_ids[0]),
+		_require(loader, "res://data/fighters/%s.json" % match_config.fighter_ids[1]),
 	]
 	_move_rows = [
 		_require(loader, "res://data/moves/jab_of_hermes.json"),

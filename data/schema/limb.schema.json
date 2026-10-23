@@ -1,0 +1,60 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "display_name",
+    "slot",
+    "integrity_pct",
+    "modifiers",
+    "tooltip_lines",
+    "icon_id",
+    "parts",
+    "benefit_text",
+    "twist_text",
+    "cosmetic_quirks"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "slot": {
+      "type": "string",
+      "enum": [
+        "arm",
+        "leg"
+      ]
+    },
+    "integrity_pct": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "modifiers": {
+      "type": "object"
+    },
+    "tooltip_lines": {
+      "type": "object"
+    },
+    "icon_id": {
+      "type": "string"
+    },
+    "parts": {
+      "type": "array"
+    },
+    "benefit_text": {
+      "type": "string"
+    },
+    "twist_text": {
+      "type": "string"
+    },
+    "cosmetic_quirks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -114,6 +114,8 @@ func show_match(world: SimWorld, banner: String) -> void:
 
 func consume(events: Array, world: SimWorld) -> void:
 	for event in events:
+		if event.kind == SimEvent.Kind.LIMB_QUIRK:
+			credit_text = str(event.payload.get("quirk", "")).to_upper()
 		if event.kind == SimEvent.Kind.LIMB_SEVERED:
 			var credit: Dictionary = event.payload["credit"]
 			credit_text = (

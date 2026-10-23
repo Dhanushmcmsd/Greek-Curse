@@ -104,11 +104,19 @@ func _update_model(fighter: SimFighter) -> void:
 		visual_stop -= 1
 	else:
 		_pose_time += 1.0 / 60.0
+	for replacement in rig.replacements.values():
+		LimbQuirks.animate(replacement, _pose_time)
 	for slot in SimLimbs.LIMB_NAMES:
 		if not fighter.limbs.usable(slot):
 			continue
 		var limb: Node3D = rig.groups[slot]
 		limb.rotation.x = 0.0
+		if fighter.state == SimFighter.State.IDLE:
+			var replacement_id: String = fighter.limbs.parts[slot].regrown_id
+			if replacement_id == "cyclops_giant_hand":
+				limb.rotation.x = -0.5 + sin(_pose_time * 3.0) * 0.2
+			elif replacement_id == "marble_statue_leg":
+				limb.rotation.x = -0.08
 		if fighter.state == SimFighter.State.WALK:
 			limb.rotation.x = sin(_pose_time * 12.0 + (PI if slot.ends_with("r") else 0.0)) * 0.30
 		if slot == fighter.attack_slot and fighter.move_id > 0:

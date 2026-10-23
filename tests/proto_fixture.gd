@@ -26,6 +26,7 @@ static func world_with(rules_override: Dictionary = {}, seed_value: int = 1) -> 
 	var limbs := _dict(loader, "res://data/balance/limbs.json")
 	var world := SimWorld.from_data(rules, curves, fighters, moves, combat, seed_value, limbs)
 	world.body_rules = _dict(loader, "res://data/balance/body_states.json")
+	LimbCatalog.install(world)
 	return world
 
 

@@ -9,6 +9,9 @@ var sockets: Dictionary = {}
 var limb_meshes: Dictionary = {}
 var stump_meshes: Dictionary = {}
 var skeleton: Skeleton3D
+var replacements: Dictionary = {}
+var fighter_height: float = 1.8
+var fighter_width: float = 0.45
 var _states: Dictionary = {}
 var _rest_rotations: Dictionary = {}
 
@@ -21,6 +24,9 @@ func load_fighter(id: String) -> bool:
 	model = (load(path) as PackedScene).instantiate()
 	add_child(model)
 	ModelLoader.prepare_materials(model)
+	var row: Dictionary = DataLoader.new().load_json("res://data/fighters/%s.json" % id).value
+	fighter_height = float(row["height_mm"]) / 1000.0
+	fighter_width = float(row["body"]["shoulder_width"])
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
 	if skeleton != null:
 		for index in skeleton.get_bone_count():
@@ -81,10 +87,46 @@ func apply_palette(id: String) -> void:
 				material.albedo_color = tint
 
 
+func attach_regrown(slot: String, id: String) -> bool:
+	if not sockets.has(slot):
+		return false
+	var result := DataLoader.new().load_json("res://data/limbs/%s.json" % id)
+	if not result.ok or not slot.begins_with(str(result.value["slot"])):
+		return false
+	detach_regrown(slot)
+	var info := ModelLoader.load_model("res://assets/generated/models/limb_%s.glb" % id)
+	if info.root == null:
+		return false
+	var replacement := info.root
+	replacement.set_meta("limb_id", id)
+	replacement.scale = Vector3(fighter_width / 0.45, fighter_height / 1.8, fighter_width / 0.45)
+	attach_to_socket(slot, replacement)
+	replacements[slot] = replacement
+	set_limb_visible(slot, false)
+	show_stump(slot, false)
+	return true
+
+
+func detach_regrown(slot: String) -> void:
+	if replacements.has(slot):
+		var old: Node = replacements[slot]
+		old.get_parent().remove_child(old)
+		old.free()
+		replacements.erase(slot)
+	set_limb_visible(slot, true)
+	show_stump(slot, false)
+
+
 func sync(fighter: SimFighter) -> void:
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
-		set_limb_visible(slot, state != "severed")
+		var regrown: String = fighter.limbs.parts[slot].regrown_id
+		if regrown != "" and state != "severed":
+			if not replacements.has(slot) or replacements[slot].get_meta("limb_id") != regrown:
+				attach_regrown(slot, regrown)
+		elif replacements.has(slot):
+			detach_regrown(slot)
+		set_limb_visible(slot, state != "severed" and regrown == "")
 		show_stump(slot, state == "severed")
 		groups[slot].rotation.z = 0.3 if state == "cracked" else 0.0
 		pose_limb(slot, 0.3 if state == "cracked" else 0.0)
@@ -103,6 +145,8 @@ func pose_limb(slot: String, angle: float) -> void:
 		skeleton.set_bone_pose_rotation(
 			index, _rest_rotations[index] * Quaternion(Vector3.RIGHT, angle)
 		)
+	if replacements.has(slot):
+		replacements[slot].rotation.x = angle
 
 
 func _tint(node: Node, color: Color) -> void:

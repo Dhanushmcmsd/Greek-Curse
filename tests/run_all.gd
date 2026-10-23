@@ -4,6 +4,10 @@ extends SceneTree
 
 
 func _initialize() -> void:
+	call_deferred("_execute")
+
+
+func _execute() -> void:
 	var code := _run()
 	quit(code)
 

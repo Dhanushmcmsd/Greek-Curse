@@ -7,11 +7,14 @@ from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[2]
 args = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
-roster = "--roster" in args
+limbs = "--limbs" in args
+roster = "--roster" in args or limbs
 asset = next((a for a in args if not a.startswith("--")), "pipeline_test")
 bpy.ops.object.select_all(action="SELECT")
 bpy.ops.object.delete(use_global=False)
 ids = ["fighter_theron", "fighter_atalanta", "fighter_pyrrhus", "fighter_sibyl"] if roster else [asset]
+if limbs:
+    ids = ["limb_" + p.stem for p in sorted((ROOT / "data/limbs").glob("*.json"))]
 for index, name in enumerate(ids):
     before = set(bpy.data.objects)
     bpy.ops.import_scene.gltf(filepath=str(ROOT / f"assets/generated/models/{name}.glb"))
@@ -22,8 +25,12 @@ for index, name in enumerate(ids):
             for child in obj.children_recursive:
                 child.hide_render = True
         if obj.parent is None:
-            obj.location.x += (index - 1.5) * 1.5 if roster else 0
+            obj.location.x += (index - (len(ids)-1)/2) * 1.2 if roster else 0
 bpy.ops.object.camera_add(location=(0, -8, 3.0))
+if limbs:
+    for obj in bpy.data.objects:
+        if obj.parent is None and obj.type != "CAMERA":
+            obj.location.z += 1.5
 camera = bpy.context.object
 camera.rotation_euler = (Vector((0, 0, 1.05)) - camera.location).to_track_quat('-Z', 'Y').to_euler()
 camera.data.type = "ORTHO"
@@ -43,7 +50,7 @@ scene.render.resolution_percentage = 100
 scene.render.image_settings.file_format = "PNG"
 out = ROOT / "build/previews"
 out.mkdir(parents=True, exist_ok=True)
-scene.render.filepath = str(out / ("roster.png" if roster else asset + ".png"))
+scene.render.filepath = str(out / ("limbs.png" if limbs else "roster.png" if roster else asset + ".png"))
 try:
     bpy.ops.render.render(write_still=True)
     if not roster:

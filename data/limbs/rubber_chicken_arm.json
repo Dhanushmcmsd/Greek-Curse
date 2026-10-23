@@ -1,0 +1,100 @@
+{
+  "id": "rubber_chicken_arm",
+  "display_name": "Rubber Chicken Arm",
+  "slot": "arm",
+  "integrity_pct": 80,
+  "modifiers": {
+    "light_reach_percent": 130,
+    "heavy_whiff_stagger_ticks": 18,
+    "squeak": 1
+  },
+  "tooltip_lines": {
+    "light_reach_percent": "+30% light punch reach.",
+    "heavy_whiff_stagger_ticks": "Missed heavy punch staggers you for 18 ticks (0.3s).",
+    "squeak": "Every landed punch squeaks (caption until audio stage)."
+  },
+  "icon_id": "rubber_chicken_arm",
+  "parts": [
+    {
+      "name": "PART_neck",
+      "at": [
+        0,
+        0,
+        -0.16
+      ],
+      "size": [
+        0.09,
+        0.1,
+        0.32
+      ],
+      "color": [
+        0.9,
+        0.66,
+        0.12
+      ],
+      "kind": "cylinder"
+    },
+    {
+      "name": "PART_body",
+      "at": [
+        0,
+        0,
+        -0.39
+      ],
+      "size": [
+        0.17,
+        0.14,
+        0.28
+      ],
+      "color": [
+        0.9,
+        0.66,
+        0.12
+      ],
+      "kind": "orb"
+    },
+    {
+      "name": "PART_beak",
+      "at": [
+        0,
+        -0.12,
+        -0.35
+      ],
+      "size": [
+        0.08,
+        0.16,
+        0.06
+      ],
+      "color": [
+        0.65,
+        0.05,
+        0.03
+      ],
+      "kind": "box"
+    },
+    {
+      "name": "PART_comb",
+      "at": [
+        0,
+        0,
+        -0.26
+      ],
+      "size": [
+        0.03,
+        0.11,
+        0.06
+      ],
+      "color": [
+        0.65,
+        0.05,
+        0.03
+      ],
+      "kind": "box"
+    }
+  ],
+  "benefit_text": "+30% light punch reach.",
+  "twist_text": "Missed heavy punch staggers you for 18 ticks (0.3s). Every landed punch squeaks (caption until audio stage).",
+  "cosmetic_quirks": [
+    "squeak"
+  ]
+}

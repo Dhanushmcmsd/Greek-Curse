@@ -9,7 +9,11 @@
   "on_block_pushback": 16,
   "hitstop_attacker": 2,
   "hitstop_defender": 2,
-  "cancel_into": ["jab_of_hermes", "cyclops_smash", "pegasus_kick"],
+  "cancel_into": [
+    "jab_of_hermes",
+    "cyclops_smash",
+    "pegasus_kick"
+  ],
   "cancel_start": 6,
   "cancel_end": 10,
   "armor_hits": 0,
@@ -24,8 +28,14 @@
   "hitstun_ticks": 10,
   "blockstun_ticks": 6,
   "knockback_mm": 0,
-  "hitbox": { "x": 180, "y": 1100, "w": 420, "h": 280 },
+  "hitbox": {
+    "x": 180,
+    "y": 1100,
+    "w": 420,
+    "h": 280
+  },
   "cost": 8,
   "can_cancel": true,
-  "hop_mm_per_tick": 0
+  "hop_mm_per_tick": 0,
+  "category": "light"
 }

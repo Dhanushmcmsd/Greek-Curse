@@ -12,7 +12,12 @@
   "on_block_pushback": 0,
   "hitstop_attacker": 4,
   "hitstop_defender": 4,
-  "hitbox": { "x": 80, "y": 700, "w": 360, "h": 500 },
+  "hitbox": {
+    "x": 80,
+    "y": 700,
+    "w": 360,
+    "h": 500
+  },
   "cost": 16,
   "can_cancel": false,
   "cancel_into": [],
@@ -27,5 +32,6 @@
   "wall_bounce": false,
   "limb_side": "arm_l",
   "zone_priority": 1,
-  "hop_mm_per_tick": 0
+  "hop_mm_per_tick": 0,
+  "category": "grab"
 }

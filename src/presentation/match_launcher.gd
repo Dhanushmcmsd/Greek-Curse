@@ -29,6 +29,7 @@ static func make_world(config: MatchConfig) -> SimWorld:
 		loader.load_json("res://data/balance/limbs.json").value
 	)
 	world.body_rules = loader.load_json("res://data/balance/body_states.json").value
+	LimbCatalog.install(world)
 	return world
 
 

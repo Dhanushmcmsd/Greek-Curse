@@ -60,6 +60,8 @@ func _inferred_schema(resource_path: String) -> String:
 		return "res://data/schema/fighter.schema.json"
 	if folder == "moves":
 		return "res://data/schema/move.schema.json"
+	if folder == "limbs":
+		return "res://data/schema/limb.schema.json"
 	return ""
 
 

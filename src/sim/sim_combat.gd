@@ -58,6 +58,14 @@ static func _connect(
 	events: Array
 ) -> void:
 	var split := _split(world, attacker, defender, zone)
+	attacker.landed_hit = true
+	var effect := SimRegrown.effects(attacker, attacker.attack_slot)
+	if effect.has("squeak"):
+		var quirk := SimEvent.make(
+			SimEvent.Kind.LIMB_QUIRK, attacker_index, 1 - attacker_index, 0, world.round_index, -1
+		)
+		quirk.payload = {"quirk": "squeak", "slot": attacker.attack_slot, "tick": world.tick}
+		events.append(quirk)
 	var main := int(split[0])
 	var limb := int(split[1])
 	var blocked := bool(split[2])
@@ -133,6 +141,11 @@ static func _throw(
 	events: Array
 ) -> void:
 	var swap := attacker.x
+	var hold := int(
+		SimRegrown.effects(attacker, attacker.attack_slot).get(
+			"grab_hold_ticks", world.combat["grab_ticks"]
+		)
+	)
 	var stop := attacker.attack_hitstop_self
 	attacker.x = defender.x
 	defender.x = swap
@@ -140,8 +153,8 @@ static func _throw(
 	defender.clear_move()
 	attacker.state = SimFighter.State.GRAB
 	defender.state = SimFighter.State.GRABBED
-	attacker.state_tick = int(world.combat["grab_ticks"])
-	defender.state_tick = int(world.combat["grab_ticks"])
+	attacker.state_tick = hold
+	defender.state_tick = hold
 	events.append(
 		SimEvent.make(
 			SimEvent.Kind.GRAB, attacker_index, 1 - attacker_index, main, world.round_index, -1

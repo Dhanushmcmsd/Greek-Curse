@@ -11,6 +11,8 @@ var profiles: Dictionary = {}
 var parts: Dictionary = {}
 var losses: int = 0
 var rules: Dictionary = {}
+var catalog: Dictionary = {}
+var modifiers: Array[SimModifier] = []
 
 
 func setup(row: Dictionary, combat: Dictionary, toughness: int) -> void:
@@ -51,6 +53,44 @@ func can_block() -> bool:
 	return usable("arm_l") or usable("arm_r")
 
 
+func regrow(slot: String, id: String) -> bool:
+	if not parts.has(slot) or not catalog.has(id):
+		return false
+	var limb: SimLimb = parts[slot]
+	var definition: Dictionary = catalog[id]
+	if limb.state != "severed" or not slot.begins_with(str(definition["slot"])):
+		return false
+	var effect: Dictionary = definition["modifiers"]
+	limb.max_integrity = Fx.percent(max_integrity, int(effect.get("integrity_max_percent", 100)))
+	limb.integrity = Fx.percent(max_integrity, int(definition["integrity_pct"]))
+	limb.state = "healthy"
+	limb.regrown_id = id
+	limb.zero_pending = false
+	limb.cap_blocked = false
+	limb.refresh(rules)
+	integrity[slot] = limb.integrity
+	register_modifier(slot)
+	return true
+
+
+func register_modifier(slot: String) -> void:
+	remove_modifier(slot)
+	var limb: SimLimb = parts[slot]
+	if limb.regrown_id == "" or limb.state == "severed" or not catalog.has(limb.regrown_id):
+		return
+	var modifier := SimModifier.new()
+	modifier.id = "regrown:" + slot
+	modifier.expires_tick = 2147483647
+	modifier.speed_percent = int(catalog[limb.regrown_id]["modifiers"].get("speed_percent", 100))
+	modifiers.append(modifier)
+
+
+func remove_modifier(slot: String) -> void:
+	for index in range(modifiers.size() - 1, -1, -1):
+		if modifiers[index].id == "regrown:" + slot:
+			modifiers.remove_at(index)
+
+
 func export_state() -> Dictionary:
 	var result := {}
 	for zone in LIMB_NAMES:
@@ -73,6 +113,7 @@ func restore_state(rows: Dictionary) -> void:
 		limb.cap_blocked = false
 		limb.refresh(rules)
 		integrity[zone] = limb.integrity
+		register_modifier(zone)
 	losses = 0
 
 
@@ -87,6 +128,11 @@ func world_boxes(
 		if parts.has(str(spec["name"])) and parts[str(spec["name"])].state == "severed":
 			continue
 		var width := Fx.mul_div(body_width, int(spec["w_pct"]), 100)
+		var zone := str(spec["name"])
+		if parts.has(zone) and catalog.has(parts[zone].regrown_id):
+			width = Fx.percent(
+				width, int(catalog[parts[zone].regrown_id]["modifiers"].get("hurtbox_percent", 100))
+			)
 		var height := Fx.mul_div(body_height, int(spec["h_pct"]), 100)
 		var local_x := Fx.mul_div(body_width, int(spec["x_pct"]), 100)
 		var top := body_y + Fx.mul_div(body_height, int(spec["y_pct"]), 100)
