@@ -1,0 +1,255 @@
+{
+  "type": "object",
+  "required": [
+    "full",
+    "one_arm",
+    "no_arms",
+    "one_leg",
+    "no_legs",
+    "torso_mode",
+    "default_moves",
+    "no_arm_moves",
+    "no_leg_moves",
+    "one_leg_moves",
+    "torso_moves",
+    "one_arm_grab_percent",
+    "one_arm_block_keep_percent"
+  ],
+  "properties": {
+    "full": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "one_arm": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "no_arms": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "one_leg": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "no_legs": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "torso_mode": {
+      "type": "object",
+      "required": [
+        "speed_percent",
+        "pose",
+        "dodge_percent"
+      ],
+      "properties": {
+        "speed_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "pose": {
+          "type": "string"
+        },
+        "dodge_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        }
+      }
+    },
+    "default_moves": {
+      "type": "object",
+      "required": [
+        "light",
+        "heavy",
+        "kick"
+      ],
+      "properties": {
+        "light": {
+          "type": "string"
+        },
+        "heavy": {
+          "type": "string"
+        },
+        "kick": {
+          "type": "string"
+        }
+      }
+    },
+    "no_arm_moves": {
+      "type": "object",
+      "required": [
+        "light",
+        "heavy",
+        "grab"
+      ],
+      "properties": {
+        "light": {
+          "type": "string"
+        },
+        "heavy": {
+          "type": "string"
+        },
+        "grab": {
+          "type": "string"
+        }
+      }
+    },
+    "no_leg_moves": {
+      "type": "object",
+      "required": [
+        "normal",
+        "low"
+      ],
+      "properties": {
+        "normal": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        }
+      }
+    },
+    "one_leg_moves": {
+      "type": "object",
+      "required": [
+        "normal",
+        "low"
+      ],
+      "properties": {
+        "normal": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        }
+      }
+    },
+    "torso_moves": {
+      "type": "object",
+      "required": [
+        "light",
+        "heavy",
+        "kick"
+      ],
+      "properties": {
+        "light": {
+          "type": "string"
+        },
+        "heavy": {
+          "type": "string"
+        },
+        "kick": {
+          "type": "string"
+        }
+      }
+    },
+    "one_arm_grab_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 500
+    },
+    "one_arm_block_keep_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 500
+    }
+  }
+}

@@ -59,3 +59,11 @@ Bruised attacking limb applies 90% damage. Cracked/Severed limb cannot attack; b
 Events are SimEvent objects: actor/other are attacker/victim indices, payload always includes tick. `COMBO_EXTENDED`: chain_hits, zone. `LIMB_STATE_CHANGED`: limb, from, to, integrity. `LIMB_SEVERED`: limb, credit record. `DESPERATE_FURY_STARTED`: expires_tick, meter. `LIMB_CAP_BLOCKED`: limb, emitted once per limb. Order is combo, sever/cap, Fury if severed, state change.
 
 The stage 06 golden input log is unchanged; its hashes are regenerated because limb flags, contributions, modifiers and records now participate. `severance_01` exercises three real jab contacts at ticks 5,22,39.
+
+## Stage 08 body and input rules
+
+Missing means Severed, not Cracked. Profile precedence: >=3 missing -> torso_mode; two missing legs -> no_legs; one missing leg -> one_leg; two missing arms -> no_arms; one missing arm -> one_arm; otherwise full. Combined arm/leg restrictions are applied independently of movement profile. Data speeds: full/arm profiles 100%, hop 65%, crawl 35%, torso 25%; dodge 100/70/40/55%. Cracked disables its attack but retains its movement presence. Both unusable arms permit headbutt/shoulder/bite even if still attached. No usable legs permit stump/sweep.
+
+J/K alone use left arm; forward+J/K right arm; L uses left leg, down+L right leg. Missing bound side is ignored, never silently remapped. One remaining leg offers flying/low kicks. Torso fallback always attacks. One usable arm grab 65% damage and block keeps 50% main damage. All values/move mappings live in body_states.json. Input buffering stores direction at the button edge. Hold-to-toggle is entirely in PlayerInput. Key remap export/import has no save service yet.
+
+Replay initial_limb_states is optional and backwards-compatible. The recorder captures hashes every 30 ticks. All 16 fixture masks have replay files and matrix evidence of movement and actual damage.

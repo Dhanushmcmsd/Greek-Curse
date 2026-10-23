@@ -1,0 +1,583 @@
+{
+  "type": "object",
+  "required": [
+    "p1_left",
+    "p1_right",
+    "p1_up",
+    "p1_down",
+    "p1_light",
+    "p1_heavy",
+    "p1_kick",
+    "p1_block",
+    "p1_dodge",
+    "p2_left",
+    "p2_right",
+    "p2_up",
+    "p2_down",
+    "p2_light",
+    "p2_heavy",
+    "p2_kick",
+    "p2_block",
+    "p2_dodge",
+    "proto_restart",
+    "proto_debug",
+    "p1_super",
+    "p1_ultimate",
+    "p2_super",
+    "p2_ultimate"
+  ],
+  "properties": {
+    "p1_left": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_right": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_up": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_down": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_light": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_heavy": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_kick": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_block": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_dodge": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_left": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_right": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_up": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_down": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_light": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_heavy": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_kick": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_block": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_dodge": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "proto_restart": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "proto_debug": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_super": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_ultimate": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_super": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_ultimate": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}

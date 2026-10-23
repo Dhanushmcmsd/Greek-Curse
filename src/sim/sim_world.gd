@@ -23,6 +23,7 @@ var fighters: Array[SimFighter] = []
 var moves: Array[Dictionary] = []
 var combat: Dictionary = {}
 var limb_rules: Dictionary = {}
+var body_rules: Dictionary = {}
 var amputations: Array = []
 var hitstop_remaining: int = 0
 var rng: SimRng = SimRng.new(1)

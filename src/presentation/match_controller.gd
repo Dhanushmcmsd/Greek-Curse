@@ -66,6 +66,8 @@ var _shot_path := ""
 var _record_path := ""
 var _recorded: Array = []
 var _autoplay_ticks := 0
+var _players: Array[PlayerInput] = [PlayerInput.new(), PlayerInput.new()]
+var _recorder := InputRecorder.new()
 
 
 func _ready() -> void:
@@ -91,6 +93,7 @@ func _physics_process(_delta: float) -> void:
 		if _record_path != "":
 			_recorded.append(masks)
 		var events: Array = world.step(masks)
+		_recorder.record(world, masks)
 		_consume(events)
 	_sync(false)
 	_maybe_finish_autoplay()
@@ -121,6 +124,9 @@ func _load_match() -> void:
 		_require(loader, "res://data/moves/grab.json"),
 	]
 	_combat = _require(loader, "res://data/balance/combat.json")
+	for name in DirAccess.get_files_at("res://data/moves"):
+		if name.begins_with("body_") and name.ends_with(".json"):
+			_move_rows.append(_require(loader, "res://data/moves/" + name))
 
 
 func _require(loader: DataLoader, path: String) -> Dictionary:
@@ -133,11 +139,14 @@ func _require(loader: DataLoader, path: String) -> Dictionary:
 
 func _make_world() -> SimWorld:
 	var limbs := _require(DataLoader.new(), "res://data/balance/limbs.json")
-	return SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1, limbs)
+	var result := SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1, limbs)
+	result.body_rules = _require(DataLoader.new(), "res://data/balance/body_states.json")
+	return result
 
 
 func _restart() -> void:
 	world = _make_world()
+	_recorder = InputRecorder.new()
 	_banner = "Round 1"
 	for view in _views:
 		view._flash_ticks = 0
@@ -165,37 +174,15 @@ func _build_stage() -> void:
 
 
 func _build_input() -> void:
-	var loader := DataLoader.new()
-	var table := _require(loader, "res://data/input/prototype_bindings.json")
-	for row in table["actions"]:
-		var action_name := str(row["name"])
-		if not InputMap.has_action(action_name):
-			InputMap.add_action(action_name)
-		var key_name := str(row["key"])
-		if KEYS.has(key_name):
-			var key := InputEventKey.new()
-			key.keycode = int(KEYS[key_name])
-			InputMap.action_add_event(action_name, key)
-		var joy_name := str(row.get("joy_button", ""))
-		if JOY_BUTTONS.has(joy_name):
-			var button := InputEventJoypadButton.new()
-			button.button_index = int(JOY_BUTTONS[joy_name])
-			button.device = int(row.get("device", 0))
-			InputMap.action_add_event(action_name, button)
+	var bindings := InputBindings.new()
+	bindings.reset_defaults()
+	bindings.install()
 
 
 func _read_inputs() -> Array:
 	if _autoplay:
 		return ProtoScript.inputs_at(world.tick)
-	var masks: Array[int] = [0, 0]
-	for row in PLAYER_BITS:
-		var action_name: String = row[0]
-		var bit: int = row[1]
-		var player := 0 if action_name.begins_with("p1_") else 1
-		if InputMap.has_action(action_name) and Input.is_action_pressed(action_name):
-			masks[player] = masks[player] | bit
-		masks[player] = masks[player] | _axis_bit(action_name, bit)
-	return [masks[0], masks[1]]
+	return [_players[0].sample(0), _players[1].sample(1)]
 
 
 func _axis_bit(action_name: String, bit: int) -> int:
@@ -245,20 +232,10 @@ func _exit_tree() -> void:
 
 
 func _write_recording() -> void:
-	if _record_path == "" or _recorded.is_empty():
+	if _record_path == "" or _recorder.inputs.is_empty():
 		return
-	var payload := {
-		"seed": 1,
-		"fighters": ["theron", "atalanta"],
-		"arena": "greybox",
-		"inputs": _recorded,
-		"final_hash": str(world.snapshot_hash()),
-	}
-	var file := FileAccess.open(_record_path, FileAccess.WRITE)
-	if file == null:
+	if _recorder.save_to(_record_path, world) != OK:
 		Log.error("match", "replay record failed")
-		return
-	file.store_string(JSON.stringify(payload))
 
 
 func _capture_and_quit() -> void:

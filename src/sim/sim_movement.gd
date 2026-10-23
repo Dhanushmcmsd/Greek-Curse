@@ -4,6 +4,10 @@ extends RefCounted
 
 
 static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
+	var profile := SimBodyState.movement(fighter, world.body_rules)
+	fighter.pose = str(profile["pose"])
+	if fighter.pose == "standing" and mask & SimInput.DOWN:
+		fighter.pose = "crouch"
 	if fighter.cooldown_ticks > 0 and fighter.state != SimFighter.State.DODGE:
 		fighter.cooldown_ticks -= 1
 	fighter.blocking = false
@@ -73,6 +77,8 @@ static func _age_move(fighter: SimFighter) -> void:
 
 
 static func _move_or_block(world: SimWorld, fighter: SimFighter, mask: int) -> void:
+	if _edge(world, fighter, SimInput.DODGE) and fighter.cooldown_ticks <= 0:
+		return
 	if (
 		SimInput.has_bit(mask, SimInput.BLOCK)
 		and not _attack_level(mask)
@@ -91,9 +97,10 @@ static func _move_or_block(world: SimWorld, fighter: SimFighter, mask: int) -> v
 		fighter.state = SimFighter.State.IDLE
 		return
 	fighter.state = SimFighter.State.WALK
+	var speed := Fx.percent(fighter.walk_speed, SimModifier.percent_for(fighter, world.tick, true))
 	fighter.x += (
 		direction
-		* Fx.percent(fighter.walk_speed, SimModifier.percent_for(fighter, world.tick, true))
+		* Fx.percent(speed, int(SimBodyState.movement(fighter, world.body_rules)["speed_percent"]))
 	)
 
 
@@ -115,10 +122,10 @@ static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 			fighter.state_tick = 0
 			_dodge_motion(world, fighter, mask)
 		return
-	var move_id := _chosen_move(world, fighter, mask, true)
-	if move_id == "":
+	var chosen := _chosen_move(world, fighter, mask, true)
+	if chosen.is_empty():
 		return
-	_begin_named(world, fighter, move_id)
+	_begin_named(world, fighter, chosen["id"], chosen["slot"])
 
 
 static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
@@ -126,28 +133,23 @@ static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
 		return false
 	if fighter.move_age < fighter.cancel_start or fighter.move_age >= fighter.cancel_end:
 		return false
-	var move_id := _chosen_move(world, fighter, 0, false)
-	if move_id == "" or not fighter.cancel_into.has(move_id):
+	var chosen := _chosen_move(world, fighter, 0, false)
+	if chosen.is_empty() or not fighter.cancel_into.has(chosen["id"]):
 		return false
-	_begin_named(world, fighter, move_id)
+	_begin_named(world, fighter, chosen["id"], chosen["slot"])
 	return true
 
 
 static func _chosen_move(
 	world: SimWorld, fighter: SimFighter, mask: int, allow_level: bool
-) -> String:
-	var light := _wants(world, fighter, SimInput.LIGHT, mask, allow_level)
-	var heavy := _wants(world, fighter, SimInput.HEAVY, mask, allow_level)
-	var kick := _wants(world, fighter, SimInput.KICK, mask, allow_level)
-	if light and kick:
-		return "grab"
-	if light:
-		return "jab_of_hermes"
-	if heavy:
-		return "cyclops_smash"
-	if kick:
-		return "pegasus_kick"
-	return ""
+) -> Dictionary:
+	var effective := mask & (SimInput.LEFT | SimInput.RIGHT | SimInput.DOWN)
+	for bit in [SimInput.LIGHT, SimInput.HEAVY, SimInput.KICK]:
+		if _wants(world, fighter, bit, mask, allow_level):
+			effective |= bit
+			if not allow_level or not mask & bit:
+				effective |= fighter.buffer.direction_for(bit)
+	return SimMoveAvailability.select(fighter, effective, world.body_rules)
 
 
 static func _wants(
@@ -162,7 +164,9 @@ static func _edge(world: SimWorld, fighter: SimFighter, bit: int) -> bool:
 	return fighter.buffer.has_edge(bit, world.tick, int(world.combat["input_buffer_ticks"]))
 
 
-static func _begin_named(world: SimWorld, fighter: SimFighter, move_id: String) -> void:
+static func _begin_named(
+	world: SimWorld, fighter: SimFighter, move_id: String, slot: String
+) -> void:
 	var found := -1
 	for index in world.moves.size():
 		if str(world.moves[index]["id"]) == move_id:
@@ -171,16 +175,17 @@ static func _begin_named(world: SimWorld, fighter: SimFighter, move_id: String) 
 	if found < 0:
 		return
 	var move: Dictionary = world.moves[found]
-	var slot := "leg_l" if move_id == "pegasus_kick" else "arm_l"
-	if not fighter.limbs.usable(slot):
+	if fighter.limbs.parts.has(slot) and not fighter.limbs.usable(slot):
 		return
 	if not SimStamina.try_spend(fighter, int(move["cost"]), world.combat):
 		return
 	var scaled := Fx.percent(int(move["damage"]), fighter.power_percent)
 	var scaled_limb := Fx.percent(int(move.get("limb_damage", 0)), fighter.power_percent)
 	var percent := SimModifier.percent_for(fighter, world.tick)
-	if fighter.limbs.parts[slot].state == "bruised":
+	if fighter.limbs.parts.has(slot) and fighter.limbs.parts[slot].state == "bruised":
 		percent = Fx.percent(percent, int(world.limb_rules["bruised_damage_percent"]))
+	if move_id == "grab" and not (fighter.limbs.usable("arm_l") and fighter.limbs.usable("arm_r")):
+		percent = Fx.percent(percent, int(world.body_rules["one_arm_grab_percent"]))
 	scaled = Fx.percent(scaled, percent)
 	scaled_limb = Fx.percent(scaled_limb, percent)
 	fighter.attack_slot = slot
@@ -190,7 +195,10 @@ static func _begin_named(world: SimWorld, fighter: SimFighter, move_id: String) 
 
 
 static func _consume_edges(fighter: SimFighter, move_id: String) -> void:
-	if move_id == "jab_of_hermes":
+	if move_id.begins_with("body_"):
+		for bit in [SimInput.LIGHT, SimInput.HEAVY, SimInput.KICK]:
+			fighter.buffer.consume(bit)
+	elif move_id == "jab_of_hermes":
 		fighter.buffer.consume(SimInput.LIGHT)
 	elif move_id == "cyclops_smash":
 		fighter.buffer.consume(SimInput.HEAVY)
@@ -207,7 +215,13 @@ static func _dodge_motion(world: SimWorld, fighter: SimFighter, mask: int) -> vo
 		direction = -1
 	elif SimInput.has_bit(mask, SimInput.RIGHT):
 		direction = 1
-	fighter.x += direction * int(world.combat["dodge_mm_per_tick"])
+	fighter.x += (
+		direction
+		* Fx.percent(
+			int(world.combat["dodge_mm_per_tick"]),
+			int(SimBodyState.movement(fighter, world.body_rules)["dodge_percent"])
+		)
+	)
 	fighter.state_tick += 1
 	if fighter.state_tick >= int(world.combat["dodge_ticks"]):
 		fighter.state = SimFighter.State.IDLE

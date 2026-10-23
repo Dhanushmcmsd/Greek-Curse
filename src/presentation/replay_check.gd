@@ -11,6 +11,7 @@ static func verify(path: String) -> String:
 	var data: Dictionary = parsed
 	var world := ProtoFixture.world_with({}, int(data["seed"]))
 	configure(world, str(data.get("scenario", "")))
+	world.setup({"initial_limb_states": data.get("initial_limb_states", [])})
 	var every := int(data["hashes_every"])
 	var inputs: Array = data["inputs"]
 	var hashes: Array = data["hashes"]

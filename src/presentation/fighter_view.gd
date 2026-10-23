@@ -64,6 +64,13 @@ func _apply_color(body_color: Color) -> void:
 
 func _update_model(fighter: SimFighter) -> void:
 	rig.rotation.y = -float(fighter.facing) * 0.95
+	rig.position.y = 0.0
+	rig.rotation.z = 0.0
+	if fighter.pose == "crawl" or fighter.pose == "torso":
+		rig.position.y = -float(fighter.height_mm) / 1000.0 * 0.43
+		rig.rotation.z = float(fighter.facing) * 0.25
+	elif fighter.pose == "hop" and fighter.state == SimFighter.State.WALK:
+		rig.position.y = abs(sin(_pose_time * 10.0)) * 0.12
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
 		if state == "severed" and _last_states.get(slot, "healthy") != "severed":

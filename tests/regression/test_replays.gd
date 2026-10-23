@@ -7,6 +7,15 @@ func test_severance_replay_matches() -> void:
 	)
 
 
+func test_body_state_replays_match() -> void:
+	for mask in 16:
+		assert_eq(
+			ReplayCheck.verify("res://tests/golden/body_%02d.replay.json" % mask),
+			"",
+			"body replay %d" % mask
+		)
+
+
 ## The stored prototype replay still reaches the same hashes.
 
 

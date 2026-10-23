@@ -116,7 +116,10 @@ static func _split(
 		defender.blocking and not attacker.attack_unblockable and not attacker.attack_is_grab
 	)
 	if blocked:
-		main = Fx.percent(main, int(world.combat["block_keep_percent"]))
+		var keep := int(world.combat["block_keep_percent"])
+		if not (defender.limbs.usable("arm_l") and defender.limbs.usable("arm_r")):
+			keep = int(world.body_rules["one_arm_block_keep_percent"])
+		main = Fx.percent(main, keep)
 		limb = Fx.percent(attacker.attack_limb_damage, int(world.combat["block_chip_percent"]))
 	return [main, limb, blocked]
 

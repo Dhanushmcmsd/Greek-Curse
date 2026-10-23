@@ -20,8 +20,13 @@ static func world_with(rules_override: Dictionary = {}, seed_value: int = 1) -> 
 		_dict(loader, "res://data/moves/grab.json"),
 	]
 	var combat := _dict(loader, "res://data/balance/combat.json")
+	for name in DirAccess.get_files_at("res://data/moves"):
+		if name.begins_with("body_") and name.ends_with(".json"):
+			moves.append(_dict(loader, "res://data/moves/" + name))
 	var limbs := _dict(loader, "res://data/balance/limbs.json")
-	return SimWorld.from_data(rules, curves, fighters, moves, combat, seed_value, limbs)
+	var world := SimWorld.from_data(rules, curves, fighters, moves, combat, seed_value, limbs)
+	world.body_rules = _dict(loader, "res://data/balance/body_states.json")
+	return world
 
 
 static func move_dict(resource_path: String) -> Dictionary:
