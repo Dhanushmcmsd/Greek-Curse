@@ -1,5 +1,5 @@
-extends RefCounted
 class_name StateHash
+extends RefCounted
 ## FNV-1a 64-bit over integers stored as 8 little-endian bytes each.
 ## The offset basis is split so the script does not need a literal above 2^63.
 

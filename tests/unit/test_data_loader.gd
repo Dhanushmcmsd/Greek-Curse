@@ -37,8 +37,7 @@ func test_malformed_json_does_not_crash() -> void:
 func test_schema_violation_names_the_field() -> void:
 	var before := Log.error_count
 	var result := DataLoader.new().load_json(
-		"res://tests/assets/sample_bad.json",
-		"res://tests/assets/sample.schema.json"
+		"res://tests/assets/sample_bad.json", "res://tests/assets/sample.schema.json"
 	)
 	assert_false(result.ok, "schema failure")
 	assert_true(result.error.contains("/name") or result.error.contains("/ticks"), result.error)

@@ -1,7 +1,6 @@
-extends RefCounted
 class_name SimRng
+extends RefCounted
 ## xorshift32. State is always masked to 32 bits. Zero is not a valid state and becomes 1.
-
 
 var _state: int = 1
 

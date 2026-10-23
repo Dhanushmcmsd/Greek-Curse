@@ -16,9 +16,9 @@ func test_log_error_increments_counter() -> void:
 
 
 func test_logged_error_is_visible_to_helper() -> void:
-	assert_raises_error_logged(func() -> void:
-		Log.error("smoke", "helper error")
-	, "helper sees ERROR")
+	assert_raises_error_logged(
+		func() -> void: Log.error("smoke", "helper error"), "helper sees ERROR"
+	)
 
 
 func test_physics_ticks_per_second_is_60() -> void:

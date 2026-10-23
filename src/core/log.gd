@@ -40,7 +40,8 @@ func error(category: String, message: String) -> void:
 
 func write(level: Level, category: String, message: String) -> void:
 	var level_name := str(Level.keys()[level])
-	var line := "%s [%s] %s: %s" % [Time.get_datetime_string_from_system(), level_name, category, message]
+	var stamp := Time.get_datetime_string_from_system()
+	var line := "%s [%s] %s: %s" % [stamp, level_name, category, message]
 	_ring.append(line)
 	if _ring.size() > RING_MAX:
 		_ring.pop_front()

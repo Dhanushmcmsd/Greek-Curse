@@ -1,5 +1,5 @@
-extends RefCounted
 class_name Result
+extends RefCounted
 ## Success or failure without throwing. error is empty when ok is true.
 
 var ok: bool = false

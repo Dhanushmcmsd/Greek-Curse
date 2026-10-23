@@ -1,5 +1,5 @@
-extends RefCounted
 class_name Fx
+extends RefCounted
 ## Integer helpers for the combat simulation.
 ## Division rounds half away from zero. Products must fit in a signed 64-bit integer.
 

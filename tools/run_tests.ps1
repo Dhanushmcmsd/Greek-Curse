@@ -40,4 +40,10 @@ $godotCode = $LASTEXITCODE
 if ($godotCode -ne 0) { exit $godotCode }
 
 python -m unittest discover -s tools/validate -p "test_*.py"
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+python -m unittest discover -s tools/status -p "test_*.py"
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+gdlint src tests
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+gdformat --check src tests
 exit $LASTEXITCODE

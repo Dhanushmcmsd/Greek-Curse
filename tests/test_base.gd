@@ -1,5 +1,5 @@
-extends RefCounted
 class_name TestBase
+extends RefCounted
 ## Assertion helpers for the headless runner. assert_near is for presentation checks only.
 
 var failures: Array[String] = []
@@ -22,7 +22,8 @@ func assert_eq(actual: Variant, expected: Variant, label: String = "") -> void:
 
 func assert_near(actual: float, expected: float, epsilon: float, label: String = "") -> void:
 	if absf(actual - expected) > epsilon:
-		failures.append(_label(label, "expected %s ± %s but was %s" % [str(expected), str(epsilon), str(actual)]))
+		var detail := "expected %s ± %s but was %s" % [str(expected), str(epsilon), str(actual)]
+		failures.append(_label(label, detail))
 
 
 func assert_raises_error_logged(callback: Callable, label: String = "") -> void:

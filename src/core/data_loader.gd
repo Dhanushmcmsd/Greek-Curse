@@ -1,8 +1,10 @@
-extends RefCounted
 class_name DataLoader
+extends RefCounted
 ## Loads JSON from res:// and checks the stage 02 schema subset.
 ## Godot parses every JSON number as a float. Integer schema fields are converted
 ## to int before the value is returned. Failures are logged and not cached.
+
+const DATA_PREFIX := "res://data/"
 
 var _cache: Dictionary = {}
 
@@ -16,7 +18,10 @@ func load_json(resource_path: String, schema_path: String = "") -> Result:
 	var parser := JSON.new()
 	var parse_error := parser.parse(text)
 	if parse_error != OK:
-		return _fail(resource_path, "malformed JSON at line %d: %s" % [parser.get_error_line(), parser.get_error_message()])
+		var detail := (
+			"malformed JSON at line %d: %s" % [parser.get_error_line(), parser.get_error_message()]
+		)
+		return _fail(resource_path, detail)
 	var payload: Variant = parser.data
 	var resolved_schema := schema_path
 	if resolved_schema == "":
@@ -39,10 +44,9 @@ func load_json(resource_path: String, schema_path: String = "") -> Result:
 
 
 func _inferred_schema(resource_path: String) -> String:
-	const prefix := "res://data/"
-	if not resource_path.begins_with(prefix) or resource_path.contains("/schema/"):
+	if not resource_path.begins_with(DATA_PREFIX) or resource_path.contains("/schema/"):
 		return ""
-	var relative := resource_path.substr(prefix.length())
+	var relative := resource_path.substr(DATA_PREFIX.length())
 	var slash := relative.rfind("/")
 	var directory := "" if slash == -1 else relative.substr(0, slash + 1)
 	var stem := relative.get_file().get_basename()
@@ -64,7 +68,9 @@ func _check(value: Variant, schema: Dictionary, path: String, errors: Array[Stri
 		var allowed: Array = schema["enum"]
 		if not allowed.has(value):
 			errors.append("%s: value is not in enum" % path)
-	if (expected == "integer" or expected == "number") and (schema.has("minimum") or schema.has("maximum")):
+	var numeric := expected == "integer" or expected == "number"
+	var bounded := schema.has("minimum") or schema.has("maximum")
+	if numeric and bounded:
 		var number := float(value)
 		if schema.has("minimum") and number < float(schema["minimum"]):
 			errors.append("%s: below minimum" % path)
@@ -81,7 +87,9 @@ func _check(value: Variant, schema: Dictionary, path: String, errors: Array[Stri
 		var properties: Dictionary = schema.get("properties", {})
 		for key in source.keys():
 			if properties.has(key):
-				cleaned[key] = _check(source[key], properties[key], "%s/%s" % [path, str(key)], errors)
+				cleaned[key] = _check(
+					source[key], properties[key], "%s/%s" % [path, str(key)], errors
+				)
 			else:
 				cleaned[key] = source[key]
 		return cleaned
@@ -89,27 +97,30 @@ func _check(value: Variant, schema: Dictionary, path: String, errors: Array[Stri
 		var items: Array = value
 		var cleaned_items: Array = []
 		for index in items.size():
-			cleaned_items.append(_check(items[index], schema["items"], "%s/%d" % [path, index], errors))
+			cleaned_items.append(
+				_check(items[index], schema["items"], "%s/%d" % [path, index], errors)
+			)
 		return cleaned_items
 	return value
 
 
 func _type_ok(value: Variant, expected: String) -> bool:
-	match expected:
-		"object":
-			return value is Dictionary
-		"array":
-			return value is Array
-		"string":
-			return value is String
-		"boolean":
-			return value is bool
-		"integer":
-			return _is_whole_number(value)
-		"number":
-			return value is int or value is float
-		_:
-			return true
+	var ok := false
+	if expected == "object":
+		ok = value is Dictionary
+	elif expected == "array":
+		ok = value is Array
+	elif expected == "string":
+		ok = value is String
+	elif expected == "boolean":
+		ok = value is bool
+	elif expected == "integer":
+		ok = _is_whole_number(value)
+	elif expected == "number":
+		ok = value is int or value is float
+	else:
+		ok = true
+	return ok
 
 
 func _is_whole_number(value: Variant) -> bool:

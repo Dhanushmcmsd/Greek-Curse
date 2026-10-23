@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Linux/macOS launcher. Not executed on the Windows dev machine (UNVERIFIED there).
+# Bash launcher. On Windows, run it with Git Bash. GODOT_BIN overrides PROJECT_STATUS.md.
 set -eu
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
@@ -22,3 +22,6 @@ if ! command -v python3 >/dev/null 2>&1; then
   PY=python
 fi
 "$PY" -m unittest discover -s tools/validate -p "test_*.py"
+"$PY" -m unittest discover -s tools/status -p "test_*.py"
+gdlint src tests
+gdformat --check src tests

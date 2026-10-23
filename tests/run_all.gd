@@ -12,13 +12,15 @@ func _run() -> int:
 	var log_node := root.get_node_or_null("Log")
 	if log_node == null:
 		print("FAIL  Log autoload is missing")
-		_write_results({
-			"passed": 0,
-			"failed": 1,
-			"skipped": 0,
-			"summary": "Log autoload is missing",
-			"tests": [{"name": "Log", "status": "failed", "message": "autoload missing"}],
-		})
+		_write_results(
+			{
+				"passed": 0,
+				"failed": 1,
+				"skipped": 0,
+				"summary": "Log autoload is missing",
+				"tests": [{"name": "Log", "status": "failed", "message": "autoload missing"}],
+			}
+		)
 		return 1
 	var suite := _suite_filter()
 	var files := _discover("res://tests")
@@ -43,7 +45,9 @@ func _run() -> int:
 		var inst: Object = script.new()
 		if inst == null or not inst.has_method("assert_eq"):
 			failed += 1
-			results.append({"name": path, "status": "failed", "message": "script is not a TestBase"})
+			results.append(
+				{"name": path, "status": "failed", "message": "script is not a TestBase"}
+			)
 			print("FAIL  %s  not a TestBase" % path)
 			continue
 		var names: Array[String] = []
@@ -67,13 +71,15 @@ func _run() -> int:
 				print("FAIL  %s  %s" % [test_name, message])
 	var summary := "Summary: %d passed, %d failed, %d skipped" % [passed, failed, skipped]
 	print(summary)
-	_write_results({
-		"passed": passed,
-		"failed": failed,
-		"skipped": skipped,
-		"summary": summary,
-		"tests": results,
-	})
+	_write_results(
+		{
+			"passed": passed,
+			"failed": failed,
+			"skipped": skipped,
+			"summary": summary,
+			"tests": results,
+		}
+	)
 	return 1 if failed > 0 else 0
 
 
