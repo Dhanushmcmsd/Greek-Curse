@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "required": [
+    "fighters",
+    "arenas"
+  ],
+  "properties": {
+    "fighters": {
+      "type": "array",
+      "items": {
+        "type": "array"
+      }
+    },
+    "arenas": {
+      "type": "array",
+      "items": {
+        "type": "array"
+      }
+    }
+  }
+}

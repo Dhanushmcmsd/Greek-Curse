@@ -12,54 +12,15 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.scene_reset import reset
 from lib.skeleton import build_armature
+from lib.export import export_glb
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "assets/generated/models"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
-def material(name, color):
-    mat = bpy.data.materials.new("GEN_" + name)
-    mat["generated_by"] = "severed"
-    mat.diffuse_color = (*color, 1)
-    mat.use_nodes = True
-    bsdf = mat.node_tree.nodes.get("Principled BSDF")
-    bsdf.inputs["Base Color"].default_value = (1, 1, 1, 1)
-    bsdf.inputs["Roughness"].default_value = .8
-    attr = mat.node_tree.nodes.new("ShaderNodeVertexColor")
-    attr.layer_name = "Col"
-    mat.node_tree.links.new(attr.outputs["Color"], bsdf.inputs["Base Color"])
-    return mat
-
-
-def empty(name, location=(0, 0, 0), parent=None):
-    obj = bpy.data.objects.new(name, None)
-    bpy.context.collection.objects.link(obj)
-    obj["generated_by"] = "severed"
-    obj.parent = parent
-    obj.location = location
-    return obj
-
-
-def shape(name, at, size, mat, parent=None, kind="box"):
-    if kind == "box":
-        bpy.ops.mesh.primitive_cube_add(size=1)
-    elif kind == "orb":
-        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=0.5)
-    else:
-        bpy.ops.mesh.primitive_cylinder_add(vertices=10, radius=0.5, depth=1)
-    obj = bpy.context.object
-    obj.name = name
-    obj["generated_by"] = "severed"
-    obj.parent = parent
-    obj.location = at
-    obj.scale = size
-    obj.data["generated_by"] = "severed"
-    obj.data.materials.append(mat)
-    colors = obj.data.color_attributes.new(name="Col", type="FLOAT_COLOR", domain="CORNER")
-    for entry in colors.data:
-        entry.color = mat.diffuse_color
-    return obj
+from lib.materials import material
+from lib.primitives import empty, shape
 
 
 def clear():
@@ -67,11 +28,9 @@ def clear():
 
 
 def export(name):
-    bpy.ops.object.select_all(action="DESELECT")
-    for obj in bpy.context.scene.objects:
-        obj.select_set(obj.get("generated_by") == "severed")
-    bpy.ops.export_scene.gltf(filepath=str(OUT / f"{name}.glb"), export_format="GLB",
-                             export_extras=True, export_yup=True, use_selection=True, export_animations=False)
+    from validate_model import validate
+    validate()
+    export_glb(OUT / f"{name}.glb")
 
 
 def fighter(row):

@@ -10,6 +10,7 @@ var limb_meshes: Dictionary = {}
 var stump_meshes: Dictionary = {}
 var skeleton: Skeleton3D
 var _states: Dictionary = {}
+var _rest_rotations: Dictionary = {}
 
 
 func load_fighter(id: String) -> bool:
@@ -21,6 +22,9 @@ func load_fighter(id: String) -> bool:
 	add_child(model)
 	ModelLoader.prepare_materials(model)
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton != null:
+		for index in skeleton.get_bone_count():
+			_rest_rotations[index] = skeleton.get_bone_pose_rotation(index)
 	for slot in SimLimbs.LIMB_NAMES:
 		var suffix := slot.to_upper()
 		groups[slot] = model.find_child("LIMB_" + suffix, true, false)
@@ -65,12 +69,25 @@ func get_socket_transform(slot: String) -> Transform3D:
 	return sockets[slot].global_transform
 
 
+func apply_palette(id: String) -> void:
+	var tint: Color = (
+		{"default": Color.WHITE, "ivory": Color(1.0, 0.9, 0.75), "night": Color(0.6, 0.7, 0.95)}
+		. get(id, Color.WHITE)
+	)
+	for mesh in model.find_children("*", "MeshInstance3D", true, false):
+		for index in mesh.mesh.get_surface_count():
+			var material := mesh.get_surface_override_material(index) as StandardMaterial3D
+			if material != null:
+				material.albedo_color = tint
+
+
 func sync(fighter: SimFighter) -> void:
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
 		set_limb_visible(slot, state != "severed")
 		show_stump(slot, state == "severed")
 		groups[slot].rotation.z = 0.3 if state == "cracked" else 0.0
+		pose_limb(slot, 0.3 if state == "cracked" else 0.0)
 		if _states.get(slot, "") != state:
 			for mesh in limb_meshes[slot]:
 				_tint(mesh, Color(0.45, 0.2, 0.35) if state == "bruised" else Color.WHITE)
@@ -83,7 +100,9 @@ func pose_limb(slot: String, angle: float) -> void:
 	var bone_name := ("upper_arm." if slot.begins_with("arm") else "thigh.") + slot.right(1)
 	var index := skeleton.find_bone(bone_name)
 	if index >= 0:
-		skeleton.set_bone_pose_rotation(index, Quaternion(Vector3.RIGHT, angle))
+		skeleton.set_bone_pose_rotation(
+			index, _rest_rotations[index] * Quaternion(Vector3.RIGHT, angle)
+		)
 
 
 func _tint(node: Node, color: Color) -> void:

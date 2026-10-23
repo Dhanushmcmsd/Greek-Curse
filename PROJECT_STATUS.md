@@ -15,7 +15,7 @@
 - Dev machine specs (for performance notes): AMD Ryzen 5 5600X, 6 cores / 12 threads. WMI `TotalPhysicalMemory` 17103278080 bytes (~15.9 GiB). GPU: NVIDIA GeForce GTX 1650, WMI `AdapterRAM` 4293918720 bytes (~4.0 GB; WMI VRAM figures are often inaccurate).
 
 ## Current Stage
-- Stage: 10 (IN_PROGRESS)
+- Stage: 12 (COMPLETE)
 - Started / last updated: 2026-10-24
 
 ## Stage Table
@@ -31,9 +31,9 @@
 | 07 | Limb Integrity Severing And Stump Caps | COMPLETE | 2026-10-24 | docs/handoff/07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md |
 | 08 | Body State Movement And Input | COMPLETE | 2026-10-24 | docs/handoff/08_BODY_STATE_MOVEMENT_AND_INPUT.md |
 | 09 | Fighter Ai And Local 1V1 | COMPLETE | 2026-10-24 | docs/handoff/09_FIGHTER_AI_AND_LOCAL_1V1.md |
-| 10 | Combat Ui Feedback And Round Flow | IN_PROGRESS | 2026-10-24 |  |
-| 11 | Blender Python Asset Pipeline | NOT_STARTED | | |
-| 12 | Shared Skeleton Modular Fighters And Sockets | NOT_STARTED | | |
+| 10 | Combat Ui Feedback And Round Flow | COMPLETE | 2026-10-24 | docs/handoff/10_COMBAT_UI_FEEDBACK_AND_ROUND_FLOW.md |
+| 11 | Blender Python Asset Pipeline | COMPLETE | 2026-10-24 | docs/handoff/11_BLENDER_PYTHON_ASSET_PIPELINE.md |
+| 12 | Shared Skeleton Modular Fighters And Sockets | COMPLETE | 2026-10-24 | docs/handoff/12_SHARED_SKELETON_MODULAR_FIGHTERS_AND_SOCKETS.md |
 | 13 | Regrown Limbs And Attachment Validation | NOT_STARTED | | |
 | 14 | Animation And Code Driven Motion | NOT_STARTED | | |
 | 15 | Arenas Lighting Camera And Vfx | NOT_STARTED | | |
@@ -65,7 +65,7 @@
 - 06: split the combat sim, added limb hurtboxes, block, stamina, dodge, grab, combo records, hit-stop, and replay checks. Golden hash regenerated because the hashed state grew. No severing.
 
 ## Tests (latest run)
-- Machine counts: 73 passed, 0 failed, 0 skipped (2026-10-24T03:31:23+05:30).
+- Machine counts: 83 passed, 0 failed, 0 skipped (2026-10-24T03:50:29+05:30).
 - Date / command: 2026-10-24. `D:\Git\bin\bash.exe tools/check_all.sh` exited 0. Godot suite: 49 passed, 0 failed, 0 skipped. Python validator tests: 7 OK. Status tests: 12 OK. `gdlint` clean. `gdformat --check` reported 42 files unchanged. `validate_all.py`: PASS. `status_check.py`: PASS. Scripted hash `6354485122121618977`, wins 2-0, tick 2096. Replay OK. Fuzz `CRASHES=0`, 480000 ticks, 17334 ticks per second.
 - Passed / failed / skipped: check_all PASS. The historical stage 02 failing assertion and the stage 03 `randf()` probe are not in the tree. `gdtoolkit` 4.5.0 first reported 13 style findings; those lines were fixed and both tools then exited 0.
 - Fast suite / full suite: fast suite is `tools/check_all.ps1` and `tools/check_all.sh`. Full regression suite is stage 21.
@@ -106,7 +106,7 @@
 Stage 06 is complete. Run `07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md`. Keep the fixed lane and the approved limbs. Publish still needs a GitHub login on this machine.
 
 ## Next Prompt Filename
-10_COMBAT_UI_FEEDBACK_AND_ROUND_FLOW.md
+13_REGROWN_LIMBS_AND_ATTACHMENT_VALIDATION.md
 ## Session Log
 | Date | Stage | Summary | Result |
 |---|---|---|---|

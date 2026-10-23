@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "required": [
+    "budgets",
+    "units",
+    "up_blender",
+    "up_gltf",
+    "palette"
+  ],
+  "properties": {
+    "budgets": {
+      "type": "object",
+      "required": [
+        "fighter",
+        "limb",
+        "stump",
+        "gore",
+        "arena_piece"
+      ],
+      "properties": {
+        "fighter": {
+          "type": "number",
+          "minimum": 0
+        },
+        "limb": {
+          "type": "number",
+          "minimum": 0
+        },
+        "stump": {
+          "type": "number",
+          "minimum": 0
+        },
+        "gore": {
+          "type": "number",
+          "minimum": 0
+        },
+        "arena_piece": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "units": {
+      "type": "string"
+    },
+    "up_blender": {
+      "type": "string"
+    },
+    "up_gltf": {
+      "type": "string"
+    },
+    "palette": {
+      "type": "object",
+      "required": [
+        "bronze",
+        "bone",
+        "blood"
+      ],
+      "properties": {
+        "bronze": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "bone": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "blood": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

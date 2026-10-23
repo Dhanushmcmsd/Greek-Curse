@@ -17,7 +17,7 @@ for index, name in enumerate(ids):
     bpy.ops.import_scene.gltf(filepath=str(ROOT / f"assets/generated/models/{name}.glb"))
     imported = set(bpy.data.objects) - before
     for obj in imported:
-        if obj.name.startswith("STUMP_"):
+        if obj.name.startswith(("STUMP_", "CUT_", "BONE_")):
             obj.hide_render = True
             for child in obj.children_recursive:
                 child.hide_render = True
@@ -46,6 +46,27 @@ out.mkdir(parents=True, exist_ok=True)
 scene.render.filepath = str(out / ("roster.png" if roster else asset + ".png"))
 try:
     bpy.ops.render.render(write_still=True)
+    if not roster:
+        import numpy as np
+        sheet = np.zeros((1200, 3000, 4), dtype=np.float32)
+        target = scene.render.filepath
+        for index in range(10):
+            angle = index * math.tau / 8 if index < 8 else (0 if index == 8 else math.pi / 2)
+            camera.location = (math.sin(angle) * 6, -math.cos(angle) * 6, 2.5 if index < 8 else 1)
+            camera.rotation_euler = (Vector((0, 0, 1)) - camera.location).to_track_quat('-Z', 'Y').to_euler()
+            scene.render.filepath = str(out / f"{asset}_{index:02}.png")
+            bpy.ops.render.render(write_still=True)
+            frame = bpy.data.images.load(scene.render.filepath, check_existing=False)
+            pixels = np.array(frame.pixels[:], dtype=np.float32).reshape(600, 600, 4)
+            y, x = divmod(index, 5)
+            sheet[y*600:(y+1)*600, x*600:(x+1)*600] = pixels
+            bpy.data.images.remove(frame)
+        image = bpy.data.images.new("contact_sheet", width=3000, height=1200, alpha=True)
+        image.pixels.foreach_set(sheet.ravel())
+        image.filepath_raw = target
+        image.file_format = "PNG"
+        image.save()
+        scene.render.filepath = target
     print("PREVIEW_OK " + scene.render.filepath)
 except RuntimeError as exc:
     print("PREVIEW_UNVERIFIED " + str(exc))

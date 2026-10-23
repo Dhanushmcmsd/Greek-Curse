@@ -1,38 +1,197 @@
 {
   "type": "object",
-  "required": ["id", "display_name", "reach", "speed", "power", "limb_toughness", "target_size", "height_mm", "body_width_mm", "hurtboxes"],
+  "required": [
+    "id",
+    "display_name",
+    "reach",
+    "speed",
+    "power",
+    "limb_toughness",
+    "target_size",
+    "height_mm",
+    "body_width_mm",
+    "hurtboxes"
+  ],
   "properties": {
-    "id": { "type": "string" },
-    "display_name": { "type": "string" },
-    "reach": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "speed": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "power": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "limb_toughness": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "target_size": { "type": "integer", "minimum": 1, "maximum": 5 },
-    "height_mm": { "type": "integer", "minimum": 1000, "maximum": 2500 },
-    "body_width_mm": { "type": "integer", "minimum": 200, "maximum": 800 },
+    "id": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "reach": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "speed": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "power": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "limb_toughness": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "target_size": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "height_mm": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 2500
+    },
+    "body_width_mm": {
+      "type": "integer",
+      "minimum": 200,
+      "maximum": 800
+    },
     "hurtboxes": {
       "type": "object",
-      "required": ["standing", "crouch", "hop", "crawl", "torso"],
+      "required": [
+        "standing",
+        "crouch",
+        "hop",
+        "crawl",
+        "torso"
+      ],
       "properties": {
-        "standing": { "type": "array", "items": { "$ref": "#/$defs/box" } },
-        "crouch": { "type": "array", "items": { "$ref": "#/$defs/box" } },
-        "hop": { "type": "array", "items": { "$ref": "#/$defs/box" } },
-        "crawl": { "type": "array", "items": { "$ref": "#/$defs/box" } },
-        "torso": { "type": "array", "items": { "$ref": "#/$defs/box" } }
+        "standing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          }
+        },
+        "crouch": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          }
+        },
+        "hop": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          }
+        },
+        "crawl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          }
+        },
+        "torso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/box"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "height_m",
+        "weight_kg",
+        "muscle",
+        "shoulder_width",
+        "skin_tone",
+        "cloth_color",
+        "costume",
+        "palette_ids",
+        "cosmetics"
+      ],
+      "properties": {
+        "height_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "weight_kg": {
+          "type": "number",
+          "minimum": 0
+        },
+        "muscle": {
+          "type": "number",
+          "minimum": 0
+        },
+        "shoulder_width": {
+          "type": "number",
+          "minimum": 0
+        },
+        "skin_tone": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "cloth_color": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "costume": {
+          "type": "string"
+        },
+        "palette_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cosmetics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   },
   "$defs": {
     "box": {
       "type": "object",
-      "required": ["name", "x_pct", "y_pct", "w_pct", "h_pct"],
+      "required": [
+        "name",
+        "x_pct",
+        "y_pct",
+        "w_pct",
+        "h_pct"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "x_pct": { "type": "integer", "minimum": -100, "maximum": 200 },
-        "y_pct": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "w_pct": { "type": "integer", "minimum": 1, "maximum": 200 },
-        "h_pct": { "type": "integer", "minimum": 1, "maximum": 100 }
+        "name": {
+          "type": "string"
+        },
+        "x_pct": {
+          "type": "integer",
+          "minimum": -100,
+          "maximum": 200
+        },
+        "y_pct": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "w_pct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200
+        },
+        "h_pct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        }
       }
     }
   }

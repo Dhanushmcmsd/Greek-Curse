@@ -3,6 +3,7 @@ extends Node3D
 ## Greybox body. It displays a sim fighter and never writes one.
 
 var rig: FighterRig
+var visual_stop: int = 0
 var _body: MeshInstance3D
 var _rest_color: Color = Color(0.8, 0.8, 0.8)
 var _flash_ticks: int = 0
@@ -52,7 +53,29 @@ func show_fighter(fighter: SimFighter) -> void:
 
 
 func flash() -> void:
-	_flash_ticks = 8
+	_flash_ticks = 0 if bool(SettingsHooks.get_value("flash_reduction")) else 8
+
+
+func spark(blocked: bool) -> void:
+	if not is_inside_tree() or bool(SettingsHooks.get_value("flash_reduction")):
+		return
+	var burst := CPUParticles3D.new()
+	burst.amount = 6
+	burst.one_shot = true
+	burst.explosiveness = 1.0
+	burst.lifetime = 0.2
+	burst.initial_velocity_min = 0.8
+	burst.initial_velocity_max = 1.5
+	burst.spread = 90
+	var mesh := SphereMesh.new()
+	mesh.radius = 0.025
+	mesh.height = 0.05
+	burst.mesh = mesh
+	burst.color = Color(0.4, 0.7, 1.0) if blocked else Color(1.0, 0.8, 0.3)
+	add_child(burst)
+	burst.position.y = 1.1
+	burst.emitting = true
+	get_tree().create_timer(0.3).timeout.connect(burst.queue_free)
 
 
 func _apply_color(body_color: Color) -> void:
@@ -77,7 +100,10 @@ func _update_model(fighter: SimFighter) -> void:
 			_sever_effect(slot)
 		_last_states[slot] = state
 	rig.sync(fighter)
-	_pose_time += 1.0 / 60.0
+	if visual_stop > 0:
+		visual_stop -= 1
+	else:
+		_pose_time += 1.0 / 60.0
 	for slot in SimLimbs.LIMB_NAMES:
 		if not fighter.limbs.usable(slot):
 			continue
@@ -92,6 +118,8 @@ func _update_model(fighter: SimFighter) -> void:
 
 func _sever_effect(slot: String) -> void:
 	if not is_inside_tree():
+		return
+	if SettingsHooks.get_value("gore") == "off":
 		return
 	var source: Node3D = rig.groups[slot]
 	var chunk := MeshInstance3D.new()
@@ -122,7 +150,12 @@ func _sever_effect(slot: String) -> void:
 	particle.radius = 0.018
 	particle.height = 0.036
 	burst.mesh = particle
-	burst.color = Color(0.65, 0.02, 0.025)
+	var colors := {
+		"red": Color(0.65, 0.02, 0.025),
+		"green": Color(0.2, 0.7, 0.1),
+		"golden": Color(0.9, 0.65, 0.1)
+	}
+	burst.color = colors.get(SettingsHooks.get_value("blood_color"), colors["red"])
 	get_tree().current_scene.add_child(burst)
 	burst.global_position = source.global_position
 	burst.emitting = true

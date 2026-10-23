@@ -1,4 +1,4 @@
-# Stage 09 — AI and local matches
+# Stage 09 â€” AI and local matches
 
 ## Stage result
 COMPLETE. Early art improvements continued during the soak under the owner's request; stages 11/12 are not yet marked complete.

@@ -7,8 +7,10 @@ var _lab_text: Label
 
 func _ready() -> void:
 	super._ready()
+	flow.phase = "fight"
+	flow.remaining = 0
 	var panel := VBoxContainer.new()
-	panel.position = Vector2(24, 170)
+	panel.position = Vector2(950, 300)
 	_hud.add_child(panel)
 	_lab_text = Label.new()
 	_lab_text.custom_minimum_size = Vector2(300, 44)
@@ -60,6 +62,7 @@ func _action(title: String) -> void:
 			SimSeverance.hit(world, 1, 0, _selected_slot, limb.max_integrity / 3 + 1, events)
 		for entry in events:
 			print("LAB_EVENT ", SimEvent.Kind.keys()[entry.kind], " ", entry.payload)
+		_consume(events)
 	elif limb.state != "severed":
 		limb.integrity = limb.max_integrity * (50 if title == "Bruise 50%" else 25) / 100
 		limbs.integrity[_selected_slot] = limb.integrity

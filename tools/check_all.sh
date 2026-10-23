@@ -9,6 +9,9 @@ if ! "$PY" --version >/dev/null 2>&1; then
   PY=python
 fi
 "$PY" tools/validate/validate_all.py
+if [[ "${CHECK_ASSET_REGEN:-0}" == "1" ]]; then
+  "$PY" tools/blender/test_idempotence.py
+fi
 GODOT="${GODOT_BIN:-}"
 if [[ -z "$GODOT" ]]; then
   GODOT="$(grep -o 'PINNED `[^`]*`' PROJECT_STATUS.md | head -n 1 | sed 's/PINNED `//; s/`$//')"

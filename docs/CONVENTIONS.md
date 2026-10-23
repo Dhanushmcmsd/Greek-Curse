@@ -22,10 +22,10 @@ Renderer: Compatibility (`gl_compatibility`). No Decal nodes. Blood uses pooled 
 
 ## Version notes
 
-- `gdtoolkit` is not installed. Do not treat formatting as a required check until it is added on purpose.
-- Bash launchers exist for Linux and macOS and are unverified here.
+- `gdtoolkit` is installed; formatting and lint are required checks.
+- Bash launchers have been exercised under Git Bash on Windows.
 - Logging may use the wall clock. Combat rules may not.
-- Input actions are added in stage 08. This project has no default InputMap entries.
+- InputBindings installs defaults from data/ui/default_bindings.json.
 
 ## Typing
 
@@ -57,3 +57,5 @@ One sentence on why the change exists, then a second sentence only if the first 
 ## Owner approvals recorded with stage 03
 
 D-003 stays 2.5D: one combat lane, no sidestep into the background. D-009 stays the five regrown limbs on the shared skeleton and sockets. More limbs need a new owner approval.
+
+Art axes and skin/import conventions are validated in docs/ART_PIPELINE.md.

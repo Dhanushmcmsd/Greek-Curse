@@ -14,6 +14,10 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "check_all: FAIL (validate_all)"
     exit $LASTEXITCODE
 }
+if ($env:CHECK_ASSET_REGEN -eq "1") {
+    python tools/blender/test_idempotence.py
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+}
 
 $Godot = $env:GODOT_BIN
 if (-not $Godot) {

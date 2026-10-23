@@ -2,56 +2,15 @@ class_name MatchController
 extends Node
 ## Owns the simulation. Reads input, calls step once per physics frame, then updates views.
 
-const KEYS := {
-	"A": KEY_A,
-	"D": KEY_D,
-	"W": KEY_W,
-	"S": KEY_S,
-	"J": KEY_J,
-	"K": KEY_K,
-	"L": KEY_L,
-	"SHIFT": KEY_SHIFT,
-	"SPACE": KEY_SPACE,
-	"LEFT": KEY_LEFT,
-	"RIGHT": KEY_RIGHT,
-	"UP": KEY_UP,
-	"DOWN": KEY_DOWN,
-	"KP_1": KEY_KP_1,
-	"KP_2": KEY_KP_2,
-	"KP_3": KEY_KP_3,
-	"R": KEY_R,
-	"F1": KEY_F1,
-}
-const JOY_BUTTONS := {
-	"X": JOY_BUTTON_X,
-	"Y": JOY_BUTTON_Y,
-	"A": JOY_BUTTON_A,
-	"B": JOY_BUTTON_B,
-	"RB": JOY_BUTTON_RIGHT_SHOULDER,
-}
-const PLAYER_BITS := [
-	["p1_left", SimInput.LEFT],
-	["p1_right", SimInput.RIGHT],
-	["p1_up", SimInput.UP],
-	["p1_down", SimInput.DOWN],
-	["p1_light", SimInput.LIGHT],
-	["p1_heavy", SimInput.HEAVY],
-	["p1_kick", SimInput.KICK],
-	["p1_block", SimInput.BLOCK],
-	["p1_dodge", SimInput.DODGE],
-	["p2_left", SimInput.LEFT],
-	["p2_right", SimInput.RIGHT],
-	["p2_up", SimInput.UP],
-	["p2_down", SimInput.DOWN],
-	["p2_light", SimInput.LIGHT],
-	["p2_heavy", SimInput.HEAVY],
-	["p2_kick", SimInput.KICK],
-	["p2_block", SimInput.BLOCK],
-	["p2_dodge", SimInput.DODGE],
-]
-
 var world: SimWorld
 var match_config := MatchConfig.new()
+var flow := RoundFlow.new()
+var damage_dealt: Array = [0, 0]
+var longest_combos: Array = [0, 0]
+var _pause_menu: PauseMenu
+var _results: ResultsStub
+var _camera: Camera3D
+var _shake: float = 0.0
 var _ai: Array = []
 var _views: Array[FighterView] = []
 var _hud: HudPrototype
@@ -82,6 +41,13 @@ func _ready() -> void:
 	_build_stage()
 	world = _make_world()
 	_sync(true)
+	if "--results-demo" in OS.get_cmdline_user_args():
+		for tick in 5000:
+			if world.phase == SimWorld.PHASE_MATCH_OVER:
+				break
+			_consume(world.step(ProtoScript.inputs_at(world.tick)))
+		flow.phase = "results"
+		_results.show_results(world, damage_dealt, longest_combos)
 
 
 func _physics_process(_delta: float) -> void:
@@ -93,13 +59,16 @@ func _physics_process(_delta: float) -> void:
 		_restart()
 	if InputMap.has_action("proto_debug") and Input.is_action_just_pressed("proto_debug"):
 		_debug.set_enabled(not _debug.visible_boxes)
-	if world.phase == SimWorld.PHASE_FIGHTING:
+	var running := flow.advance()
+	if world.phase == SimWorld.PHASE_FIGHTING and running:
 		var masks := _read_inputs()
 		if _record_path != "":
 			_recorded.append(masks)
 		var events: Array = world.step(masks)
 		_recorder.record(world, masks)
 		_consume(events)
+	if flow.phase == "results":
+		_results.show_results(world, damage_dealt, longest_combos)
 	_sync(false)
 	_maybe_finish_autoplay()
 
@@ -155,6 +124,11 @@ func _make_world() -> SimWorld:
 func _restart() -> void:
 	_setup_controllers()
 	world = _make_world()
+	flow = RoundFlow.new()
+	damage_dealt = [0, 0]
+	longest_combos = [0, 0]
+	_results.visible = false
+	_pause_menu.show_menu(false)
 	_recorder = InputRecorder.new()
 	_recorder.seed = match_config.seed
 	_recorder.fighter_ids = match_config.fighter_ids.duplicate()
@@ -165,8 +139,10 @@ func _restart() -> void:
 
 func _build_stage() -> void:
 	var camera := Camera3D.new()
+	camera.fov = 50.0
 	camera.position = Vector3(0.0, 1.7, 8.0)
 	camera.current = true
+	_camera = camera
 	add_child(camera)
 	camera.look_at(Vector3(0.0, 1.1, 0.0))
 	var arena := ArenaGreybox.new()
@@ -178,8 +154,15 @@ func _build_stage() -> void:
 		view.setup(colors[index], int(row["height_mm"]), int(row["body_width_mm"]), str(row["id"]))
 		add_child(view)
 		_views.append(view)
-	_hud = HudPrototype.new()
+	_hud = CombatHud.new()
 	add_child(_hud)
+	_pause_menu = PauseMenu.new()
+	add_child(_pause_menu)
+	_pause_menu.resume_requested.connect(_resume)
+	_pause_menu.restart_requested.connect(_restart)
+	_pause_menu.quit_requested.connect(_return_to_launcher)
+	_results = ResultsStub.new()
+	add_child(_results)
 	_debug = DebugOverlay.new()
 	add_child(_debug)
 
@@ -222,6 +205,9 @@ func _setup_controllers() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
+	if event.keycode == KEY_ESCAPE:
+		flow.paused = not flow.paused
+		_pause_menu.show_menu(flow.paused)
 	if event.keycode in [KEY_1, KEY_2, KEY_3]:
 		if event.keycode == KEY_1:
 			match_config.controllers = ["human_kb1", "human_kb2"]
@@ -232,35 +218,59 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		_restart()
 
 
-func _axis_bit(action_name: String, bit: int) -> int:
-	if bit != SimInput.LEFT and bit != SimInput.RIGHT:
-		return 0
-	var device := 0 if action_name.begins_with("p1_") else 1
-	var axis := Input.get_joy_axis(device, JOY_AXIS_LEFT_X)
-	if bit == SimInput.LEFT and axis <= -0.5:
-		return bit
-	if bit == SimInput.RIGHT and axis >= 0.5:
-		return bit
-	return 0
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton and event.pressed and event.button_index == JOY_BUTTON_START:
+		flow.paused = not flow.paused
+		_pause_menu.show_menu(flow.paused)
 
 
 func _consume(events: Array) -> void:
+	flow.consume(events)
+	(_hud as CombatHud).consume(events, world)
 	for event in events:
 		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
 			_views[event.other].flash()
+			_views[event.other].spark(event.kind == SimEvent.Kind.BLOCK)
+			for view in _views:
+				view.visual_stop = int(
+					SettingsHooks.scale_amount(float(world.hitstop_remaining), "hitstop_percent")
+				)
+			damage_dealt[event.actor] += event.amount
+			_shake = SettingsHooks.scale_amount(0.04 if event.amount < 25 else 0.1, "shake_percent")
 		elif event.kind == SimEvent.Kind.KO:
 			_banner = "KO"
 		elif event.kind == SimEvent.Kind.ROUND_START:
 			_banner = "Round %d" % event.round_index
 		elif event.kind == SimEvent.Kind.MATCH_END:
 			_banner = "Winner: %s" % world.fighters[event.winner].display_name
+		elif event.kind == SimEvent.Kind.COMBO_EXTENDED:
+			longest_combos[event.actor] = maxi(
+				longest_combos[event.actor], int(event.payload["chain_hits"])
+			)
 
 
 func _sync(_first: bool) -> void:
 	for index in world.fighters.size():
 		_views[index].show_fighter(world.fighters[index])
-	_hud.show_match(world, _banner)
+	_hud.show_match(world, flow.banner if flow.phase != "fight" else _banner)
+	if _shake > 0.001 and not bool(SettingsHooks.get_value("flash_reduction")):
+		_camera.h_offset = sin(float(world.tick) * 2.3) * _shake
+		_shake *= 0.8
+	else:
+		_camera.h_offset = 0.0
 	_debug.refresh(world)
+
+
+func _resume() -> void:
+	flow.paused = false
+	_pause_menu.show_menu(false)
+
+
+func _return_to_launcher() -> void:
+	match_config.controllers = ["human_kb1", "ai_normal"]
+	_restart()
+	flow.paused = true
+	_banner = "Choose mode: 1 local / 2 vs AI / 3 watch"
 
 
 func _maybe_finish_autoplay() -> void:
