@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": ["max_health", "round_ticks", "rounds_to_win", "draw_replays", "arena_min_x", "arena_max_x", "floor_y", "spawn_x", "stamina"],
+  "properties": {
+    "max_health": { "type": "integer", "minimum": 1, "maximum": 10000 },
+    "round_ticks": { "type": "integer", "minimum": 1, "maximum": 20000 },
+    "rounds_to_win": { "type": "integer", "minimum": 1, "maximum": 9 },
+    "draw_replays": { "type": "integer", "minimum": 0, "maximum": 3 },
+    "arena_min_x": { "type": "integer", "minimum": -20000, "maximum": 0 },
+    "arena_max_x": { "type": "integer", "minimum": 0, "maximum": 20000 },
+    "floor_y": { "type": "integer", "minimum": 0, "maximum": 0 },
+    "spawn_x": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": -20000, "maximum": 20000 }
+    },
+    "stamina": { "type": "integer", "minimum": 0, "maximum": 1000 }
+  }
+}

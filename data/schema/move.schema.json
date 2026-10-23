@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": ["id", "display_name", "startup_ticks", "active_ticks", "recovery_ticks", "damage", "hitstun_ticks", "blockstun_ticks", "knockback_mm", "hitbox", "cost", "can_cancel", "hop_mm_per_tick"],
+  "properties": {
+    "id": { "type": "string" },
+    "display_name": { "type": "string" },
+    "startup_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "active_ticks": { "type": "integer", "minimum": 1, "maximum": 60 },
+    "recovery_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "damage": { "type": "integer", "minimum": 0, "maximum": 200 },
+    "hitstun_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "blockstun_ticks": { "type": "integer", "minimum": 0, "maximum": 120 },
+    "knockback_mm": { "type": "integer", "minimum": 0, "maximum": 2000 },
+    "hitbox": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "integer", "minimum": 0, "maximum": 2000 },
+        "y": { "type": "integer", "minimum": 0, "maximum": 2500 },
+        "w": { "type": "integer", "minimum": 1, "maximum": 2000 },
+        "h": { "type": "integer", "minimum": 1, "maximum": 2000 }
+      }
+    },
+    "cost": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "can_cancel": { "type": "boolean" },
+    "hop_mm_per_tick": { "type": "integer", "minimum": 0, "maximum": 200 }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "required": ["speed_mm_per_tick", "power_percent"],
+  "properties": {
+    "speed_mm_per_tick": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0, "maximum": 200 }
+    },
+    "power_percent": {
+      "type": "array",
+      "items": { "type": "integer", "minimum": 0, "maximum": 400 }
+    }
+  }
+}

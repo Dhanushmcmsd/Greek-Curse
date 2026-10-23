@@ -64,11 +64,23 @@ def validate_instance(value: object, schema: dict, path: str) -> list[str]:
     return errors
 
 
+SHARED_SCHEMAS = {
+    "fighters": "fighter.schema.json",
+    "moves": "move.schema.json",
+}
+
+
 def schema_for(data_file: Path) -> Path | None:
     relative = data_file.relative_to(DATA)
     candidate = DATA / "schema" / relative.parent / f"{relative.stem}.schema.json"
     if candidate.is_file():
         return candidate
+    shared_name = SHARED_SCHEMAS.get(relative.parent.name)
+    if shared_name is None:
+        return None
+    shared = DATA / "schema" / shared_name
+    if shared.is_file():
+        return shared
     return None
 
 

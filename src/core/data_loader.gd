@@ -50,7 +50,15 @@ func _inferred_schema(resource_path: String) -> String:
 	var slash := relative.rfind("/")
 	var directory := "" if slash == -1 else relative.substr(0, slash + 1)
 	var stem := relative.get_file().get_basename()
-	return "res://data/schema/%s%s.schema.json" % [directory, stem]
+	var per_file := "res://data/schema/%s%s.schema.json" % [directory, stem]
+	if FileAccess.file_exists(per_file):
+		return per_file
+	var folder := directory.trim_suffix("/")
+	if folder == "fighters":
+		return "res://data/schema/fighter.schema.json"
+	if folder == "moves":
+		return "res://data/schema/move.schema.json"
+	return ""
 
 
 func _fail(resource_path: String, message: String) -> Result:

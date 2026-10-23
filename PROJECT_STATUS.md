@@ -10,12 +10,12 @@
 - PYTHON_BIN (path, version): `C:\Users\Admin\AppData\Local\Programs\Python\Python314\python.exe` — Python 3.14.5 (tags/v3.14.5:5607950, MSC v.1944 64 bit AMD64). `python`, `py -3`, and `python3` all printed 3.14.5. `python3` is invoked through `C:\Users\Admin\AppData\Local\Microsoft\WindowsApps\python3.exe`; `sys.executable` is the Python 3.14.5 path above.
 - Git version / repo state: git version 2.54.0.windows.1 (`D:\Git\cmd\git.exe`). Repository initialised in stage 02. See the session log for the commit. No Git LFS.
 - Godot export templates installed for pinned version: yes. `%APPDATA%\Godot\export_templates\4.7.2.stable\version.txt` reads `4.7.2.stable`. That folder has 35 files, including `windows_release_x86_64.exe`. A throwaway project at `D:\godot_template_cache\probe` exported with `--export-release "Windows Desktop"` and exit 0 (`probe.exe` 109,127,680 bytes). That probe is outside this repo. The game itself has not been exported.
-- Capabilities: can_run_godot_windowed=unknown, can_render_screenshots=unknown, can_run_blender_render=unknown. One primary display is present (1600x900). Headless Godot 4.7.2 and background Blender both ran. Windowed Godot, screenshots, and a Blender render were not run. Disk free this session: C: 8,034,889,728 bytes at the templates listing; D: 191.09 GB; E: 195.87 GB (D/E from earlier WMI the same night).
+- Capabilities: can_run_godot_windowed=yes, can_render_screenshots=yes, can_run_blender_render=unknown. One primary display is present (1600x900). On 2026-10-24 the pinned console Godot opened a Compatibility window, printed `OpenGL API 3.3.0 NVIDIA 621.01`, exited 0, and wrote `docs/playtest/screenshots/a_prototype.png`. That still was inspected. Gameplay controls were not played. A Blender render was not run. Disk free this session: C: 8,034,889,728 bytes at the templates listing; D: 191.09 GB; E: 195.87 GB (D/E from earlier WMI the same night).
 - Renderer chosen: Compatibility (D-039). Godot 4.7 decal docs say Decal nodes are Forward+ and Mobile only. Blood uses pooled flat quads.
 - Dev machine specs (for performance notes): AMD Ryzen 5 5600X, 6 cores / 12 threads. WMI `TotalPhysicalMemory` 17103278080 bytes (~15.9 GiB). GPU: NVIDIA GeForce GTX 1650, WMI `AdapterRAM` 4293918720 bytes (~4.0 GB; WMI VRAM figures are often inaccurate).
 
 ## Current Stage
-- Stage: 04 (COMPLETE)
+- Stage: 05 (COMPLETE)
 - Started / last updated: 2026-10-24
 
 ## Stage Table
@@ -26,7 +26,7 @@
 | 02 | Project Scaffold And Development Tools | COMPLETE | 2026-10-24 | docs/handoff/02_PROJECT_SCAFFOLD_AND_DEVELOPMENT_TOOLS.md |
 | 03 | Core Architecture And Coding Rules | COMPLETE | 2026-10-24 | docs/handoff/03_CORE_ARCHITECTURE_AND_CODING_RULES.md |
 | 04 | Progress Tracker And Handoff Protocol | COMPLETE | 2026-10-24 | docs/handoff/04_PROGRESS_TRACKER_AND_HANDOFF_PROTOCOL.md |
-| 05 | First Playable Prototype | NOT_STARTED | | |
+| 05 | First Playable Prototype | COMPLETE | 2026-10-24 | docs/handoff/05_FIRST_PLAYABLE_PROTOTYPE.md |
 | 06 | Combat Simulation And Hit Detection | NOT_STARTED | | |
 | 07 | Limb Integrity Severing And Stump Caps | NOT_STARTED | | |
 | 08 | Body State Movement And Input | NOT_STARTED | | |
@@ -52,6 +52,7 @@
 ## Completed Features
 - Stage 00 onboarding files are in the project root and were re-checked on 2026-10-24. No game feature has been built or run.
 - Stage 04 tracker tools check headings, stage order, handoff files, and the next prompt. No combat.
+- Stage 05 greybox local 1v1: two capsules, fixed-lane sim, health, timer, best of three, restart, and F1 debug. Checkpoint A has not been played.
 
 ## Files and Systems Changed
 - 00: confirmed existing byte copies of `RESUME_PROMPT.md`, `docs/DECISIONS.md`, `docs/source/GDD_extracted.txt`, `docs/source/BUILD_REQUIREMENTS_extracted.txt`, and both revised PDFs in `docs/source/`. Copied the read-only pack to `Severed_Cursor_Prompt_Pack/` (the D: pack was the opened source and was not modified). Wrote `docs/handoff/00_README_AND_EXECUTION_GUIDE.md`. Rewrote this tracker so it matches commands run in this session. No game code, Godot project, or Blender script was created.
@@ -59,13 +60,14 @@
 - 02: created the Godot 4.7.2 Compatibility project, log autoload, headless test runner, Python validator, and launchers. Launchers refuse Godot 4.0. No gameplay.
 - 03: added the integer toolkit, seeded RNG, FNV-1a hash, JSON `Result` loader, architecture note, and sim purity check. `SimConstants` has the tick rate and millimetre scale only. No combat.
 - 04: added `tools/status/status_check.py`, `update_status.py`, `dependencies.json`, handoff template and index, and `docs/PROCESS.md`. Installed Godot 4.7.2 export templates. Ran `gdtoolkit` 4.5.0 and the bash launchers. No gameplay.
+- 05: added the fixed-tick match sim, Theron and Atalanta data, three starter moves, the greybox scene, and `docs/playtest/CHECKPOINT_A.md`. Main scene is `scenes/match/match_prototype.tscn`. No limbs, no Blender, no extra abilities.
 
 ## Tests (latest run)
-- Machine counts: 25 passed, 0 failed, 0 skipped (2026-10-24T02:19:32+05:30).
-- Date / command: 2026-10-24. `D:\Git\bin\bash.exe tools/check_all.sh` using the pinned Godot 4.7.2 console executable. Godot suite: 25 passed, 0 failed, 0 skipped. Python validator tests: 7 OK. Status tests: 12 OK. `gdlint` and `gdformat --check` reported no problems. `validate_all.py`: PASS. `status_check.py`: PASS. Exit 0. The same command was run again after stage 04 was marked COMPLETE and exited 0.
+- Machine counts: 35 passed, 0 failed, 0 skipped (2026-10-24T02:43:00+05:30).
+- Date / command: 2026-10-24. `D:\Git\bin\bash.exe tools/check_all.sh` using the pinned Godot 4.7.2 console executable. Godot suite: 35 passed, 0 failed, 0 skipped. Python validator tests: 7 OK. Status tests: 12 OK. `gdlint` reported no problems. `gdformat --check` reported 29 files unchanged. `validate_all.py`: PASS. `status_check.py`: PASS. Exit 0. Scripted match: `FINAL_HASH=2183744980119554273`, wins 2-0, tick 2040, exit 0.
 - Passed / failed / skipped: check_all PASS. The historical stage 02 failing assertion and the stage 03 `randf()` probe are not in the tree. `gdtoolkit` 4.5.0 first reported 13 style findings; those lines were fixed and both tools then exited 0.
 - Fast suite / full suite: fast suite is `tools/check_all.ps1` and `tools/check_all.sh`. Full regression suite is stage 21.
-- Notes (UNVERIFIED items): windowed Godot, screenshots, and a Blender render were not run. A real glTF file was not exported. The game project itself was not exported; only a throwaway probe outside the repo was.
+- Notes (UNVERIFIED items): one windowed autoplay frame was saved and inspected. Keyboard and gamepad play, F1, and R were not operated. A Blender render was not run. A real glTF file was not exported. The game project itself was not exported.
 
 ## Known Bugs and Blockers
 | ID | Severity | Description | Stage found | Status |
@@ -80,6 +82,7 @@
 - Stage 01 added D-035 (DEFAULT, sever rule), D-036 (DEFAULT, both-arms moves), D-037 (PROPOSED, no CC0 claim), D-038 (DEFAULT, stamina), and D-039 (DEFAULT, Compatibility renderer). Rows C-19 through C-25 record the resolutions. No LOCKED row was edited.
 - 2026-10-24: the owner approved D-003 (2.5D lane, no sidestep) and D-009 (five regrown limbs, shared skeleton and sockets, no extra limbs without a new approval). The record is section D of `docs/DECISIONS.md`. Locked wording was not rewritten.
 - Reference `docs/DECISIONS.md`. Locked MVP and D-001 through D-034 stand as written. D-032 and D-037 remain PROPOSED.
+- 2026-10-24 stage 05: speed curve millimetres per tick `[0, 6, 10, 14, 20, 26]`, power percent `[0, 70, 85, 100, 115, 130]`. A tied timeout replays once, then one `range_i(0, 2)` awards the round. Jab knockback is 0. These live in data files. No locked row was rewritten. D-003 lane and D-009 limbs were not expanded.
 
 ## Deferred / Proposed Work
 - Deferred per scope: see `docs/DECISIONS.md` section C.
@@ -97,10 +100,10 @@
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-Open a new Cursor Agent chat and run prompt `05_FIRST_PLAYABLE_PROTOTYPE.md`. Stop at Checkpoint A and wait for the owner. Keep the pinned Godot 4.7.2 console executable. Do not add limbs or sidestep movement without a new approval.
+Stop. Play Checkpoint A from `docs/playtest/CHECKPOINT_A.md` and reply PASS or a bug report. Do not start `06_COMBAT_SIMULATION_AND_HIT_DETECTION.md` until that approval. The filename below is the following prompt only. Keep the pinned Godot 4.7.2 console executable. Do not add limbs or sidestep movement without a new approval.
 
 ## Next Prompt Filename
-05_FIRST_PLAYABLE_PROTOTYPE.md
+06_COMBAT_SIMULATION_AND_HIT_DETECTION.md
 
 ## Session Log
 | Date | Stage | Summary | Result |
@@ -111,3 +114,4 @@ Open a new Cursor Agent chat and run prompt `05_FIRST_PLAYABLE_PROTOTYPE.md`. St
 | 2026-10-24 | 02 | Audited the 4.7.2 and Blender binaries, confirmed no project and no 4.0 project references, then added the scaffold. check_all.ps1 exited 0. A deliberate failing assertion exited 1 and was removed. | COMPLETE |
 | 2026-10-24 | 03 | Added the integer toolkit, RNG, hash, data loader, and sim purity check. The first purity test missed `ENetMultiplayerPeer`; the prefix pattern fixed it. A temporary `randf()` failed validation and was removed. The later `check_all.ps1` exited 0 (25 Godot tests, 7 Python tests). Owner approvals for D-003 and D-009 were recorded. | COMPLETE |
 | 2026-10-24 | 04 | Added the tracker checker and closed B-003, B-004, and B-005. | COMPLETE |
+| 2026-10-24 | 05 | Greybox local 1v1 prototype. Godot 35 passed, scripted hash matched, and one windowed still was saved. Checkpoint A is still pending. | COMPLETE |
