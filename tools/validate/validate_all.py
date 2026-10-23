@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from tools.anim.pose_validate import check as check_poses
 from tools.validate.check_sim_purity import check_sim
 from tools.validate.validate_assets import check_assets
 
@@ -118,6 +119,7 @@ def check_data(data_root: Path = DATA) -> list[str]:
 def main() -> int:
     errors = check_data()
     errors.extend(check_sim())
+    errors.extend(check_poses())
     errors.extend(check_assets())
     if errors:
         print(f"validate_all: {len(errors)} error(s)")

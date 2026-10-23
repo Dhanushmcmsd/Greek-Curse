@@ -19,6 +19,7 @@ func test_head_beats_torso_and_limb_ties_use_order() -> void:
 
 func test_torso_hit_keeps_full_main_and_skips_integrity() -> void:
 	var world := _pair()
+	world.moves[0]["hitbox"] = {"x": 420, "y": 1000, "w": 10, "h": 100}
 	var before := int(world.fighters[1].limbs.integrity["arm_l"])
 	_swing(world, SimInput.LIGHT, int(world.moves[0]["startup_ticks"]))
 	assert_eq(world.fighters[1].health, 300 - 21, "torso main damage")
@@ -31,7 +32,7 @@ func test_arm_hit_deals_less_main_and_more_limb() -> void:
 	world.moves[0]["damage"] = 100
 	world.moves[0]["limb_damage"] = 80
 	world.moves[0]["startup_ticks"] = 0
-	world.moves[0]["hitbox"] = {"x": 0, "y": 1424, "w": 500, "h": 150}
+	world.moves[0]["hitbox"] = {"x": 0, "y": 1100, "w": 500, "h": 150}
 	world.step([SimInput.LIGHT, 0])
 	assert_eq(world.fighters[1].health, 250, "half main on a limb")
 	assert_eq(int(world.fighters[1].limbs.integrity["arm_l"]), 10, "full limb damage")
@@ -46,11 +47,11 @@ func test_multi_hit_interval_lands_twice() -> void:
 	world.moves[0]["hitstop_attacker"] = 0
 	world.moves[0]["hitstop_defender"] = 0
 	world.step([SimInput.LIGHT, 0])
-	assert_eq(world.fighters[1].health, 279, "first hit of two")
+	assert_eq(world.fighters[1].health, 289, "first hit of two")
 	world.step([0, 0])
-	assert_eq(world.fighters[1].health, 279, "interval has not elapsed")
+	assert_eq(world.fighters[1].health, 289, "interval has not elapsed")
 	world.step([0, 0])
-	assert_eq(world.fighters[1].health, 258, "second hit")
+	assert_eq(world.fighters[1].health, 278, "second hit")
 
 
 func _pair() -> SimWorld:

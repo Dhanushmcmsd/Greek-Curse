@@ -1,6 +1,8 @@
 class_name ResultsStub
 extends CanvasLayer
 
+signal new_match_requested
+signal limbs_requested
 var summary: Label
 
 
@@ -15,6 +17,19 @@ func _ready() -> void:
 	summary.position = Vector2(400, 270)
 	summary.add_theme_font_size_override("font_size", 24)
 	add_child(summary)
+	for index in 2:
+		var button := Button.new()
+		button.text = "New match" if index == 0 else "Replacement limbs"
+		button.position = Vector2(400 + index * 250, 505)
+		button.size = Vector2(230, 36)
+		button.pressed.connect(
+			func():
+				if index == 0:
+					new_match_requested.emit()
+				else:
+					limbs_requested.emit()
+		)
+		add_child(button)
 	visible = false
 
 

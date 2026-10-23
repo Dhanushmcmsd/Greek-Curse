@@ -1,0 +1,1279 @@
+{
+  "bones": [
+    "root",
+    "spine",
+    "head",
+    "upper_arm.l",
+    "forearm.l",
+    "hand.l",
+    "thigh.l",
+    "shin.l",
+    "foot.l",
+    "upper_arm.r",
+    "forearm.r",
+    "hand.r",
+    "thigh.r",
+    "shin.r",
+    "foot.r"
+  ],
+  "joint_limits": {
+    "root": [
+      -180,
+      180
+    ],
+    "spine": [
+      -45,
+      45
+    ],
+    "head": [
+      -45,
+      45
+    ],
+    "upper_arm.l": [
+      -170,
+      90
+    ],
+    "forearm.l": [
+      -100,
+      30
+    ],
+    "hand.l": [
+      -180,
+      180
+    ],
+    "thigh.l": [
+      -100,
+      100
+    ],
+    "shin.l": [
+      -5,
+      130
+    ],
+    "foot.l": [
+      -180,
+      180
+    ],
+    "upper_arm.r": [
+      -170,
+      90
+    ],
+    "forearm.r": [
+      -100,
+      30
+    ],
+    "hand.r": [
+      -180,
+      180
+    ],
+    "thigh.r": [
+      -100,
+      100
+    ],
+    "shin.r": [
+      -5,
+      130
+    ],
+    "foot.r": [
+      -180,
+      180
+    ]
+  },
+  "settings": {
+    "facing_degrees": 90,
+    "cycle_ticks": 36,
+    "breath_degrees": 2,
+    "breath_rate": 2,
+    "walk_lean_degrees": 4,
+    "cracked_degrees": 35,
+    "hop_height_m": 0.09,
+    "crawl_pitch_degrees": 75,
+    "torso_pitch_degrees": 85,
+    "dodge_pitch_degrees": 180,
+    "floor_tolerance_m": 0.015,
+    "reach_tolerance_mm": 650,
+    "hitstop_shake_m": 0.008,
+    "cape_spring": 0.18,
+    "stump_twitch_degrees": 8,
+    "stump_twitch_ticks": 12,
+    "wave_degrees": 15,
+    "wave_base_degrees": -35,
+    "marble_pose_degrees": -5,
+    "quirk_rate": 4,
+    "quirk_angle": 0.12,
+    "squash": 0.15,
+    "reaction_split_ticks": 10,
+    "throw_split_ticks": 10,
+    "dodge_ticks": 12,
+    "knockdown_degrees": 90,
+    "ground_pivot_height_percent": 60,
+    "cape_pivot_height_percent": 82,
+    "cape_pivot_z_m": -0.19,
+    "crawl_swing_degrees": 18,
+    "torso_sway_degrees": 5,
+    "roll_degrees": 360,
+    "creak_interval_ticks": 240
+  },
+  "poses": {
+    "idle": {
+      "bones": {
+        "upper_arm.l": [
+          -12,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -12,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -20,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -20,
+          0,
+          0
+        ]
+      }
+    },
+    "walk_a": {
+      "bones": {
+        "thigh.l": [
+          24,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -24,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -24,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          24,
+          0,
+          0
+        ]
+      }
+    },
+    "walk_b": {
+      "bones": {
+        "shin.l": [
+          25,
+          0,
+          0
+        ],
+        "thigh.r": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "walk_c": {
+      "bones": {
+        "thigh.l": [
+          -24,
+          0,
+          0
+        ],
+        "thigh.r": [
+          24,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          24,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -24,
+          0,
+          0
+        ]
+      }
+    },
+    "walk_d": {
+      "bones": {
+        "shin.r": [
+          25,
+          0,
+          0
+        ],
+        "thigh.l": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "block": {
+      "bones": {
+        "upper_arm.l": [
+          -60,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -60,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -45,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -45,
+          0,
+          0
+        ],
+        "head": [
+          12,
+          0,
+          0
+        ]
+      }
+    },
+    "dodge_roll": {
+      "bones": {
+        "thigh.l": [
+          -65,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -65,
+          0,
+          0
+        ],
+        "shin.l": [
+          85,
+          0,
+          0
+        ],
+        "shin.r": [
+          85,
+          0,
+          0
+        ],
+        "spine": [
+          20,
+          0,
+          0
+        ]
+      }
+    },
+    "hit_light": {
+      "bones": {
+        "spine": [
+          -12,
+          0,
+          0
+        ],
+        "head": [
+          -15,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          20,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          20,
+          0,
+          0
+        ]
+      }
+    },
+    "hit_heavy": {
+      "bones": {
+        "spine": [
+          -28,
+          0,
+          0
+        ],
+        "head": [
+          -20,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          40,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          40,
+          0,
+          0
+        ]
+      }
+    },
+    "knockdown": {
+      "bones": {
+        "thigh.l": [
+          -20,
+          0,
+          0
+        ],
+        "thigh.r": [
+          15,
+          0,
+          0
+        ],
+        "spine": [
+          -30,
+          0,
+          0
+        ]
+      }
+    },
+    "get_up": {
+      "bones": {
+        "thigh.l": [
+          -60,
+          0,
+          0
+        ],
+        "shin.l": [
+          80,
+          0,
+          0
+        ],
+        "spine": [
+          25,
+          0,
+          0
+        ]
+      }
+    },
+    "victory": {
+      "bones": {
+        "upper_arm.l": [
+          -150,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -150,
+          0,
+          0
+        ]
+      }
+    },
+    "defeat": {
+      "bones": {
+        "head": [
+          35,
+          0,
+          0
+        ],
+        "spine": [
+          20,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          10,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          10,
+          0,
+          0
+        ]
+      }
+    },
+    "stagger": {
+      "bones": {
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "spine": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          20,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          20,
+          0,
+          0
+        ]
+      }
+    },
+    "grab_hold": {
+      "bones": {
+        "upper_arm.l": [
+          -80,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -80,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -20,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -20,
+          0,
+          0
+        ]
+      }
+    },
+    "grab_throw": {
+      "bones": {
+        "upper_arm.l": [
+          -140,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -140,
+          0,
+          0
+        ],
+        "spine": [
+          -15,
+          0,
+          0
+        ]
+      }
+    },
+    "hop": {
+      "bones": {
+        "thigh.l": [
+          -10,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -10,
+          0,
+          0
+        ],
+        "shin.l": [
+          18,
+          0,
+          0
+        ],
+        "shin.r": [
+          18,
+          0,
+          0
+        ]
+      }
+    },
+    "crawl": {
+      "bones": {
+        "upper_arm.l": [
+          -105,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -75,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -25,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -25,
+          0,
+          0
+        ]
+      }
+    },
+    "torso_scuttle": {
+      "bones": {
+        "spine": [
+          15,
+          0,
+          0
+        ],
+        "head": [
+          -25,
+          0,
+          0
+        ]
+      }
+    },
+    "torso_roll": {
+      "bones": {
+        "spine": [
+          25,
+          0,
+          0
+        ],
+        "head": [
+          20,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_light_startup": {
+      "bones": {
+        "upper_arm.l": [
+          25,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -45,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_light_active": {
+      "bones": {
+        "upper_arm.l": [
+          -85,
+          0,
+          0
+        ],
+        "forearm.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          10,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_light_recovery": {
+      "bones": {
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -25,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_heavy_startup": {
+      "bones": {
+        "upper_arm.l": [
+          25,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -45,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_heavy_active": {
+      "bones": {
+        "upper_arm.l": [
+          -95,
+          0,
+          0
+        ],
+        "forearm.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          10,
+          0,
+          0
+        ]
+      }
+    },
+    "punch_heavy_recovery": {
+      "bones": {
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ],
+        "forearm.l": [
+          -25,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_mid_startup": {
+      "bones": {
+        "thigh.l": [
+          -35,
+          0,
+          0
+        ],
+        "shin.l": [
+          65,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_mid_active": {
+      "bones": {
+        "thigh.l": [
+          -85,
+          0,
+          0
+        ],
+        "shin.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_mid_recovery": {
+      "bones": {
+        "thigh.l": [
+          -20,
+          0,
+          0
+        ],
+        "shin.l": [
+          25,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_low_startup": {
+      "bones": {
+        "thigh.l": [
+          -35,
+          0,
+          0
+        ],
+        "shin.l": [
+          65,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_low_active": {
+      "bones": {
+        "thigh.l": [
+          -40,
+          0,
+          0
+        ],
+        "shin.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_low_recovery": {
+      "bones": {
+        "thigh.l": [
+          -20,
+          0,
+          0
+        ],
+        "shin.l": [
+          25,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_flying_startup": {
+      "bones": {
+        "thigh.l": [
+          -35,
+          0,
+          0
+        ],
+        "shin.l": [
+          65,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_flying_active": {
+      "bones": {
+        "thigh.l": [
+          -85,
+          0,
+          0
+        ],
+        "shin.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "kick_flying_recovery": {
+      "bones": {
+        "thigh.l": [
+          -20,
+          0,
+          0
+        ],
+        "shin.l": [
+          25,
+          0,
+          0
+        ]
+      }
+    },
+    "headbutt_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "headbutt_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "headbutt_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "shoulder_charge_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "shoulder_charge_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "shoulder_charge_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "bite_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "bite_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "bite_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "stump_strike_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "stump_strike_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "stump_strike_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "low_sweep_startup": {
+      "bones": {
+        "thigh.l": [
+          -35,
+          0,
+          0
+        ],
+        "shin.l": [
+          65,
+          0,
+          0
+        ]
+      }
+    },
+    "low_sweep_active": {
+      "bones": {
+        "thigh.l": [
+          -85,
+          0,
+          0
+        ],
+        "shin.l": [
+          0,
+          0,
+          0
+        ],
+        "spine": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "low_sweep_recovery": {
+      "bones": {
+        "thigh.l": [
+          -20,
+          0,
+          0
+        ],
+        "shin.l": [
+          25,
+          0,
+          0
+        ]
+      }
+    },
+    "scuttle_attack_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "scuttle_attack_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "scuttle_attack_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "roll_attack_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "roll_attack_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "roll_attack_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "super_cast_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "super_cast_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "super_cast_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    },
+    "ultimate_cast_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    "ultimate_cast_active": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "ultimate_cast_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "walk": [
+    "walk_a",
+    "walk_b",
+    "walk_c",
+    "walk_d"
+  ],
+  "sets": {
+    "punch_light": {
+      "startup": "punch_light_startup",
+      "active": "punch_light_active",
+      "recovery": "punch_light_recovery"
+    },
+    "punch_heavy": {
+      "startup": "punch_heavy_startup",
+      "active": "punch_heavy_active",
+      "recovery": "punch_heavy_recovery"
+    },
+    "kick_mid": {
+      "startup": "kick_mid_startup",
+      "active": "kick_mid_active",
+      "recovery": "kick_mid_recovery"
+    },
+    "kick_low": {
+      "startup": "kick_low_startup",
+      "active": "kick_low_active",
+      "recovery": "kick_low_recovery"
+    },
+    "kick_flying": {
+      "startup": "kick_flying_startup",
+      "active": "kick_flying_active",
+      "recovery": "kick_flying_recovery"
+    },
+    "headbutt": {
+      "startup": "headbutt_startup",
+      "active": "headbutt_active",
+      "recovery": "headbutt_recovery"
+    },
+    "shoulder_charge": {
+      "startup": "shoulder_charge_startup",
+      "active": "shoulder_charge_active",
+      "recovery": "shoulder_charge_recovery"
+    },
+    "bite": {
+      "startup": "bite_startup",
+      "active": "bite_active",
+      "recovery": "bite_recovery"
+    },
+    "stump_strike": {
+      "startup": "stump_strike_startup",
+      "active": "stump_strike_active",
+      "recovery": "stump_strike_recovery"
+    },
+    "low_sweep": {
+      "startup": "low_sweep_startup",
+      "active": "low_sweep_active",
+      "recovery": "low_sweep_recovery"
+    },
+    "scuttle_attack": {
+      "startup": "scuttle_attack_startup",
+      "active": "scuttle_attack_active",
+      "recovery": "scuttle_attack_recovery"
+    },
+    "roll_attack": {
+      "startup": "roll_attack_startup",
+      "active": "roll_attack_active",
+      "recovery": "roll_attack_recovery"
+    },
+    "super_cast": {
+      "startup": "super_cast_startup",
+      "active": "super_cast_active",
+      "recovery": "super_cast_recovery"
+    },
+    "ultimate_cast": {
+      "startup": "ultimate_cast_startup",
+      "active": "ultimate_cast_active",
+      "recovery": "ultimate_cast_recovery"
+    }
+  }
+}

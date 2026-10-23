@@ -111,7 +111,7 @@ func test_claw_chip_hold_and_seeded_whiff() -> void:
 	contact.step([SimInput.LIGHT | SimInput.KICK, SimInput.BLOCK])
 	assert_eq(contact.fighters[1].state, SimFighter.State.GRABBED, "pincer lands through block")
 	assert_eq(contact.fighters[1].state_tick, 30, "actual pincer hold")
-	assert_eq(contact.fighters[1].health, 254, "actual pincer damage through block")
+	assert_eq(contact.fighters[1].health, 277, "actual pincer damage through block")
 
 
 func test_resever_removes_modifier_and_preserves_credit_limit() -> void:

@@ -14,10 +14,10 @@ func test_jab_active_window_and_single_hit() -> void:
 		assert_eq(world.fighters[1].health, 300, "no early hit")
 	world.step([0, 0])
 	assert_eq(world.fighters[0].state, SimFighter.State.ACTIVE, "active starts")
-	assert_eq(world.fighters[1].health, 300 - expected, "one hit")
+	assert_eq(world.fighters[1].health, 300 - Fx.percent(expected, 50), "one hit")
 	world.step([0, 0])
 	assert_eq(world.fighters[0].state, SimFighter.State.ACTIVE, "second active frame")
-	assert_eq(world.fighters[1].health, 300 - expected, "no second hit")
+	assert_eq(world.fighters[1].health, 300 - Fx.percent(expected, 50), "no second hit")
 
 
 func test_heavy_and_kick_use_their_own_damage() -> void:
@@ -27,10 +27,10 @@ func test_heavy_and_kick_use_their_own_damage() -> void:
 	assert_eq(Fx.percent(int(heavy["damage"]), 130), 47, "smash multiplier")
 	assert_eq(Fx.percent(int(kick["damage"]), 130), 29, "kick multiplier")
 	_hold(world, SimInput.HEAVY, int(heavy["startup_ticks"]))
-	assert_eq(world.fighters[1].health, 300 - 47, "smash hit")
+	assert_eq(world.fighters[1].health, 300 - 24, "smash hit")
 	world = _touching()
 	_hold(world, SimInput.KICK, int(kick["startup_ticks"]))
-	assert_eq(world.fighters[1].health, 300 - 29, "kick hit")
+	assert_eq(world.fighters[1].health, 300 - 15, "kick hit")
 	assert_true(world.fighters[0].x != 0, "kick hop moved the attacker")
 
 

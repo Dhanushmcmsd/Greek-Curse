@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "required": [
+    "bones",
+    "joint_limits",
+    "settings",
+    "poses",
+    "walk",
+    "sets"
+  ],
+  "properties": {
+    "bones": {
+      "type": "array"
+    },
+    "joint_limits": {
+      "type": "object"
+    },
+    "settings": {
+      "type": "object"
+    },
+    "poses": {
+      "type": "object"
+    },
+    "walk": {
+      "type": "array"
+    },
+    "sets": {
+      "type": "object"
+    }
+  }
+}

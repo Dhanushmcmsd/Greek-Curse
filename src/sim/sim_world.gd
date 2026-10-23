@@ -108,6 +108,7 @@ func step(inputs: Array) -> Array:
 	_separate()
 	SimCombat.resolve(self, events)
 	_separate()
+	_face()
 	for fighter in fighters:
 		SimStamina.regen(fighter, combat)
 	_finish_round(events)

@@ -26,7 +26,7 @@
 
 ## Current Stage
 
-- Stage: 13 (COMPLETE)
+- Stage: 14 (COMPLETE)
 
 - Started / last updated: 2026-10-24
 
@@ -48,7 +48,7 @@
 | 11 | Blender Python Asset Pipeline | COMPLETE | 2026-10-24 | docs/handoff/11_BLENDER_PYTHON_ASSET_PIPELINE.md |
 | 12 | Shared Skeleton Modular Fighters And Sockets | COMPLETE | 2026-10-24 | docs/handoff/12_SHARED_SKELETON_MODULAR_FIGHTERS_AND_SOCKETS.md |
 | 13 | Regrown Limbs And Attachment Validation | COMPLETE | 2026-10-24 | docs/handoff/13_REGROWN_LIMBS_AND_ATTACHMENT_VALIDATION.md |
-| 14 | Animation And Code Driven Motion | NOT_STARTED | | |
+| 14 | Animation And Code Driven Motion | COMPLETE | 2026-10-24 | docs/handoff/14_ANIMATION_AND_CODE_DRIVEN_MOTION.md |
 | 15 | Arenas Lighting Camera And Vfx | NOT_STARTED | | |
 | 16 | Audio Ui And Accessibility | NOT_STARTED | | |
 | 17 | Data Driven Abilities And Balancing | NOT_STARTED | | |
@@ -63,6 +63,7 @@
 | 25 | Post Mvp Online And Content Expansion Plan | NOT_STARTED | | |
 
 ## Completed Features
+- Stage 14: phase-locked procedural animation, body-state poses, floor correction, bone-following replacements and animation lab; fixes to Checkpoint B gameplay, facing and visible match controls. 768 state and 832 attack cases validated.
 
 - Stages 07–13: limb integrity/severing, all 16 body states, local AI, accessible HUD/round flow, reproducible Blender pipeline, shared rigs, five regrown limbs and 40 attachment cases. Four original fighter models and three test arenas were introduced early at owner request.
 
@@ -92,13 +93,13 @@
 
 ## Tests (latest run)
 
-- 93 Godot tests, 0 failed/skipped; 23 replay fixtures. Full tools/check_all.ps1 with asset regeneration, Python validators, status tests, gdlint and gdformat. Logs build/check13_release.log.
+- 103 Godot tests, 0 failed/skipped; 23 replay fixtures. Full tools/check_all.ps1 with asset regeneration, Python validators, status tests, gdlint and gdformat. Logs build/check14_final.log.
 
 - 400 AI matches completed without stalls/invariant failures in stage 09; difficulty gaps remain provisional.
 
 - 40 compatible replacement attachments validated in Python and Godot. Asset builds reproducible by manifest byte comparison. Four roster models, three arenas, five replacement models generated and window previews inspected.
 
-- Human Checkpoint B pending for control feel, animated clipping, style and balance. Full game export remains stage 23. Root certificate-store warning is environmental; no networking used.
+- Checkpoint B defects corrected; owner requested stage 14 continuation. Retest pending for feel/style. Full game export remains stage 23. Root certificate-store warning is environmental; no networking used.
 
 ## Known Bugs and Blockers
 
@@ -134,19 +135,18 @@
 |---|---|---|---|
 | Pre-flight installs and approvals | before 00 | DONE | 2026-10-24: Git 2.54.0.windows.1, Python 3.14.5, Godot 4.7.2.stable.official.ed1daf0bf, and Blender 5.2.3 LTS are verified. D-003 and D-009 were approved. Export templates `4.7.2.stable` are installed (B-003 closed). |
 | Checkpoint A | after 05 | PASS | 2026-10-24: owner replied Pass after playing the prototype (local commit 16cfe6b). |
-| Checkpoint B | after 13 | PENDING | |
+| Checkpoint B | after 13 | FIXES IMPLEMENTED; RETEST | Owner reported limb damage/facing/UI issues and explicitly authorized stage 14. Corrected with gameplay regressions and window evidence; no unconditional owner PASS claimed. |
 | Checkpoint C | after 20 | PENDING | |
 | Legal/store owner-only items | after 22B | PENDING | |
 | Checkpoint D | after 23 | PENDING | |
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-
-Owner: run tools/playtest_checkpoint_b.ps1 and follow docs/playtest/CHECKPOINT_B.md. Return PASS or issues. Stage 14 requires the human Checkpoint B result. No GitHub publication performed.
+Retest corrected main match (tools/playtest_checkpoint_b.ps1 -Main): facing, normal limb damage/severing, New match and Replacement limbs buttons. Stage 14 is complete as requested. Next implementation stage is 15.
 
 ## Next Prompt Filename
 
-14_ANIMATION_AND_CODE_DRIVEN_MOTION.md
+15_ARENAS_LIGHTING_CAMERA_AND_VFX.md
 ## Session Log
 
 | Date | Stage | Summary | Result |
@@ -165,3 +165,4 @@ Owner: run tools/playtest_checkpoint_b.ps1 and follow docs/playtest/CHECKPOINT_B
 | 2026-10-24 | 09 | Stage 09: 400 complete AI matches, no failures, 200 comparisons per difficulty step; early art pipeline improved while soak ran. | COMPLETE |
 
 | 2026-10-24 | 10–13 | HUD, reproducible pipeline, shared rigs and five regrown limbs complete. 93 tests, 23 replays and 40 attachment cases pass. Checkpoint B awaits owner testing. | COMPLETE |
+| 2026-10-24 | 14 | Fixed reported Checkpoint B defects and completed stage 14 at owner request. 103 tests, full pose matrices and corrected 64-match soak pass; retest requested. | COMPLETE |

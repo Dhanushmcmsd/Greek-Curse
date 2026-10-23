@@ -9,6 +9,7 @@ var damage_dealt: Array = [0, 0]
 var longest_combos: Array = [0, 0]
 var _pause_menu: PauseMenu
 var _results: ResultsStub
+var _match_tools: MatchTools
 var _camera: Camera3D
 var _shake: float = 0.0
 var _ai: Array = []
@@ -40,6 +41,7 @@ func _ready() -> void:
 	_build_input()
 	_build_stage()
 	world = _make_world()
+	_match_tools.catalog = world.fighters[0].limbs.catalog
 	_sync(true)
 	if "--results-demo" in OS.get_cmdline_user_args():
 		for tick in 5000:
@@ -122,6 +124,7 @@ func _make_world() -> SimWorld:
 
 
 func _restart() -> void:
+	_match_tools.chooser.hide()
 	_setup_controllers()
 	world = _make_world()
 	flow = RoundFlow.new()
@@ -163,6 +166,13 @@ func _build_stage() -> void:
 	_pause_menu.quit_requested.connect(_return_to_launcher)
 	_results = ResultsStub.new()
 	add_child(_results)
+	_match_tools = MatchTools.new()
+	add_child(_match_tools)
+	_match_tools.new_match_requested.connect(_restart)
+	_match_tools.replacement_requested.connect(_start_with_replacement)
+	_match_tools.panel_changed.connect(func(shown: bool): flow.paused = shown)
+	_results.new_match_requested.connect(_restart)
+	_results.limbs_requested.connect(_match_tools.open)
 	_debug = DebugOverlay.new()
 	add_child(_debug)
 
@@ -251,7 +261,18 @@ func _consume(events: Array) -> void:
 
 func _sync(_first: bool) -> void:
 	for index in world.fighters.size():
-		_views[index].show_fighter(world.fighters[index])
+		if _views[index].driver != null:
+			_views[index].driver.preview_pose = (
+				("victory" if world.wins[index] > world.wins[1 - index] else "defeat")
+				if flow.phase == "results"
+				else ""
+			)
+		_views[index].show_fighter(
+			world.fighters[index], flow.paused or world.hitstop_remaining > 0
+		)
+	for view in _views:
+		if view.driver != null and view.driver.caption != "":
+			(_hud as CombatHud).credit_text = view.driver.caption
 	_hud.show_match(world, flow.banner if flow.phase != "fight" else _banner)
 	if _shake > 0.001 and not bool(SettingsHooks.get_value("flash_reduction")):
 		_camera.h_offset = sin(float(world.tick) * 2.3) * _shake
@@ -264,6 +285,16 @@ func _sync(_first: bool) -> void:
 func _resume() -> void:
 	flow.paused = false
 	_pause_menu.show_menu(false)
+
+
+func _start_with_replacement(player: int, slot: String, id: String) -> void:
+	_restart()
+	var limbs := world.fighters[player].limbs
+	limbs.parts[slot].state = "severed"
+	limbs.parts[slot].integrity = 0
+	limbs.integrity[slot] = 0
+	limbs.regrow(slot, id)
+	_recorder.initial = world.export_limb_state()
 
 
 func _return_to_launcher() -> void:

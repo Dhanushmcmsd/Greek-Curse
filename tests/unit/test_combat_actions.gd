@@ -31,7 +31,7 @@ func test_grab_beats_block_and_loses_to_dodge() -> void:
 	blocked.moves[3]["startup_ticks"] = 0
 	blocked.moves[3]["hitstop_attacker"] = 0
 	blocked.step([SimInput.LIGHT | SimInput.KICK, SimInput.BLOCK])
-	assert_eq(blocked.fighters[1].health, 300 - 23, "grab ignores block")
+	assert_eq(blocked.fighters[1].health, 300 - 12, "grab ignores block")
 	assert_true(blocked.fighters[0].x > blocked.fighters[1].x, "throw swaps positions")
 	var dodged := _pair()
 	dodged.moves[3]["startup_ticks"] = 0
@@ -64,6 +64,6 @@ func _arm_active(fighter: SimFighter) -> void:
 	fighter.attack_limb_damage = 10
 	fighter.attack_hitstun = 4
 	fighter.hit_x = 0
-	fighter.hit_y = 1424
+	fighter.hit_y = 1100
 	fighter.hit_w = 500
 	fighter.hit_h = 150

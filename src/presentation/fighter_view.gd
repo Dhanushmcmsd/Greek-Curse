@@ -2,6 +2,7 @@ class_name FighterView
 extends Node3D
 ## Greybox body. It displays a sim fighter and never writes one.
 
+var driver: PoseDriver
 var rig: FighterRig
 var visual_stop: int = 0
 var _body: MeshInstance3D
@@ -17,6 +18,8 @@ func setup(body_color: Color, height_mm: int, width_mm: int, id: String = "") ->
 		rig = FighterRig.new()
 		add_child(rig)
 		if rig.load_fighter(id):
+			driver = PoseDriver.new()
+			driver.setup(rig)
 			return
 		rig.queue_free()
 		rig = null
@@ -32,12 +35,12 @@ func setup(body_color: Color, height_mm: int, width_mm: int, id: String = "") ->
 	add_child(_body)
 
 
-func show_fighter(fighter: SimFighter) -> void:
+func show_fighter(fighter: SimFighter, frozen: bool = false) -> void:
 	position.x = float(fighter.x) / 1000.0
 	position.y = float(fighter.y) / 1000.0
 	position.z = 0.0
 	if rig != null:
-		_update_model(fighter)
+		_update_model(fighter, frozen)
 		return
 	if _flash_ticks > 0:
 		_flash_ticks -= 1
@@ -85,43 +88,15 @@ func _apply_color(body_color: Color) -> void:
 	_body.material_override = material
 
 
-func _update_model(fighter: SimFighter) -> void:
-	rig.rotation.y = -float(fighter.facing) * 0.95
-	rig.position.y = 0.0
-	rig.rotation.z = 0.0
-	if fighter.pose == "crawl" or fighter.pose == "torso":
-		rig.position.y = -float(fighter.height_mm) / 1000.0 * 0.43
-		rig.rotation.z = float(fighter.facing) * 0.25
-	elif fighter.pose == "hop" and fighter.state == SimFighter.State.WALK:
-		rig.position.y = abs(sin(_pose_time * 10.0)) * 0.12
+func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
 		if state == "severed" and _last_states.get(slot, "healthy") != "severed":
 			_sever_effect(slot)
 		_last_states[slot] = state
-	rig.sync(fighter)
+	driver.update(fighter, frozen or visual_stop > 0)
 	if visual_stop > 0:
 		visual_stop -= 1
-	else:
-		_pose_time += 1.0 / 60.0
-	for replacement in rig.replacements.values():
-		LimbQuirks.animate(replacement, _pose_time)
-	for slot in SimLimbs.LIMB_NAMES:
-		if not fighter.limbs.usable(slot):
-			continue
-		var limb: Node3D = rig.groups[slot]
-		limb.rotation.x = 0.0
-		if fighter.state == SimFighter.State.IDLE:
-			var replacement_id: String = fighter.limbs.parts[slot].regrown_id
-			if replacement_id == "cyclops_giant_hand":
-				limb.rotation.x = -0.5 + sin(_pose_time * 3.0) * 0.2
-			elif replacement_id == "marble_statue_leg":
-				limb.rotation.x = -0.08
-		if fighter.state == SimFighter.State.WALK:
-			limb.rotation.x = sin(_pose_time * 12.0 + (PI if slot.ends_with("r") else 0.0)) * 0.30
-		if slot == fighter.attack_slot and fighter.move_id > 0:
-			limb.rotation.x = -1.3 if fighter.state == SimFighter.State.ACTIVE else -0.5
-		rig.pose_limb(slot, limb.rotation.x)
 
 
 func _sever_effect(slot: String) -> void:
@@ -130,17 +105,34 @@ func _sever_effect(slot: String) -> void:
 	if SettingsHooks.get_value("gore") == "off":
 		return
 	var source: Node3D = rig.groups[slot]
-	var chunk := MeshInstance3D.new()
-	var shape := CapsuleMesh.new()
-	shape.radius = 0.07
-	shape.height = 0.5
-	chunk.mesh = shape
-	var material := StandardMaterial3D.new()
-	material.albedo_color = _rest_color
-	chunk.material_override = material
+	var chunk := Node3D.new()
 	get_tree().current_scene.add_child(chunk)
-	chunk.global_transform = source.global_transform
-	chunk.visible = true
+	chunk.global_position = source.global_position
+	var pieces: Array = rig.limb_meshes[slot]
+	var replacement := rig.replacements.has(slot)
+	if replacement:
+		pieces = rig.replacements[slot].find_children("*", "MeshInstance3D", true, false)
+	for index in pieces.size():
+		var original: MeshInstance3D = pieces[index]
+		var piece := MeshInstance3D.new()
+		piece.mesh = original.mesh
+		for surface in piece.mesh.get_surface_count():
+			piece.set_surface_override_material(surface, original.get_active_material(surface))
+		chunk.add_child(piece)
+		if replacement:
+			piece.global_transform = original.global_transform
+		else:
+			var joints: Array = (
+				["upper_arm", "forearm", "hand"]
+				if slot.begins_with("arm")
+				else ["thigh", "shin", "foot"]
+			)
+			var bone := rig.skeleton.find_bone(joints[index] + "." + slot.right(1))
+			var deform := (
+				rig.skeleton.get_bone_global_pose(bone)
+				* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
+			)
+			piece.global_transform = rig.global_transform * deform * original.transform
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(chunk, "position", chunk.position + Vector3(0.8, -0.3, 0.6), 0.7)
 	tween.tween_property(chunk, "rotation", Vector3(2.0, 1.5, 0.5), 0.7)

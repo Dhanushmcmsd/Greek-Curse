@@ -40,4 +40,4 @@ static func configure(world: SimWorld, scenario: String) -> void:
 		world.fighters[1].x = 430
 		world.moves[0]["damage"] = 0
 		world.moves[0]["limb_damage"] = 25
-		world.moves[0]["hitbox"] = {"x": 0, "y": 1424, "w": 500, "h": 150}
+		world.moves[0]["hitbox"] = {"x": 0, "y": 1100, "w": 500, "h": 150}

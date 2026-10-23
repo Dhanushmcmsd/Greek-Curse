@@ -8,7 +8,7 @@ func test_block_reduction_and_chip_are_exact() -> void:
 	world.moves[0]["damage"] = 100
 	world.moves[0]["limb_damage"] = 80
 	world.moves[0]["startup_ticks"] = 0
-	world.moves[0]["hitbox"] = {"x": 0, "y": 1424, "w": 500, "h": 150}
+	world.moves[0]["hitbox"] = {"x": 0, "y": 1100, "w": 500, "h": 150}
 	world.step([SimInput.LIGHT, SimInput.BLOCK])
 	assert_eq(world.fighters[1].health, 285, "30 percent of the limb main hit")
 	assert_eq(int(world.fighters[1].limbs.integrity["arm_l"]), 70, "25 percent chip")
