@@ -52,7 +52,7 @@
 ## Completed Features
 - Stage 00 onboarding files are in the project root and were re-checked on 2026-10-24. No game feature has been built or run.
 - Stage 04 tracker tools check headings, stage order, handoff files, and the next prompt. No combat.
-- Stage 05 greybox local 1v1: two capsules, fixed-lane sim, health, timer, best of three, restart, and F1 debug. Checkpoint A has not been played.
+- Stage 05 greybox local 1v1: two capsules, fixed-lane sim, health, timer, best of three, restart, and F1 debug. The owner replied Pass on 2026-10-24.
 
 ## Files and Systems Changed
 - 00: confirmed existing byte copies of `RESUME_PROMPT.md`, `docs/DECISIONS.md`, `docs/source/GDD_extracted.txt`, `docs/source/BUILD_REQUIREMENTS_extracted.txt`, and both revised PDFs in `docs/source/`. Copied the read-only pack to `Severed_Cursor_Prompt_Pack/` (the D: pack was the opened source and was not modified). Wrote `docs/handoff/00_README_AND_EXECUTION_GUIDE.md`. Rewrote this tracker so it matches commands run in this session. No game code, Godot project, or Blender script was created.
@@ -92,7 +92,7 @@
 | Item | When | Status | Evidence returned |
 |---|---|---|---|
 | Pre-flight installs and approvals | before 00 | DONE | 2026-10-24: Git 2.54.0.windows.1, Python 3.14.5, Godot 4.7.2.stable.official.ed1daf0bf, and Blender 5.2.3 LTS are verified. D-003 and D-009 were approved. Export templates `4.7.2.stable` are installed (B-003 closed). |
-| Checkpoint A | after 05 | PENDING | |
+| Checkpoint A | after 05 | PASS | 2026-10-24: owner replied Pass after playing the prototype (local commit 16cfe6b). |
 | Checkpoint B | after 13 | PENDING | |
 | Checkpoint C | after 20 | PENDING | |
 | Legal/store owner-only items | after 22B | PENDING | |
@@ -100,7 +100,7 @@
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-Stop. Play Checkpoint A from `docs/playtest/CHECKPOINT_A.md` and reply PASS or a bug report. Do not start `06_COMBAT_SIMULATION_AND_HIT_DETECTION.md` until that approval. The filename below is the following prompt only. Keep the pinned Godot 4.7.2 console executable. Do not add limbs or sidestep movement without a new approval.
+Checkpoint A passed. Publish the approved prototype, then run `06_COMBAT_SIMULATION_AND_HIT_DETECTION.md`. Keep the fixed lane and the approved limbs. Do not add sidestep movement.
 
 ## Next Prompt Filename
 06_COMBAT_SIMULATION_AND_HIT_DETECTION.md
@@ -115,3 +115,4 @@ Stop. Play Checkpoint A from `docs/playtest/CHECKPOINT_A.md` and reply PASS or a
 | 2026-10-24 | 03 | Added the integer toolkit, RNG, hash, data loader, and sim purity check. The first purity test missed `ENetMultiplayerPeer`; the prefix pattern fixed it. A temporary `randf()` failed validation and was removed. The later `check_all.ps1` exited 0 (25 Godot tests, 7 Python tests). Owner approvals for D-003 and D-009 were recorded. | COMPLETE |
 | 2026-10-24 | 04 | Added the tracker checker and closed B-003, B-004, and B-005. | COMPLETE |
 | 2026-10-24 | 05 | Greybox local 1v1 prototype. Godot 35 passed, scripted hash matched, and one windowed still was saved. Checkpoint A is still pending. | COMPLETE |
+| 2026-10-24 | 05 | Owner replied Pass for Checkpoint A after the first play test. Restored the explicit 60 Hz physics tick the editor had removed. | COMPLETE |

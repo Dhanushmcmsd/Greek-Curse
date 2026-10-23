@@ -2,7 +2,7 @@
 
 ## Stage result
 
-COMPLETE for the automated stage. Checkpoint A is PENDING. The owner has not played it. Do not start `06_COMBAT_SIMULATION_AND_HIT_DETECTION.md` until the owner returns PASS.
+COMPLETE. The owner replied Pass on 2026-10-24, so stage 06 may start. The playtest also rewrote `project.godot` and dropped the explicit 60 Hz physics tick; that line was restored.
 
 ## Changed files
 
@@ -35,7 +35,7 @@ COMPLETE for the automated stage. Checkpoint A is PENDING. The owner has not pla
 | Sim purity | PASS. Zero allow-list comments. |
 | `tools/check_all.sh` | PASS. Exit 0 on the final tree. |
 | Windowed launch and one still | PASS for "the process starts and the frame saves". The still was inspected. Gameplay feel was not played. |
-| Owner Checkpoint A | UNVERIFIED. PENDING. |
+| Owner Checkpoint A | PASS. The owner replied Pass on 2026-10-24 after the playtest commit `16cfe6b`. |
 
 ## Acceptance criteria
 
