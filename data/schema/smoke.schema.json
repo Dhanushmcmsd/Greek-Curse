@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "required": ["name", "ticks"],
+  "properties": {
+    "name": { "type": "string" },
+    "ticks": { "type": "integer", "minimum": 60, "maximum": 60 }
+  }
+}

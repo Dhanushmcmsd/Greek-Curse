@@ -1,0 +1,178 @@
+Severed: Trials of Olympus — Build Requirements
+
+Oct 23, 2026 · @dd
+
+1. Free toolchain
+
+Every tool below is free, and you own what you make with them. Counts in this doc come from the GDD; items marked (est.) are estimates because the GDD gives no number.
+
+CC0 placeholder and gap-filler sources (check each license): Kenney, Quaternius, Poly Haven, ambientCG, Freesound (CC0 filter), OpenGameArt. Tool and library names are from memory, not checked live.
+
+2. 3D models
+
+Full-game target: 10 fighters and 10 regrown limbs. MVP target: 3–4 fighters, 3–4 arenas, about 20 abilities and 5 regrown limbs. Generate models using Blender Python scripts from reusable low-poly shapes and body parameters; use one shared skeleton and fixed sockets.
+
+Gap in the GDD: the Pantheon Ladder lists "gods, heroes and monsters" but never names the opponents. Plan on 10–15 reskinned fighter-rig enemies (est.), plus a boss every 5th match.
+
+3. The 8 arenas
+
+Each arena needs a floor and wall kit, props, one hazard, a skybox and lighting, an ambient loop, a hazard-free safe zone, and its own blood and decal behaviour. Build modular kits (columns, walls, floor tiles) and reuse them across arenas.
+
+The GDD's own cut list drops Cyclops Forge and Poseidon's Deck first if time runs short.
+
+4. Animation
+
+Animation is a significant workload, so the MVP deliberately limits unique motion. Hide missing limbs for most states and use code-driven motion where practical.
+
+Base set (60–80 clips, est.): idle, walk, run, dodge roll, block, grab, hit reactions, knockdown, victory, defeat.
+
+Body-state sets: one arm, both arms (headbutt, shoulder charge, bite), one leg (hop), both legs (crawl, stump strikes), Torso Mode (scuttle, roll).
+
+Ability animations: 10 punches, 10 kicks, 10 superpowers, 10 ultimates (short cinematics). Many can share clips.
+
+Regrown limb animations: idle quirks and attacks for all 10 (squeaking, waving, scratching, jigging).
+
+Special sequences: Thunder Strike, Last Stand, Execution finisher, Obol idle and trade.
+
+All fighters share one skeleton, so animate once and retarget to all 10. Test every clip early on the tallest (Argos, 2.20 m) and the smallest (Pyrrhus, 1.55 m).
+
+5. VFX and shaders
+
+Particles and decals: blood droplets, floor and wall decals under a decal budget, hit sparks, shockwaves, speed lines, hit-stop and adjustable screen shake.
+
+Shaders: stone/petrify, charring, shatter or dissolve, bruise overlay, cracked limb, Chronicle scar overlay.
+
+Spell effects: Zeus bolt, Poseidon wave and tsunami, Apollo flash, Nyx darkness, Tartarus pit, lava and fire, ink squirt.
+
+Blood colour variants: red, green, golden ichor.
+
+6. 2D art and UI
+
+Stone and bronze UI kit: frames, buttons, bars.
+
+50 ability icons and 10 regrown limb icons.
+
+Body-diagram HUD with icons and patterns, so it works for colour-blind players.
+
+Rank badges (Greek-named tiers), emote wheel and taunt icons, cosmetic and title icons.
+
+Chronicle share-card template, logo, key art, controller and keyboard glyphs.
+
+Screens: age gate and content warning, main menu, fighter select and naming, Hub, loadout, Obol trade, Chronicle, Hall of the Fallen, mode select with risk banner, HUD, results, pause, settings (gore slider, accessibility, remapping), matchmaking, report and block, spectator and replays, tutorial.
+
+7. Audio
+
+For voice, record your own grunts and use a free open-source text-to-speech such as Piper as a placeholder. Real voice acting for Obol and the Chorus is the one part that is hard to do well for free.
+
+8. Data files
+
+Keep all of these as JSON or Godot resources so balance changes need no code: 50 abilities, 10 fighters with stats, 10 regrown limbs, 8 arenas, Legacy traits, titles and ranks, cosmetics, unlock-offer rules, and localisation strings.
+
+9. Code systems
+
+The non-art half of the build:
+
+Input buffering and a fixed-tick combat simulation; hitbox and hurtbox per limb.
+
+Limb integrity states (Healthy, Bruised, Cracked, Severed), Severance Combo detection and amputation credit, per-match limb cap, Desperate Fury, stamina, ultimate meter, rounds.
+
+Body-state movement variants; ability, passive and ultimate framework; AI opponents.
+
+Unlock offers, Obol trade, Chronicle, Legacy, Thunder Strike and Death Match flow.
+
+Gore manager with decal and chunk caps.
+
+Rollback netcode, matchmaking, ranked ratings, server-checked results, local saves, replays.
+
+Accessibility options and automated tests, including one that attaches every regrown limb to every fighter.
+
+Determinism catch: the GDD wants a deterministic simulation for rollback, but Godot's built-in physics is not deterministic across machines. Write the combat collisions yourself with simple fixed-point or integer maths, and use Godot physics only for cosmetic debris.
+
+10. Where the workload is
+
+The original full-game timeline is only a rough estimate. Re-estimate after a local prototype; prioritize proving the combat loop and generated shared-skeleton assets before expanding.
+
+Animation: body-state sets plus retargeting tests across all 10 bodies.
+
+Rollback netcode: the riskiest code; prototype it before building lots of content.
+
+Audio and voice: takes longer than expected, and voice acting is hard to do well for free.
+
+Pantheon opponent list: undefined in the GDD and needs a decision.
+
+Recommended order: one arena and two fighters first, proving limb severing and the shared socket system. Then expand to 3–4 fighters, 3–4 arenas, about 20 abilities and five regrown limbs. Build local versus before online rollback.
+
+Revised MVP Build Plan
+
+This section updates the earlier full-game asset counts. The larger counts remain long-term targets, not MVP blockers.
+
+MVP targets
+
+3–4 fighters generated by Blender Python scripts; one skeleton and fixed sockets.
+
+3–4 arenas built from reusable modular kits.
+
+About 20 abilities and 5 regrown limbs, including stump caps and socket validation.
+
+Local 1v1 versus first; online rollback only after deterministic combat tests pass.
+
+Defer 4-player brawl, co-op bosses and spectator mode.
+
+Art generation approach
+
+Use script parameters for height, weight/build, muscle mass, proportions, palette and cosmetic identifiers. Reuse the same generator for fighters, stump caps, initial regrown limbs and modular arena kits.
+
+Generate repeatable, editable geometry from simple shapes; review the result in Blender and in-engine. Keep source scripts and parameter data under version control.
+
+Use shared animations and code-driven motion wherever possible. Initially implement dedicated movement for hop, crawl and Torso Mode; hide absent limbs in other missing-limb states.
+
+Quality gates and compliance
+
+The developer plays every build. AI-assisted automated tests cover combat rules and regressions.
+
+Track asset provenance and licenses. Before distribution, check current Steam/itch.io AI-content disclosure and platform rules.
+
+Purely AI-generated assets may have weaker or uncertain copyright protection depending on jurisdiction. Review ownership and modding terms before publishing.
+
+Job | Tool | Notes
+Engine | Godot 4 (MIT) | The GDD already recommends it.
+3D modelling, rigging, animation | Blender | Use Rigify for the shared skeleton.
+Textures and UI art | Krita, GIMP, Inkscape | Flat-shaded low-poly needs only a palette texture or vertex colours.
+Sound effects | Audacity, sfxr/jsfxr, phone Foley | Celery or frozen veg for bone, wet cloth for squelch, a melon for flesh impacts.
+Music | LMMS, MuseScore, Surge XT or Vital | GDD: Dorian and Phrygian modes, drums, lyre, aulos.
+Fonts | Google Fonts (OFL), e.g. Cinzel | 
+Netcode | netfox (Godot 4 rollback add-on) with noray relay | The GDD only says an add-on can be evaluated. Check its current Godot 4 support first.
+Backend for Chronicle and ranked | Supabase or Firebase free tier | 
+Version control and hosting | Git with GitHub or GitLab, itch.io | Git LFS free quotas are small; keep large raw files out of it.
+
+Group | Count | Details
+Fighters | 10 | 3,000–5,000 triangles each, built from head, torso, upper and lower arms, hands, upper and lower legs, feet on one shared skeleton.
+Sockets and stump caps | 4 limb sockets plus neck | Cap meshes must match each fighter's skin and armour.
+Regrown limbs | 10 (5 arms, 5 legs) | Rubber Chicken, Octopus, Cyclops Hand, Olive Branch, Crab Claw, Pegasus Wing, Marble Statue, Satyr Hoof, Hermes Sandal, Hound Pup. Several need moving parts (tentacle, wing, claw).
+Gore chunks | 15–20 (est.) | Flesh, bone, marble, charred, bronze shrapnel.
+NPCs | 1–2 | Obol the Broker; Zeus only if visible in the Thunder Strike.
+Bosses and creatures | 4 | Hydra, Cerberus, Talos, Minotaur (also an arena hazard).
+Ability props | about 7 | Forge shield, arrows, Tartarus pit, Hydra heads, Pandora's box, olives, feathers.
+Cosmetics | about 10 helmets, 8 capes, 10 war paints (est.) | The GDD gives no counts; start small.
+Hub and Hall of the Fallen | 1 hub scene | Obol's stall, Zeus altar, statue plinths. Statues can reuse fighter models with a stone shader.
+
+Arena | Unique assets
+Mount Olympus | Marble temple, clouds, lightning telegraph marker
+Labyrinth of Crete | Stone maze, moving walls, Minotaur charge
+River Styx Docks | Docks, fog, rising and falling water, boats
+Tartarus Pits | Cavern, lava vents, chains, stalactites
+Medusa's Garden | Ruins, statues (reuse fighter models), gaze-beam VFX
+Cyclops Forge | Anvils, giant hammers, moving platforms
+Poseidon's Deck | Ship, rocking floor, waves, storm
+Athens Colosseum | Sand floor, crowd, crowd-thrown weapons (spear, sword, amphora)
+
+Type | Scope
+Impact SFX | Four materials (bone, flesh, stone, bronze), light and heavy variants
+Combat SFX | Whooshes, block, dodge, grab, limb crack, sever, squelch, bouncing chunks
+Ability SFX | 10 superpowers, 10 ultimates
+Limb twist SFX | Squeak, ink squirt, creak, bleat, flap, bark and more
+Hazards and ambience | One set per arena (8), plus the Hub
+UI and crowd | About 20 UI sounds (est.), crowd reactions
+Music | 14–16 tracks (est.): menu and Hub, 8 arena tracks, boss, Death Match, win and loss stingers, Thunder Strike cue
+Voice | Fighter voice sets (grunts, hits, battle cries, death), Obol lines, Greek Chorus announcer lines, all with subtitles
+

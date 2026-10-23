@@ -1,0 +1,715 @@
+GAME DESIGN DOCUMENT
+
+SEVERED
+
+Trials of Olympus
+
+A free, low-poly, multiplayer gore fighting game set in Greek mythology
+
+One fighter. One body. Every scar is a story.
+
+Working title: Severed: Trials of Olympus (placeholder, open to change)
+
+Version 1.0 | October 2026 | Designer: Dhanush Raghav M
+
+Platform target: PC (Windows, Linux) | Price: Free, no purchases of any kind | Rating target: Mature (18+)
+
+Contents
+
+1. Overview and Design Pillars
+
+2. Community Research and What It Changed
+
+3. Core Gameplay Loop
+
+4. The Fighter Roster (10 Fighters)
+
+5. Combat System
+
+6. Move Pools and Unlock Progression
+
+7. Dismemberment and Gore System
+
+8. Persistence: The Chronicle, Thunder Strike and Legacy
+
+9. Obol the Broker and the 10 Regrowth Options
+
+10. Arenas of Greek Mythology
+
+11. Game Modes
+
+12. Multiplayer, Netcode and Matchmaking
+
+13. Art, Audio and UI Direction
+
+14. Technical Design
+
+15. Free Forever: No-Monetization Commitment
+
+16. Accessibility, Safety and Rating
+
+17. Production Plan and Scope
+
+18. Risks and Mitigations
+
+Appendix A: Glossary
+
+Appendix B: Research Sources
+
+1. Overview and Design Pillars
+
+1.1 High concept
+
+Severed is a low-poly online fighting game in which each player owns exactly one fighter. That fighter wins, loses, breaks and heals over a long career. Every victory unlocks a new move or power. Every hard fight can cost an arm or a leg. A wicked merchant named Obol the Broker will trade a won ability for a regrown limb, but the magic never restores what was lost. It grows something strange and funny instead. The only way to get a new fighter is to send the old one to die under a thunder strike from Zeus.
+
+1.2 Design pillars
+
+One body, one story. The fighter is a persistent record of every win, loss and amputation.
+
+Skill earns the gore. Limbs are severed by deliberate, continuous combos, and the attacker gets the credit. Random luck never decides an amputation.
+
+Loss is funny, not just painful. Regrowth magic always gives back something weird and laughable, so a lost limb becomes a source of personality rather than frustration.
+
+Brutal but fair. Comeback mechanics, body-state matchmaking and a no-permanent-loss mode protect players from feeling punished.
+
+Free and open to everyone. No purchases, no premium currency, no ads. All content is earned by playing.
+
+1.3 Target audience
+
+Fighting-game and brawler players who enjoy Mortal Kombat style gore and Gang Beasts style chaos.
+
+Roguelike and persistence fans who enjoy Kenshi style bodily consequences, Hades style progression and Darkest Dungeon style attachment to a character.
+
+Greek mythology fans and streamers who want clip-worthy, shareable moments.
+
+Players with older or modest PCs, since the low-poly style keeps system requirements low.
+
+1.4 Key facts
+
+2. Community Research and What It Changed
+
+To check the design against real player feeling, I searched public forums and community pages for discussion of limb loss and permadeath. The search returned mostly Steam community threads (Kenshi, Fear & Hunger), itch.io developer threads, tabletop and roguelike forums, and articles about Hellblade and permadeath design. Few direct Reddit threads came back, so Reddit sentiment is not quoted here. These are scattered forum posts of different ages (2013 to 2023), not a survey, so treat them as design signals rather than proof. Full sources are in Appendix B.
+
+3. Core Gameplay Loop
+
+3.1 The loop
+
+Pick a fighter from the roster of 10 and name them (first time only).
+
+Fight in a Greek mythology arena against a human or AI opponent.
+
+Win to be offered a choice of 3 locked abilities. Pick one to unlock.
+
+Get hurt. Limbs can be cracked or severed during combo strings.
+
+Visit Obol the Broker to trade an unlocked ability for a regrown limb with a laughable twist.
+
+Climb the Pantheon ladder and face stronger gods, monsters and players.
+
+Retire the fighter by an Offering to Zeus or a lost Death Match, then start again with a Legacy trait.
+
+3.2 Player flow
+
+Main Menu, then Hub (Chronicle, Loadout, Obol the Broker, Hall of the Fallen), then mode selection, match, results screen (rewards and Chronicle update), and back to the Hub. The Hub is a small scene so it loads fast and gives the fighter a home.
+
+3.3 Session length
+
+A single round is 45 to 90 seconds, and a match is best of three.
+
+A full session loop (fight, reward, merchant) takes 5 to 8 minutes.
+
+A fighter career lasts about 40 to 80 matches before most players choose a Thunder Strike.
+
+4. The Fighter Roster (10 Fighters)
+
+The full design targets 10 fighters, but the first playable version starts with 3–4. Fighters are generated from Blender Python scripts using body-table parameters (height, weight and muscle mass) rather than hand-modelling each character separately. All fighters share one skeleton and fixed limb sockets. The scripts create repeatable, editable meshes from simple low-poly shapes; each result must be inspected and adjusted by the developer.
+
+4.1 Roster table
+
+4.2 Fighter stats (1 to 5)
+
+4.3 Naming and cosmetics
+
+Each fighter has 3 colour palettes at start. More palettes, helmets, capes and war paints unlock through play (see Section 15).
+
+Players type a fighter name (with a basic word filter) and pick a voice set (grunts and battle cries, no text chat).
+
+Scars, missing limbs and regrown limbs are shown automatically on the body and cannot be hidden in the Hall of the Fallen.
+
+5. Combat System
+
+5.1 Controls (gamepad and keyboard)
+
+5.2 Core rules
+
+Health: each fighter has a main health bar (300 HP) and 4 limb integrity values (100 each for arms and legs, plus the head).
+
+Damage split: a hit damages the main bar and the limb it lands on. Body hits damage the torso (main bar only). Limb hits do more limb damage than main damage.
+
+Block: reduces main damage by 70% but still chips limb integrity by 25%, so blocking is not completely safe against limb pressure.
+
+Stamina: a short stamina bar limits spam. Light attacks use little, heavies use a lot, and an empty bar means a short stagger.
+
+Combos: light into light into heavy into kick chains are allowed with limited cancels, so combos stay readable and punishing.
+
+Ultimate meter: fills by dealing damage, taking damage and losing a limb. It is shared across all fighters.
+
+Rounds: best of three, 90 seconds per round, win by knockout or by higher health at time.
+
+5.3 Body state effects on combat
+
+6. Move Pools and Unlock Progression
+
+6.1 Loadout rules
+
+Every fighter has the same 50 abilities to earn. Players equip 2 light punches, 2 heavy punches, 2 kicks, 1 superpower, 1 passive and 1 ultimate. Equipping happens at the Hub and is locked during a match.
+
+6.2 Unlock progression
+
+Starter kit: Jab of Hermes, Cyclops Smash, Pegasus Kick. No superpower, passive or ultimate yet.
+
+Every win offers 3 random locked abilities from the 50. The player picks one to unlock. Choosing keeps wins feeling like progress rather than random loot.
+
+First win always offers a superpower, third win a passive and fifth win an ultimate, so players reach a full loadout quickly.
+
+Traded abilities (see Section 9) leave the fighter’s unlocked pool and must be won back later through future offers.
+
+Fresh Body mode also awards unlock choices, but at a slower rate, so casual players still progress.
+
+6.3 Punches (10)
+
+6.4 Kicks (10)
+
+6.5 Superpowers (10, choose 1)
+
+6.6 Passives (10, choose 1)
+
+6.7 Ultimates (10, choose 1)
+
+Ultimates charge from the shared meter and can be fired when it is full. Each ultimate is a short cinematic with a clear counterplay window of about 0.7 seconds at the start.
+
+7. Dismemberment and Gore System
+
+7.1 Limb health
+
+Each limb (left arm, right arm, left leg, right leg) has its own Limb Integrity value of 100, modified by the fighter’s limb toughness. Every hit that lands on a limb reduces its integrity. Integrity does not regenerate during a round.
+
+7.2 Limb states
+
+7.3 Severance Combo and credit
+
+A Severance Combo is a chain of 3 or more hits where no gap between hits exceeds 1.5 seconds.
+
+A limb is severed only if its integrity reaches 0 during or within 0.5 seconds after a Severance Combo.
+
+If integrity hits 0 outside of a Severance Combo, the limb becomes Cracked and severs on the next hit that lands.
+
+The fighter who dealt the most damage to that limb during the chain is credited with the Amputation. The credit is shown on the results screen and stored in both fighters’ Chronicles.
+
+Each limb can only be credited once per match, so there is no farming of the same limb.
+
+7.4 Fairness limits
+
+In normal matches a fighter can lose at most two limbs per match. Further limbs stay Cracked.
+
+In Death Matches there is no limb limit.
+
+Losing a limb fills 30% of the ultimate meter and triggers Desperate Fury, a 6 second speed and damage buff, so the losing player can fight back.
+
+Heads cannot be taken by normal combos. A head is only removed by an Execution finisher when the opponent is knocked out in a Death Match.
+
+7.5 Gore presentation
+
+Blood: low-poly droplets and flat decals splatter on floors and walls and stay until the match ends. A decal budget prevents slowdowns.
+
+Severing: each limb has a hidden stump cap and a gore mesh so cuts always look clean on every fighter.
+
+Crumbling: powers can shatter fighters into low-poly chunks. Zeus Bolt chars, Medusa turns limbs to marble that crumbles, and the Colossus Drop cracks bones.
+
+Impact feedback: hit-stop, screen shake (adjustable), squelching and cracking sounds, and chunks that bounce around the arena.
+
+Gore slider: Off (sparks and dust only), Low, Normal and Max. The setting is visual only and has no effect on fairness.
+
+Blood colour options: red, green or golden ichor for taste and accessibility.
+
+8. Persistence: The Chronicle, Thunder Strike and Legacy
+
+8.1 The Chronicle
+
+Each fighter has a Chronicle that records every match result, every limb lost, every limb taken, and notable moments such as longest combo. Scars appear on the body model for each major injury. The Chronicle can be shared as an image card.
+
+8.2 One fighter at a time
+
+A player has exactly one living fighter in Persistent Fighter mode. A new fighter is only available after the old one dies. There are two ways to die:
+
+Offering to Zeus: the player chooses to retire the fighter at the Hub, triggering a cinematic lightning strike.
+
+Death Match loss: an optional high-stakes match type. Losing it triggers the Thunder Strike automatically.
+
+A fighter who has lost all four limbs is offered the Offering by Obol the Broker, but is never forced to accept.
+
+8.3 Last Stand
+
+When a fighter dies in a Death Match, they get one final move: a short, powerful strike that can still win the match. If it lands, the fighter survives that match with one health point and no Thunder Strike.
+
+8.4 Legacy
+
+When a fighter dies, they leave an Echo. The next fighter inherits one trait from the dead fighter, chosen by the player from a short list based on the old Chronicle (for example, Veteran Eye from 50 wins, or Scar Tissue from losing 4 limbs). Only one Legacy trait is active at a time and it is small, so new players are not at a big disadvantage.
+
+8.5 Hall of the Fallen
+
+A memorial scene that displays statues of every fallen fighter with their final scars, wins, losses and Chronicle titles. Visitors can view friends’ halls.
+
+8.6 Fresh Body mode
+
+Fresh Body is a no-permanent-loss option. The player picks any fighter and any loadout from their unlocked pool for a match, and any lost limbs return after the fight. This is the default practice and casual option.
+
+9. Obol the Broker and the 10 Regrowth Options
+
+9.1 The merchant
+
+Obol the Broker is a smiling, shifty, Hermes-like trader who lives in the Hub. He deals in body parts and abilities. He is not honest, but he is always fair about the terms he shows. His voice lines are sarcastic and funny.
+
+9.2 Trade rules
+
+The player gives up one unlocked ability (not the starter kit) to Obol in exchange for one regrown limb.
+
+Obol shows 3 random regrowth options that fit the missing slot (arm or leg). The player chooses one, or declines.
+
+Every option shows its full stats and its twist in the tooltip. Nothing is hidden.
+
+Regrown limbs have 80% of a natural limb’s integrity and can be severed again.
+
+Regrown limbs are never the same as the old limb. The magic always adds a laughable twist.
+
+A traded ability can be won back through future win offers. Obol never charges money; the only currency in the game is abilities and limbs.
+
+Obol’s trade offers do not change in price over time. This avoids players feeling cheated by hidden changes.
+
+9.3 The 10 regrowth options
+
+10. Arenas of Greek Mythology
+
+Eight arenas each have a hazard cycle and special gore behaviour. Hazards are always telegraphed and can be switched off in Custom Match.
+
+Arena rules: each arena is small enough for fast matches, has walls or edges to enable wall bounces, and includes at least one safe zone without hazards so players can recover.
+
+11. Game Modes
+
+12. Multiplayer, Netcode and Matchmaking
+
+12.1 Netcode
+
+Online rollback netcode is a later milestone. First prove combat rules and local 1v1 versus; add online play only after the simulation is stable and testable.
+
+Keep combat logic deterministic and separate from cosmetic physics from the beginning, so rollback remains possible later. Do not implement online rollback in the first milestone.
+
+Peer-to-peer with a free relay fallback to keep server costs near zero.
+
+4-player networking is out of the initial scope and must not be implemented in the first release milestone.
+
+12.2 Matchmaking
+
+Body-state matching: a fighter missing three limbs is not matched against a fighter with all limbs.
+
+Skill rating: a simple rating system (Elo style) with ranking tiers.
+
+Risk transparency: the match screen shows the match type (Normal, Death Match, Fresh Body) in large text before the player accepts.
+
+Region and ping filters with a quick rematch option.
+
+12.3 Safety and communication
+
+No text or voice chat, only a limited emote wheel and Greek-themed taunts. This keeps the free game safe and cheap to moderate.
+
+Report and block buttons for names and conduct.
+
+Server-checked results in Ranked and Death Match to prevent save tampering.
+
+13. Art, Audio and UI Direction
+
+13.1 Art
+
+Low-poly with 3000 to 5000 triangles per fighter, flat shaded with bold colours and thick contrast.
+
+Modular body: head, torso, upper and lower arms, hands, upper and lower legs, feet. Limbs attach through fixed sockets, so every limb works on every fighter.
+
+Pre-made stump caps and gore chunks for all sockets. No procedural mesh cutting, which keeps it fast and predictable.
+
+Arenas use a limited palette: gold and white for Olympus, deep purple for Styx, red and black for Tartarus, and so on.
+
+13.2 Audio
+
+Crunchy impact sounds with distinct tones for bone, flesh, stone and bronze.
+
+Music built on Greek modes (Dorian, Phrygian) with drums, lyre and aulos, in a metal-folk style.
+
+An optional Greek Chorus announcer who comments on combos, amputations and regrown limbs.
+
+Royalty-free or self-composed audio only, to avoid licensing costs.
+
+13.3 UI
+
+Body diagram on the HUD with 4 limb bars plus head and torso, so integrity is clear at a glance.
+
+Stone and bronze styling for menus, with readable fonts and large text options.
+
+The Chronicle screen has an interactive body view where scars can be inspected.
+
+14. Technical Design
+
+15. Free Forever: No-Monetization Commitment
+
+Severed is a free indie game. The game contains no payment option of any kind.
+
+15.1 What is removed
+
+No purchases, premium currency, battle pass, loot boxes, ads or paid cosmetics.
+
+No in-game betting. Spectator predictions are only for fun and have no stakes.
+
+No paid unlocks and no pay-to-skip. All fighters, moves and cosmetics are available through play.
+
+Obol the Broker only trades abilities for limbs. He never accepts or sells anything for money.
+
+15.2 How cosmetics are earned
+
+15.3 Keeping the game sustainable without money
+
+Peer-to-peer play keeps server costs very low.
+
+Open modding and community arenas reduce content workload over time.
+
+Open development updates and a public roadmap so the community can volunteer to help.
+
+A small, scoped feature set (Section 17) so one developer or a small team can finish the game.
+
+16. Accessibility, Safety and Rating
+
+16.1 Accessibility
+
+Gore slider and alternative blood colours.
+
+Full control remapping, hold-to-toggle options, and one-handed layouts.
+
+Adjustable screen shake and hit-stop.
+
+Photosensitivity options to tone down lightning and Apollo Sunburst flashes.
+
+Colour-blind friendly limb bars with icons and patterns, not colours alone.
+
+Subtitles for all voice lines and announcer text.
+
+16.2 Content warnings and rating
+
+The game contains extreme violence and dismemberment. It is intended for adults and will be rated Mature (18+) or the closest equivalent where required.
+
+A first-launch warning screen explains the gore, the permanent-loss rules and the gore slider.
+
+An age gate at first launch and a clear store page content description.
+
+17. Production Plan and Scope
+
+The plan assumes one developer or a small team working part-time. Times are estimates, not commitments. Protect the playable core and defer online features until local combat is reliable.
+
+17.1 Cut list (if time runs out)
+
+Co-op Bosses and Spectator Colosseum.
+
+4-Player Brawl.
+
+Legacy traits (replace with a simple cosmetic Echo).
+
+Cyclops Forge and Poseidon’s Deck arenas.
+
+The initial core is local 1v1 combat, persistent fighter/body state, combo-based limb damage and severing, a small Obol/regrowth loop, and a small set of arenas. The 10-fighter roster, all 10 regrowth options, online ranked modes and the broader career systems are expansion targets, not requirements for the first playable build.
+
+18. Risks and Mitigations
+
+Appendix A: Glossary
+
+Appendix B: Research Sources
+
+Search conducted in October 2026. Sources are community posts and articles, listed so they can be checked. They represent individual opinions, not a survey.
+
+Production Addendum — AI-Assisted, Code-Generated MVP
+
+This addendum supersedes conflicting scope and production assumptions elsewhere in this document. The original full-game vision remains the long-term target; the MVP is deliberately smaller.
+
+A. MVP scope and explicit deferrals
+
+Build local 1v1 first. Do not begin online rollback, matchmaking or ranked services until the local combat simulation is reliable.
+
+Start with 3–4 fighters, 3–4 arenas, approximately 20 abilities and 5 regrown limbs. Treat 10 fighters, 8 arenas, 50 abilities and 10 regrown limbs as later expansion targets.
+
+Defer 4-player brawl, co-op boss fights and spectator features. Do not build them as hidden dependencies in the first milestone.
+
+Keep the persistent-fighter fantasy, limb damage/severing, clear body-state feedback and a small Obol trade loop as the MVP's identity.
+
+B. Code-generated art pipeline
+
+Use Blender Python scripts to generate low-poly fighters from reusable primitives and explicit parameters such as height, weight/build proportions, muscle mass, palette and cosmetic identifiers.
+
+Use one shared humanoid skeleton and fixed sockets for head, torso, arms, legs and feet. Generate and validate stump caps, socket geometry and the initial five regrown limbs with the same parameterized approach.
+
+Keep the scripts and parameters editable and version-controlled. The output should be deterministic where practical, named consistently, and easy to regenerate; inspect every generated model in Blender and in-engine before accepting it.
+
+Do not depend on text-to-3D generation for the core pipeline. AI tools may assist with writing scripts, tests, documentation and debugging, but the developer reviews all outputs.
+
+C. Animation and body-state budget
+
+Prefer shared animations and code-driven motion. For most missing-limb states, hide the absent limb and show a stump cap instead of authoring a complete alternate model or animation set.
+
+Only create dedicated body-state movement/animation work initially for one-leg hop, both-legs crawl and Torso Mode. Reuse attacks where readable; add bespoke moves only when required for a playable counter.
+
+Use procedural transforms for small regrown-limb quirks where practical. Avoid unique animation clips for every fighter and every regrowth option.
+
+D. Test and review loop
+
+The developer plays every build and records issues before expanding scope. Automated tests supplement—not replace—human playtesting.
+
+AI-assisted tests should cover combat invariants: damage and limb-integrity thresholds, severance-combo timing and attribution, limb caps, body-state transitions, ability cooldowns, and socket compatibility.
+
+Run regression tests after every combat-rule change. Keep a reproducible test scene for each body state and a model-validation scene that checks every MVP limb against every MVP fighter.
+
+E. Legal, licensing and storefront checklist
+
+Maintain an asset ledger recording author/tool, creation method, source files, date, license/terms and any edits for each asset, sound, font and code dependency.
+
+Before release, check the current AI-content disclosure and content policies for each chosen storefront, including Steam and itch.io. Requirements can change; do not assume one platform's policy applies to another.
+
+Prefer original, script-generated meshes and properly licensed materials. Purely AI-generated material may have uncertain or limited copyright protection in some jurisdictions; obtain appropriate legal advice if ownership, enforcement or mod licensing is commercially important.
+
+Confirm that every third-party dependency and asset permits the intended distribution and modding terms. Storefront compliance and intellectual-property review are release gates, not assumptions.
+
+Item | Detail
+Genre | 3D fighting game with roguelike persistence
+Visual style | Low-poly, stylised, high-contrast blood and debris
+Players | Local 1v1 versus first; online 1v1 later. Solo/practice support as feasible. 4-player brawl and co-op are deferred.
+Character model | Procedurally assembled low-poly fighters generated with Blender Python scripts from shared body parameters, one skeleton and fixed limb sockets. AI may assist with code and planning; generated assets must be reviewed.
+Moves | 10 punches (5 light, 5 heavy), 10 kicks, 10 superpowers, 10 passives, 10 ultimates
+Regrowth | 5 regrown-limb options in the first playable version; expand toward 10 after the core loop is validated.
+Arenas | 3–4 polished arenas in the first playable version; expand toward 8 only after validation.
+Business model | Free. No purchases of any kind.
+
+What players said or discussed | Design response in this document
+Permadeath is polarising. In MMORPG experiments a majority preferred not to risk it, while supporters say the risk gives actions weight (Wikipedia, Permadeath). | Persistence is the core of Persistent Fighter mode, but Fresh Body mode (no permanent loss) is always available for casual and practice play.
+A forum poster argues that most players who understand a game will not keep playing after a key character dies (RPG Maker forum). | Death is rare and chosen: only voluntary Offerings or opt-in Death Matches trigger Thunder Strike. New fighters take under two minutes to set up and keep a Legacy trait.
+The threat of permadeath heightened immersion for some Hellblade players, while another commenter disliked the idea of replaying lost progress (Shacknews, KitGuru). | Stakes are visible and clearly warned before any risky match, and nothing is ever a surprise loss of the fighter.
+An article on permadeath design recommends making it optional, adding legacy carry-over, last-stand moments and clear feedback (Wayline). | Legacy trait, Last Stand finisher for a dying fighter, and a clear risk indicator on the match screen.
+Fear & Hunger players say limb loss is not a game ender and that some fights are meant to be avoided because they can cost limbs. | Every missing limb has a playable answer: hop, crawl and stump moves, plus a path to regrowth. Matchmaking warns players before dangerous matches.
+Kenshi players debate prosthetics. Some veterans deliberately lose limbs for better prosthetic stats, while body purists hate losing any limb (Steam). | Regrown limbs are sidegrades with real upsides, so losing a limb can be a build choice. Players who dislike loss can prevent it with defensive passives.
+Kenshi posters were confused by a prosthetic that seemed worse than no arm, hidden damage under a new limb, and leg models clipping through armour (Steam). | Full tooltips for every regrown limb, no hidden penalties, and a fixed socket system tested against all 10 fighters to avoid clipping.
+A roguelike forum suggestion: a limb becomes permanently broken once damage passes a threshold, rather than vanishing instantly (Cataclysm: DDA). | A Cracked state before severing, so a limb that is nearly destroyed is visibly hanging and unusable but not yet gone.
+An itch.io developer thread worries about immersion breaks and players abusing limb loss to cheese fights. | Per-match amputation limit, a comeback buff after loss, and server-checked rules in ranked play.
+A tabletop forum reply says limb loss should be agreed with players in advance unless it has little impact. | A clear warning screen, a gore slider, and explicit mode choice so nobody enters permanent-loss play by accident.
+An itch.io thread notes that losing a leg is usually lethal, yet skilled players survive through timing. | Leg loss is designed as a skill window: hop and crawl moves with their own tricks, not a death sentence.
+Kenshi forum posters ask how to restore lost limbs, which shows regrowth is something players want. | Obol the Broker offers magical regrowth that always has a strange twist.
+
+# | Fighter | Height / Weight | Build | Gender | Cosmetic identity
+1 | Theron the Bulwark | 2.05 m / 130 kg | Heavy muscle | Male | Bronze Spartan helm, scarlet cape, scarred chest
+2 | Atalanta | 1.78 m / 62 kg | Lean, athletic | Female | Hunter leathers, long braid, arrow-quiver strap
+3 | Pyrrhus "Stub" | 1.55 m / 70 kg | Stocky wrestler | Male | Olive wreath, wrestler belt, oiled skin
+4 | Kallisto | 1.85 m / 80 kg | Muscular | Female | Bear-pelt shoulders, white war paint
+5 | Lykos | 1.70 m / 58 kg | Wiry, low muscle | Male | Wolf mask, ragged tunic, bare feet
+6 | Hippolyta | 1.92 m / 95 kg | Powerhouse | Female | Gold Amazon armour, plumed helm
+7 | Dorian the Round | 1.68 m / 115 kg | Heavy-set, low muscle | Male | Blacksmith apron, bronze pot helmet
+8 | Phaedra | 1.62 m / 52 kg | Slim, flexible | Female | Silk scarves, hairpin daggers, painted eyes
+9 | Argos | 2.20 m / 160 kg | Giant | Non-binary | Eye-tattoo mantle, stone bracers
+10 | Sibyl | 1.75 m / 68 kg | Balanced | Female | Veiled oracle robes, laurel crown
+
+Fighter | Reach | Speed | Power | Limb toughness | Target size | Playstyle
+Theron | 4 | 2 | 5 | 5 | 5 | Tank, slow but hard to dismember
+Atalanta | 3 | 5 | 2 | 2 | 2 | Hit-and-run, fragile limbs
+Pyrrhus | 2 | 3 | 4 | 4 | 2 | Low grabber, small target
+Kallisto | 4 | 3 | 4 | 3 | 4 | Bruiser with good reach
+Lykos | 3 | 5 | 2 | 1 | 2 | Glass-cannon dodger
+Hippolyta | 5 | 3 | 4 | 4 | 4 | Long-range zoner with power
+Dorian | 2 | 2 | 3 | 5 | 4 | Soak damage, slow and sturdy
+Phaedra | 3 | 5 | 3 | 2 | 1 | Smallest target, combo specialist
+Argos | 5 | 1 | 5 | 4 | 5 | Giant with huge reach and slow movement
+Sibyl | 3 | 3 | 3 | 3 | 3 | Balanced all-rounder, best for new players
+
+Body rules / Height adds reach and target size. Weight adds knockback resistance and reduces speed. Muscle mass adds damage and limb toughness. Gender and cosmetics are visual only (model, voice lines, outfit) and never change stats. Fighters with higher toughness take longer to cripple but are also easier to hit.
+
+Action | Gamepad | Keyboard | Notes
+Light punch | X | J | Fast, combo starter
+Heavy punch | Y | K | Slow, high damage
+Kick | A | L | Mid and low options with direction
+Block / Dodge | RB / B | Shift / Space | Block reduces damage, dodge is a short roll
+Superpower | LT | U | Cooldown based
+Ultimate | RT + LT | I | Only when the meter is full
+Grab | X + A | J + L | Beats block, loses to dodge
+
+Missing limb | Effect
+One arm | Lose that side’s punches. Grabs are weaker. Block is reduced on that side.
+Both arms | No punches. Gain headbutt, shoulder charge and bite finishers.
+One leg | Hop movement, limited kicks (one low kick, one flying kick). Dodge becomes a hop.
+Both legs | Crawl stance with stump strikes and low sweeps. Smallest target in the game.
+Three or more | Torso Mode: scuttling and rolling attacks with its own set of absurd moves.
+
+Type | Name | Description
+Light | Jab of Hermes | Fastest jab. Low damage. Best combo starter.
+Light | Titan Hook | Wide arc that catches sidesteps. Medium speed.
+Light | Spartan Cross | Straight punch with pushback. Safe on block.
+Light | Quick Fury | Three fast hits. Each hit chips the same limb.
+Light | Bronze Knuckle | Armoured punch that beats opposing light attacks.
+Heavy | Cyclops Smash | Slow overhead double fist. Causes wall bounce.
+Heavy | Hammer of Hephaestus | Downward slam with ground bounce. Large limb damage.
+Heavy | Minotaur Haymaker | Charged punch with armour while charging. Big knockback.
+Heavy | Atlas Slam | Short-range grab and slam. Cannot be blocked.
+Heavy | Gorgon Backfist | Spinning counter punch that causes a short Stone Stiff slowdown.
+
+Name | Description
+Pegasus Kick | Fast mid kick with forward hop. Starter kick.
+Centaur Stomp | Downward stomp that crushes a downed limb.
+Achilles Heel Snap | Low kick that deals bonus damage to legs.
+Sprint of Atalanta | Rushing kick that covers distance and dodges high attacks.
+Sweeping Hydra | Triple low sweep. Each hit has a small limb chip.
+Colossus Drop | Aerial stomp that causes a short shockwave.
+Satyr Dropkick | Leaping kick with strong knockback.
+Furies’ Spin | Spinning kick that hits both sides.
+Trident Thrust Kick | Long straight kick with the farthest reach.
+Hades’ Gravedigger | Slow overhead kick that forces a crouch and stuns on counter.
+
+Name | Effect | Cooldown
+Zeus Bolt | Fast lightning line. Chars limbs, raising limb damage taken for 5 s. | 14 s
+Poseidon Wave | Water wave that pushes opponents and clears hazards. | 12 s
+Medusa Gaze | Locks one limb in stone for 4 s. That limb takes 50% more integrity damage. | 18 s
+Ares Rage | +25% damage for 6 s, but +15% damage taken. | 20 s
+Hermes Dash | Short invulnerable dash through attacks. | 8 s
+Apollo Sunburst | Blinding flash. Opponent’s screen whitens for a moment. | 15 s
+Hephaestus Forge Shield | Bronze shield absorbs 40 damage, then bursts into shrapnel. | 16 s
+Artemis Arrow Volley | Three arrows at range, each with a small limb chip. | 13 s
+Hades Shadow Step | Teleport behind the opponent. | 14 s
+Athena Counter-Strategy | Parry stance. A successful parry opens a guaranteed counter. | 10 s
+
+Name | Effect
+Blood Frenzy | Move and attack faster as main health drops.
+Iron Skin | Reduces all incoming limb damage by 15%.
+Lifesteal Touch | Heal a small amount of health on each clean hit.
+Titan’s Grip | Grabs and slams have more range and cannot be broken by light attacks.
+Phoenix Ember | Survive one lethal hit per match with a sliver of health.
+Ghost Footing | Dodge rolls have extra invulnerable frames.
+Hydra Regrowth | Limb integrity slowly recovers between rounds (does not regrow severed limbs).
+Thorns of Eris | Attackers take small damage when hitting your block.
+Oracle’s Sight | Reveals faint hints before opponent heavy attacks.
+Stoneheart | Limbs need 20% more damage to sever, but you move slightly slower.
+
+Name | Effect
+Zeus’s Wrath | Summons a huge lightning strike. High damage and a guaranteed Cracked limb.
+Tartarus Pit | Opens a pit under the opponent and pulls them in for a heavy hit.
+Poseidon’s Tsunami | Wave across the arena that stuns and pushes both fighters to the edges.
+Olympian Barrage | A sequence of fast strikes ending in a heavy slam.
+Hydra Fury | Many snapping heads hit from all sides for a limb-heavy combo.
+Titan Awakening | Grow in size for 8 s with armour and bigger reach.
+Medusa’s Petrify | Turns the opponent to stone for 2 s. All hits during that time count as combo hits.
+Ares War Cry | Team-wide frenzy in brawl modes. Solo: a short heavy damage buff.
+Nyx Eclipse | Plunges the arena into darkness. Only you can see clearly.
+Pandora’s Box | Opens a box with a random harmful or silly effect on the opponent.
+
+State | Trigger | Effect
+Healthy | Above 50% | Normal function.
+Bruised | 50% to 26% | Visible damage. Attacks from that limb do 10% less damage.
+Cracked | 25% to 1% | Limb hangs, bones show. That limb cannot be used for attacks or blocks.
+Severed | 0% during a Severance Combo | Limb is removed. A stump appears and blood sprays.
+
+# | Limb | Slot | Benefit | Laughable twist
+1 | Rubber Chicken Arm | Arm | +30% punch reach. Light punches whip out with a stretch. | Squeaks loudly on every punch. Missed heavy punches flop around and slap your own face (0.3 s stagger).
+2 | Octopus Tentacle Arm | Arm | Grabs from mid-range and cannot be disarmed. | No fingers, so punches are gooey slaps. Squirts ink at random, lightly covering both players’ views.
+3 | Cyclops Giant Hand | Arm | Huge hitbox and +40% heavy punch damage. | Too big to hide. Blocks part of your screen and waves at the crowd by itself during idle.
+4 | Olive Branch Arm | Arm | Slowly heals its own integrity. Can throw olives as a ranged poke. | Grows leaves, and birds land on it mid-fight. An olive drops out every time you block.
+5 | Crab Claw Arm | Arm | Pincer grab holds the target and deals high chip damage. | Snaps at nothing when you are nervous. Sometimes pinches your own belt and gets stuck for half a second.
+6 | Pegasus Wing Leg | Leg | Glide and double jump. | Flaps nonstop so you can never stand still, and sheds feathers everywhere.
+7 | Marble Statue Leg | Leg | +50% leg durability and heavier kicks. | -20% movement speed. Strikes a dramatic pose when idle and creaks like old stone.
+8 | Satyr Goat-Hoof Leg | Leg | Stomp stuns and grip on rocky or slippery ground. | Bleats whenever you land a kick and sometimes starts a little jig after a combo.
+9 | Hermes Sandal Leg | Leg | +25% movement speed and a quick sidestep. | The sandal has a mind of its own and sometimes zooms a short distance in a random direction.
+10 | Hound Pup Leg | Leg | Fast low kicks that bite the ankle and cause bleed. | Stops to scratch itself when idle or after taking two hits, and wags wildly when you win.
+
+Design note / Each twist is a small, readable inconvenience or comedy beat rather than a crippling penalty. The benefit and the twist are balanced so regrown limbs feel like different builds, not strictly better or worse than natural limbs.
+
+Arena | Setting | Hazard | Gore interaction
+Mount Olympus | Marble cloud-top temple | Random lightning strikes mark the ground first. | Lightning chars limbs and blows away debris.
+Labyrinth of Crete | Stone maze with shifting walls | The Minotaur charges through the arena now and then. | Walls get smeared with blood. The Minotaur can crush limbs.
+River Styx Docks | Foggy wooden docks over black water | Water rises and falls, causing drowning and slipping. | Blood and limbs wash away into the river.
+Tartarus Pits | Cavern with lava and chains | Lava vents and falling stalactites. | Fire burns limbs black and stalactites crush.
+Medusa’s Garden | Overgrown ruin full of statues | Gaze beams petrify one limb at a time. | Petrified limbs shatter into marble chips.
+Cyclops Forge | Volcanic smithy with anvils and chains | Giant hammers swing down and moving platforms shift. | Hammer hits cause big stumps and sparks.
+Poseidon’s Deck | Ship deck in a storm | Waves roll across the deck and rock the floor. | Blood sloshes around and washes into the sea.
+Athens Colosseum | Sand arena with a roaring crowd | The crowd throws weapons when hyped. Hype rises with combos. | Sand soaks up blood and hides decals over time.
+
+Mode | Description | Fighter risk
+Pantheon Ladder (solo) | A roguelike gauntlet through gods, heroes and monsters. Boss fights every 5th match. Unlocks via win offers. | Limb loss yes. Death only in Death Trials.
+Ranked 1v1 | Best of three online match with ranking tiers named after Greek ranks. | Limb loss yes. No death unless Death Match is chosen.
+Death Match | Optional high-stakes 1v1. No limb limit. Last Stand available. Loser is struck by Zeus. | Permanent death for the loser.
+Fresh Body | Casual and practice mode with a temporary fighter. No permanent damage. | None.
+4-Player Brawl | Free-for-all in chaotic arenas. Hazards are stronger. | Limb loss only in Persistent mode. Otherwise none.
+Co-op Bosses | 2 players fight mythic beasts such as the Hydra, Cerberus and Talos. | Limb loss rewards and cosmetic drops.
+Spectator Colosseum | Watch top fights and replays. Viewers can predict the winner for fun, with no stakes, rewards or currency. | None.
+
+Area | Plan
+Engine | Godot 4 (free and open source) is recommended for a free indie project. Unity or Unreal are possible alternatives.
+Modelling | Blender for models and rigs. One shared humanoid skeleton with sockets.
+Animation | Shared base animations retargeted across the common skeleton. Hide missing limbs for most states; use code-driven motion where practical. Dedicated animation work is limited initially to hop, crawl and Torso Mode.
+Physics | Simple deterministic collision with hitboxes and hurtboxes per limb. Ragdoll used only for cosmetic debris.
+Netcode | Milestone 1: local 1v1 only. Later: evaluate rollback networking after combat is deterministic and automated tests pass. No online or 4-player netcode in the first playable build.
+Data | Abilities, regrown limbs and arenas defined in data files (JSON or resources) so balancing needs no code changes.
+Saves | Local save for casual modes. Server-checked Chronicle for ranked and Death Match modes using a lightweight, free-tier backend.
+Performance targets | 60 FPS on mid-range integrated graphics, with a decal budget and chunk cap.
+Tools | Git for version control, a public bug tracker, automated tests for combat rules.
+Distribution | itch.io and the project website as the primary free distribution. Other free stores can be considered later.
+
+Cosmetic | How to unlock
+Fighter colour palettes | Win matches with a fighter and reach Chronicle milestones.
+Helmets, capes, war paints | Defeat bosses or complete arena challenges.
+Chronicle titles | Earn through feats such as winning with only one arm.
+Hall of the Fallen decorations | Retire fighters with different achievements.
+Announcer and emote packs | Season events and community challenges.
+
+Phase | Scope | Rough duration
+0. Prototype | One arena, 2 fighters, basic punches and kicks, limb integrity, one severing test, generated with a Blender Python script. Local test scene. | Prototype gate: prove the shared skeleton/sockets and combat loop before adding content.
+1. Vertical slice | 3–4 fighters, 3–4 arenas, around 20 abilities, 5 regrown limbs, stump caps, limb states, Obol prototype and local 1v1. Hide most missing limbs; implement hop, crawl and Torso Mode motion. | Vertical slice: scope and duration to be estimated after prototype.
+2. Alpha | Expand toward 10 fighters, 8 arenas, 50 abilities and 10 regrown limbs only if playtests and production capacity support it. Add solo ladder/Fresh Body systems in stages. | Estimate after vertical slice.
+3. Online beta | Online 1v1 rollback, ranked, Death Match and Chronicle services, only after local combat and deterministic tests are stable. 4-player brawl, co-op and spectator remain deferred. | Estimate after online feasibility prototype.
+4. Release 1.0 | Balance, accessibility, polish, tutorials, store page, content disclosures and launch readiness. | Estimate after beta.
+5. Post-launch | Optional expansions based on playtest feedback and available capacity. | Ongoing
+
+Risk | Impact | Mitigation
+Players fear losing a fighter | Players quit or avoid Persistent mode. | Death only by choice or Death Match. Fresh Body mode. Legacy and quick restart.
+Dismemberment feels unfair | Snowballing and frustration. | Per-match limb limit, Desperate Fury, body-state matchmaking, Cracked state.
+Balance across 50 abilities and 10 regrowth limbs | One build dominates. | Data-driven tuning, public balance notes, community test branch.
+Online costs for a free game | Servers cannot be paid for. | Peer-to-peer, relays only for fallback, and a small rollback-friendly design.
+Save tampering | Cheaters keep dead fighters or fake limbs. | Server-checked Chronicle for ranked and Death Match only.
+Clipping of regrown limbs | Visual bugs on different bodies. | Standard sockets and an automated test that attaches every limb to every fighter.
+Scope too large for a small team | Game never finishes. | Phases with a cut list and a vertical slice first.
+Gore ratings and age restrictions | Limits distribution. | Content warnings, age gate, gore slider and self-rated distribution.
+Regrowth twists feel annoying | Players dislike the funny limbs. | Keep twists short and readable. Provide a tooltip and test with players.
+
+Term | Meaning
+Chronicle | A fighter’s permanent record of matches, injuries and notable moments.
+Cracked limb | A limb with almost no integrity that hangs unusable but is not yet severed.
+Death Match | Optional high-stakes match. Loser is struck by Zeus.
+Desperate Fury | Short buff after losing a limb.
+Fresh Body | Casual mode with no permanent loss.
+Legacy | One small trait inherited from a dead fighter.
+Limb Integrity | Per-limb health that decides when a limb cracks or severs.
+Obol the Broker | Merchant who trades abilities for regrown limbs.
+Severance Combo | Chain of 3 or more hits with gaps under 1.5 seconds that can sever a limb.
+Thunder Strike | Cinematic death of a fighter by lightning from Zeus.
+
+Source | Link
+Giant in the Playground forum: Permanent Limb Loss and You (2013) | forums.giantitp.com/archive/index.php/t-285677.html
+Cataclysm: DDA forum: limbs removed past a damage threshold | discourse.cataclysmdda.org/t/limbs-should-be-removed-if-they-pass-a-certain-damage-threshold/20459
+Steam community, Kenshi: limb loss and prosthetics | steamcommunity.com/app/233860/discussions/0/1639789306588693064
+Steam community, Kenshi: prosthetic arm confusion and hidden damage | steamcommunity.com/app/233860/discussions/0/1741104717704212092
+Steam community, Kenshi: restoring lost limbs | steamcommunity.com/app/233860/discussions/0/1647665620938690118
+Steam community, Fear & Hunger: limb loss is not a game ender | steamcommunity.com/app/1002300/discussions/0/3042731710359084399
+itch.io: limb loss immersion and exploit comment | itch.io/post/7218665
+itch.io: Structural integrity thread | itch.io/t/50130/structural-integrity
+Wikipedia: Permadeath | wikipedia.org/wiki/Permadeath
+Shacknews: How does permadeath work in Hellblade? | shacknews.com/article/100896/how-does-permadeath-work-in-hellblade
+KitGuru: Hellblade permadeath article | kitguru.net/?p=343018
+RPG Maker forum: Thoughts on permadeath in a game | rpgmaker.net/forums/topics/18175
+Wayline: Permadeath and meaningful choice in modern gaming | wayline.io/blog/permadeath-meaningful-choice-modern-gaming
+Gamers Decide: Kenshi best prosthetics | gamersdecide.com/articles/kenshi-best-prosthetics
+
