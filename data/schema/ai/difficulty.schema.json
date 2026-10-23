@@ -1,0 +1,175 @@
+{
+  "type": "object",
+  "required": [
+    "easy",
+    "normal",
+    "hard"
+  ],
+  "properties": {
+    "easy": {
+      "type": "object",
+      "required": [
+        "reaction_ticks",
+        "decision_interval",
+        "aggression_percent",
+        "block_percent",
+        "punish_accuracy",
+        "spacing_tolerance",
+        "combo_continue_percent",
+        "choice_noise"
+      ],
+      "properties": {
+        "reaction_ticks": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "decision_interval": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "aggression_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "block_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "punish_accuracy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "spacing_tolerance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "combo_continue_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "choice_noise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "normal": {
+      "type": "object",
+      "required": [
+        "reaction_ticks",
+        "decision_interval",
+        "aggression_percent",
+        "block_percent",
+        "punish_accuracy",
+        "spacing_tolerance",
+        "combo_continue_percent",
+        "choice_noise"
+      ],
+      "properties": {
+        "reaction_ticks": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "decision_interval": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "aggression_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "block_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "punish_accuracy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "spacing_tolerance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "combo_continue_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "choice_noise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "hard": {
+      "type": "object",
+      "required": [
+        "reaction_ticks",
+        "decision_interval",
+        "aggression_percent",
+        "block_percent",
+        "punish_accuracy",
+        "spacing_tolerance",
+        "combo_continue_percent",
+        "choice_noise"
+      ],
+      "properties": {
+        "reaction_ticks": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "decision_interval": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "aggression_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "block_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "punish_accuracy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "spacing_tolerance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "combo_continue_percent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "choice_noise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    }
+  }
+}

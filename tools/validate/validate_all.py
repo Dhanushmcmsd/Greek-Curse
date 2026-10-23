@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.validate.check_sim_purity import check_sim
+from tools.validate.validate_assets import check_assets
 
 
 DATA = ROOT / "data"
@@ -116,6 +117,7 @@ def check_data(data_root: Path = DATA) -> list[str]:
 def main() -> int:
     errors = check_data()
     errors.extend(check_sim())
+    errors.extend(check_assets())
     if errors:
         print(f"validate_all: {len(errors)} error(s)")
         for error in errors:

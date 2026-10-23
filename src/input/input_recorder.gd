@@ -5,6 +5,7 @@ var inputs: Array = []
 var hashes: Array = []
 var initial: Array = []
 var seed: int = 1
+var fighter_ids: Array = ["theron", "atalanta"]
 
 
 func record(world: SimWorld, masks: Array) -> void:
@@ -15,6 +16,7 @@ func record(world: SimWorld, masks: Array) -> void:
 
 func payload(world: SimWorld) -> Dictionary:
 	return {
+		"fighters": fighter_ids,
 		"seed": seed,
 		"initial_limb_states": initial,
 		"inputs": inputs,

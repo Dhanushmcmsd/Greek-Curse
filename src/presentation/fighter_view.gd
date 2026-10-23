@@ -87,13 +87,21 @@ func _update_model(fighter: SimFighter) -> void:
 			limb.rotation.x = sin(_pose_time * 12.0 + (PI if slot.ends_with("r") else 0.0)) * 0.30
 		if slot == fighter.attack_slot and fighter.move_id > 0:
 			limb.rotation.x = -1.3 if fighter.state == SimFighter.State.ACTIVE else -0.5
+		rig.pose_limb(slot, limb.rotation.x)
 
 
 func _sever_effect(slot: String) -> void:
 	if not is_inside_tree():
 		return
 	var source: Node3D = rig.groups[slot]
-	var chunk := source.duplicate() as Node3D
+	var chunk := MeshInstance3D.new()
+	var shape := CapsuleMesh.new()
+	shape.radius = 0.07
+	shape.height = 0.5
+	chunk.mesh = shape
+	var material := StandardMaterial3D.new()
+	material.albedo_color = _rest_color
+	chunk.material_override = material
 	get_tree().current_scene.add_child(chunk)
 	chunk.global_transform = source.global_transform
 	chunk.visible = true

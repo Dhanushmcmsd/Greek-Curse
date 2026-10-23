@@ -1,0 +1,137 @@
+{
+  "type": "object",
+  "required": [
+    "balanced",
+    "rushdown",
+    "zoner",
+    "grappler",
+    "defensive"
+  ],
+  "properties": {
+    "balanced": {
+      "type": "object",
+      "required": [
+        "damage",
+        "limb_pressure",
+        "grab"
+      ],
+      "properties": {
+        "damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "limb_pressure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "grab": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "rushdown": {
+      "type": "object",
+      "required": [
+        "damage",
+        "limb_pressure",
+        "grab"
+      ],
+      "properties": {
+        "damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "limb_pressure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "grab": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "zoner": {
+      "type": "object",
+      "required": [
+        "damage",
+        "limb_pressure",
+        "grab"
+      ],
+      "properties": {
+        "damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "limb_pressure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "grab": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "grappler": {
+      "type": "object",
+      "required": [
+        "damage",
+        "limb_pressure",
+        "grab"
+      ],
+      "properties": {
+        "damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "limb_pressure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "grab": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "defensive": {
+      "type": "object",
+      "required": [
+        "damage",
+        "limb_pressure",
+        "grab"
+      ],
+      "properties": {
+        "damage": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "limb_pressure": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "grab": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    }
+  }
+}

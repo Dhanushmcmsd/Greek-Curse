@@ -11,6 +11,8 @@ func _ready() -> void:
 	panel.position = Vector2(24, 170)
 	_hud.add_child(panel)
 	_lab_text = Label.new()
+	_lab_text.custom_minimum_size = Vector2(300, 44)
+	_lab_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_lab_text.text = "SEVERING LAB | P2 target | F2 limb / F3 bruise / F4 crack / F5 chain"
 	panel.add_child(_lab_text)
 	for title in ["Cycle target limb", "Bruise 50%", "Crack 25%", "Three-hit sever", "Reset match"]:

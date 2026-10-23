@@ -6,7 +6,9 @@ var arena_id: String = "mount_olympus"
 
 func _ready() -> void:
 	var path := "res://assets/generated/models/arena_%s.glb" % arena_id
-	add_child((load(path) as PackedScene).instantiate())
+	var model := (load(path) as PackedScene).instantiate()
+	ModelLoader.prepare_materials(model)
+	add_child(model)
 	var light := DirectionalLight3D.new()
 	light.rotation_degrees = Vector3(-48.0, 30.0, 0.0)
 	add_child(light)

@@ -15,7 +15,7 @@
 - Dev machine specs (for performance notes): AMD Ryzen 5 5600X, 6 cores / 12 threads. WMI `TotalPhysicalMemory` 17103278080 bytes (~15.9 GiB). GPU: NVIDIA GeForce GTX 1650, WMI `AdapterRAM` 4293918720 bytes (~4.0 GB; WMI VRAM figures are often inaccurate).
 
 ## Current Stage
-- Stage: 08 (COMPLETE)
+- Stage: 10 (IN_PROGRESS)
 - Started / last updated: 2026-10-24
 
 ## Stage Table
@@ -30,8 +30,8 @@
 | 06 | Combat Simulation And Hit Detection | COMPLETE | 2026-10-24 | docs/handoff/06_COMBAT_SIMULATION_AND_HIT_DETECTION.md |
 | 07 | Limb Integrity Severing And Stump Caps | COMPLETE | 2026-10-24 | docs/handoff/07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md |
 | 08 | Body State Movement And Input | COMPLETE | 2026-10-24 | docs/handoff/08_BODY_STATE_MOVEMENT_AND_INPUT.md |
-| 09 | Fighter Ai And Local 1V1 | NOT_STARTED | | |
-| 10 | Combat Ui Feedback And Round Flow | NOT_STARTED | | |
+| 09 | Fighter Ai And Local 1V1 | COMPLETE | 2026-10-24 | docs/handoff/09_FIGHTER_AI_AND_LOCAL_1V1.md |
+| 10 | Combat Ui Feedback And Round Flow | IN_PROGRESS | 2026-10-24 |  |
 | 11 | Blender Python Asset Pipeline | NOT_STARTED | | |
 | 12 | Shared Skeleton Modular Fighters And Sockets | NOT_STARTED | | |
 | 13 | Regrown Limbs And Attachment Validation | NOT_STARTED | | |
@@ -106,7 +106,7 @@
 Stage 06 is complete. Run `07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md`. Keep the fixed lane and the approved limbs. Publish still needs a GitHub login on this machine.
 
 ## Next Prompt Filename
-09_FIGHTER_AI_AND_LOCAL_1V1.md
+10_COMBAT_UI_FEEDBACK_AND_ROUND_FLOW.md
 ## Session Log
 | Date | Stage | Summary | Result |
 |---|---|---|---|
@@ -121,3 +121,4 @@ Stage 06 is complete. Run `07_LIMB_INTEGRITY_SEVERING_AND_STUMP_CAPS.md`. Keep t
 | 2026-10-24 | 06 | Combat core added. Godot 49 passed. Replay matched. Fuzz reported 0 crashes over 480000 ticks. | COMPLETE |
 | 2026-10-24 | 07 | Stage 07 complete: 65 Godot tests and full check_all passed; early four-fighter three-arena art generated and window inspected. | COMPLETE |
 | 2026-10-24 | 08 | Stage 08 complete: all 16 body masks move and hit; 73 tests and 18 replays pass. | COMPLETE |
+| 2026-10-24 | 09 | Stage 09: 400 complete AI matches, no failures, 200 comparisons per difficulty step; early art pipeline improved while soak ran. | COMPLETE |

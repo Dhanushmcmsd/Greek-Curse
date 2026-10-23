@@ -51,6 +51,8 @@ const PLAYER_BITS := [
 ]
 
 var world: SimWorld
+var match_config := MatchConfig.new()
+var _ai: Array = []
 var _views: Array[FighterView] = []
 var _hud: HudPrototype
 var _debug: DebugOverlay
@@ -66,6 +68,8 @@ var _shot_path := ""
 var _record_path := ""
 var _recorded: Array = []
 var _autoplay_ticks := 0
+var _autoplay_limit := 90
+var _ai_demo := false
 var _players: Array[PlayerInput] = [PlayerInput.new(), PlayerInput.new()]
 var _recorder := InputRecorder.new()
 
@@ -73,6 +77,7 @@ var _recorder := InputRecorder.new()
 func _ready() -> void:
 	_read_flags()
 	_load_match()
+	_setup_controllers()
 	_build_input()
 	_build_stage()
 	world = _make_world()
@@ -103,6 +108,12 @@ func _read_flags() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg == "--autoplay":
 			_autoplay = true
+		elif arg == "--ai-demo":
+			_ai_demo = true
+			_autoplay = true
+			match_config.controllers = ["ai_normal", "ai_hard"]
+		elif arg.begins_with("--ticks="):
+			_autoplay_limit = int(arg.substr(8))
 		elif arg.begins_with("--shot="):
 			_shot_path = arg.substr("--shot=".length())
 		elif arg.begins_with("--record="):
@@ -138,15 +149,15 @@ func _require(loader: DataLoader, path: String) -> Dictionary:
 
 
 func _make_world() -> SimWorld:
-	var limbs := _require(DataLoader.new(), "res://data/balance/limbs.json")
-	var result := SimWorld.from_data(_rules, _curves, _fighter_rows, _move_rows, _combat, 1, limbs)
-	result.body_rules = _require(DataLoader.new(), "res://data/balance/body_states.json")
-	return result
+	return MatchLauncher.make_world(match_config)
 
 
 func _restart() -> void:
+	_setup_controllers()
 	world = _make_world()
 	_recorder = InputRecorder.new()
+	_recorder.seed = match_config.seed
+	_recorder.fighter_ids = match_config.fighter_ids.duplicate()
 	_banner = "Round 1"
 	for view in _views:
 		view._flash_ticks = 0
@@ -180,9 +191,45 @@ func _build_input() -> void:
 
 
 func _read_inputs() -> Array:
-	if _autoplay:
+	if _autoplay and not _ai_demo:
 		return ProtoScript.inputs_at(world.tick)
-	return [_players[0].sample(0), _players[1].sample(1)]
+	var masks: Array = []
+	for index in 2:
+		var controller: String = match_config.controllers[index]
+		if controller.begins_with("ai_"):
+			masks.append(_ai[index].decide(AIObservation.capture(world, index)))
+		elif controller.begins_with("dummy_"):
+			masks.append(DummyController.input_for(controller.substr(6), world.tick))
+		else:
+			var device := 0 if controller.ends_with("kb1") or controller.ends_with("pad0") else 1
+			masks.append(_players[index].sample(device))
+	return masks
+
+
+func _setup_controllers() -> void:
+	_ai = []
+	for index in 2:
+		var id: String = match_config.controllers[index]
+		_ai.append(
+			(
+				MatchLauncher.make_ai(id.substr(3), match_config.seed + index + 10)
+				if id.begins_with("ai_")
+				else null
+			)
+		)
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode in [KEY_1, KEY_2, KEY_3]:
+		if event.keycode == KEY_1:
+			match_config.controllers = ["human_kb1", "human_kb2"]
+		elif event.keycode == KEY_2:
+			match_config.controllers = ["human_kb1", "ai_normal"]
+		else:
+			match_config.controllers = ["ai_normal", "ai_hard"]
+		_restart()
 
 
 func _axis_bit(action_name: String, bit: int) -> int:
@@ -220,7 +267,7 @@ func _maybe_finish_autoplay() -> void:
 	if not _autoplay:
 		return
 	_autoplay_ticks += 1
-	var finished := world.phase == SimWorld.PHASE_MATCH_OVER or _autoplay_ticks >= 90
+	var finished := world.phase == SimWorld.PHASE_MATCH_OVER or _autoplay_ticks >= _autoplay_limit
 	if not finished:
 		return
 	_autoplay = false

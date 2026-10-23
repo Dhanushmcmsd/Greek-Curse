@@ -8,6 +8,10 @@ import math
 from pathlib import Path
 
 import bpy
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.scene_reset import reset
+from lib.skeleton import build_armature
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "assets/generated/models"
@@ -15,18 +19,23 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 
 def material(name, color):
-    mat = bpy.data.materials.new(name)
+    mat = bpy.data.materials.new("GEN_" + name)
+    mat["generated_by"] = "severed"
     mat.diffuse_color = (*color, 1)
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes.get("Principled BSDF")
-    bsdf.inputs["Base Color"].default_value = (*color, 1)
+    bsdf.inputs["Base Color"].default_value = (1, 1, 1, 1)
     bsdf.inputs["Roughness"].default_value = .8
+    attr = mat.node_tree.nodes.new("ShaderNodeVertexColor")
+    attr.layer_name = "Col"
+    mat.node_tree.links.new(attr.outputs["Color"], bsdf.inputs["Base Color"])
     return mat
 
 
 def empty(name, location=(0, 0, 0), parent=None):
     obj = bpy.data.objects.new(name, None)
     bpy.context.collection.objects.link(obj)
+    obj["generated_by"] = "severed"
     obj.parent = parent
     obj.location = location
     return obj
@@ -41,25 +50,28 @@ def shape(name, at, size, mat, parent=None, kind="box"):
         bpy.ops.mesh.primitive_cylinder_add(vertices=10, radius=0.5, depth=1)
     obj = bpy.context.object
     obj.name = name
+    obj["generated_by"] = "severed"
     obj.parent = parent
     obj.location = at
     obj.scale = size
+    obj.data["generated_by"] = "severed"
     obj.data.materials.append(mat)
+    colors = obj.data.color_attributes.new(name="Col", type="FLOAT_COLOR", domain="CORNER")
+    for entry in colors.data:
+        entry.color = mat.diffuse_color
     return obj
 
 
 def clear():
-    bpy.ops.object.select_all(action="SELECT")
-    bpy.ops.object.delete(use_global=False)
-    for collection in (bpy.data.meshes, bpy.data.materials):
-        for item in list(collection):
-            if item.users == 0:
-                collection.remove(item)
+    reset()
 
 
 def export(name):
+    bpy.ops.object.select_all(action="DESELECT")
+    for obj in bpy.context.scene.objects:
+        obj.select_set(obj.get("generated_by") == "severed")
     bpy.ops.export_scene.gltf(filepath=str(OUT / f"{name}.glb"), export_format="GLB",
-                             export_extras=True, export_yup=True)
+                             export_extras=True, export_yup=True, use_selection=True, export_animations=False)
 
 
 def fighter(row):
@@ -79,6 +91,9 @@ def fighter(row):
     shape("BELT", (0, -.015, h * .515), (width * .75, .29, .075), gold, root)
     shape("NECK", (0, 0, h * .845), (.12, .13, h * .07), skin, root, "cylinder")
     shape("HEAD", (0, -.015, h * .92), (.23, .22, h * .16), skin, root, "orb")
+    for side in [-1, 1]:
+        shape("EYE", (side * .052, -.112, h * .93), (.032, .018, .024), dark, root)
+    shape("NOSE", (0, -.128, h * .91), (.045, .065, .06), skin, root, "orb")
     for side, sign in (("L", -1), ("R", 1)):
         for limb in ("ARM", "LEG"):
             arm = limb == "ARM"
@@ -98,8 +113,8 @@ def fighter(row):
             shape("BONE_" + limb + side, (0, 0, -.035), (.035, .035, .025), bone, stump, "cylinder")
     empty("SOCKET_NECK", (0, 0, h * .85), root)
     if style == "helm":
-        shape("HELM", (0, 0, h * .96), (.28, .26, h * .08), gold, root)
-        shape("CREST", (0, .015, h * 1.025), (.055, .29, .16), cloth, root)
+        shape("HELM", (0, 0, h * .94), (.28, .26, h * .08), gold, root)
+        shape("CREST", (0, .015, h * .98), (.055, .29, h * .04), cloth, root)
         cape = shape("CAPE", (0, .19, h * .62), (width * .92, .045, h * .43), cloth, root)
         cape.rotation_euler.x = -.12
         for sign in [-1, 1]:
@@ -119,6 +134,7 @@ def fighter(row):
         shape("VEIL", (0, .10, h * .89), (.29, .045, .32), cloth, root)
         shape("STOLE", (0, -.16, h * .67), (.16, .035, h * .31), cloth, root)
         shape("ORACLE_GEM", (0, -.20, h * .77), (.075, .04, .10), gold, root, "orb")
+    build_armature(root, h, width)
     export("fighter_" + name)
 
 
@@ -153,17 +169,16 @@ def arena(name, base_rgb, trim_rgb):
     export("arena_" + name)
 
 
-for spec in [
-    ("theron", 2.05, .60, (.60, .35, .20), (.48, .035, .055), "helm"),
-    ("atalanta", 1.78, .39, (.64, .42, .29), (.13, .36, .22), "hunter"),
-    ("pyrrhus", 1.55, .55, (.48, .26, .15), (.27, .34, .08), "wrestler"),
-    ("sibyl", 1.75, .42, (.31, .19, .15), (.29, .16, .46), "oracle"),
-]:
-    fighter(spec)
-for spec in [
-    ("mount_olympus", (.74, .78, .80), (.71, .52, .20)),
-    ("athens_colosseum", (.65, .42, .23), (.54, .08, .04)),
-    ("tartarus_pits", (.17, .15, .21), (1.0, .19, .02)),
-]:
-    arena(*spec)
-print("EARLY_ART_OK: four modular fighters and three arenas")
+def main():
+    config = json.loads((ROOT / "data/art/early_models.json").read_text())
+    for path in sorted((ROOT / "data/fighters").glob("*.json")):
+        row = json.loads(path.read_text())
+        body = row["body"]
+        fighter((row["id"], body["height_m"], body["shoulder_width"], body["skin_tone"], body["cloth_color"], body["costume"]))
+    for spec in config["arenas"]:
+        arena(*spec)
+    print("EARLY_ART_OK: four modular fighters and three arenas")
+
+
+if __name__ == "__main__":
+    main()
