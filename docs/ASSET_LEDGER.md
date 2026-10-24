@@ -15,6 +15,6 @@ Original procedural fighter detail, modular arena kit and 15 gore chunks: tools/
 - Source: Adobe Mixamo (https://www.mixamo.com)
 - Licence: Adobe Terms of Use (Free for use in games and commercial projects; redistribution of raw assets is prohibited).
 - Raw Input Locations: Local directories `D:\Charecter model\` (10 character FBXs) and `D:\charecter animation\` (46 animation FBXs). Kept strictly out of git via `.gitignore`.
-- Storage & Rebuild: Processed models are stored locally under `assets/fighters/` (.gitignored). Rebuild command: `D:\blender\blender.exe --background --python tools/blender/mixamo_to_fighter.py`.
+- Storage & Rebuild: Processed models are stored locally under `assets/fighters_mixamo/` (.gitignored). Rebuild command: `D:\blender\blender.exe --background --python tools/blender/mixamo_to_fighter.py`.
 - Manifest & Ledger: All processed outputs are verified via SHA-256 manifests.
 
