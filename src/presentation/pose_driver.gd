@@ -11,6 +11,7 @@ var preview_pose: String = ""
 var floor_min: float = 0.0
 var reach_mismatch_mm: int = 0
 var caption: String = ""
+var pack_map: Dictionary = {}
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _socket_rest: Dictionary = {}
@@ -35,6 +36,9 @@ func setup(target: FighterRig) -> void:
 	rig.add_child(_beam)
 	_beam.hide()
 	data = DataLoader.new().load_json("res://data/animation/poses.json").value
+	var pm_res = DataLoader.new().load_json("res://data/animation/pack_map.json")
+	if pm_res.ok and pm_res.value is Dictionary:
+		pack_map = pm_res.value
 	for file in DirAccess.get_files_at("res://data/moves"):
 		if file.ends_with(".json"):
 			var row: Dictionary = DataLoader.new().load_json("res://data/moves/" + file).value
@@ -103,78 +107,81 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 	rig.position = Vector3.ZERO
 	var pose_name := _select(fighter)
 	phase = pose_name
-	var style: Dictionary = data["styles"].get(fighter.fighter_id, data["styles"]["theron"])
-	var rotations: Dictionary = (
-		style["idle"] if pose_name == "idle" else data["poses"][pose_name]["bones"]
-	)
-	var other: Dictionary = rotations
-	var blend := 0.0
-	if pose_name.begins_with("walk_"):
-		var cycle: float = time * 60.0 / float(style["cycle"]) * data["walk"].size()
-		var key: int = int(cycle) % data["walk"].size()
-		rotations = data["poses"][data["walk"][key]]["bones"]
-		other = data["poses"][data["walk"][(key + 1) % data["walk"].size()]]["bones"]
-		blend = fposmod(cycle, 1.0)
-	for index in rig.skeleton.get_bone_count():
-		var bone := rig.skeleton.get_bone_name(index)
-		var source := bone
-		if fighter.attack_slot.ends_with("r") and fighter.move_id > 0:
-			source = bone.replace(".r", ".TEMP").replace(".l", ".r").replace(".TEMP", ".l")
-		var a: Array = rotations.get(source, [0, 0, 0])
-		var b: Array = other.get(source, a)
-		var angles := Vector3(float(a[0]), float(a[1]), float(a[2])).lerp(
-			Vector3(float(b[0]), float(b[1]), float(b[2])), blend
+	var clip_active := _drive_clip(fighter, stopped)
+	if not clip_active:
+		var style: Dictionary = data["styles"].get(fighter.fighter_id, data["styles"]["theron"])
+		var rotations: Dictionary = (
+			style["idle"] if pose_name == "idle" else data["poses"][pose_name]["bones"]
 		)
-		if fighter.state == SimFighter.State.WALK:
-			angles *= float(style["stride"])
-		if fighter.state == SimFighter.State.HITSTUN:
-			angles *= float(style["recoil"])
-		if bone == "spine" and fighter.move_id > 0:
-			angles.y = (
-				float(style["twist"]) * (-1.0 if fighter.state == SimFighter.State.STARTUP else 1.0)
+		var other: Dictionary = rotations
+		var blend := 0.0
+		if pose_name.begins_with("walk_"):
+			var cycle: float = time * 60.0 / float(style["cycle"]) * data["walk"].size()
+			var key: int = int(cycle) % data["walk"].size()
+			rotations = data["poses"][data["walk"][key]]["bones"]
+			other = data["poses"][data["walk"][(key + 1) % data["walk"].size()]]["bones"]
+			blend = fposmod(cycle, 1.0)
+		for index in rig.skeleton.get_bone_count():
+			var bone := rig.skeleton.get_bone_name(index)
+			var source := bone
+			if fighter.attack_slot.ends_with("r") and fighter.move_id > 0:
+				source = bone.replace(".r", ".TEMP").replace(".l", ".r").replace(".TEMP", ".l")
+			var a: Array = rotations.get(source, [0, 0, 0])
+			var b: Array = other.get(source, a)
+			var angles := Vector3(float(a[0]), float(a[1]), float(a[2])).lerp(
+				Vector3(float(b[0]), float(b[1]), float(b[2])), blend
 			)
-		if bone == "spine" and fighter.move_id == 0:
-			angles.x += (
-				sin(time * float(settings["breath_rate"])) * float(settings["breath_degrees"])
-			)
-		if (
-			fighter.pose == "crawl"
-			and fighter.state == SimFighter.State.WALK
-			and bone.begins_with("upper_arm")
-		):
-			angles.x += (
-				sin(time * float(settings["quirk_rate"]) + (PI if bone.ends_with("r") else 0.0))
-				* float(settings["crawl_swing_degrees"])
-			)
-		var slot := _slot_for(bone)
-		if slot != "":
-			var limb: SimLimb = fighter.limbs.parts[slot]
-			if limb.state == "severed":
-				angles = Vector3.ZERO
-			elif limb.state == "cracked":
-				angles = Vector3(float(settings["cracked_degrees"]), 0, 0)
-			elif fighter.state == SimFighter.State.IDLE:
-				if limb.regrown_id == "cyclops_giant_hand":
-					angles.x += (
-						float(settings["wave_base_degrees"])
-						+ (
-							sin(time * float(settings["quirk_rate"]))
-							* float(settings["wave_degrees"])
+			if fighter.state == SimFighter.State.WALK:
+				angles *= float(style["stride"])
+			if fighter.state == SimFighter.State.HITSTUN:
+				angles *= float(style["recoil"])
+			if bone == "spine" and fighter.move_id > 0:
+				angles.y = (
+					float(style["twist"])
+					* (-1.0 if fighter.state == SimFighter.State.STARTUP else 1.0)
+				)
+			if bone == "spine" and fighter.move_id == 0:
+				angles.x += (
+					sin(time * float(settings["breath_rate"])) * float(settings["breath_degrees"])
+				)
+			if (
+				fighter.pose == "crawl"
+				and fighter.state == SimFighter.State.WALK
+				and bone.begins_with("upper_arm")
+			):
+				angles.x += (
+					sin(time * float(settings["quirk_rate"]) + (PI if bone.ends_with("r") else 0.0))
+					* float(settings["crawl_swing_degrees"])
+				)
+			var slot := _slot_for(bone)
+			if slot != "":
+				var limb: SimLimb = fighter.limbs.parts[slot]
+				if limb.state == "severed":
+					angles = Vector3.ZERO
+				elif limb.state == "cracked":
+					angles = Vector3(float(settings["cracked_degrees"]), 0, 0)
+				elif fighter.state == SimFighter.State.IDLE:
+					if limb.regrown_id == "cyclops_giant_hand":
+						angles.x += (
+							float(settings["wave_base_degrees"])
+							+ (
+								sin(time * float(settings["quirk_rate"]))
+								* float(settings["wave_degrees"])
+							)
 						)
-					)
-				elif limb.regrown_id == "marble_statue_leg":
-					angles.x += float(settings["marble_pose_degrees"])
-					var period := int(time * 60.0) / int(settings["creak_interval_ticks"])
-					if period != _last_creak:
-						caption = "STONE CREAK"
-						_last_creak = period
-		var target := _rest[index] * Quaternion.from_euler(angles * PI / 180.0)
-		var smooth := 1.0 if fighter.state == SimFighter.State.ACTIVE else 0.45
-		if preview_pose != "" or stopped:
-			smooth = 1.0
-		rig.skeleton.set_bone_pose_rotation(
-			index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
-		)
+					elif limb.regrown_id == "marble_statue_leg":
+						angles.x += float(settings["marble_pose_degrees"])
+						var period := int(time * 60.0) / int(settings["creak_interval_ticks"])
+						if period != _last_creak:
+							caption = "STONE CREAK"
+							_last_creak = period
+			var target := _rest[index] * Quaternion.from_euler(angles * PI / 180.0)
+			var smooth := 1.0 if fighter.state == SimFighter.State.ACTIVE else 0.45
+			if preview_pose != "" or stopped:
+				smooth = 1.0
+			rig.skeleton.set_bone_pose_rotation(
+				index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
+			)
 	_root_pose(fighter, settings)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
@@ -379,3 +386,132 @@ func _projectile(fighter: SimFighter) -> void:
 	reach_mismatch_mm = absi(
 		int(absf(endpoint - origin.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
 	)
+
+
+func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
+	if rig.anim_player == null or not pack_map.has("fighters"):
+		return false
+	if not pack_map["fighters"].has(fighter.fighter_id):
+		return false
+	if fighter.pose in ["crawl", "torso"] or preview_pose != "":
+		return false
+
+	var f_map: Dictionary = pack_map["fighters"][fighter.fighter_id]
+	var actions: Dictionary = f_map.get("actions", {})
+	var act_key := ""
+	var is_attack := false
+
+	if (
+		fighter.move_id > 0
+		and (
+			fighter.state
+			in [SimFighter.State.STARTUP, SimFighter.State.ACTIVE, SimFighter.State.RECOVERY]
+		)
+	):
+		is_attack = true
+		act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
+	elif fighter.state == SimFighter.State.WALK:
+		act_key = "walk_fwd"
+	elif fighter.state == SimFighter.State.IDLE:
+		act_key = "idle"
+	elif fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.STAGGER]:
+		act_key = "stagger"
+	elif fighter.state == SimFighter.State.KO:
+		act_key = "knockdown"
+	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
+		act_key = "block"
+	elif fighter.state == SimFighter.State.DODGE:
+		act_key = "dodge"
+	elif fighter.state == SimFighter.State.GRAB:
+		act_key = "grab"
+
+	if act_key == "" or not actions.has(act_key):
+		return false
+
+	var clip_name: String = fighter.fighter_id + "_" + act_key
+	if not rig.anim_player.has_animation(clip_name):
+		return false
+
+	if is_attack:
+		var total_ticks := maxi(
+			1, fighter.startup_ticks + fighter.active_ticks + fighter.recovery_ticks
+		)
+		var startup_ratio := float(fighter.startup_ticks) / float(total_ticks)
+		var current_ratio := float(fighter.state_tick) / float(total_ticks)
+		var contact_phase := float(actions[act_key].get("contact_phase", 0.4))
+		var warp_t := 0.0
+		if current_ratio <= startup_ratio:
+			warp_t = (current_ratio / maxf(0.001, startup_ratio)) * contact_phase
+		else:
+			var span := maxf(0.001, 1.0 - startup_ratio)
+			warp_t = (
+				contact_phase + ((current_ratio - startup_ratio) / span) * (1.0 - contact_phase)
+			)
+		var anim_len := rig.anim_player.get_animation(clip_name).length
+		rig.anim_player.play(clip_name)
+		rig.anim_player.seek(clampf(warp_t, 0.0, 1.0) * anim_len, true)
+	elif act_key == "walk_fwd":
+		if rig.anim_player.current_animation != clip_name:
+			rig.anim_player.play(clip_name)
+		rig.anim_player.speed_scale = float(fighter.speed) / 20.0
+		if not stopped:
+			rig.anim_player.advance(1.0 / 60.0)
+	else:
+		if rig.anim_player.current_animation != clip_name:
+			rig.anim_player.play(clip_name)
+		rig.anim_player.speed_scale = 1.0
+		if not stopped:
+			rig.anim_player.advance(1.0 / 60.0)
+
+	return true
+
+
+static func _action_for_move(move_name: String, move_data: Dictionary) -> String:
+	match move_name:
+		"jab_of_hermes":
+			return "punch_jab"
+		"spartan_cross":
+			return "punch_cross"
+		"cyclops_smash":
+			return "overhead_slam"
+		"minotaur_haymaker":
+			return "heavy_strike"
+		"bronze_knuckle":
+			return "hook"
+		"gorgon_backfist":
+			return "heavy_strike"
+		"pegasus_kick":
+			return "kick_thrust"
+		"sweeping_hydra":
+			return "kick_sweep"
+		"satyr_dropkick":
+			return "kick_stomp"
+		"achilles_heel_snap":
+			return "kick_low"
+		"zeus_bolt":
+			return "zeus_bolt"
+		"hermes_dash":
+			return "hermes_dash"
+		"ares_rage":
+			return "ares_rage"
+		"hephaestus_forge_shield":
+			return "forge_shield"
+		"zeus_wrath":
+			return "zeus_wrath"
+		"olympian_barrage":
+			return "olympian_barrage"
+		"grab":
+			return "grab"
+		_:
+			var cat: String = str(move_data.get("category", ""))
+			if cat == "light":
+				return "punch_jab"
+			if cat == "heavy":
+				return "overhead_slam"
+			if cat == "kick":
+				return "kick_thrust"
+			if cat == "superpower":
+				return "zeus_bolt"
+			if cat == "ultimate":
+				return "zeus_wrath"
+			return "punch_jab"
