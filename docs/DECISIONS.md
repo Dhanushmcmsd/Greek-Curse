@@ -98,3 +98,8 @@ Online rollback and matchmaking; ranked; server-checked Chronicle; 4-player braw
 ## Stage 20 implementation note — Career quit (D-032)
 
 The stage 20 prompt explicitly selects the conservative local rule: leaving an unfinished Career fight does not save that fight's damage or result. The pause confirmation states this; only completed matches commit. This implementation note does not claim an independent owner approval or rewrite the original proposed row. Generated audio remains original procedural placeholder audio, not a CC0 claim (D-037).
+
+## F. Stage M0 refinements (2026-10-24)
+
+- D-043 DEFAULT: **Mixamo Visual Roster Mapping:** The 10 Mixamo characters are visual models only. The 4 sim fighters remain the authoritative gameplay entities with their existing stats, hitboxes, and move lists. A `model_id` field in `data/fighters/<id>.json` maps each fighter to their default visual model (Theron -> Paladin, Atalanta -> Arissa, Pyrrhus -> Ch34, Sibyl -> Maria), while remaining models serve as selectable visual variants/skins. Raw Mixamo assets remain untracked in git.
+
