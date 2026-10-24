@@ -102,26 +102,18 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 func _sever_effect(slot: String) -> void:
 	if not is_inside_tree():
 		return
-	if SettingsHooks.get_value("gore") == "off":
-		return
 	var source: Node3D = rig.groups[slot]
-	var chunk := Node3D.new()
-	get_tree().current_scene.add_child(chunk)
-	chunk.global_position = source.global_position
+	var manager := get_tree().get_first_node_in_group("gore_manager") as GoreManager
+	if manager == null:
+		return
 	var pieces: Array = rig.limb_meshes[slot]
 	var replacement := rig.replacements.has(slot)
 	if replacement:
 		pieces = rig.replacements[slot].find_children("*", "MeshInstance3D", true, false)
 	for index in pieces.size():
 		var original: MeshInstance3D = pieces[index]
-		var piece := MeshInstance3D.new()
-		piece.mesh = original.mesh
-		for surface in piece.mesh.get_surface_count():
-			piece.set_surface_override_material(surface, original.get_active_material(surface))
-		chunk.add_child(piece)
-		if replacement:
-			piece.global_transform = original.global_transform
-		else:
+		var pose := original.global_transform
+		if not replacement:
 			var joints: Array = (
 				["upper_arm", "forearm", "hand"]
 				if slot.begins_with("arm")
@@ -132,31 +124,6 @@ func _sever_effect(slot: String) -> void:
 				rig.skeleton.get_bone_global_pose(bone)
 				* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
 			)
-			piece.global_transform = rig.global_transform * deform * original.transform
-	var tween := create_tween().set_parallel(true)
-	tween.tween_property(chunk, "position", chunk.position + Vector3(0.8, -0.3, 0.6), 0.7)
-	tween.tween_property(chunk, "rotation", Vector3(2.0, 1.5, 0.5), 0.7)
-	tween.chain().tween_callback(chunk.queue_free)
-	var burst := CPUParticles3D.new()
-	burst.amount = 18
-	burst.one_shot = true
-	burst.explosiveness = 1.0
-	burst.lifetime = 0.6
-	burst.direction = Vector3(0.5, 0.7, 0.3)
-	burst.spread = 65.0
-	burst.initial_velocity_min = 0.5
-	burst.initial_velocity_max = 1.8
-	var particle := SphereMesh.new()
-	particle.radius = 0.018
-	particle.height = 0.036
-	burst.mesh = particle
-	var colors := {
-		"red": Color(0.65, 0.02, 0.025),
-		"green": Color(0.2, 0.7, 0.1),
-		"golden": Color(0.9, 0.65, 0.1)
-	}
-	burst.color = colors.get(SettingsHooks.get_value("blood_color"), colors["red"])
-	get_tree().current_scene.add_child(burst)
-	burst.global_position = source.global_position
-	burst.emitting = true
-	get_tree().create_timer(0.8).timeout.connect(burst.queue_free)
+			pose = rig.global_transform * deform * original.transform
+		manager.debris(original, pose, rig.basis.z.x)
+	manager.burst(source.global_position, false, true)

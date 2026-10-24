@@ -1,0 +1,57 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "fighter",
+      "title",
+      "palette",
+      "difficulty",
+      "arena",
+      "hazards",
+      "loadout_index"
+    ],
+    "properties": {
+      "fighter": {
+        "enum": [
+          "theron",
+          "atalanta",
+          "pyrrhus",
+          "sibyl"
+        ]
+      },
+      "title": {
+        "type": "string"
+      },
+      "palette": {
+        "enum": [
+          "default",
+          "ivory",
+          "night"
+        ]
+      },
+      "difficulty": {
+        "enum": [
+          "easy",
+          "normal",
+          "hard"
+        ]
+      },
+      "arena": {
+        "enum": [
+          "mount_olympus",
+          "athens_colosseum",
+          "tartarus_pits"
+        ]
+      },
+      "hazards": {
+        "type": "boolean"
+      },
+      "loadout_index": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 3
+      }
+    }
+  }
+}

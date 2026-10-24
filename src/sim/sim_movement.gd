@@ -100,6 +100,7 @@ static func _move_or_block(world: SimWorld, fighter: SimFighter, mask: int) -> v
 		return
 	fighter.state = SimFighter.State.WALK
 	var speed := Fx.percent(fighter.walk_speed, SimModifier.percent_for(fighter, world.tick, true))
+	speed = Fx.percent(speed, SimAbilities.speed(fighter, world.max_health))
 	fighter.x += (
 		direction
 		* Fx.percent(speed, int(SimBodyState.movement(fighter, world.body_rules)["speed_percent"]))
@@ -124,6 +125,11 @@ static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 			fighter.state_tick = 0
 			_dodge_motion(world, fighter, mask)
 		return
+	if mask & (SimInput.SUPER | SimInput.ULTIMATE):
+		var ability := SimMoveAvailability.select(fighter, mask, world.body_rules)
+		if not ability.is_empty():
+			_begin_named(world, fighter, ability["id"], ability["slot"])
+			return
 	var chosen := _chosen_move(world, fighter, mask, true)
 	if chosen.is_empty():
 		return
@@ -177,6 +183,8 @@ static func _begin_named(
 	if found < 0:
 		return
 	var move: Dictionary = world.moves[found]
+	if not SimAbilities.ready(world, fighter, move_id):
+		return
 	if fighter.limbs.parts.has(slot) and not fighter.limbs.usable(slot):
 		return
 	if not SimStamina.try_spend(fighter, int(move["cost"]), world.combat):
@@ -192,6 +200,11 @@ static func _begin_named(
 	scaled_limb = Fx.percent(scaled_limb, percent)
 	fighter.attack_slot = slot
 	fighter.begin_move(found + 1, move, scaled, scaled_limb)
+	if fighter.frenzy_maximum > 100 and move.get("category", "") != "ultimate":
+		fighter.startup_ticks = maxi(
+			1, fighter.startup_ticks * 100 / SimAbilities.speed(fighter, world.max_health)
+		)
+	SimAbilities.begin(world, fighter, move_id)
 	SimRegrown.begin(fighter, move)
 	_age_move(world, fighter)
 	_consume_edges(fighter, move_id)

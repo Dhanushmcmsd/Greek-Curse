@@ -1,0 +1,49 @@
+{
+  "id": "mount_olympus",
+  "bounds": [
+    -4500,
+    4500
+  ],
+  "safe_zone": [
+    -2200,
+    2200
+  ],
+  "spawn_x": [
+    -900,
+    900
+  ],
+  "floor_friction": "none",
+  "hazards_default_on": true,
+  "hazard": {
+    "type": "lightning",
+    "period": 480,
+    "telegraph_ticks": 90,
+    "active_ticks": 30,
+    "damage": 25,
+    "limb_damage": 18,
+    "zones": [
+      [
+        -4000,
+        -3000
+      ],
+      [
+        3000,
+        4000
+      ]
+    ]
+  },
+  "palette": [
+    "#14243b",
+    "#e9d5a2"
+  ],
+  "lighting": {
+    "ambient": 0.3,
+    "key_energy": 0.65,
+    "fill_energy": 0.25
+  },
+  "ambience_id": "mount_olympus",
+  "blood": {
+    "decal_fade_ticks": 1200,
+    "wash_away": false
+  }
+}

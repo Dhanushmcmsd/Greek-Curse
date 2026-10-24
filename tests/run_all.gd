@@ -35,7 +35,7 @@ func _run() -> int:
 	var skipped := 0
 	for path in files:
 		var file_name := path.get_file().get_basename()
-		if suite != "" and suite != file_name and not path.contains(suite):
+		if suite not in ["", "slow"] and suite != file_name and not path.contains(suite):
 			skipped += 1
 			results.append({"name": path, "status": "skipped", "message": "suite filter"})
 			print("SKIP  %s" % path)

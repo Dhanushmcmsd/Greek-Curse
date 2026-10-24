@@ -15,6 +15,10 @@ static func effects(fighter: SimFighter, slot: String) -> Dictionary:
 static func begin(fighter: SimFighter, move: Dictionary) -> void:
 	var effect := effects(fighter, fighter.attack_slot)
 	var category := str(move.get("category", ""))
+	if category in ["light", "heavy", "kick"] and not str(move["id"]).begins_with("body_"):
+		fighter.hit_w = (
+			Fx.percent(fighter.hit_x + fighter.hit_w, fighter.reach_percent) - fighter.hit_x
+		)
 	if category == "light":
 		fighter.hit_w = (
 			Fx.percent(fighter.hit_x + fighter.hit_w, int(effect.get("light_reach_percent", 100)))

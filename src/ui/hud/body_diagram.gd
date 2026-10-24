@@ -9,6 +9,7 @@ const STATES := {
 }
 var limbs: Dictionary = {}
 var _textures: Dictionary = {}
+var _icons: Dictionary = {}
 
 
 static func display_for(state: String) -> Array:
@@ -17,6 +18,8 @@ static func display_for(state: String) -> Array:
 
 func _ready() -> void:
 	custom_minimum_size = Vector2(200, 125)
+	for slot in SimLimbs.LIMB_NAMES:
+		_icons[slot] = load("res://assets/ui/icons/%s.svg" % slot)
 	for pattern in ["solid", "hatch", "dots", "outline"]:
 		var path := "res://assets/ui/pattern_%s.png" % pattern
 		if ResourceLoader.exists(path):
@@ -41,6 +44,8 @@ func _draw() -> void:
 			continue
 		var row: Dictionary = limbs[slot]
 		var display := display_for(row["state"])
+		if _icons.has(slot):
+			draw_texture_rect(_icons[slot], Rect2(82, 4 + i * 24, 18, 18), false)
 		var rect: Rect2 = boxes[i]
 		draw_rect(rect, Color(0.12, 0.14, 0.18))
 		var fill := rect
@@ -54,7 +59,7 @@ func _draw() -> void:
 		)
 		draw_string(
 			font,
-			Vector2(90, 20 + i * 24),
+			Vector2(104, 20 + i * 24),
 			"%s %s %d" % [slot, display[0], row["integrity"]],
 			HORIZONTAL_ALIGNMENT_LEFT,
 			-1,

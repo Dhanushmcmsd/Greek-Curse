@@ -15,6 +15,13 @@ func _ready() -> void:
 	root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(root)
+	for area in [Rect2(0, 0, 1280, 180), Rect2(0, 632, 1280, 88)]:
+		var shade := ColorRect.new()
+		shade.position = area.position
+		shade.size = area.size
+		shade.color = Color(0.035, 0.045, 0.065, 0.85)
+		shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		root.add_child(shade)
 	_left_fill = _bar(root, 40.0, Color(0.75, 0.28, 0.16))
 	_right_fill = _bar(root, 760.0, Color(0.2, 0.48, 0.32))
 	_timer = _label(root, 520.0, 36.0, 240.0, "1:30")

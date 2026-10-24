@@ -13,6 +13,7 @@ var replacements: Dictionary = {}
 var fighter_height: float = 1.8
 var fighter_width: float = 0.45
 var _states: Dictionary = {}
+var _stump_palette: String = ""
 var _rest_rotations: Dictionary = {}
 
 
@@ -64,7 +65,12 @@ func set_limb_visible(slot: String, shown: bool) -> void:
 func show_stump(slot: String, shown: bool) -> void:
 	stumps[slot].visible = shown
 	for mesh in stump_meshes[slot]:
-		mesh.visible = shown
+		mesh.visible = (
+			shown
+			and not (
+				str(mesh.name).begins_with("BONE") and SettingsHooks.get_value("gore") == "off"
+			)
+		)
 
 
 func attach_to_socket(slot: String, node: Node3D) -> void:
@@ -118,6 +124,7 @@ func detach_regrown(slot: String) -> void:
 
 
 func sync(fighter: SimFighter) -> void:
+	_update_stump_palette()
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
 		var regrown: String = fighter.limbs.parts[slot].regrown_id
@@ -161,3 +168,28 @@ func _tint(node: Node, color: Color) -> void:
 			mesh.material_overlay = mat
 	for child in node.get_children():
 		_tint(child, color)
+
+
+func _update_stump_palette() -> void:
+	var palette := (
+		str(SettingsHooks.get_value("gore")) + str(SettingsHooks.get_value("blood_color"))
+	)
+	if palette == _stump_palette:
+		return
+	_stump_palette = palette
+	var color: Color = (
+		{"red": Color("a91830"), "green": Color("54b52b"), "golden": Color("edba44")}
+		. get(SettingsHooks.get_value("blood_color"), Color("a91830"))
+	)
+	if SettingsHooks.get_value("gore") == "off":
+		color = Color("555963")
+	for meshes in stump_meshes.values():
+		for mesh in meshes:
+			if str(mesh.name).begins_with("CUT"):
+				for surface in mesh.mesh.get_surface_count():
+					var material := (
+						mesh.get_surface_override_material(surface) as StandardMaterial3D
+					)
+					if material != null:
+						material.vertex_color_use_as_albedo = false
+						material.albedo_color = color

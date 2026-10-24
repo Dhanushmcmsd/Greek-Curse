@@ -6,6 +6,8 @@ var id: String = ""
 var expires_tick: int = 0
 var damage_percent: int = 100
 var speed_percent: int = 100
+var taken_percent: int = 100
+var limb_percent: int = 100
 
 
 static func percent_for(fighter: SimFighter, tick: int, speed: bool = false) -> int:

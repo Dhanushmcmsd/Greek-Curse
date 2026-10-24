@@ -60,7 +60,7 @@ func test_marble_durability_damage_and_speed() -> void:
 	assert_eq(fighter.limbs.parts["leg_l"].integrity, 112, "80 percent of normal maximum")
 	var start := fighter.x
 	world.step([1, 0])
-	assert_eq(start - fighter.x, 8, "speed 10 to 8")
+	assert_eq(start - fighter.x, 18, "speed 22 times 80 percent rounded")
 	world.step([64, 0])
 	assert_eq(
 		fighter.attack_damage,
@@ -74,7 +74,7 @@ func test_hermes_speed_dash_and_seeded_zoom() -> void:
 	var fighter := _grant(world, "leg_l", "hermes_sandal_leg")
 	var start := fighter.x
 	world.step([1, 0])
-	assert_eq(start - fighter.x, 13, "125 percent rounded")
+	assert_eq(start - fighter.x, 28, "125 percent rounded")
 	start = fighter.x
 	world.step([1 | 256, 0])
 	assert_eq(start - fighter.x, 220, "40 normal dodge plus 180 dash")

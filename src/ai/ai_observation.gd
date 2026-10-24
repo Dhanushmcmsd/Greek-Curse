@@ -7,9 +7,9 @@ static func capture(world: SimWorld, index: int) -> Dictionary:
 	var own := world.fighters[index]
 	var other := world.fighters[1 - index]
 	var options: Array = []
-	for mask in [16, 32, 64, 18, 34, 72, 80, 17, 33]:
+	for mask in [16, 32, 64, 18, 34, 72, 80, 17, 33, SimInput.SUPER, SimInput.ULTIMATE]:
 		var chosen := SimMoveAvailability.select(own, mask, world.body_rules)
-		if chosen.is_empty():
+		if chosen.is_empty() or not SimAbilities.ready(world, own, str(chosen.get("id", ""))):
 			continue
 		for move in world.moves:
 			if move["id"] == chosen["id"]:
@@ -18,10 +18,21 @@ static func capture(world: SimWorld, index: int) -> Dictionary:
 						"mask": mask,
 						"id": move["id"],
 						"cost": int(move["cost"]),
-						"damage": int(move["damage"]),
+						"damage":
+						maxi(
+							int(move["damage"]) * int(move.get("hit_count", 1)),
+							35 if int(mask) & (SimInput.SUPER | SimInput.ULTIMATE) else 0
+						),
 						"startup": int(move["startup_ticks"]),
 						"range":
-						int(move["hitbox"]["x"]) + int(move["hitbox"]["w"]) + other.half_width(),
+						maxi(
+							(
+								int(move["hitbox"]["x"])
+								+ int(move["hitbox"]["w"])
+								+ other.half_width()
+							),
+							800 if mask & SimInput.SUPER else 0
+						),
 						"limb_damage": int(move["limb_damage"]),
 						"grab": bool(move["is_grab"])
 					}

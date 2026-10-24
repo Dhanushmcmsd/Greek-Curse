@@ -1,0 +1,42 @@
+{
+  "id": "quick_fury",
+  "display_name": "Quick Fury",
+  "startup_ticks": 4,
+  "active_ticks": 13,
+  "recovery_ticks": 8,
+  "damage": 7,
+  "limb_damage": 5,
+  "on_block_pushback": 16,
+  "hitstop_attacker": 2,
+  "hitstop_defender": 2,
+  "cancel_into": [
+    "jab_of_hermes",
+    "cyclops_smash",
+    "pegasus_kick"
+  ],
+  "cancel_start": 6,
+  "cancel_end": 10,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 3,
+  "hit_interval": 4,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_l",
+  "zone_priority": 1,
+  "hitstun_ticks": 10,
+  "blockstun_ticks": 6,
+  "knockback_mm": 0,
+  "hitbox": {
+    "x": 180,
+    "y": 1100,
+    "w": 420,
+    "h": 280
+  },
+  "cost": 18,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "light",
+  "anim_set": "punch_light"
+}

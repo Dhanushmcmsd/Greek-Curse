@@ -8,7 +8,11 @@ func _initialize() -> void:
 		image.fill(Color.TRANSPARENT)
 		for x in 8:
 			for y in 8:
-				var marked: bool = (id == "solid" and y == 7) or (id == "hatch" and (x+y) % 4 == 0) or (id == "dots" and x % 4 == 0 and y % 4 == 0)
+				var marked: bool = (
+					(id == "solid" and y == 7)
+					or (id == "hatch" and (x + y) % 4 == 0)
+					or (id == "dots" and x % 4 == 0 and y % 4 == 0)
+				)
 				if marked:
 					image.set_pixel(x, y, Color(1, 1, 1, 0.65))
 		image.save_png("res://assets/ui/pattern_%s.png" % id)

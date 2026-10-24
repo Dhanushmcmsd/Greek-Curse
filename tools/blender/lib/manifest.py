@@ -23,7 +23,7 @@ def write():
         assets.append({"id": path.stem, "path": path.relative_to(ROOT).as_posix(),
                        "script": "tools/blender/build_all.py", "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
                        "triangles": info["triangles"], "bounds": info["bounds"],
-                       "budget": 5000 if fighter else (600 if limb else 8000),
+                       "budget": 800 if path.stem == "npc_obol" else 80 if path.stem.startswith("gore_") else (5000 if fighter else (600 if limb else 8000)),
                        "required_nodes": required, "rigged": bool(info["skins"])})
     sources = sorted((ROOT / "tools/blender").rglob("*.py"))
     source_hash = hashlib.sha256(b"".join(p.read_bytes() for p in sources)).hexdigest()

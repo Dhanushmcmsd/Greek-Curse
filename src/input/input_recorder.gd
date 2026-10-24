@@ -4,6 +4,7 @@ extends RefCounted
 var inputs: Array = []
 var hashes: Array = []
 var initial: Array = []
+var initial_meters: Array = []
 var seed: int = 1
 var fighter_ids: Array = ["theron", "atalanta"]
 
@@ -15,15 +16,21 @@ func record(world: SimWorld, masks: Array) -> void:
 
 
 func payload(world: SimWorld) -> Dictionary:
-	return {
+	var result := {
 		"fighters": fighter_ids,
 		"seed": seed,
 		"initial_limb_states": initial,
+		"initial_meters": initial_meters,
 		"inputs": inputs,
 		"hashes": hashes,
 		"hashes_every": 30,
 		"final_hash": str(world.hash_state())
 	}
+	if not world.arena_rules.is_empty():
+		result["arena_id"] = world.arena_rules["id"]
+		result["hazards"] = world.hazards_enabled
+		result["loadouts"] = [world.fighters[0].loadout, world.fighters[1].loadout]
+	return result
 
 
 func save_to(path: String, world: SimWorld) -> Error:

@@ -1,0 +1,28 @@
+{
+  "id": "hephaestus_forge_shield",
+  "name": "Hephaestus Forge Shield",
+  "type": "superpower",
+  "description": "Bronze shield absorbs 40 damage, then bursts into shrapnel.",
+  "tags": [
+    "superpower"
+  ],
+  "unlock_group": "superpower",
+  "move_id": "hephaestus_forge_shield",
+  "cooldown_ticks": 960,
+  "stamina_cost": 20,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "shield",
+      "timing": "begin",
+      "absorb": 40,
+      "burst_damage": 12
+    }
+  ],
+  "icon_id": "hephaestus_forge_shield",
+  "anim_set": "super_cast",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "hephaestus_forge_shield"
+}

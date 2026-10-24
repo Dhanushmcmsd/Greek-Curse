@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "required": [
+    "version",
+    "fighter",
+    "chronicle",
+    "fallen",
+    "rng_seed_counter"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "fighter": {
+      "type": "object"
+    },
+    "chronicle": {
+      "type": "object",
+      "required": [
+        "matches",
+        "limbs_lost",
+        "limbs_taken",
+        "longest_combo"
+      ]
+    },
+    "fallen": {
+      "type": "array"
+    },
+    "rng_seed_counter": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

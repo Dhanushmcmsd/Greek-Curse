@@ -1,0 +1,27 @@
+{
+  "id": "hammer_of_hephaestus",
+  "name": "Hammer Of Hephaestus",
+  "type": "heavy",
+  "description": "Downward slam with ground bounce. Large limb damage.",
+  "tags": [
+    "heavy"
+  ],
+  "unlock_group": "heavy",
+  "move_id": "hammer_of_hephaestus",
+  "cooldown_ticks": 0,
+  "stamina_cost": 24,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "ground_bounce",
+      "timing": "hit",
+      "amount": 250
+    }
+  ],
+  "icon_id": "hammer_of_hephaestus",
+  "anim_set": "punch_heavy",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "hammer_of_hephaestus"
+}

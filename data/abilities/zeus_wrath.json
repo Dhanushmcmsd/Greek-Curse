@@ -1,0 +1,27 @@
+{
+  "id": "zeus_wrath",
+  "name": "Zeus\u2019s Wrath",
+  "type": "ultimate",
+  "description": "Summons a huge lightning strike. High damage and a guaranteed Cracked limb.",
+  "tags": [
+    "ultimate"
+  ],
+  "unlock_group": "ultimate",
+  "move_id": "zeus_wrath",
+  "cooldown_ticks": 0,
+  "stamina_cost": 0,
+  "meter_cost": 100,
+  "effects": [
+    {
+      "kind": "force_limb_state",
+      "timing": "hit",
+      "state": "cracked"
+    }
+  ],
+  "icon_id": "zeus_wrath",
+  "anim_set": "ultimate_cast",
+  "audio_ids": [
+    "lightning"
+  ],
+  "caption_id": "zeus_wrath"
+}

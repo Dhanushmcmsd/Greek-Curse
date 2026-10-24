@@ -11,11 +11,17 @@ var slot: OptionButton
 var limb: OptionButton
 var description: Label
 var catalog: Dictionary
+var bar: HBoxContainer
+var cards: HBoxContainer
 
 
 func _ready() -> void:
+	call_deferred("_apply_theme")
+	for child in get_children():
+		if child is Control:
+			child.theme = GameTheme.build()
 	layer = 15
-	var bar := HBoxContainer.new()
+	bar = HBoxContainer.new()
 	bar.position = Vector2(850, 675)
 	add_child(bar)
 	var fresh := Button.new()
@@ -27,40 +33,62 @@ func _ready() -> void:
 	limbs.pressed.connect(open)
 	bar.add_child(limbs)
 	chooser = PanelContainer.new()
-	chooser.position = Vector2(400, 230)
-	chooser.custom_minimum_size = Vector2(480, 370)
+	chooser.position = Vector2.ZERO
+	chooser.size = Vector2(1280, 720)
+	var background := StyleBoxFlat.new()
+	background.bg_color = Color("101722")
+	background.content_margin_left = 100
+	background.content_margin_right = 100
+	background.content_margin_top = 35
+	background.content_margin_bottom = 30
+	chooser.add_theme_stylebox_override("panel", background)
 	add_child(chooser)
+	var scroll := ScrollContainer.new()
+	chooser.add_child(scroll)
 	var box := VBoxContainer.new()
-	chooser.add_child(box)
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation", 12)
+	scroll.add_child(box)
 	var title := Label.new()
-	title.text = "NEW MATCH — REPLACEMENT LIMB"
+	title.text = "THE FORGE  /  REPLACEMENT LIMBS"
+	title.add_theme_font_size_override("font_size", 30)
+	title.add_theme_color_override("font_color", Color("e4bc6b"))
 	box.add_child(title)
+	var row := HBoxContainer.new()
+	box.add_child(row)
 	player = OptionButton.new()
 	player.add_item("Player 1")
 	player.add_item("Player 2")
-	box.add_child(player)
+	player.custom_minimum_size.x = 200
+	row.add_child(player)
 	slot = OptionButton.new()
-	for name in SimLimbs.LIMB_NAMES:
+	for name in ["Left arm", "Right arm", "Left leg", "Right leg"]:
 		slot.add_item(name)
-	box.add_child(slot)
+	slot.custom_minimum_size.x = 250
+	row.add_child(slot)
 	limb = OptionButton.new()
+	limb.hide()
 	box.add_child(limb)
+	cards = HBoxContainer.new()
+	cards.add_theme_constant_override("separation", 20)
+	box.add_child(cards)
 	description = Label.new()
-	description.custom_minimum_size = Vector2(460, 140)
+	description.custom_minimum_size = Vector2(900, 140)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	description.add_theme_font_size_override("font_size", 18)
 	box.add_child(description)
+	var actions := HBoxContainer.new()
+	box.add_child(actions)
 	var apply := Button.new()
-	apply.text = "Start new match with this limb"
+	apply.text = "Equip and start new match"
+	apply.custom_minimum_size = Vector2(440, 52)
 	apply.pressed.connect(_apply)
-	box.add_child(apply)
+	actions.add_child(apply)
 	var close := Button.new()
-	close.text = "Cancel"
-	close.pressed.connect(
-		func():
-			chooser.hide()
-			panel_changed.emit(false)
-	)
-	box.add_child(close)
+	close.text = "Back"
+	close.custom_minimum_size = Vector2(180, 52)
+	close.pressed.connect(close_panel)
+	actions.add_child(close)
 	slot.item_selected.connect(_populate)
 	limb.item_selected.connect(_describe)
 	chooser.hide()
@@ -69,19 +97,37 @@ func _ready() -> void:
 func open() -> void:
 	_populate(slot.selected)
 	chooser.show()
+	bar.hide()
 	panel_changed.emit(true)
+	player.grab_focus()
+
+
+func close_panel() -> void:
+	chooser.hide()
+	panel_changed.emit(false)
 
 
 func _populate(index: int) -> void:
 	limb.clear()
+	for child in cards.get_children():
+		cards.remove_child(child)
+		child.queue_free()
 	for id in catalog:
 		if SimLimbs.LIMB_NAMES[index].begins_with(str(catalog[id]["slot"])):
+			var item := limb.item_count
 			limb.add_item(catalog[id]["display_name"])
-			limb.set_item_metadata(limb.item_count - 1, id)
+			limb.set_item_metadata(item, id)
+			var card := LimbCard.new()
+			cards.add_child(card)
+			card.setup(id, catalog[id]["display_name"])
+			card.pressed.connect(_describe.bind(item))
 	_describe(0)
 
 
 func _describe(index: int) -> void:
+	limb.select(index)
+	for i in cards.get_child_count():
+		cards.get_child(i).modulate = Color.WHITE if i == index else Color(0.6, 0.65, 0.75)
 	description.text = "\n".join(catalog[limb.get_item_metadata(index)]["tooltip_lines"].values())
 
 
@@ -91,3 +137,9 @@ func _apply() -> void:
 	replacement_requested.emit(
 		player.selected, SimLimbs.LIMB_NAMES[slot.selected], limb.get_item_metadata(limb.selected)
 	)
+
+
+func _apply_theme() -> void:
+	for child in get_children():
+		if child is Control:
+			child.theme = GameTheme.build()

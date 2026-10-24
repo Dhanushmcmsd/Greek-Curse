@@ -20,10 +20,20 @@ var _cape_angle: float = 0.0
 var _cape_rest := Transform3D.IDENTITY
 var _last_states: Dictionary = {}
 var _twitch: Dictionary = {}
+var _beam: MeshInstance3D
 
 
 func setup(target: FighterRig) -> void:
 	rig = target
+	_beam = MeshInstance3D.new()
+	_beam.mesh = BoxMesh.new()
+	var glow := StandardMaterial3D.new()
+	glow.albedo_color = Color("9fddff")
+	glow.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_beam.material_override = glow
+	_beam.top_level = true
+	rig.add_child(_beam)
+	_beam.hide()
 	data = DataLoader.new().load_json("res://data/animation/poses.json").value
 	for file in DirAccess.get_files_at("res://data/moves"):
 		if file.ends_with(".json"):
@@ -44,6 +54,9 @@ func setup(target: FighterRig) -> void:
 			or name.begins_with("WREATH")
 			or name.begins_with("BRAID")
 			or name.begins_with("VEIL")
+			or name.begins_with("EYE")
+			or name.begins_with("NOSE")
+			or name.begins_with("BEARD")
 		):
 			bone = "head"
 		for slot in SimLimbs.LIMB_NAMES:
@@ -90,11 +103,14 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 	rig.position = Vector3.ZERO
 	var pose_name := _select(fighter)
 	phase = pose_name
-	var rotations: Dictionary = data["poses"][pose_name]["bones"]
+	var style: Dictionary = data["styles"].get(fighter.fighter_id, data["styles"]["theron"])
+	var rotations: Dictionary = (
+		style["idle"] if pose_name == "idle" else data["poses"][pose_name]["bones"]
+	)
 	var other: Dictionary = rotations
 	var blend := 0.0
 	if pose_name.begins_with("walk_"):
-		var cycle: float = time * 60.0 / float(settings["cycle_ticks"]) * data["walk"].size()
+		var cycle: float = time * 60.0 / float(style["cycle"]) * data["walk"].size()
 		var key: int = int(cycle) % data["walk"].size()
 		rotations = data["poses"][data["walk"][key]]["bones"]
 		other = data["poses"][data["walk"][(key + 1) % data["walk"].size()]]["bones"]
@@ -109,6 +125,14 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 		var angles := Vector3(float(a[0]), float(a[1]), float(a[2])).lerp(
 			Vector3(float(b[0]), float(b[1]), float(b[2])), blend
 		)
+		if fighter.state == SimFighter.State.WALK:
+			angles *= float(style["stride"])
+		if fighter.state == SimFighter.State.HITSTUN:
+			angles *= float(style["recoil"])
+		if bone == "spine" and fighter.move_id > 0:
+			angles.y = (
+				float(style["twist"]) * (-1.0 if fighter.state == SimFighter.State.STARTUP else 1.0)
+			)
 		if bone == "spine" and fighter.move_id == 0:
 			angles.x += (
 				sin(time * float(settings["breath_rate"])) * float(settings["breath_degrees"])
@@ -144,12 +168,17 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 					if period != _last_creak:
 						caption = "STONE CREAK"
 						_last_creak = period
+		var target := _rest[index] * Quaternion.from_euler(angles * PI / 180.0)
+		var smooth := 1.0 if fighter.state == SimFighter.State.ACTIVE else 0.45
+		if preview_pose != "" or stopped:
+			smooth = 1.0
 		rig.skeleton.set_bone_pose_rotation(
-			index, _rest[index] * Quaternion.from_euler(angles * PI / 180.0)
+			index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
 		)
 	_root_pose(fighter, settings)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
+	_projectile(fighter)
 	if _cape != null and not stopped:
 		_cape_angle = lerpf(
 			_cape_angle,
@@ -329,3 +358,24 @@ static func _slot_for(bone: String) -> String:
 	if bone.begins_with("thigh") or bone.begins_with("shin") or bone.begins_with("foot"):
 		return "leg_" + bone.right(1)
 	return ""
+
+
+func _projectile(fighter: SimFighter) -> void:
+	_beam.visible = fighter.state == SimFighter.State.ACTIVE and fighter.hit_w > 2000
+	if not _beam.visible:
+		return
+	var origin := rig.global_position - rig.position
+	var length := float(fighter.hit_w) / 1000.0
+	(_beam.mesh as BoxMesh).size = Vector3(length, 0.06, 0.06)
+	_beam.global_position = (
+		origin
+		+ Vector3(
+			(float(fighter.hit_x) / 1000.0 + length * .5) * fighter.facing,
+			float(fighter.hit_y + fighter.hit_h / 2) / 1000.0,
+			0
+		)
+	)
+	var endpoint := _beam.global_position.x + length * .5 * fighter.facing
+	reach_mismatch_mm = absi(
+		int(absf(endpoint - origin.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
+	)

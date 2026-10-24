@@ -111,7 +111,8 @@
     "crawl_swing_degrees": 18,
     "torso_sway_degrees": 5,
     "roll_degrees": 360,
-    "creak_interval_ticks": 240
+    "creak_interval_ticks": 240,
+    "reaction_blend": 0.35
   },
   "poses": {
     "idle": {
@@ -217,22 +218,22 @@
     "block": {
       "bones": {
         "upper_arm.l": [
-          -60,
+          -55,
           0,
-          0
+          -12
         ],
         "upper_arm.r": [
-          -60,
+          -55,
           0,
-          0
+          12
         ],
         "forearm.l": [
-          -45,
+          -95,
           0,
           0
         ],
         "forearm.r": [
-          -45,
+          -95,
           0,
           0
         ],
@@ -1274,6 +1275,170 @@
       "startup": "ultimate_cast_startup",
       "active": "ultimate_cast_active",
       "recovery": "ultimate_cast_recovery"
+    }
+  },
+  "styles": {
+    "theron": {
+      "cycle": 28,
+      "stride": 1.05,
+      "recoil": 1.15,
+      "twist": 12,
+      "idle": {
+        "upper_arm.l": [
+          -48,
+          0,
+          -8
+        ],
+        "forearm.l": [
+          -65,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -25,
+          0,
+          8
+        ],
+        "forearm.r": [
+          -70,
+          0,
+          0
+        ],
+        "spine": [
+          4,
+          0,
+          0
+        ]
+      }
+    },
+    "atalanta": {
+      "cycle": 20,
+      "stride": 1.3,
+      "recoil": 1.0,
+      "twist": 22,
+      "idle": {
+        "upper_arm.l": [
+          -35,
+          0,
+          -18
+        ],
+        "forearm.l": [
+          -65,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -55,
+          0,
+          12
+        ],
+        "forearm.r": [
+          -55,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -12,
+          0,
+          0
+        ],
+        "shin.l": [
+          18,
+          0,
+          0
+        ]
+      }
+    },
+    "pyrrhus": {
+      "cycle": 24,
+      "stride": 0.8,
+      "recoil": 1.4,
+      "twist": 18,
+      "idle": {
+        "upper_arm.l": [
+          -55,
+          0,
+          -20
+        ],
+        "forearm.l": [
+          -85,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -55,
+          0,
+          20
+        ],
+        "forearm.r": [
+          -85,
+          0,
+          0
+        ],
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -15,
+          0,
+          0
+        ],
+        "shin.l": [
+          22,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -15,
+          0,
+          0
+        ],
+        "shin.r": [
+          22,
+          0,
+          0
+        ]
+      }
+    },
+    "sibyl": {
+      "cycle": 34,
+      "stride": 0.7,
+      "recoil": 0.8,
+      "twist": 8,
+      "idle": {
+        "upper_arm.l": [
+          -65,
+          0,
+          -25
+        ],
+        "forearm.l": [
+          -30,
+          0,
+          0
+        ],
+        "hand.l": [
+          0,
+          0,
+          -20
+        ],
+        "upper_arm.r": [
+          -20,
+          0,
+          25
+        ],
+        "forearm.r": [
+          -45,
+          0,
+          0
+        ],
+        "spine": [
+          -4,
+          0,
+          0
+        ]
+      }
     }
   }
 }

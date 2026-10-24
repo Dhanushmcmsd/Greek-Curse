@@ -1,0 +1,2 @@
+# Balance iterations
+2026-10-24 baseline: 48 mirrored-loadout matches, 281968 ticks, 161 severances (3.35/match), no timeouts or incomplete matches. Wins Theron 21, Atalanta 10, Pyrrhus 10, Sibyl 7. Each fighter appears on 24 sides including mirrors; these aggregate wins are not independent pair win-rate estimates. Theron is overpowered; heavy attacks dominate this greedy AI. This is explicitly not a balanced competitive release. Stage 18 body-derived stats and final report will supersede the preliminary sample. No silent golden changes or weakened tolerance.

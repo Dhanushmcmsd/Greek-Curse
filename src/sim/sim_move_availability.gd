@@ -4,6 +4,9 @@ extends RefCounted
 
 
 static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Dictionary:
+	for option in [[SimInput.ULTIMATE, "ultimate"], [SimInput.SUPER, "superpower"]]:
+		if mask & int(option[0]) and not fighter.loadout.get(option[1], []).is_empty():
+			return {"id": fighter.loadout[option[1]][0], "slot": "body"}
 	var light := SimInput.has_bit(mask, SimInput.LIGHT)
 	var heavy := SimInput.has_bit(mask, SimInput.HEAVY)
 	var kick := SimInput.has_bit(mask, SimInput.KICK)
@@ -33,4 +36,10 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 		return {
 			"id": rules["one_leg_moves"]["low" if mask & SimInput.DOWN else "normal"], "slot": slot
 		}
-	return {"id": rules["default_moves"][category], "slot": slot}
+	var selected: Array = fighter.loadout.get(category, [])
+	var id: String = (
+		rules["default_moves"][category]
+		if selected.is_empty()
+		else selected[mini(int(side_b), selected.size() - 1)]
+	)
+	return {"id": id, "slot": slot}

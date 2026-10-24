@@ -14,7 +14,16 @@ func rebind(action: String, event: Dictionary) -> String:
 	if not bindings.has(action):
 		return "Unknown action"
 	for existing in bindings:
-		if existing != action and bindings[existing] == event:
+		var other: Dictionary = bindings[existing]
+		var same_key: bool = (
+			str(event.get("key", "")) != "" and event.get("key") == other.get("key")
+		)
+		var same_button: bool = (
+			int(event.get("button", -1)) >= 0
+			and event.get("button") == other.get("button")
+			and event.get("device") == other.get("device")
+		)
+		if existing != action and (same_key or same_button):
 			return "Conflicts with " + existing
 	bindings[action] = event.duplicate(true)
 	return ""
@@ -25,8 +34,13 @@ func export_bindings() -> Dictionary:
 
 
 func import_bindings(rows: Dictionary) -> String:
-	var candidate := {}
+	var defaults: Dictionary = (
+		DataLoader.new().load_json("res://data/ui/default_bindings.json").value
+	)
+	var candidate := defaults.duplicate(true)
 	for action in rows:
+		if not defaults.has(action):
+			return "Unknown action " + str(action)
 		if not rows[action] is Dictionary or not rows[action].has("key"):
 			return "Invalid binding " + str(action)
 		candidate[action] = rows[action].duplicate(true)

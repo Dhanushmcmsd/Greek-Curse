@@ -1,0 +1,29 @@
+{
+  "id": "ares_rage",
+  "name": "Ares Rage",
+  "type": "superpower",
+  "description": "+25% damage for 6 s, but +15% damage taken.",
+  "tags": [
+    "superpower"
+  ],
+  "unlock_group": "superpower",
+  "move_id": "ares_rage",
+  "cooldown_ticks": 1200,
+  "stamina_cost": 20,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "buff_self",
+      "timing": "begin",
+      "duration": 360,
+      "damage_percent": 125,
+      "taken_percent": 115
+    }
+  ],
+  "icon_id": "ares_rage",
+  "anim_set": "super_cast",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "ares_rage"
+}

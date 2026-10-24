@@ -1,0 +1,8 @@
+# Accessibility and audio
+Settings are versioned ConfigFile data in user://settings.cfg. Unknown keys are ignored; missing/future-version values are validated against defaults. Invalid files are preserved as .bad before defaults load. --user-profile selects an isolated local directory. Gore, three blood palettes, shake/hit-stop down to zero, flash reduction, subtitles, high contrast, permanent limb-state patterns, block toggle, input bindings, volume and display preferences are persisted. The debug settings scene is scenes/debug/settings_debug.tscn; integrated menu follows in stage 20.
+
+Generated stone/bronze theme uses Godot's default font. Body text contrast is at least 8.48:1 for the checked pairs. Limb status always includes symbols/patterns. Flash reduction disables fighter flashes and reduces camera impacts; no full-screen strobe is generated. Generated captions accompany significant combat events.
+
+31 deterministic original mono WAV placeholders at 22050 Hz: 25 effects and six music/stinger tracks. Full scene loops are 32 seconds, stingers four seconds. Peak limited to 24000/32768, below -1 dBFS; seam difference below .01. Audio buses and 12-voice cap are presentation-only. Seeded presentation variation does not touch combat RNG. This synthesized audio is placeholder-quality; owner listening/comfort assessment is deferred to Checkpoint C, not claimed tested by headless checks.
+
+Headless tests verify audio dispatch and WAV data without playback because Godot Dummy audio leaked WAV resources at shutdown. Windowed runs exercise playback; listening comfort and physical-gamepad navigation remain Checkpoint C checks.

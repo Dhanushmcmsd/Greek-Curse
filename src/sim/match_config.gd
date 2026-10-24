@@ -8,6 +8,8 @@ var mode: String = "practice"
 var seed: int = 1
 var rules: Dictionary = {}
 var loadouts: Array = []
+var palettes: Array[String] = ["default", "default"]
+var initial_limbs: Array = []
 
 
 func validate() -> String:
@@ -43,3 +45,12 @@ func validate() -> String:
 	):
 		return "Unknown arena or mode"
 	return ""
+
+
+func resolved_palettes() -> Array:
+	var result := palettes.duplicate()
+	if result.size() != 2:
+		result = ["default", "ivory"]
+	if fighter_ids[0] == fighter_ids[1] and result[0] == result[1]:
+		result[1] = "ivory" if result[0] != "ivory" else "night"
+	return result

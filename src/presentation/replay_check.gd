@@ -10,13 +10,21 @@ static func verify(path: String) -> String:
 		return "replay is not an object"
 	var data: Dictionary = parsed
 	var world := ProtoFixture.world_with({}, int(data["seed"]))
-	if data.has("fighters") and data["fighters"] != ["theron", "atalanta"]:
+	if (
+		data.has("arena_id")
+		or (data.has("fighters") and data["fighters"] != ["theron", "atalanta"])
+	):
 		var config := MatchConfig.new()
 		config.seed = int(data["seed"])
 		config.fighter_ids = [str(data["fighters"][0]), str(data["fighters"][1])]
+		config.arena_id = str(data.get("arena_id", "mount_olympus"))
+		config.rules["hazards"] = bool(data.get("hazards", false))
+		config.loadouts = data.get("loadouts", [])
 		world = MatchLauncher.make_world(config)
 	configure(world, str(data.get("scenario", "")))
 	world.setup({"initial_limb_states": data.get("initial_limb_states", [])})
+	for index in data.get("initial_meters", []).size():
+		world.fighters[index].meter = int(data["initial_meters"][index])
 	var every := int(data["hashes_every"])
 	var inputs: Array = data["inputs"]
 	var hashes: Array = data["hashes"]

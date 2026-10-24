@@ -9,8 +9,8 @@ func test_walk_speed_matches_the_curve() -> void:
 	world.fighters[1].x = 2000
 	world.step([SimInput.RIGHT, 0])
 	assert_eq(theron.x, before + theron.walk_speed, "theron speed")
-	assert_eq(theron.walk_speed, 10, "speed stat 2")
-	assert_eq(world.fighters[1].walk_speed, 26, "speed stat 5")
+	assert_eq(theron.walk_speed, 22, "speed stat 2")
+	assert_eq(world.fighters[1].walk_speed, 46, "speed stat 5")
 
 
 func test_bodies_stay_inside_the_arena() -> void:

@@ -6,7 +6,7 @@ extends RefCounted
 static func resolve(world: SimWorld, events: Array) -> void:
 	for attacker_index in world.fighters.size():
 		var attacker: SimFighter = world.fighters[attacker_index]
-		if attacker.state != SimFighter.State.ACTIVE:
+		if attacker.state != SimFighter.State.ACTIVE or attacker.hit_w <= 0 or attacker.hit_h <= 0:
 			continue
 		if attacker.hits_done >= attacker.attack_hit_count:
 			continue
@@ -34,7 +34,10 @@ static func _window_connects(
 	)
 	if zone == "":
 		return false
-	if defender.in_dodge_iframe(iframe_start, iframe_end):
+	if (
+		world.tick < defender.invulnerable_until
+		or defender.in_dodge_iframe(iframe_start, iframe_end)
+	):
 		return true
 	if defender.armor_hits > 0:
 		defender.armor_hits -= 1
@@ -69,6 +72,15 @@ static func _connect(
 	var main := int(split[0])
 	var limb := int(split[1])
 	var blocked := bool(split[2])
+	main = SimAbilities.incoming(defender, world.tick, main, false)
+	if defender.shield > 0:
+		var absorbed := mini(main, defender.shield)
+		defender.shield -= absorbed
+		main -= absorbed
+		if defender.shield == 0:
+			attacker.health = maxi(0, attacker.health - defender.shield_burst)
+	if not blocked:
+		SimAbilities.on_hit(world, attacker, defender, zone)
 	defender.health -= main
 	if defender.health < 0:
 		defender.health = 0
@@ -88,9 +100,16 @@ static func _connect(
 		defender.state = SimFighter.State.HITSTUN
 		defender.state_tick = attacker.attack_hitstun
 	var kind := SimEvent.Kind.BLOCK if blocked else SimEvent.Kind.HIT
-	events.append(
-		SimEvent.make(kind, attacker_index, 1 - attacker_index, main, world.round_index, -1)
+	var impact := SimEvent.make(
+		kind, attacker_index, 1 - attacker_index, main, world.round_index, -1
 	)
+	var material := "flesh"
+	if defender.limbs.parts.has(zone):
+		material = (
+			"stone" if defender.limbs.parts[zone].regrown_id == "marble_statue_leg" else "bone"
+		)
+	impact.payload = {"zone": zone, "material": material}
+	events.append(impact)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_self)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_other)
 	if defender.health <= 0:
@@ -168,7 +187,7 @@ static func _push(
 ) -> void:
 	var sign := 1 if defender.x >= attacker.x else -1
 	var distance := attacker.attack_block_push if blocked else attacker.attack_knockback
-	defender.x += sign * distance
+	defender.x += sign * Fx.percent(distance, defender.knockback_percent)
 	var low := world._low(defender)
 	var high := world._high(defender)
 	var bounced := attacker.attack_wall_bounce and (defender.x < low or defender.x > high)

@@ -52,7 +52,7 @@ def build_armature(root, height, width):
         if obj.type != "MESH":
             continue
         name = obj.name
-        bone = "head" if name.startswith(("HEAD", "HELM", "CREST", "BRAID", "WREATH", "VEIL")) else "spine"
+        bone = "head" if name.startswith(("HEAD", "HELM", "CREST", "BRAID", "WREATH", "VEIL", "EYE", "NOSE", "BEARD")) else "spine"
         for limb, names in [("ARM", ["upper_arm", "forearm", "hand"]), ("LEG", ["thigh", "shin", "foot"])]:
             for side in ["L", "R"]:
                 for part, joint in zip(["UPPER", "LOWER", "END"], names):

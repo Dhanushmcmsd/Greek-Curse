@@ -14,6 +14,8 @@ def empty(name, location=(0, 0, 0), parent=None):
 def shape(name, at, size, mat, parent=None, kind="box"):
     if kind == "box":
         bpy.ops.mesh.primitive_cube_add(size=1)
+    elif kind == "body":
+        bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=0.5)
     elif kind == "orb":
         bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1, radius=0.5)
     else:
@@ -25,6 +27,9 @@ def shape(name, at, size, mat, parent=None, kind="box"):
     obj.location = at
     obj.scale = size
     obj.data["generated_by"] = "severed"
+    if kind == "body":
+        for poly in obj.data.polygons:
+            poly.use_smooth = True
     obj.data.materials.append(mat)
     paint(obj.data, mat.diffuse_color)
     return obj

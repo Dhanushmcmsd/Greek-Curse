@@ -56,14 +56,14 @@ func _ready() -> void:
 		edge.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(edge)
 		_edges.append(edge)
-	_credit.position = Vector2(350, 560)
+	_credit.position = Vector2(350, 530)
 	add_child(_credit)
 	_hint.text = (
 		"A/D move | J/K/L attacks | Shift block | Space dodge | Esc pause"
-		+ " | 1 local / 2 AI / 3 watch"
+		+ " | U super / I ultimate"
 	)
 	_hint.add_theme_font_size_override("font_size", 16)
-	var theme := Theme.new()
+	var theme := GameTheme.build()
 	theme.default_font_size = int(SettingsHooks.scale_amount(18.0, "ui_scale_percent"))
 	for child in get_children():
 		if child is Control:
@@ -101,6 +101,12 @@ func show_match(world: SimWorld, banner: String) -> void:
 				"FURY" if SimModifier.percent_for(fighter, world.tick) > 100 else ""
 			]
 		)
+		if not fighter.loadout.get("superpower", []).is_empty():
+			var id: String = fighter.loadout["superpower"][0]
+			var remaining := maxi(0, int(fighter.ability_cooldowns.get(id, 0)) - world.tick)
+			_resources[i].text += (
+				"  U: " + ("READY" if remaining == 0 else str((remaining + 59) / 60) + "s")
+			)
 		var chain := world.fighters[1 - i].chain
 		_combos[i].text = (
 			"%d HITS%s"

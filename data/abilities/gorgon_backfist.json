@@ -1,0 +1,28 @@
+{
+  "id": "gorgon_backfist",
+  "name": "Gorgon Backfist",
+  "type": "heavy",
+  "description": "Spinning counter punch that causes a short Stone Stiff slowdown.",
+  "tags": [
+    "heavy"
+  ],
+  "unlock_group": "heavy",
+  "move_id": "gorgon_backfist",
+  "cooldown_ticks": 0,
+  "stamina_cost": 24,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "stone_stiff",
+      "timing": "hit",
+      "duration": 120,
+      "speed_percent": 65
+    }
+  ],
+  "icon_id": "gorgon_backfist",
+  "anim_set": "punch_heavy",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "gorgon_backfist"
+}

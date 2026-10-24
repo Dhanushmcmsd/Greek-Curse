@@ -1,0 +1,28 @@
+{
+  "id": "hermes_dash",
+  "name": "Hermes Dash",
+  "type": "superpower",
+  "description": "Short invulnerable dash through attacks.",
+  "tags": [
+    "superpower"
+  ],
+  "unlock_group": "superpower",
+  "move_id": "hermes_dash",
+  "cooldown_ticks": 480,
+  "stamina_cost": 20,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "dash",
+      "timing": "begin",
+      "distance": 900,
+      "invulnerable_ticks": 18
+    }
+  ],
+  "icon_id": "hermes_dash",
+  "anim_set": "super_cast",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "hermes_dash"
+}

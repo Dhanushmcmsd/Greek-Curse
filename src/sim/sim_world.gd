@@ -5,6 +5,15 @@ extends RefCounted
 const PHASE_FIGHTING := 0
 const PHASE_MATCH_OVER := 1
 
+var abilities: Dictionary = {}
+var pending_events: Array = []
+var arena_rules: Dictionary = {}
+var hazards_enabled: bool = false
+var hazard_offset: int = 0
+var hazard_zone: int = 0
+var hazard_cycle: int = -1
+var hazard_hits: int = 0
+
 var tick: int = 0
 var round_tick: int = 0
 var round_index: int = 1
@@ -99,6 +108,7 @@ func step(inputs: Array) -> Array:
 		fighters[index].buffer.push(masks[index], tick, window)
 	if hitstop_remaining > 0:
 		hitstop_remaining -= 1
+		SimHazards.step(self, events)
 		_finish_round(events)
 		return events
 	for index in fighters.size():
@@ -107,10 +117,13 @@ func step(inputs: Array) -> Array:
 	_face()
 	_separate()
 	SimCombat.resolve(self, events)
+	events.append_array(pending_events)
+	pending_events.clear()
 	_separate()
 	_face()
 	for fighter in fighters:
 		SimStamina.regen(fighter, combat)
+	SimHazards.step(self, events)
 	_finish_round(events)
 	return events
 
@@ -131,6 +144,8 @@ func snapshot_hash() -> int:
 		rng.get_state(),
 		hitstop_remaining,
 	]
+	if hazards_enabled:
+		values.append_array([hazard_offset, hazard_zone, hazard_cycle, hazard_hits])
 	for fighter in fighters:
 		(
 			values
@@ -155,6 +170,10 @@ func snapshot_hash() -> int:
 				]
 			)
 		)
+		if not abilities.is_empty():
+			values.append_array([fighter.invulnerable_until, fighter.shield, fighter.shield_burst])
+			for id in fighter.ability_cooldowns:
+				values.append_array([StateHash.hash_string(id), int(fighter.ability_cooldowns[id])])
 		values.append_array(fighter.limbs.hash_values())
 		values.append_array(fighter.chain.hash_values())
 		values.append_array(fighter.buffer.hash_values())
@@ -171,6 +190,10 @@ func snapshot_hash() -> int:
 					modifier.speed_percent
 				]
 			)
+	if not abilities.is_empty():
+		for fighter in fighters:
+			for modifier in fighter.modifiers:
+				values.append_array([modifier.taken_percent, modifier.limb_percent])
 	for record in amputations:
 		values.append_array(
 			[

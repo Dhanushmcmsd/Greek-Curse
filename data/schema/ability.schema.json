@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "type",
+    "description",
+    "move_id",
+    "effects",
+    "cooldown_ticks",
+    "stamina_cost",
+    "meter_cost",
+    "icon_id",
+    "anim_set",
+    "audio_ids",
+    "caption_id"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "light",
+        "heavy",
+        "kick",
+        "superpower",
+        "passive",
+        "ultimate"
+      ]
+    },
+    "cooldown_ticks": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "meter_cost": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind"
+        ]
+      }
+    }
+  }
+}

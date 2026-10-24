@@ -26,7 +26,7 @@
 
 ## Current Stage
 
-- Stage: 14 (COMPLETE)
+- Stage: 16 (COMPLETE)
 
 - Started / last updated: 2026-10-24
 
@@ -49,8 +49,8 @@
 | 12 | Shared Skeleton Modular Fighters And Sockets | COMPLETE | 2026-10-24 | docs/handoff/12_SHARED_SKELETON_MODULAR_FIGHTERS_AND_SOCKETS.md |
 | 13 | Regrown Limbs And Attachment Validation | COMPLETE | 2026-10-24 | docs/handoff/13_REGROWN_LIMBS_AND_ATTACHMENT_VALIDATION.md |
 | 14 | Animation And Code Driven Motion | COMPLETE | 2026-10-24 | docs/handoff/14_ANIMATION_AND_CODE_DRIVEN_MOTION.md |
-| 15 | Arenas Lighting Camera And Vfx | NOT_STARTED | | |
-| 16 | Audio Ui And Accessibility | NOT_STARTED | | |
+| 15 | Arenas Lighting Camera And Vfx | COMPLETE | 2026-10-24 | docs/handoff/15_ARENAS_LIGHTING_CAMERA_AND_VFX.md |
+| 16 | Audio Ui And Accessibility | COMPLETE | 2026-10-24 | docs/handoff/16_AUDIO_UI_AND_ACCESSIBILITY.md |
 | 17 | Data Driven Abilities And Balancing | NOT_STARTED | | |
 | 18 | Fighter Roster And Mvp Content | NOT_STARTED | | |
 | 19 | Match Results Progression And Saves | NOT_STARTED | | |
@@ -146,7 +146,7 @@ Retest corrected main match (tools/playtest_checkpoint_b.ps1 -Main): facing, nor
 
 ## Next Prompt Filename
 
-15_ARENAS_LIGHTING_CAMERA_AND_VFX.md
+17_DATA_DRIVEN_ABILITIES_AND_BALANCING.md
 ## Session Log
 
 | Date | Stage | Summary | Result |

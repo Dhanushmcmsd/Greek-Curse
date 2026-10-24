@@ -33,6 +33,15 @@ const STATE_NAMES: Array[String] = [
 ]
 const POSE_IDS := {"standing": 0, "crouch": 1, "hop": 2, "crawl": 3, "torso": 4}
 
+var loadout: Dictionary = {}
+var ability_cooldowns: Dictionary = {}
+var ability_uses: Dictionary = {}
+var invulnerable_until: int = 0
+var shield: int = 0
+var shield_burst: int = 0
+var passive_limb_percent: int = 100
+var passive_speed_percent: int = 100
+var frenzy_maximum: int = 100
 var fighter_id: String = ""
 var display_name: String = ""
 var x: int = 0
@@ -43,6 +52,8 @@ var power_percent: int = 100
 var height_mm: int = 1000
 var body_width_mm: int = 400
 var reach: int = 1
+var reach_percent: int = 100
+var knockback_percent: int = 100
 var limb_toughness: int = 1
 var health: int = 300
 var stamina: int = 0

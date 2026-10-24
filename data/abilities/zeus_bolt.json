@@ -1,0 +1,28 @@
+{
+  "id": "zeus_bolt",
+  "name": "Zeus Bolt",
+  "type": "superpower",
+  "description": "Fast lightning line. Chars limbs, raising limb damage taken for 5 s.",
+  "tags": [
+    "superpower"
+  ],
+  "unlock_group": "superpower",
+  "move_id": "zeus_bolt",
+  "cooldown_ticks": 840,
+  "stamina_cost": 20,
+  "meter_cost": 0,
+  "effects": [
+    {
+      "kind": "status_limb_vulnerability",
+      "timing": "hit",
+      "duration": 300,
+      "limb_percent": 125
+    }
+  ],
+  "icon_id": "zeus_bolt",
+  "anim_set": "super_cast",
+  "audio_ids": [
+    "lightning"
+  ],
+  "caption_id": "zeus_bolt"
+}

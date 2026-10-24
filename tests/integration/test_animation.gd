@@ -136,6 +136,7 @@ func test_match_buttons_reset_and_grant_replacements() -> void:
 
 func test_attack_pose_matrix_includes_body_fallbacks() -> void:
 	var maximum_delta := 0
+	var cases := 0
 	for id in ["theron", "atalanta", "pyrrhus", "sibyl"]:
 		var rig := FighterRig.new()
 		rig.load_fighter(id)
@@ -150,6 +151,7 @@ func test_attack_pose_matrix_includes_body_fallbacks() -> void:
 			SimBodyState.apply_mask(fighter, mask)
 			fighter.pose = SimBodyState.movement(fighter, world.body_rules)["pose"]
 			for move in world.moves:
+				cases += 1
 				fighter.begin_move(1, move, 1, 1)
 				fighter.attack_slot = move["limb_side"]
 				fighter.state = SimFighter.State.ACTIVE
@@ -173,4 +175,4 @@ func test_attack_pose_matrix_includes_body_fallbacks() -> void:
 						)
 					)
 		rig.free()
-	print("ANIMATION_ATTACK_MATRIX cases=832 maximum_reach_delta_mm=", maximum_delta)
+	print("ANIMATION_ATTACK_MATRIX cases=", cases, " maximum_reach_delta_mm=", maximum_delta)

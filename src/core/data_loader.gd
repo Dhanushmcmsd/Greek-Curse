@@ -56,13 +56,8 @@ func _inferred_schema(resource_path: String) -> String:
 	if FileAccess.file_exists(per_file):
 		return per_file
 	var folder := directory.trim_suffix("/")
-	if folder == "fighters":
-		return "res://data/schema/fighter.schema.json"
-	if folder == "moves":
-		return "res://data/schema/move.schema.json"
-	if folder == "limbs":
-		return "res://data/schema/limb.schema.json"
-	return ""
+	var schemas := {"fighters": "fighter", "moves": "move", "abilities": "ability", "limbs": "limb"}
+	return "res://data/schema/%s.schema.json" % schemas[folder] if schemas.has(folder) else ""
 
 
 func _fail(resource_path: String, message: String) -> Result:

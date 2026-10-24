@@ -17,6 +17,7 @@ static func hit(
 	var limb: SimLimb = fighter.limbs.parts.get(zone)
 	var previous := "" if limb == null else limb.state
 	var pending := limb != null and limb.zero_pending
+	amount = SimAbilities.incoming(fighter, world.tick, amount, true)
 	var applied := fighter.limbs.apply_limb_damage(zone, amount)
 	if count_hit:
 		fighter.chain.note(world.tick, int(rules["combo_gap_ticks"]), zone, applied, attacker)

@@ -1,4 +1,43 @@
 {
-  "speed_mm_per_tick": [0, 6, 10, 14, 20, 26],
-  "power_percent": [0, 70, 85, 100, 115, 130]
+  "speed_mm_per_tick": [
+    0,
+    12,
+    22,
+    30,
+    38,
+    46
+  ],
+  "power_percent": [
+    0,
+    70,
+    85,
+    100,
+    115,
+    130
+  ],
+  "reach_percent": [
+    0,
+    88,
+    94,
+    100,
+    106,
+    112
+  ],
+  "target_width_mm": [
+    0,
+    330,
+    360,
+    400,
+    450,
+    500
+  ],
+  "body_rules": {
+    "reference_weight": 80,
+    "reference_muscle": 60,
+    "reference_height": 1800,
+    "weight_speed_divisor": 3,
+    "weight_knockback_divisor": 2,
+    "muscle_power_divisor": 10,
+    "muscle_toughness_divisor": 5
+  }
 }

@@ -1,0 +1,27 @@
+{
+  "id": "olympian_barrage",
+  "name": "Olympian Barrage",
+  "type": "ultimate",
+  "description": "A sequence of fast strikes ending in a heavy slam.",
+  "tags": [
+    "ultimate"
+  ],
+  "unlock_group": "ultimate",
+  "move_id": "olympian_barrage",
+  "cooldown_ticks": 0,
+  "stamina_cost": 0,
+  "meter_cost": 100,
+  "effects": [
+    {
+      "kind": "ground_bounce",
+      "timing": "last_hit",
+      "amount": 300
+    }
+  ],
+  "icon_id": "olympian_barrage",
+  "anim_set": "ultimate_cast",
+  "audio_ids": [
+    "whoosh"
+  ],
+  "caption_id": "olympian_barrage"
+}
