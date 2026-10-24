@@ -9,6 +9,7 @@ var sockets: Dictionary = {}
 var limb_meshes: Dictionary = {}
 var stump_meshes: Dictionary = {}
 var skeleton: Skeleton3D
+var anim_player: AnimationPlayer
 var replacements: Dictionary = {}
 var fighter_height: float = 1.8
 var fighter_width: float = 0.45
@@ -25,6 +26,18 @@ func load_fighter(id: String) -> bool:
 	model = (load(path) as PackedScene).instantiate()
 	add_child(model)
 	ModelLoader.prepare_materials(model)
+	var anim_path := "res://assets/fighters/%s/anims/anims.glb" % id
+	if ResourceLoader.exists(anim_path):
+		var anim_scene := (load(anim_path) as PackedScene).instantiate()
+		var source_ap := anim_scene.find_child("AnimationPlayer", true, false) as AnimationPlayer
+		if source_ap != null:
+			anim_player = AnimationPlayer.new()
+			model.add_child(anim_player)
+			anim_player.root_node = NodePath("..")
+			for lib_name in source_ap.get_animation_library_list():
+				var lib: AnimationLibrary = source_ap.get_animation_library(lib_name)
+				anim_player.add_animation_library(lib_name, lib.duplicate(true))
+		anim_scene.queue_free()
 	var row: Dictionary = DataLoader.new().load_json("res://data/fighters/%s.json" % id).value
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])

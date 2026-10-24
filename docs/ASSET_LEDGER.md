@@ -4,3 +4,10 @@
 
 ## Polish and stage 15–16 generated assets
 Original procedural fighter detail, modular arena kit and 15 gore chunks: tools/blender, no external source assets. Reference images guide themes only. Audio is original deterministic placeholder synthesis, not third-party CC0; tools/audio scripts and manifests record generation. UI glyph SVGs and stone/bronze theme generated locally; Godot default font used, no downloaded fonts.
+
+## Animation Assets (Stage A0)
+- Pack Name: Universal Animation Library (Vol. 1 & Vol. 2)
+- Author: Quaternius (https://quaternius.com / https://www.patreon.com/quaternius)
+- Licence: CC0 1.0 Universal Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+- Files Used: `UAL1_Standard.glb`, `UAL2_Standard.glb` (non-root-motion standard humanoid variants). Retargeted to project 15-bone shared humanoid rig.
+

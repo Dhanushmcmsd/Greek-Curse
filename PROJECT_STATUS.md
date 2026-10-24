@@ -142,7 +142,7 @@
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-Retest corrected main match (tools/playtest_checkpoint_b.ps1 -Main): facing, normal limb damage/severing, New match and Replacement limbs buttons. Stage 14 is complete as requested. Next implementation stage is 15.
+Retest corrected main match (tools/playtest_checkpoint_b.ps1 -Main): facing, normal limb damage/severing, New match and Replacement limbs buttons. Stage 16 is COMPLETE. Next implementation step is A0 Animation Replacement and Stage 17.
 
 ## Next Prompt Filename
 
