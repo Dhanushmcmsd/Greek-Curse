@@ -1,0 +1,732 @@
+{
+  "version": 2,
+  "source": "Mixamo Character Animation Collection (46 clips)",
+  "seed": 20261025,
+  "fps": 30,
+  "fighters": {
+    "theron": {
+      "archetype": "heavy_brawler",
+      "style_notes": "heavy_brawler motion profile using Mixamo animations.",
+      "actions": {
+        "idle": {
+          "clip": "idle_and_start_animation_happy_idle",
+          "loop": true,
+          "speed_scale": 0.9
+        },
+        "walk_fwd": {
+          "clip": "walking_front_walking",
+          "loop": true,
+          "speed_scale": 0.9
+        },
+        "walk_back": {
+          "clip": "walking_back_injured_walk_backwards",
+          "loop": true,
+          "speed_scale": -0.9,
+          "derived": true,
+          "recipe": "speed_scale(-0.9)"
+        },
+        "run": {
+          "clip": "walking_front_walking",
+          "derived": true,
+          "recipe": "walking_front_walking sped up 1.6x with +10 deg forward torso lean",
+          "loop": true,
+          "speed_scale": 1.4400000000000002,
+          "additive_lean_x": 10.0
+        },
+        "block": {
+          "clip": "block_center_block",
+          "loop": false,
+          "speed_scale": 1.0
+        },
+        "dodge": {
+          "clip": "walking_back_injured_walk_backwards",
+          "derived": true,
+          "recipe": "walking_back_injured_walk_backwards sped up 2.0x with backward lean and lateral evasive offset",
+          "loop": false,
+          "speed_scale": 2.0,
+          "additive_lean_x": -15.0
+        },
+        "grab": {
+          "clip": "punch_punching",
+          "derived": true,
+          "recipe": "punch_punching upper-body clamped at full reach frame with neutral stance hold",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "stagger": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "loop": false
+        },
+        "knockdown": {
+          "clip": "death_fall_flat",
+          "loop": false
+        },
+        "get_up": {
+          "clip": "death_fall_flat",
+          "derived": true,
+          "recipe": "death_fall_flat played in reverse (speed_scale -1.0) with recovery blend",
+          "loop": false,
+          "speed_scale": -1.0
+        },
+        "crawl": {
+          "clip": "no_legs_crawling",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "torso_scuttle": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling upper torso loop with legs detached",
+          "loop": true,
+          "speed_scale": 1.2
+        },
+        "torso_roll": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling with continuous roll rotation",
+          "loop": true,
+          "speed_scale": 1.5
+        },
+        "win": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "lose": {
+          "clip": "death_standing_death_backward_01",
+          "loop": false,
+          "speed_scale": 0.9
+        },
+        "punch_jab": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.3
+        },
+        "punch_cross": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "hook": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "overhead_slam": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "loop": false,
+          "contact_phase": 0.45
+        },
+        "heavy_strike": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_low": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "kick_sweep": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_stomp": {
+          "clip": "kick_flying_knee_punch_combo",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_thrust": {
+          "clip": "kick_kicking",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "zeus_bolt": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 upper body cast + idle lower body stance",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "hermes_dash": {
+          "clip": "walking_front_walking",
+          "derived": true,
+          "recipe": "walking_front_walking burst at 2.5x speed with deep forward lean",
+          "loop": false,
+          "speed_scale": 2.5
+        },
+        "ares_rage": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "derived": true,
+          "recipe": "idle_and_start_animation_mutant_flexing_muscles flex roar with red rage pulse",
+          "loop": false,
+          "speed_scale": 1.2
+        },
+        "forge_shield": {
+          "clip": "block_center_block",
+          "derived": true,
+          "recipe": "block_center_block anchored defensive posture with barrier cue",
+          "loop": false
+        },
+        "zeus_wrath": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        },
+        "olympian_barrage": {
+          "clip": "kick_flying_knee_punch_combo",
+          "derived": true,
+          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        }
+      }
+    },
+    "atalanta": {
+      "archetype": "rushdown_hunter",
+      "style_notes": "rushdown_hunter motion profile using Mixamo animations.",
+      "actions": {
+        "idle": {
+          "clip": "idle_and_start_animation_chapa-giratoria",
+          "loop": true,
+          "speed_scale": 1.15
+        },
+        "walk_fwd": {
+          "clip": "walking_front_wheelbarrow_walk",
+          "loop": true,
+          "speed_scale": 1.15
+        },
+        "walk_back": {
+          "clip": "walking_back_walking_backwards",
+          "loop": true,
+          "speed_scale": -1.15,
+          "derived": true,
+          "recipe": "speed_scale(-1.15)"
+        },
+        "run": {
+          "clip": "walking_front_wheelbarrow_walk",
+          "derived": true,
+          "recipe": "walking_front_wheelbarrow_walk sped up 1.6x with +10 deg forward torso lean",
+          "loop": true,
+          "speed_scale": 1.8399999999999999,
+          "additive_lean_x": 10.0
+        },
+        "block": {
+          "clip": "block_left_block",
+          "loop": false,
+          "speed_scale": 1.0
+        },
+        "dodge": {
+          "clip": "walking_back_walking_backwards",
+          "derived": true,
+          "recipe": "walking_back_walking_backwards sped up 2.0x with backward lean and lateral evasive offset",
+          "loop": false,
+          "speed_scale": 2.0,
+          "additive_lean_x": -15.0
+        },
+        "grab": {
+          "clip": "punch_boxing",
+          "derived": true,
+          "recipe": "punch_boxing upper-body clamped at full reach frame with neutral stance hold",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "stagger": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "loop": false
+        },
+        "knockdown": {
+          "clip": "death_standing_death_left_01",
+          "loop": false
+        },
+        "get_up": {
+          "clip": "death_fall_flat",
+          "derived": true,
+          "recipe": "death_fall_flat played in reverse (speed_scale -1.0) with recovery blend",
+          "loop": false,
+          "speed_scale": -1.0
+        },
+        "crawl": {
+          "clip": "no_legs_crawling",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "torso_scuttle": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling upper torso loop with legs detached",
+          "loop": true,
+          "speed_scale": 1.2
+        },
+        "torso_roll": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling with continuous roll rotation",
+          "loop": true,
+          "speed_scale": 1.5
+        },
+        "win": {
+          "clip": "idle_and_start_animation_happy_idle",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "lose": {
+          "clip": "death_standing_death_backward_01",
+          "loop": false,
+          "speed_scale": 0.9
+        },
+        "punch_jab": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.3
+        },
+        "punch_cross": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "hook": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "overhead_slam": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.45
+        },
+        "heavy_strike": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_low": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "kick_sweep": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_stomp": {
+          "clip": "kick_flying_knee_punch_combo",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_thrust": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "zeus_bolt": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 upper body cast + idle lower body stance",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "hermes_dash": {
+          "clip": "walking_front_wheelbarrow_walk",
+          "derived": true,
+          "recipe": "walking_front_wheelbarrow_walk burst at 2.5x speed with deep forward lean",
+          "loop": false,
+          "speed_scale": 2.5
+        },
+        "ares_rage": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "derived": true,
+          "recipe": "idle_and_start_animation_mutant_flexing_muscles flex roar with red rage pulse",
+          "loop": false,
+          "speed_scale": 1.2
+        },
+        "forge_shield": {
+          "clip": "block_left_block",
+          "derived": true,
+          "recipe": "block_left_block anchored defensive posture with barrier cue",
+          "loop": false
+        },
+        "zeus_wrath": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        },
+        "olympian_barrage": {
+          "clip": "kick_flying_knee_punch_combo",
+          "derived": true,
+          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        }
+      }
+    },
+    "pyrrhus": {
+      "archetype": "compact_grappler",
+      "style_notes": "compact_grappler motion profile using Mixamo animations.",
+      "actions": {
+        "idle": {
+          "clip": "idle_and_start_animation_standing_idle_03",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "walk_fwd": {
+          "clip": "walking_front_long_step_forward",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "walk_back": {
+          "clip": "walking_back_backward_walking_turn",
+          "loop": true,
+          "speed_scale": -1.0,
+          "derived": true,
+          "recipe": "speed_scale(-1.0)"
+        },
+        "run": {
+          "clip": "walking_front_long_step_forward",
+          "derived": true,
+          "recipe": "walking_front_long_step_forward sped up 1.6x with +10 deg forward torso lean",
+          "loop": true,
+          "speed_scale": 1.6,
+          "additive_lean_x": 10.0
+        },
+        "block": {
+          "clip": "block_sword_and_shield_block",
+          "loop": false,
+          "speed_scale": 1.0
+        },
+        "dodge": {
+          "clip": "walking_back_backward_walking_turn",
+          "derived": true,
+          "recipe": "walking_back_backward_walking_turn sped up 2.0x with backward lean and lateral evasive offset",
+          "loop": false,
+          "speed_scale": 2.0,
+          "additive_lean_x": -15.0
+        },
+        "grab": {
+          "clip": "punch_elbow_punch",
+          "derived": true,
+          "recipe": "punch_elbow_punch upper-body clamped at full reach frame with neutral stance hold",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "stagger": {
+          "clip": "damage_taken_big_kidney_hit",
+          "loop": false
+        },
+        "knockdown": {
+          "clip": "death_standing_death_left_01",
+          "loop": false
+        },
+        "get_up": {
+          "clip": "death_fall_flat",
+          "derived": true,
+          "recipe": "death_fall_flat played in reverse (speed_scale -1.0) with recovery blend",
+          "loop": false,
+          "speed_scale": -1.0
+        },
+        "crawl": {
+          "clip": "no_legs_crawling",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "torso_scuttle": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling upper torso loop with legs detached",
+          "loop": true,
+          "speed_scale": 1.2
+        },
+        "torso_roll": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling with continuous roll rotation",
+          "loop": true,
+          "speed_scale": 1.5
+        },
+        "win": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "lose": {
+          "clip": "death_standing_death_backward_01",
+          "loop": false,
+          "speed_scale": 0.9
+        },
+        "punch_jab": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.3
+        },
+        "punch_cross": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "hook": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "overhead_slam": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "loop": false,
+          "contact_phase": 0.45
+        },
+        "heavy_strike": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_low": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "kick_sweep": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_stomp": {
+          "clip": "kick_flying_knee_punch_combo",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_thrust": {
+          "clip": "kick_martelo_2",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "zeus_bolt": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 upper body cast + idle lower body stance",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "hermes_dash": {
+          "clip": "walking_front_long_step_forward",
+          "derived": true,
+          "recipe": "walking_front_long_step_forward burst at 2.5x speed with deep forward lean",
+          "loop": false,
+          "speed_scale": 2.5
+        },
+        "ares_rage": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "derived": true,
+          "recipe": "idle_and_start_animation_mutant_flexing_muscles flex roar with red rage pulse",
+          "loop": false,
+          "speed_scale": 1.2
+        },
+        "forge_shield": {
+          "clip": "block_sword_and_shield_block",
+          "derived": true,
+          "recipe": "block_sword_and_shield_block anchored defensive posture with barrier cue",
+          "loop": false
+        },
+        "zeus_wrath": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        },
+        "olympian_barrage": {
+          "clip": "kick_flying_knee_punch_combo",
+          "derived": true,
+          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        }
+      }
+    },
+    "sibyl": {
+      "archetype": "arcane_zoner",
+      "style_notes": "arcane_zoner motion profile using Mixamo animations.",
+      "actions": {
+        "idle": {
+          "clip": "idle_and_start_animation_idle_3",
+          "loop": true,
+          "speed_scale": 0.95
+        },
+        "walk_fwd": {
+          "clip": "walking_front_strut_walking",
+          "loop": true,
+          "speed_scale": 0.95
+        },
+        "walk_back": {
+          "clip": "walking_back_backward_walking_turn",
+          "loop": true,
+          "speed_scale": -0.95,
+          "derived": true,
+          "recipe": "speed_scale(-0.95)"
+        },
+        "run": {
+          "clip": "walking_front_strut_walking",
+          "derived": true,
+          "recipe": "walking_front_strut_walking sped up 1.6x with +10 deg forward torso lean",
+          "loop": true,
+          "speed_scale": 1.52,
+          "additive_lean_x": 10.0
+        },
+        "block": {
+          "clip": "block_body_block",
+          "loop": false,
+          "speed_scale": 1.0
+        },
+        "dodge": {
+          "clip": "walking_back_backward_walking_turn",
+          "derived": true,
+          "recipe": "walking_back_backward_walking_turn sped up 2.0x with backward lean and lateral evasive offset",
+          "loop": false,
+          "speed_scale": 2.0,
+          "additive_lean_x": -15.0
+        },
+        "grab": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 upper-body clamped at full reach frame with neutral stance hold",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "stagger": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "loop": false
+        },
+        "knockdown": {
+          "clip": "death_fall_flat",
+          "loop": false
+        },
+        "get_up": {
+          "clip": "death_fall_flat",
+          "derived": true,
+          "recipe": "death_fall_flat played in reverse (speed_scale -1.0) with recovery blend",
+          "loop": false,
+          "speed_scale": -1.0
+        },
+        "crawl": {
+          "clip": "no_legs_crawling",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "torso_scuttle": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling upper torso loop with legs detached",
+          "loop": true,
+          "speed_scale": 1.2
+        },
+        "torso_roll": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "recipe": "no_legs_crawling with continuous roll rotation",
+          "loop": true,
+          "speed_scale": 1.5
+        },
+        "win": {
+          "clip": "idle_and_start_animation_happy_idle",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "lose": {
+          "clip": "death_standing_death_backward_01",
+          "loop": false,
+          "speed_scale": 0.9
+        },
+        "punch_jab": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "loop": false,
+          "contact_phase": 0.3
+        },
+        "punch_cross": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "hook": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "overhead_slam": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.45
+        },
+        "heavy_strike": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_low": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "kick_sweep": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_stomp": {
+          "clip": "kick_flying_knee_punch_combo",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "kick_thrust": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.35
+        },
+        "zeus_bolt": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 upper body cast + idle lower body stance",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "hermes_dash": {
+          "clip": "walking_front_strut_walking",
+          "derived": true,
+          "recipe": "walking_front_strut_walking burst at 2.5x speed with deep forward lean",
+          "loop": false,
+          "speed_scale": 2.5
+        },
+        "ares_rage": {
+          "clip": "idle_and_start_animation_mutant_flexing_muscles",
+          "derived": true,
+          "recipe": "idle_and_start_animation_mutant_flexing_muscles flex roar with red rage pulse",
+          "loop": false,
+          "speed_scale": 1.2
+        },
+        "forge_shield": {
+          "clip": "block_body_block",
+          "derived": true,
+          "recipe": "block_body_block anchored defensive posture with barrier cue",
+          "loop": false
+        },
+        "zeus_wrath": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "derived": true,
+          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        },
+        "olympian_barrage": {
+          "clip": "kick_flying_knee_punch_combo",
+          "derived": true,
+          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "loop": false,
+          "telegraph_ticks": 42
+        }
+      }
+    }
+  }
+}

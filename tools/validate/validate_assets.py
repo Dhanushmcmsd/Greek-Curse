@@ -67,6 +67,43 @@ def check_assets():
                 errors.append(record["id"] + " socket position " + slot)
     if skeletons and any(s != skeletons[0] for s in skeletons[1:]):
         errors.append("fighter skeleton hierarchies differ")
+
+    # Validate Mixamo converted models if present
+    mixamo_manifest_path = ROOT / "assets/fighters_mixamo/mixamo_models_manifest.json"
+    if mixamo_manifest_path.exists():
+        try:
+            mixamo_manifest = json.loads(mixamo_manifest_path.read_text(encoding="utf-8"))
+            mixamo_models = mixamo_manifest.get("models", {})
+            mixamo_tri_budget = 65000  # D-044: up to 60,000 tris with headroom
+            mixamo_skeletons = []
+            req_nodes = [
+                "SOCKET_ARM_L", "SOCKET_ARM_R", "SOCKET_LEG_L", "SOCKET_LEG_R", "SOCKET_NECK",
+                "LIMB_ARM_L", "LIMB_ARM_R", "LIMB_LEG_L", "LIMB_LEG_R",
+                "STUMP_ARM_L", "STUMP_ARM_R", "STUMP_LEG_L", "STUMP_LEG_R"
+            ]
+            for mid, entry in mixamo_models.items():
+                m_path = ROOT / entry["path"]
+                if not m_path.exists():
+                    continue
+                m_info = inspect(m_path)
+                if m_info["triangles"] > mixamo_tri_budget:
+                    errors.append(f"mixamo_{mid}: triangle budget exceeded ({m_info['triangles']} > {mixamo_tri_budget})")
+                for rnode in req_nodes:
+                    if rnode not in m_info["nodes"]:
+                        errors.append(f"mixamo_{mid}: missing node {rnode}")
+                if not m_info["skins"]:
+                    errors.append(f"mixamo_{mid}: missing skeleton skin")
+                else:
+                    m_nodes = m_info["data"]["nodes"]
+                    m_joints = set(m_info["skins"][0]["joints"])
+                    m_parents = {c: i for i, node in enumerate(m_nodes) for c in node.get("children", [])}
+                    m_hierarchy = sorted((m_nodes[i]["name"], m_nodes[m_parents[i]]["name"] if m_parents.get(i) in m_joints else "") for i in m_joints)
+                    mixamo_skeletons.append(m_hierarchy)
+            if mixamo_skeletons and any(s != mixamo_skeletons[0] for s in mixamo_skeletons[1:]):
+                errors.append("mixamo fighter skeleton hierarchies differ")
+        except Exception as err:
+            errors.append(f"mixamo manifest validation error: {err}")
+
     return errors
 
 

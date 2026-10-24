@@ -36,7 +36,9 @@ func setup(target: FighterRig) -> void:
 	rig.add_child(_beam)
 	_beam.hide()
 	data = DataLoader.new().load_json("res://data/animation/poses.json").value
-	var pm_res = DataLoader.new().load_json("res://data/animation/pack_map.json")
+	var pm_res = DataLoader.new().load_json("res://data/animation/mixamo_pack_map.json")
+	if not pm_res.ok:
+		pm_res = DataLoader.new().load_json("res://data/animation/pack_map.json")
 	if pm_res.ok and pm_res.value is Dictionary:
 		pack_map = pm_res.value
 	for file in DirAccess.get_files_at("res://data/moves"):
@@ -323,11 +325,20 @@ func _attachments(fighter: SimFighter, stopped: bool) -> void:
 
 func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 	floor_min = INF
+	var has_healthy_feet := (
+		fighter.limbs.usable("leg_l")
+		and fighter.limbs.usable("leg_r")
+		and fighter.pose in ["standing", "hop", "walk_a"]
+	)
 	for item in _bounds:
 		var mesh: MeshInstance3D = item[0]
 		if not mesh.is_visible_in_tree():
 			continue
 		var bone: int = item[1]
+		# When standing with intact legs, floor grounding is defined by foot contact;
+		# decorative torso/cloak mesh extensions should not pull grounding down below the feet.
+		if has_healthy_feet and bone == rig.skeleton.find_bone("spine"):
+			continue
 		var deform := (
 			rig.skeleton.get_bone_global_pose(bone)
 			* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
@@ -350,13 +361,18 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 			abs(sin(time * float(settings["quirk_rate"]))) * float(settings["hop_height_m"])
 		)
 	if fighter.state == SimFighter.State.ACTIVE:
-		var slot := fighter.attack_slot
-		var tip_name := ("hand." if slot.begins_with("arm") else "foot.") + slot.right(1)
-		if not fighter.limbs.parts.has(slot):
-			tip_name = "head"
-		var tip := rig.skeleton.find_bone(tip_name)
-		var position := rig.transform * rig.skeleton.get_bone_global_pose(tip).origin
-		reach_mismatch_mm = absi(int(abs(position.x) * 1000.0) - (fighter.hit_x + fighter.hit_w))
+		if fighter.hit_w == 0:
+			reach_mismatch_mm = 0
+		else:
+			var slot := fighter.attack_slot
+			var tip_name := ("hand." if slot.begins_with("arm") else "foot.") + slot.right(1)
+			if not fighter.limbs.parts.has(slot):
+				tip_name = "head"
+			var tip := rig.skeleton.find_bone(tip_name)
+			var position := rig.transform * rig.skeleton.get_bone_global_pose(tip).origin
+			reach_mismatch_mm = absi(
+				int(abs(position.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
+			)
 
 
 static func _slot_for(bone: String) -> String:
