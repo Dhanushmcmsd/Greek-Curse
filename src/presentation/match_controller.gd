@@ -37,6 +37,7 @@ var _ai_demo := false
 var _players: Array[PlayerInput] = [PlayerInput.new(), PlayerInput.new()]
 var _recorder := InputRecorder.new()
 var _captions: CaptionSystem
+var _model_override := ""
 
 
 func _ready() -> void:
@@ -105,6 +106,8 @@ func _read_flags() -> void:
 			_shot_path = arg.substr("--shot=".length())
 		elif arg.begins_with("--record="):
 			_record_path = arg.substr("--record=".length())
+		elif arg.begins_with("--model="):
+			_model_override = arg.substr("--model=".length())
 
 
 func _load_match() -> void:
@@ -174,7 +177,14 @@ func _build_stage() -> void:
 	for index in _fighter_rows.size():
 		var view := FighterView.new()
 		var row: Dictionary = _fighter_rows[index]
-		view.setup(colors[index], int(row["height_mm"]), int(row["body_width_mm"]), str(row["id"]))
+		var model_ov: String = _model_override if index == 0 else ""
+		view.setup(
+			colors[index],
+			int(row["height_mm"]),
+			int(row["body_width_mm"]),
+			str(row["id"]),
+			model_ov
+		)
 		add_child(view)
 		_views.append(view)
 		if view.rig != null:
