@@ -51,7 +51,6 @@
 | 14 | Animation And Code Driven Motion | COMPLETE | 2026-10-24 | docs/handoff/14_ANIMATION_AND_CODE_DRIVEN_MOTION.md |
 | 15 | Arenas Lighting Camera And Vfx | COMPLETE | 2026-10-24 | docs/handoff/15_ARENAS_LIGHTING_CAMERA_AND_VFX.md |
 | 16 | Audio Ui And Accessibility | COMPLETE | 2026-10-24 | docs/handoff/16_AUDIO_UI_AND_ACCESSIBILITY.md |
-| M0 | Mixamo Fighter Assets And Animation Overhaul | IN_PROGRESS | 2026-10-25 | docs/handoff/M0_STEP2_MODELS.md |
 | 17 | Data Driven Abilities And Balancing | NOT_STARTED | | |
 | 18 | Fighter Roster And Mvp Content | NOT_STARTED | | |
 | 19 | Match Results Progression And Saves | NOT_STARTED | | |

@@ -36,7 +36,9 @@ func setup(target: FighterRig) -> void:
 	rig.add_child(_beam)
 	_beam.hide()
 	data = DataLoader.new().load_json("res://data/animation/poses.json").value
-	var pm_res = DataLoader.new().load_json("res://data/animation/pack_map.json")
+	var pm_res = DataLoader.new().load_json("res://data/animation/mixamo_pack_map.json")
+	if not pm_res.ok:
+		pm_res = DataLoader.new().load_json("res://data/animation/pack_map.json")
 	if pm_res.ok and pm_res.value is Dictionary:
 		pack_map = pm_res.value
 	for file in DirAccess.get_files_at("res://data/moves"):

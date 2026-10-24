@@ -40,17 +40,47 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	add_child(model)
 	ModelLoader.prepare_materials(model)
 	var anim_path := "res://assets/fighters/%s/anims/anims.glb" % id
+	anim_player = AnimationPlayer.new()
+	model.add_child(anim_player)
+	anim_player.root_node = NodePath("..")
 	if ResourceLoader.exists(anim_path):
 		var anim_scene := (load(anim_path) as PackedScene).instantiate()
 		var source_ap := anim_scene.find_child("AnimationPlayer", true, false) as AnimationPlayer
 		if source_ap != null:
-			anim_player = AnimationPlayer.new()
-			model.add_child(anim_player)
-			anim_player.root_node = NodePath("..")
 			for lib_name in source_ap.get_animation_library_list():
 				var lib: AnimationLibrary = source_ap.get_animation_library(lib_name)
 				anim_player.add_animation_library(lib_name, lib.duplicate(true))
 		anim_scene.queue_free()
+
+	# Also load Mixamo animation clips assigned in mixamo_pack_map.json
+	var pm_res = DataLoader.new().load_json("res://data/animation/mixamo_pack_map.json")
+	if pm_res.ok and pm_res.value is Dictionary and pm_res.value.has("fighters"):
+		var f_map: Dictionary = pm_res.value["fighters"].get(id, {})
+		var actions: Dictionary = f_map.get("actions", {})
+		for act_key in actions:
+			var clip_info: Dictionary = actions[act_key]
+			var clip_file: String = clip_info.get("clip", "")
+			if clip_file == "":
+				continue
+			var anim_glb_path := "res://assets/fighters_mixamo/anims/%s.glb" % clip_file
+			if ResourceLoader.exists(anim_glb_path):
+				var loaded_glb := (load(anim_glb_path) as PackedScene).instantiate()
+				var clip_ap := (
+					loaded_glb.find_child("AnimationPlayer", true, false) as AnimationPlayer
+				)
+				if clip_ap != null:
+					for anim_name in clip_ap.get_animation_list():
+						var anim: Animation = clip_ap.get_animation(anim_name)
+						var target_name: String = str(id) + "_" + str(act_key)
+						var default_lib: AnimationLibrary
+						if anim_player.has_animation_library(""):
+							default_lib = anim_player.get_animation_library("")
+						else:
+							default_lib = AnimationLibrary.new()
+							anim_player.add_animation_library("", default_lib)
+						if not default_lib.has_animation(target_name):
+							default_lib.add_animation(target_name, anim.duplicate(true))
+				loaded_glb.queue_free()
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
