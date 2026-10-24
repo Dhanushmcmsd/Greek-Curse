@@ -136,13 +136,14 @@
 | Pre-flight installs and approvals | before 00 | DONE | 2026-10-24: Git 2.54.0.windows.1, Python 3.14.5, Godot 4.7.2.stable.official.ed1daf0bf, and Blender 5.2.3 LTS are verified. D-003 and D-009 were approved. Export templates `4.7.2.stable` are installed (B-003 closed). |
 | Checkpoint A | after 05 | PASS | 2026-10-24: owner replied Pass after playing the prototype (local commit 16cfe6b). |
 | Checkpoint B | after 13 | FIXES IMPLEMENTED; RETEST | Owner reported limb damage/facing/UI issues and explicitly authorized stage 14. Corrected with gameplay regressions and window evidence; no unconditional owner PASS claimed. |
+| Owner Checkpoint 1 (M0 Animation) | after M0 Step 3 | PENDING | Phase A (clip track binding) and Phase B (M0 animations) completed. All 128 tests pass; check_all passes; zero unresolved track warnings; real match evidence inspected. Awaiting owner playtest. |
 | Checkpoint C | after 20 | PENDING | |
 | Legal/store owner-only items | after 22B | PENDING | |
 | Checkpoint D | after 23 | PENDING | |
 | Final release approval | after 24 | PENDING | |
 
 ## Next Recommended Action
-Retest corrected main match (tools/playtest_checkpoint_b.ps1 -Main): facing, normal limb damage/severing, New match and Replacement limbs buttons. Stage 16 is COMPLETE. Next implementation step is A0 Animation Replacement and Stage 17.
+Owner Checkpoint 1: Run interactive playtest (`scenes/match/match_prototype.tscn` or `scenes/debug/animation_lab.tscn`). Verify Mixamo animations, clean foot grounding, attacks, blocking, and amputation/stump caps. Do not continue to Phase C (ultimates) until owner approval.
 
 ## Next Prompt Filename
 

@@ -79,4 +79,16 @@ func _physics_process(delta: float) -> void:
 			)
 	_views[0].show_fighter(fighter)
 	_debug.refresh(world)
-	info.text = "Tick %d | %s | reach delta %d mm" % [scrub, driver.phase, driver.reach_mismatch_mm]
+	var rig: FighterRig = _views[0].rig
+	var current_anim: String = ""
+	var is_fallback: bool = true
+	if rig.anim_player != null and rig.anim_player.is_playing():
+		current_anim = rig.anim_player.current_animation
+		is_fallback = false
+	var source_str: String = (
+		("Mixamo [" + current_anim + "]") if not is_fallback else "Procedural Fallback"
+	)
+	info.text = (
+		"Tick %d | %s | %s | reach %d mm"
+		% [scrub, driver.phase, source_str, driver.reach_mismatch_mm]
+	)

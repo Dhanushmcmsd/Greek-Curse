@@ -2,6 +2,8 @@ class_name FighterRig
 extends Node3D
 ## Generated modular mesh adapter. All changes are presentation-only.
 
+static var _bone_map_cache: Dictionary = {}
+
 var model: Node3D
 var groups: Dictionary = {}
 var stumps: Dictionary = {}
@@ -38,7 +40,11 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		return false
 	model = (load(path) as PackedScene).instantiate()
 	add_child(model)
-	ModelLoader.prepare_materials(model)
+	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
+	if skeleton != null:
+		for index in skeleton.get_bone_count():
+			_rest_rotations[index] = skeleton.get_bone_pose_rotation(index)
+
 	var anim_path := "res://assets/fighters/%s/anims/anims.glb" % id
 	anim_player = AnimationPlayer.new()
 	model.add_child(anim_player)
@@ -49,7 +55,9 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		if source_ap != null:
 			for lib_name in source_ap.get_animation_library_list():
 				var lib: AnimationLibrary = source_ap.get_animation_library(lib_name)
-				anim_player.add_animation_library(lib_name, lib.duplicate(true))
+				var dup_lib: AnimationLibrary = lib.duplicate(true)
+				_bind_animation_library_to_skeleton(dup_lib)
+				anim_player.add_animation_library(lib_name, dup_lib)
 		anim_scene.queue_free()
 
 	# Also load Mixamo animation clips assigned in mixamo_pack_map.json
@@ -78,15 +86,14 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 						else:
 							default_lib = AnimationLibrary.new()
 							anim_player.add_animation_library("", default_lib)
-						if not default_lib.has_animation(target_name):
-							default_lib.add_animation(target_name, anim.duplicate(true))
+						var dup_anim: Animation = anim.duplicate(true)
+						_bind_animation_to_skeleton(dup_anim)
+						if default_lib.has_animation(target_name):
+							default_lib.remove_animation(target_name)
+						default_lib.add_animation(target_name, dup_anim)
 				loaded_glb.queue_free()
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
-	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
-	if skeleton != null:
-		for index in skeleton.get_bone_count():
-			_rest_rotations[index] = skeleton.get_bone_pose_rotation(index)
 	for slot in SimLimbs.LIMB_NAMES:
 		var suffix := slot.to_upper()
 		groups[slot] = model.find_child("LIMB_" + suffix, true, false)
@@ -248,3 +255,48 @@ func _update_stump_palette() -> void:
 					if material != null:
 						material.vertex_color_use_as_albedo = false
 						material.albedo_color = color
+
+
+static func _get_bone_map() -> Dictionary:
+	if _bone_map_cache.is_empty():
+		var res: Dictionary = (
+			DataLoader.new().load_json("res://data/animation/mixamo_bone_map.json").value
+		)
+		_bone_map_cache = res.get("bone_map", {})
+	return _bone_map_cache
+
+
+func _bind_animation_library_to_skeleton(lib: AnimationLibrary) -> void:
+	for anim_name in lib.get_animation_list():
+		var anim: Animation = lib.get_animation(anim_name)
+		_bind_animation_to_skeleton(anim)
+
+
+func _bind_animation_to_skeleton(anim: Animation) -> void:
+	if skeleton == null or anim_player == null:
+		return
+	var resolved_root: Node = anim_player.get_node_or_null(anim_player.root_node)
+	if resolved_root == null:
+		return
+	var skel_rel_path: String = str(resolved_root.get_path_to(skeleton))
+	var bone_map: Dictionary = _get_bone_map()
+
+	var t := anim.get_track_count() - 1
+	while t >= 0:
+		var trk_path: NodePath = anim.track_get_path(t)
+		var sub_part: String = trk_path.get_concatenated_subnames()
+		if sub_part != "":
+			var clean_bone: String = sub_part.replace("mixamorig:", "")
+			var tgt_bone: String = clean_bone
+			if skeleton.find_bone(clean_bone) == -1:
+				tgt_bone = bone_map.get(clean_bone, "")
+			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
+				anim.track_set_path(t, NodePath(skel_rel_path + ":" + tgt_bone))
+			else:
+				anim.remove_track(t)
+		else:
+			var node_part: String = trk_path.get_concatenated_names()
+			var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
+			if target_node == null:
+				anim.remove_track(t)
+		t -= 1

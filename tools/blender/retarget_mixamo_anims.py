@@ -80,31 +80,36 @@ def retarget_clip(fbx_path, out_glb_path, clip_name):
     fstart = int(act.frame_range[0]) if act else 1
     fend = int(act.frame_range[1]) if act else 30
     
-    # Create target action
-    tgt_act = bpy.data.actions.new(name=clip_name)
-    if tgt_arm.animation_data is None:
-        tgt_arm.animation_data_create()
-    tgt_arm.animation_data.action = tgt_act
+    # Bake animation visually using Blender's NLA bake operator to properly sample constraints
+    bpy.context.view_layer.objects.active = tgt_arm
+    bpy.ops.object.mode_set(mode='POSE')
+    bpy.ops.pose.select_all(action='SELECT')
     
-    scene = bpy.context.scene
-    for f in range(fstart, fend + 1):
-        scene.frame_set(f)
-        for b in tgt_arm.pose.bones:
-            b.keyframe_insert(data_path="rotation_quaternion", frame=f)
-            if b.name == "root":
-                b.keyframe_insert(data_path="location", frame=f)
-                
-    # Remove constraints
-    for b in tgt_arm.pose.bones:
-        for c in list(b.constraints):
-            b.constraints.remove(c)
-            
+    bpy.ops.nla.bake(
+        frame_start=fstart,
+        frame_end=fend,
+        only_selected=True,
+        visual_keying=True,
+        clear_constraints=True,
+        use_current_action=False,
+        bake_types={'POSE'}
+    )
+    
+    if tgt_arm.animation_data and tgt_arm.animation_data.action:
+        tgt_arm.animation_data.action.name = clip_name
+        
     bpy.ops.object.mode_set(mode='OBJECT')
     
     # Remove source armature and root empty before export
     bpy.data.objects.remove(src_arm, do_unlink=True)
     bpy.data.objects.remove(target_root, do_unlink=True)
     
+    # Purge all actions except the newly baked target action
+    baked_action = tgt_arm.animation_data.action if tgt_arm.animation_data else None
+    for a in list(bpy.data.actions):
+        if a != baked_action:
+            bpy.data.actions.remove(a)
+            
     # Select target armature only
     bpy.ops.object.select_all(action='DESELECT')
     tgt_arm.select_set(True)
@@ -117,7 +122,8 @@ def retarget_clip(fbx_path, out_glb_path, clip_name):
         export_format="GLB",
         export_yup=True,
         export_skins=True,
-        export_animations=True
+        export_animations=True,
+        export_optimize_animation_size=False
     )
     
     h = hashlib.sha256(out_glb_path.read_bytes()).hexdigest()
