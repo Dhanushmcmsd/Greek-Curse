@@ -12,12 +12,14 @@ var _last_states: Dictionary = {}
 var _pose_time: float = 0.0
 
 
-func setup(body_color: Color, height_mm: int, width_mm: int, id: String = "") -> void:
+func setup(
+	body_color: Color, height_mm: int, width_mm: int, id: String = "", model_override: String = ""
+) -> void:
 	_rest_color = body_color
 	if id != "":
 		rig = FighterRig.new()
 		add_child(rig)
-		if rig.load_fighter(id):
+		if rig.load_fighter(id, model_override):
 			driver = PoseDriver.new()
 			driver.setup(rig)
 			return

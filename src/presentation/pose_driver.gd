@@ -453,7 +453,9 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 	elif act_key == "walk_fwd":
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name)
-		rig.anim_player.speed_scale = float(fighter.speed) / 20.0
+		rig.anim_player.speed_scale = (
+			float(fighter.walk_speed if "walk_speed" in fighter else 20) / 20.0
+		)
 		if not stopped:
 			rig.anim_player.advance(1.0 / 60.0)
 	else:

@@ -18,10 +18,23 @@ var _stump_palette: String = ""
 var _rest_rotations: Dictionary = {}
 
 
-func load_fighter(id: String) -> bool:
-	var path := "res://assets/generated/models/fighter_%s.glb" % id
-	if not ResourceLoader.exists(path):
-		push_error("Missing fighter model: " + path)
+func load_fighter(id: String, model_override: String = "") -> bool:
+	var row: Dictionary = DataLoader.new().load_json("res://data/fighters/%s.json" % id).value
+	var mid: String = model_override
+	if mid == "":
+		mid = str(row.get("model_id", id))
+	var mixamo_path := "res://assets/fighters_mixamo/fighter_%s.glb" % mid
+	var legacy_path := "res://assets/generated/models/fighter_%s.glb" % id
+	var path := ""
+	if ResourceLoader.exists(mixamo_path):
+		path = mixamo_path
+	elif ResourceLoader.exists(legacy_path):
+		push_warning(
+			"Mixamo model missing for %s (%s); falling back to %s" % [id, mid, legacy_path]
+		)
+		path = legacy_path
+	else:
+		push_error("Missing fighter model: " + mixamo_path + " or " + legacy_path)
 		return false
 	model = (load(path) as PackedScene).instantiate()
 	add_child(model)
@@ -38,7 +51,6 @@ func load_fighter(id: String) -> bool:
 				var lib: AnimationLibrary = source_ap.get_animation_library(lib_name)
 				anim_player.add_animation_library(lib_name, lib.duplicate(true))
 		anim_scene.queue_free()
-	var row: Dictionary = DataLoader.new().load_json("res://data/fighters/%s.json" % id).value
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D

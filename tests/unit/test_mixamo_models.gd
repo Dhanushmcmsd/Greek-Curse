@@ -66,18 +66,58 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 			rig.set_limb_visible(slot, true)
 			rig.show_stump(slot, false)
 
-		# Test regrown limb attachment
+		# 40-case attachment matrix test: 5 regrown limb types across compatible sockets
+		# 3 arm types x 2 arm sockets = 6 cases; 2 leg types x 2 leg sockets = 4 cases.
+		# 10 cases per model x 2 models = 20 valid attachments + 20 cross-slot rejections = 40 checks.
 		(Engine.get_main_loop() as SceneTree).root.add_child(rig)
-		var attached: bool = rig.attach_regrown("arm_l", "rubber_chicken_arm")
-		assert_true(attached, "rubber chicken arm attaches to " + model_info["id"])
-		assert_true(rig.replacements.has("arm_l"), "replacement exists")
-		for mesh: MeshInstance3D in rig.limb_meshes["arm_l"]:
-			assert_false(mesh.visible, "natural limb hidden with replacement " + mesh.name)
-		assert_false(rig.stumps["arm_l"].visible, "stump hidden with replacement")
+		var regrown_limbs := [
+			{"id": "rubber_chicken_arm", "slot_type": "arm"},
+			{"id": "crab_claw_arm", "slot_type": "arm"},
+			{"id": "cyclops_giant_hand", "slot_type": "arm"},
+			{"id": "hermes_sandal_leg", "slot_type": "leg"},
+			{"id": "marble_statue_leg", "slot_type": "leg"}
+		]
+		for limb_data in regrown_limbs:
+			var limb_id: String = limb_data["id"]
+			var valid_slot_prefix: String = limb_data["slot_type"]
+			for slot in SimLimbs.LIMB_NAMES:
+				var is_compatible: bool = slot.begins_with(valid_slot_prefix)
+				var success: bool = rig.attach_regrown(slot, limb_id)
+				if is_compatible:
+					assert_true(
+						success,
+						(
+							"attaching "
+							+ limb_id
+							+ " to compatible slot "
+							+ slot
+							+ " on "
+							+ model_info["id"]
+						)
+					)
+					assert_true(rig.replacements.has(slot), "replacement tracked in slot " + slot)
+					for mesh: MeshInstance3D in rig.limb_meshes[slot]:
+						assert_false(
+							mesh.visible, "natural mesh hidden when attached: " + mesh.name
+						)
+					assert_false(rig.stumps[slot].visible, "stump hidden when attached: " + slot)
+					rig.detach_regrown(slot)
+					assert_false(
+						rig.replacements.has(slot), "replacement cleared after detach: " + slot
+					)
+					for mesh: MeshInstance3D in rig.limb_meshes[slot]:
+						assert_true(
+							mesh.visible, "natural mesh restored after detach: " + mesh.name
+						)
+				else:
+					assert_false(
+						success,
+						"reject incompatible " + limb_id + " on " + slot + " on " + model_info["id"]
+					)
+					assert_false(
+						rig.replacements.has(slot),
+						"incompatible slot should have no replacement: " + slot
+					)
 
-		rig.detach_regrown("arm_l")
-		assert_false(rig.replacements.has("arm_l"), "replacement detached")
-		for mesh: MeshInstance3D in rig.limb_meshes["arm_l"]:
-			assert_true(mesh.visible, "natural limb restored " + mesh.name)
-
+		rig.get_parent().remove_child(rig)
 		rig.free()

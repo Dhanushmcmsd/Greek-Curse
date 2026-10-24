@@ -3,17 +3,21 @@ extends "res://src/debug/body_state_lab.gd"
 var _limb_picker: OptionButton
 var _grant_slot: String = "arm_l"
 var _tooltip: Label
+var _model_picker: OptionButton
+var _model_id: String = ""
 
 
 func _ready() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--fighter="):
 			match_config.fighter_ids[0] = arg.substr(10)
+		elif arg.begins_with("--model="):
+			_model_id = arg.substr(8)
 	super._ready()
 	match_config.controllers = ["human_kb1", "dummy_idle"]
 	_setup_controllers()
 	var panel := VBoxContainer.new()
-	panel.position = Vector2(24, 300)
+	panel.position = Vector2(24, 270)
 	panel.custom_minimum_size.x = 310
 	_hud.add_child(panel)
 	var roster := OptionButton.new()
@@ -21,6 +25,25 @@ func _ready() -> void:
 		roster.add_item(name)
 	panel.add_child(roster)
 	roster.item_selected.connect(_pick_fighter)
+	_model_picker = OptionButton.new()
+	var models: Array = [
+		"default",
+		"theron",
+		"atalanta",
+		"pyrrhus",
+		"sibyl",
+		"skin_ch39",
+		"skin_ch40",
+		"skin_demon",
+		"skin_kachujin",
+		"skin_nightshade",
+		"vampire_stress"
+	]
+	for m in models:
+		_model_picker.add_item("Model: " + m)
+		_model_picker.set_item_metadata(_model_picker.item_count - 1, "" if m == "default" else m)
+	panel.add_child(_model_picker)
+	_model_picker.item_selected.connect(_pick_model)
 	var slots := OptionButton.new()
 	for slot in SimLimbs.LIMB_NAMES:
 		slots.add_item(slot)
@@ -59,6 +82,15 @@ func _read_inputs() -> Array:
 
 func _pick_fighter(index: int) -> void:
 	match_config.fighter_ids[0] = ["theron", "atalanta", "pyrrhus", "sibyl"][maxi(0, index)]
+	_rebuild_view()
+
+
+func _pick_model(index: int) -> void:
+	_model_id = str(_model_picker.get_item_metadata(index))
+	_rebuild_view()
+
+
+func _rebuild_view() -> void:
 	_restart()
 	flow.phase = "fight"
 	flow.remaining = 0
@@ -68,7 +100,8 @@ func _pick_fighter(index: int) -> void:
 		Color(0.7, 0.45, 0.2),
 		world.fighters[0].height_mm,
 		world.fighters[0].body_width_mm,
-		match_config.fighter_ids[0]
+		match_config.fighter_ids[0],
+		_model_id
 	)
 	add_child(view)
 	_views[0] = view
