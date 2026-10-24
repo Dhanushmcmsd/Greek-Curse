@@ -34,18 +34,22 @@ def render_state(glb_path, out_dir, prefix):
                 for obj in chicken_objs:
                     if obj.parent is None and socket:
                         obj.parent = socket
-                        obj.matrix_parent_inverse = socket.matrix_world.inverted()
+                        obj.matrix_world = socket.matrix_world
         
         # Set visibility
         for obj in bpy.data.objects:
             # Check if part of a stump
             for s in slots:
-                if s in obj.name and any(p in obj.name for p in ["STUMP_", "CUT_", "BONE_"]):
+                limb_type = s.split("_")[0]
+                side = s.split("_")[1]
+                if any(obj.name.startswith(f"{p}{limb_type}{side}") for p in ["CUT_", "BONE_"]):
                     obj.hide_render = (s not in visible_stumps)
                     obj.hide_viewport = obj.hide_render
             # Check if part of a limb group
             for s in slots:
-                if f"LIMB_{s}" in obj.name or any(f"{p}_{s[-1]}" in obj.name for p in ["ARM_UPPER", "ARM_LOWER", "ARM_END", "LEG_UPPER", "LEG_LOWER", "LEG_END"]):
+                limb_type = s.split("_")[0]
+                side = s.split("_")[1]
+                if any(obj.name.startswith(f"{limb_type}_{p}_{side}") for p in ["UPPER", "LOWER", "END"]):
                     if s in hidden_limbs:
                         obj.hide_render = True
                         obj.hide_viewport = True
@@ -80,5 +84,19 @@ def render_state(glb_path, out_dir, prefix):
 
 if __name__ == "__main__":
     out_dir = ROOT / "docs/playtest/screenshots/mixamo_step2"
-    render_state(ROOT / "assets/fighters_mixamo/fighter_atalanta.glb", out_dir, "atalanta")
-    render_state(ROOT / "assets/fighters_mixamo/fighter_vampire_stress.glb", out_dir, "vampire_stress")
+    characters = [
+        ("theron", "fighter_theron.glb"),
+        ("atalanta", "fighter_atalanta.glb"),
+        ("pyrrhus", "fighter_pyrrhus.glb"),
+        ("sibyl", "fighter_sibyl.glb"),
+        ("skin_ch39", "fighter_skin_ch39.glb"),
+        ("skin_ch40", "fighter_skin_ch40.glb"),
+        ("skin_demon", "fighter_skin_demon.glb"),
+        ("skin_kachujin", "fighter_skin_kachujin.glb"),
+        ("skin_nightshade", "fighter_skin_nightshade.glb"),
+        ("vampire_stress", "fighter_vampire_stress.glb"),
+    ]
+    for cid, glb_name in characters:
+        glb_file = ROOT / f"assets/fighters_mixamo/{glb_name}"
+        if glb_file.exists():
+            render_state(glb_file, out_dir, cid)
