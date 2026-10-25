@@ -2,6 +2,57 @@ class_name FighterRig
 extends Node3D
 ## Generated modular mesh adapter. All changes are presentation-only.
 
+const REQUIRED_BONES: Array[String] = [
+	"root",
+	"spine",
+	"head",
+	"upper_arm.l",
+	"forearm.l",
+	"hand.l",
+	"upper_arm.r",
+	"forearm.r",
+	"hand.r",
+	"thigh.l",
+	"shin.l",
+	"foot.l",
+	"thigh.r",
+	"shin.r",
+	"foot.r"
+]
+
+const ALLOWED_EXCLUDED_TRACKS: Array[String] = [
+	"LeftHandThumb",
+	"LeftHandIndex",
+	"LeftHandMiddle",
+	"LeftHandRing",
+	"LeftHandPinky",
+	"RightHandThumb",
+	"RightHandIndex",
+	"RightHandMiddle",
+	"RightHandRing",
+	"RightHandPinky",
+	"LeftEye",
+	"RightEye",
+	"Leye",
+	"Reye",
+	"L_horn",
+	"R_horn",
+	"HeadTop_End",
+	"LeftToe_End",
+	"RightToe_End",
+	"Cloak",
+	"Ribbon",
+	"Bow",
+	"F_skirt",
+	"M_skirt",
+	"L_A_skirt",
+	"L_B_skirt",
+	"L_C_skirt",
+	"R_A_skirt",
+	"R_B_skirt",
+	"R_C_skirt"
+]
+
 static var _bone_map_cache: Dictionary = {}
 
 var model: Node3D
@@ -15,6 +66,8 @@ var anim_player: AnimationPlayer
 var replacements: Dictionary = {}
 var fighter_height: float = 1.8
 var fighter_width: float = 0.45
+var loaded_model_path: String = ""
+var binding_audit_log: Array[Dictionary] = []
 var _states: Dictionary = {}
 var _stump_palette: String = ""
 var _rest_rotations: Dictionary = {}
@@ -38,6 +91,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	else:
 		push_error("Missing fighter model: " + mixamo_path + " or " + legacy_path)
 		return false
+	loaded_model_path = path
 	model = (load(path) as PackedScene).instantiate()
 	add_child(model)
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
@@ -56,7 +110,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 			for lib_name in source_ap.get_animation_library_list():
 				var lib: AnimationLibrary = source_ap.get_animation_library(lib_name)
 				var dup_lib: AnimationLibrary = lib.duplicate(true)
-				_bind_animation_library_to_skeleton(dup_lib)
+				_bind_animation_library_to_skeleton(dup_lib, anim_path)
 				anim_player.add_animation_library(lib_name, dup_lib)
 		anim_scene.queue_free()
 
@@ -87,7 +141,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 							default_lib = AnimationLibrary.new()
 							anim_player.add_animation_library("", default_lib)
 						var dup_anim: Animation = anim.duplicate(true)
-						_bind_animation_to_skeleton(dup_anim)
+						_bind_animation_to_skeleton(dup_anim, clip_file)
 						if default_lib.has_animation(target_name):
 							default_lib.remove_animation(target_name)
 						default_lib.add_animation(target_name, dup_anim)
@@ -116,6 +170,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 				stump_meshes[slot].append(mesh)
 		show_stump(slot, false)
 	return true
+
+
+func is_using_mixamo_model() -> bool:
+	return loaded_model_path.begins_with("res://assets/fighters_mixamo/")
 
 
 func set_limb_visible(slot: String, shown: bool) -> void:
@@ -266,37 +324,190 @@ static func _get_bone_map() -> Dictionary:
 	return _bone_map_cache
 
 
-func _bind_animation_library_to_skeleton(lib: AnimationLibrary) -> void:
+func _bind_animation_library_to_skeleton(lib: AnimationLibrary, source_name: String = "") -> void:
 	for anim_name in lib.get_animation_list():
 		var anim: Animation = lib.get_animation(anim_name)
-		_bind_animation_to_skeleton(anim)
+		var clip_id := source_name if source_name != "" else str(anim_name)
+		_bind_animation_to_skeleton(anim, clip_id)
 
 
-func _bind_animation_to_skeleton(anim: Animation) -> void:
+func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> bool:
 	if skeleton == null or anim_player == null:
-		return
+		return false
 	var resolved_root: Node = anim_player.get_node_or_null(anim_player.root_node)
 	if resolved_root == null:
-		return
+		push_error("AnimationPlayer root_node cannot be resolved: " + str(anim_player.root_node))
+		return false
 	var skel_rel_path: String = str(resolved_root.get_path_to(skeleton))
 	var bone_map: Dictionary = _get_bone_map()
 
+	var mapped_required_bones: Dictionary = {}
+	var lost_required_bones: Array[String] = []
+
 	var t := anim.get_track_count() - 1
 	while t >= 0:
-		var trk_path: NodePath = anim.track_get_path(t)
-		var sub_part: String = trk_path.get_concatenated_subnames()
-		if sub_part != "":
+		var track_type: Animation.TrackType = anim.track_get_type(t)
+		var orig_path: NodePath = anim.track_get_path(t)
+		var sub_part: String = orig_path.get_concatenated_subnames()
+		var node_part: String = orig_path.get_concatenated_names()
+
+		var is_3d_transform := (
+			track_type == Animation.TYPE_POSITION_3D
+			or track_type == Animation.TYPE_ROTATION_3D
+			or track_type == Animation.TYPE_SCALE_3D
+		)
+
+		if is_3d_transform and sub_part != "":
 			var clean_bone: String = sub_part.replace("mixamorig:", "")
 			var tgt_bone: String = clean_bone
 			if skeleton.find_bone(clean_bone) == -1:
 				tgt_bone = bone_map.get(clean_bone, "")
+
 			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
-				anim.track_set_path(t, NodePath(skel_rel_path + ":" + tgt_bone))
+				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
+				anim.track_set_path(t, target_path)
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": str(target_path),
+						"track_type": track_type,
+						"status": "RETAINED",
+						"reason": "Resolved to skeleton bone '%s'" % tgt_bone
+					}
+				)
+				if tgt_bone in REQUIRED_BONES:
+					mapped_required_bones[tgt_bone] = true
 			else:
-				anim.remove_track(t)
+				var is_allowed_helper := false
+				for prefix in ALLOWED_EXCLUDED_TRACKS:
+					if clean_bone.begins_with(prefix):
+						is_allowed_helper = true
+						break
+				if is_allowed_helper:
+					binding_audit_log.append(
+						{
+							"source_clip": source_clip,
+							"original_path": str(orig_path),
+							"target_path": "",
+							"track_type": track_type,
+							"status": "EXCLUDED",
+							"reason": "Explicitly excluded helper track '%s'" % clean_bone
+						}
+					)
+					anim.remove_track(t)
+				else:
+					if clean_bone in REQUIRED_BONES or tgt_bone in REQUIRED_BONES:
+						lost_required_bones.append(clean_bone)
+					binding_audit_log.append(
+						{
+							"source_clip": source_clip,
+							"original_path": str(orig_path),
+							"target_path": "",
+							"track_type": track_type,
+							"status": "FAILED",
+							"reason":
+							"Unresolved required/unallowed skeletal track '%s'" % clean_bone
+						}
+					)
+					anim.remove_track(t)
+		elif is_3d_transform and sub_part == "":
+			var clean_node := node_part.get_file().replace("mixamorig:", "")
+			var tgt_bone: String = clean_node
+			if skeleton.find_bone(clean_node) == -1:
+				tgt_bone = bone_map.get(clean_node, "")
+			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
+				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
+				anim.track_set_path(t, target_path)
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": str(target_path),
+						"track_type": track_type,
+						"status": "RETAINED",
+						"reason": "Rewrote node path to bone '%s'" % tgt_bone
+					}
+				)
+				if tgt_bone in REQUIRED_BONES:
+					mapped_required_bones[tgt_bone] = true
+			else:
+				var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
+				if target_node != null:
+					binding_audit_log.append(
+						{
+							"source_clip": source_clip,
+							"original_path": str(orig_path),
+							"target_path": str(orig_path),
+							"track_type": track_type,
+							"status": "RETAINED",
+							"reason": "Valid non-skeletal 3D node transform"
+						}
+					)
+				else:
+					var is_allowed_helper := false
+					for prefix in ALLOWED_EXCLUDED_TRACKS:
+						if clean_node.begins_with(prefix):
+							is_allowed_helper = true
+							break
+					if is_allowed_helper:
+						binding_audit_log.append(
+							{
+								"source_clip": source_clip,
+								"original_path": str(orig_path),
+								"target_path": "",
+								"track_type": track_type,
+								"status": "EXCLUDED",
+								"reason": "Excluded helper node '%s'" % clean_node
+							}
+						)
+					else:
+						if clean_node in REQUIRED_BONES or tgt_bone in REQUIRED_BONES:
+							lost_required_bones.append(clean_node)
+						binding_audit_log.append(
+							{
+								"source_clip": source_clip,
+								"original_path": str(orig_path),
+								"target_path": "",
+								"track_type": track_type,
+								"status": "FAILED",
+								"reason": "Missing node target: '%s'" % node_part
+							}
+						)
+					anim.remove_track(t)
 		else:
-			var node_part: String = trk_path.get_concatenated_names()
 			var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
-			if target_node == null:
+			if target_node != null:
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": str(orig_path),
+						"track_type": track_type,
+						"status": "RETAINED",
+						"reason": "Valid non-transform property/method track"
+					}
+				)
+			else:
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": "",
+						"track_type": track_type,
+						"status": "EXCLUDED",
+						"reason": "Property target node does not exist: '%s'" % node_part
+					}
+				)
 				anim.remove_track(t)
 		t -= 1
+
+	if not lost_required_bones.is_empty():
+		push_error(
+			(
+				"Validation failed: Lost required bone tracks in clip '%s': %s"
+				% [source_clip, str(lost_required_bones)]
+			)
+		)
+		return false
+	return true

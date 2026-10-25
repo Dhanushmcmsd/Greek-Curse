@@ -1,13 +1,30 @@
-# Owner Playtest Guide: M0 Animation & Model Verification
+# Owner Playtest Guide: M0 Animation & Model Verification (Checkpoint 1)
 
-## Launch Command
-Run the interactive match prototype or animation test lab using the pinned Godot binary:
+## Supported Models for `--model`
+The following 10 visual model IDs are verified and supported with shared 15-bone animation retargeting:
+- `theron` (Theron standard)
+- `atalanta` (Atalanta standard)
+- `pyrrhus` (Pyrrhus standard)
+- `sibyl` (Sibyl standard)
+- `skin_ch39` (Ch39 model)
+- `skin_ch40` (Ch40 model)
+- `skin_demon` (Demon model)
+- `skin_kachujin` (Kachujin model)
+- `skin_nightshade` (Nightshade model)
+- `vampire_stress` (Vampire model)
+
+## Launch Commands
 
 ```powershell
-# Real interactive 1v1 match scene:
+# 1. Real interactive 1v1 match scene (default models):
 & "D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe" --path . scenes/match/match_prototype.tscn
 
-# Or launch the interactive Animation Lab:
+# 2. Interactive match with visual model override:
+& "D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe" --path . scenes/match/match_prototype.tscn -- --model=skin_demon
+& "D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe" --path . scenes/match/match_prototype.tscn -- --model=skin_kachujin
+& "D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe" --path . scenes/match/match_prototype.tscn -- --model=vampire_stress
+
+# 3. Interactive Animation Lab (scrub animations, test reach, inspect clips):
 & "D:\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe" --path . scenes/debug/animation_lab.tscn
 ```
 

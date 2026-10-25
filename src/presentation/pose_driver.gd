@@ -12,6 +12,7 @@ var floor_min: float = 0.0
 var reach_mismatch_mm: int = 0
 var caption: String = ""
 var pack_map: Dictionary = {}
+var walk_direction: int = 0
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _socket_rest: Dictionary = {}
@@ -184,7 +185,7 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 			rig.skeleton.set_bone_pose_rotation(
 				index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
 			)
-	_root_pose(fighter, settings)
+	_root_pose(fighter, settings, clip_active)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
 	_projectile(fighter)
@@ -250,37 +251,41 @@ func _select(fighter: SimFighter) -> String:
 	return selected
 
 
-func _root_pose(fighter: SimFighter, settings: Dictionary) -> void:
-	if fighter.pose == "crawl":
-		rig.rotation.x = deg_to_rad(float(settings["crawl_pitch_degrees"]))
-	elif fighter.pose == "torso":
-		rig.rotation.x = deg_to_rad(float(settings["torso_pitch_degrees"]))
-		if fighter.state == SimFighter.State.WALK:
-			rig.rotation.x += deg_to_rad(
-				sin(time * float(settings["quirk_rate"])) * float(settings["torso_sway_degrees"])
-			)
-		if fighter.move_name == "body_roll":
-			rig.rotation.x += (
-				deg_to_rad(float(settings["roll_degrees"]))
-				* float(fighter.state_tick)
-				/ maxf(
-					1.0,
-					float(fighter.startup_ticks + fighter.active_ticks + fighter.recovery_ticks)
+func _root_pose(fighter: SimFighter, settings: Dictionary, clip_active: bool = false) -> void:
+	if not clip_active:
+		if fighter.pose == "crawl":
+			rig.rotation.x = deg_to_rad(float(settings["crawl_pitch_degrees"]))
+		elif fighter.pose == "torso":
+			rig.rotation.x = deg_to_rad(float(settings["torso_pitch_degrees"]))
+			if fighter.state == SimFighter.State.WALK:
+				rig.rotation.x += deg_to_rad(
+					(
+						sin(time * float(settings["quirk_rate"]))
+						* float(settings["torso_sway_degrees"])
+					)
 				)
+			if fighter.move_name == "body_roll":
+				rig.rotation.x += (
+					deg_to_rad(float(settings["roll_degrees"]))
+					* float(fighter.state_tick)
+					/ maxf(
+						1.0,
+						float(fighter.startup_ticks + fighter.active_ticks + fighter.recovery_ticks)
+					)
+				)
+		if fighter.state == SimFighter.State.KO:
+			rig.rotation.x = deg_to_rad(float(settings["knockdown_degrees"]))
+		elif fighter.state == SimFighter.State.DODGE:
+			rig.rotation.x += (
+				deg_to_rad(float(settings["dodge_pitch_degrees"]))
+				* float(fighter.state_tick)
+				/ float(settings["dodge_ticks"])
 			)
-	if fighter.state == SimFighter.State.KO:
-		rig.rotation.x = deg_to_rad(float(settings["knockdown_degrees"]))
-	elif fighter.state == SimFighter.State.DODGE:
-		rig.rotation.x += (
-			deg_to_rad(float(settings["dodge_pitch_degrees"]))
-			* float(fighter.state_tick)
-			/ float(settings["dodge_ticks"])
-		)
-	elif fighter.state == SimFighter.State.WALK and fighter.pose == "standing":
-		rig.rotation.x += deg_to_rad(float(settings["walk_lean_degrees"]))
+		elif fighter.state == SimFighter.State.WALK and fighter.pose == "standing":
+			rig.rotation.x += deg_to_rad(float(settings["walk_lean_degrees"]))
 	if (
 		fighter.pose in ["crawl", "torso"]
-		or fighter.state in [SimFighter.State.KO, SimFighter.State.DODGE]
+		or (not clip_active and (fighter.state in [SimFighter.State.KO, SimFighter.State.DODGE]))
 	):
 		var pivot := Vector3(
 			0, rig.fighter_height * float(settings["ground_pivot_height_percent"]) / 100.0, 0
@@ -427,7 +432,13 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		is_attack = true
 		act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
 	elif fighter.state == SimFighter.State.WALK:
-		act_key = "walk_fwd"
+		var speed_val: int = fighter.walk_speed if "walk_speed" in fighter else 20
+		if speed_val > 30 and actions.has("run"):
+			act_key = "run"
+		elif walk_direction != 0 and walk_direction != fighter.facing and actions.has("walk_back"):
+			act_key = "walk_back"
+		else:
+			act_key = "walk_fwd"
 	elif fighter.state == SimFighter.State.IDLE:
 		act_key = "idle"
 	elif fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.STAGGER]:
@@ -466,18 +477,19 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		var anim_len := rig.anim_player.get_animation(clip_name).length
 		rig.anim_player.play(clip_name)
 		rig.anim_player.seek(clampf(warp_t, 0.0, 1.0) * anim_len, true)
-	elif act_key == "walk_fwd":
+	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name)
+		var configured_scale: float = float(actions[act_key].get("speed_scale", 1.0))
 		rig.anim_player.speed_scale = (
-			float(fighter.walk_speed if "walk_speed" in fighter else 20) / 20.0
+			configured_scale * float(fighter.walk_speed if "walk_speed" in fighter else 20) / 20.0
 		)
 		if not stopped:
 			rig.anim_player.advance(1.0 / 60.0)
 	else:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name)
-		rig.anim_player.speed_scale = 1.0
+		rig.anim_player.speed_scale = float(actions[act_key].get("speed_scale", 1.0))
 		if not stopped:
 			rig.anim_player.advance(1.0 / 60.0)
 

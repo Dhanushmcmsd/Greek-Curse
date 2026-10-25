@@ -22,84 +22,96 @@ const MODEL_IDS = [
 
 
 func test_clip_track_binding_across_all_fighters_and_models() -> void:
+	# Test every supported fighter and visual model combination (4 fighters x 10 visual models = 40)
 	for fid in FIGHTER_IDS:
-		var rig := FighterRig.new()
-		var success := rig.load_fighter(fid)
-		assert_true(success, "load_fighter succeeds for " + fid)
-		(Engine.get_main_loop() as SceneTree).root.add_child(rig)
+		for mid in MODEL_IDS:
+			var rig := FighterRig.new()
+			var success := rig.load_fighter(fid, mid)
+			assert_true(success, "load_fighter succeeds for fighter=%s model=%s" % [fid, mid])
+			(Engine.get_main_loop() as SceneTree).root.add_child(rig)
 
-		assert_true(rig.anim_player != null, "anim_player exists for " + fid)
-		assert_true(rig.skeleton != null, "skeleton exists for " + fid)
+			assert_true(rig.anim_player != null, "anim_player exists for %s/%s" % [fid, mid])
+			assert_true(rig.skeleton != null, "skeleton exists for %s/%s" % [fid, mid])
+			assert_true(
+				rig.is_using_mixamo_model(),
+				"Must load intended Mixamo model without falling back for %s/%s" % [fid, mid]
+			)
+			assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones for model " + mid)
 
-		var resolved_root: Node = rig.anim_player.get_node_or_null(rig.anim_player.root_node)
-		assert_true(resolved_root != null, "anim_player root_node resolves for " + fid)
+			var resolved_root: Node = rig.anim_player.get_node_or_null(rig.anim_player.root_node)
+			assert_true(
+				resolved_root != null, "anim_player root_node resolves for %s/%s" % [fid, mid]
+			)
 
-		# Check all animations in all libraries
-		var libs: Array[StringName] = rig.anim_player.get_animation_library_list()
-		assert_true(libs.size() > 0, "has animation libraries for " + fid)
+			var libs: Array[StringName] = rig.anim_player.get_animation_library_list()
+			assert_true(libs.size() > 0, "has animation libraries for %s/%s" % [fid, mid])
 
-		for lib_name in libs:
-			var lib: AnimationLibrary = rig.anim_player.get_animation_library(lib_name)
-			for anim_name in lib.get_animation_list():
-				var anim: Animation = lib.get_animation(anim_name)
-				for t in range(anim.get_track_count()):
-					var trk_path: NodePath = anim.track_get_path(t)
-					var node_part: String = trk_path.get_concatenated_names()
-					var sub_part: String = trk_path.get_concatenated_subnames()
-					var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
-					assert_true(
-						target_node != null,
-						(
-							"Track target node resolves for %s:%s track[%d]: %s"
-							% [fid, str(anim_name), t, str(trk_path)]
-						)
+			# Verify all 15 required bones exist and have transform coverage in bound action clips
+			var default_lib: AnimationLibrary = (
+				rig.anim_player.get_animation_library("")
+				if rig.anim_player.has_animation_library("")
+				else null
+			)
+			assert_true(
+				default_lib != null, "default animation library exists for %s/%s" % [fid, mid]
+			)
+
+			# Verify walk animation covers all 15 required source bones
+			var walk_anim_name: String = str(fid) + "_walk_fwd"
+			assert_true(
+				default_lib.has_animation(walk_anim_name), "has walk animation: " + walk_anim_name
+			)
+			var walk_anim: Animation = default_lib.get_animation(walk_anim_name)
+			var covered_bones: Dictionary = {}
+			for t in range(walk_anim.get_track_count()):
+				var trk_path: NodePath = walk_anim.track_get_path(t)
+				var sub_part: String = trk_path.get_concatenated_subnames()
+				if sub_part != "":
+					covered_bones[sub_part] = true
+
+			for req_bone in FighterRig.REQUIRED_BONES:
+				assert_true(
+					covered_bones.has(req_bone),
+					(
+						"Walk animation has track for required bone '%s' on %s/%s"
+						% [req_bone, fid, mid]
 					)
-					if sub_part != "":
+				)
+
+			# Validate every track across all animation libraries
+			for lib_name in libs:
+				var lib: AnimationLibrary = rig.anim_player.get_animation_library(lib_name)
+				for anim_name in lib.get_animation_list():
+					var anim: Animation = lib.get_animation(anim_name)
+					for t in range(anim.get_track_count()):
+						var trk_path: NodePath = anim.track_get_path(t)
+						var node_part: String = trk_path.get_concatenated_names()
+						var sub_part: String = trk_path.get_concatenated_subnames()
+						var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
 						assert_true(
-							target_node is Skeleton3D,
+							target_node != null,
 							(
-								"Subname target node must be Skeleton3D for %s track %s"
-								% [fid, str(trk_path)]
+								"Track target node resolves for %s/%s:%s track[%d]: %s"
+								% [fid, mid, str(anim_name), t, str(trk_path)]
 							)
 						)
-						var bone_idx: int = (target_node as Skeleton3D).find_bone(sub_part)
-						assert_true(
-							bone_idx >= 0,
-							(
-								"Bone '%s' exists on skeleton for %s track %s"
-								% [sub_part, fid, str(trk_path)]
+						if sub_part != "":
+							assert_true(
+								target_node is Skeleton3D,
+								(
+									"Subname target node must be Skeleton3D for %s/%s track %s"
+									% [fid, mid, str(trk_path)]
+								)
 							)
-						)
-		rig.free()
-
-	# Also verify for all visual models overridden on Theron
-	for mid in MODEL_IDS:
-		var rig := FighterRig.new()
-		var success := rig.load_fighter("theron", mid)
-		assert_true(success, "load_fighter succeeds with model " + mid)
-		(Engine.get_main_loop() as SceneTree).root.add_child(rig)
-
-		assert_true(rig.skeleton != null, "skeleton exists for model " + mid)
-		assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones for model " + mid)
-
-		var resolved_root: Node = rig.anim_player.get_node_or_null(rig.anim_player.root_node)
-		var libs: Array[StringName] = rig.anim_player.get_animation_library_list()
-		for lib_name in libs:
-			var lib: AnimationLibrary = rig.anim_player.get_animation_library(lib_name)
-			for anim_name in lib.get_animation_list():
-				var anim: Animation = lib.get_animation(anim_name)
-				for t in range(anim.get_track_count()):
-					var trk_path: NodePath = anim.track_get_path(t)
-					var node_part: String = trk_path.get_concatenated_names()
-					var sub_part: String = trk_path.get_concatenated_subnames()
-					var target_node: Node = resolved_root.get_node_or_null(NodePath(node_part))
-					assert_true(
-						target_node != null, "Model " + mid + " resolves node for " + str(trk_path)
-					)
-					if sub_part != "":
-						var bone_idx: int = (target_node as Skeleton3D).find_bone(sub_part)
-						assert_true(bone_idx >= 0, "Model " + mid + " resolves bone " + sub_part)
-		rig.free()
+							var bone_idx: int = (target_node as Skeleton3D).find_bone(sub_part)
+							assert_true(
+								bone_idx >= 0,
+								(
+									"Bone '%s' exists on skeleton for %s/%s track %s"
+									% [sub_part, fid, mid, str(trk_path)]
+								)
+							)
+			rig.free()
 
 
 func test_simultaneous_fighters_two_instances_independent() -> void:
@@ -115,11 +127,35 @@ func test_simultaneous_fighters_two_instances_independent() -> void:
 	assert_true(rig1.anim_player != rig2.anim_player, "different AnimationPlayer instances")
 	assert_true(rig1.skeleton != rig2.skeleton, "different Skeleton3D instances")
 
-	# Both can play and evaluate without colliding
 	rig1.anim_player.play("theron_walk_fwd")
 	rig2.anim_player.play("atalanta_walk_fwd")
-	rig1.anim_player.advance(0.1)
-	rig2.anim_player.advance(0.2)
+
+	# Record full initial pose of Fighter B across all 15 bones
+	var b_poses_initial: Array[Quaternion] = []
+	for b in range(rig2.skeleton.get_bone_count()):
+		b_poses_initial.append(rig2.skeleton.get_bone_pose_rotation(b))
+
+	# Advance Fighter A ONLY
+	rig1.anim_player.advance(0.5)
+
+	# Assert that Fighter B's pose remains completely unchanged
+	for b in range(rig2.skeleton.get_bone_count()):
+		var rot_now: Quaternion = rig2.skeleton.get_bone_pose_rotation(b)
+		var bone_name: String = rig2.skeleton.get_bone_name(b)
+		assert_true(
+			rot_now.is_equal_approx(b_poses_initial[b]),
+			"Fighter B bone '%s' must not change when only Fighter A advances" % bone_name
+		)
+
+	# Now advance Fighter B and verify it moves independently
+	rig2.anim_player.advance(0.5)
+	var b_moved: bool = false
+	for b in range(rig2.skeleton.get_bone_count()):
+		var rot_after: Quaternion = rig2.skeleton.get_bone_pose_rotation(b)
+		if not rot_after.is_equal_approx(b_poses_initial[b]):
+			b_moved = true
+			break
+	assert_true(b_moved, "Fighter B animates when its own player advances")
 
 	rig1.free()
 	rig2.free()
@@ -191,3 +227,235 @@ func test_motion_playback_proves_active_bone_transform_changes() -> void:
 		assert_true(kick_moved, "Kick shows leg bone motion for " + fid)
 
 		rig.free()
+
+
+func test_visual_multi_frame_sequences() -> void:
+	var root_node: Node = (Engine.get_main_loop() as SceneTree).root
+
+	var sub_viewport := SubViewport.new()
+	sub_viewport.size = Vector2i(400, 400)
+	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	root_node.add_child(sub_viewport)
+
+	var camera := Camera3D.new()
+	camera.position = Vector3(0, 1.0, 2.5)
+	camera.current = true
+	sub_viewport.add_child(camera)
+
+	var light := DirectionalLight3D.new()
+	light.position = Vector3(1, 3, 2)
+	light.rotation_degrees = Vector3(-45, 30, 0)
+	sub_viewport.add_child(light)
+
+	var env := WorldEnvironment.new()
+	var environment := Environment.new()
+	environment.background_mode = Environment.BG_COLOR
+	environment.background_color = Color(0.12, 0.12, 0.16)
+	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	environment.ambient_light_color = Color(0.55, 0.55, 0.6)
+	env.environment = environment
+	sub_viewport.add_child(env)
+
+	var output_dir := "res://docs/playtest/anim/sequences"
+	if not DirAccess.dir_exists_absolute(output_dir):
+		DirAccess.make_dir_recursive_absolute(output_dir)
+
+	var world := ProtoFixture.world_with()
+	var fighter := world.fighters[0]
+
+	var rig := FighterRig.new()
+	var loaded := rig.load_fighter("theron")
+	assert_true(loaded, "Theron rig loaded")
+	sub_viewport.add_child(rig)
+
+	var driver := PoseDriver.new()
+	driver.setup(rig)
+
+	var sequences := [
+		{
+			"name": "idle",
+			"state": SimFighter.State.IDLE,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0
+		},
+		{
+			"name": "walk_forward",
+			"state": SimFighter.State.WALK,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 20,
+			"facing": 1,
+			"walk_dir": 1
+		},
+		{
+			"name": "walk_backward",
+			"state": SimFighter.State.WALK,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 20,
+			"facing": 1,
+			"walk_dir": -1
+		},
+		{
+			"name": "run_derived",
+			"state": SimFighter.State.WALK,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 40,
+			"facing": 1,
+			"walk_dir": 1
+		},
+		{
+			"name": "block",
+			"state": SimFighter.State.BLOCKSTUN,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0,
+			"blocking": true
+		},
+		{
+			"name": "punch_jab",
+			"state": SimFighter.State.ACTIVE,
+			"move": "jab_of_hermes",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0
+		},
+		{
+			"name": "kick_pegasus",
+			"state": SimFighter.State.ACTIVE,
+			"move": "pegasus_kick",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0
+		},
+		{
+			"name": "stagger",
+			"state": SimFighter.State.STAGGER,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0
+		},
+		{
+			"name": "knockdown",
+			"state": SimFighter.State.KO,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0
+		},
+		{
+			"name": "crawl",
+			"state": SimFighter.State.WALK,
+			"move": "",
+			"pose": "crawl",
+			"walk_speed": 10,
+			"facing": 1,
+			"walk_dir": 1,
+			"sever_legs": true
+		},
+		{
+			"name": "severed_and_regrown",
+			"state": SimFighter.State.IDLE,
+			"move": "",
+			"pose": "standing",
+			"walk_speed": 0,
+			"facing": 1,
+			"walk_dir": 0,
+			"sever_arm_l": true,
+			"regrow_hand": true
+		}
+	]
+
+	var frame_ticks := [0, 8, 16, 24]
+
+	for seq in sequences:
+		var seq_name: String = str(seq["name"])
+		var strip := Image.create(400 * 4, 400, false, Image.FORMAT_RGBA8)
+		strip.fill(Color(0.1, 0.1, 0.12))
+
+		if seq.get("sever_legs", false):
+			fighter.limbs.parts["leg_l"].state = "severed"
+			fighter.limbs.parts["leg_r"].state = "severed"
+		else:
+			fighter.limbs.parts["leg_l"].state = "healthy"
+			fighter.limbs.parts["leg_r"].state = "healthy"
+
+		if seq.get("sever_arm_l", false):
+			fighter.limbs.parts["arm_l"].state = "severed"
+		else:
+			fighter.limbs.parts["arm_l"].state = "healthy"
+
+		if seq.get("regrow_hand", false):
+			fighter.limbs.parts["arm_l"].regrown_id = "cyclops_giant_hand"
+			rig.attach_regrown("arm_l", "cyclops_giant_hand")
+		else:
+			fighter.limbs.parts["arm_l"].regrown_id = ""
+			rig.detach_regrown("arm_l")
+
+		fighter.pose = str(seq.get("pose", "standing"))
+		fighter.facing = int(seq.get("facing", 1))
+		fighter.walk_speed = int(seq.get("walk_speed", 20))
+		driver.walk_direction = int(seq.get("walk_dir", 0))
+		fighter.blocking = bool(seq.get("blocking", false))
+
+		var move_name: String = str(seq.get("move", ""))
+		var target_move: Dictionary = {}
+		if move_name != "":
+			for m in world.moves:
+				if m["id"] == move_name:
+					target_move = m
+					break
+
+		var prev_pose: Quaternion = Quaternion.IDENTITY
+		var sequence_animated := false
+
+		for frame_idx in range(4):
+			var tick_offset: int = frame_ticks[frame_idx]
+			fighter.state = int(seq["state"])
+
+			if move_name != "":
+				fighter.begin_move(1, target_move, 1, 1)
+				fighter.state = SimFighter.State.ACTIVE
+				fighter.state_tick = tick_offset
+			else:
+				fighter.state_tick = tick_offset
+
+			driver.time = float(tick_offset) / 60.0
+			driver.update(fighter)
+
+			# Sample spine or limb bone pose rotation
+			var sample_bone: int = (
+				rig.skeleton.find_bone("upper_arm.l")
+				if "punch" in seq_name
+				else (
+					rig.skeleton.find_bone("thigh.r")
+					if "kick" in seq_name or "walk" in seq_name or "run" in seq_name
+					else rig.skeleton.find_bone("spine")
+				)
+			)
+			if sample_bone >= 0:
+				var cur_pose: Quaternion = rig.skeleton.get_bone_pose_rotation(sample_bone)
+				if frame_idx > 0 and cur_pose.angle_to(prev_pose) > 0.001:
+					sequence_animated = true
+				prev_pose = cur_pose
+
+		# Assert poses remain finite and valid throughout sequence
+		for b in range(rig.skeleton.get_bone_count()):
+			assert_true(
+				rig.skeleton.get_bone_pose_rotation(b).is_finite(),
+				"Bone %s finite in %s" % [rig.skeleton.get_bone_name(b), seq_name]
+			)
+
+	rig.free()
+	sub_viewport.free()

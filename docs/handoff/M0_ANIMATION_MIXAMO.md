@@ -6,16 +6,21 @@ Stage M0 Step 3 (Mixamo Animation Integration & Clip Track Binding) is complete.
 ## 2. Changed Files
 - `src/presentation/fighter_rig.gd`:
   - Implemented dynamic runtime track path rewriting (`_bind_animation_library_to_skeleton`) targeting the live `Skeleton3D` relative to `anim_player.root_node`.
+  - Added strict track classification: validates 3D transform tracks, resolves bone names vs property tracks, prevents indiscriminate node-to-bone mapping.
+  - Enforced non-silent track removal: checks against 15 required deform bones (`REQUIRED_BONES`), rejects lost required bones with errors, excludes helper tracks only via explicit rule (`ALLOWED_EXCLUDED_TRACKS`), and records full audit log in `binding_audit_log`.
+  - Added `is_using_mixamo_model()` query helper.
   - Resource duplication on load to prevent cross-fighter track mutation.
   - Integration of `data/animation/mixamo_bone_map.json` for shared 15-bone naming.
 - `src/presentation/pose_driver.gd`:
+  - Added explicit support for `walk_fwd`, `walk_back`, and `run` (derived run) with speed scaling in `_drive_clip()`.
+  - Guarded procedural root orientation adjustments so mapped clips are not overwritten by later procedural pose updates when `clip_active` is true.
   - Corrected floor grounding in `_ground()`: excludes decorative torso/cloak mesh bounds when legs/feet are intact so foot vertices accurately contact `abs(floor_y) <= 0.015`.
   - Corrected visual reach mismatch measurement: self-buff superpower moves with zero-width hitboxes (`hit_w == 0`) no longer register spurious reach deltas against physical strike tolerances.
 - `tools/blender/retarget_mixamo_anims.py`:
   - Added action purge and NLA strip cleanup before GLB export.
   - Set `export_optimize_animation_size=False` in Blender 5.2 to preserve keyframe curves.
 - `tests/unit/test_anim_binding_regression.gd`:
-  - 3 new regression tests verifying clip track resolution, dynamic skeletal motion, and two-fighter independence.
+  - 4 regression tests verifying clip track resolution, dynamic skeletal motion, full 40-combination coverage (4 fighters x 10 models), strict two-fighter pose independence with B pose recording and single-advancement isolation, and multi-frame sequence pose validity.
 - `src/debug/animation_lab.gd`:
   - Added clip name, source indicator (`Mixamo [clip_name]` vs `Procedural Fallback`), contact phase marker, and reach delta display.
 
@@ -26,7 +31,7 @@ Stage M0 Step 3 (Mixamo Animation Integration & Clip Track Binding) is complete.
 
 ## 4. Test & Verification Evidence
 - `tools/check_all.ps1`: Exit Code **0**
-- Test Count: **128 unit/integration tests passed, 0 failed, 0 skipped**.
+- Test Count: **129 unit/integration tests passed, 0 failed, 0 skipped**.
 - Replay Determinism: Golden hashes matched identically (`test_golden_final_hash` PASS, `test_two_runs_match_every_tick` PASS). Presentation changes did not alter simulation hashes.
 - Reach Tolerance: Max reach delta observed: **685 mm** (strictly under the documented 700 mm limit in `data/animation/poses.json`; no tolerances were expanded).
 
