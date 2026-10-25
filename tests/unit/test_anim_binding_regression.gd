@@ -495,4 +495,116 @@ func test_atalanta_idle_and_backward_walk_presentation() -> void:
 	driver.update(fighter)
 	assert_eq(driver.current_action_name, "walk_fwd", "Moving forward triggers walk_fwd")
 
+	# Test presentation facing on both sides (+1 and -1), retreat (walking backward), and side swaps
+	for facing_dir in [1, -1]:
+		fighter.facing = facing_dir
+		fighter.state = SimFighter.State.IDLE
+		driver.update(fighter)
+		assert_true(
+			rig.basis.z.x * facing_dir > 0.99,
+			"Idle model forward basis.z.x (%f) faces facing_dir (%d)" % [rig.basis.z.x, facing_dir]
+		)
+
+		fighter.state = SimFighter.State.WALK
+		# Retreat: walk away from opponent
+		driver.walk_direction = -facing_dir
+		driver.update(fighter)
+		assert_eq(driver.current_action_name, "walk_back", "Retreat selects walk_back")
+		assert_true(
+			rig.basis.z.x * facing_dir > 0.99,
+			(
+				"Retreat model forward basis.z.x (%f) remains facing opponent (%d)"
+				% [rig.basis.z.x, facing_dir]
+			)
+		)
+
+		# Advance: walk toward opponent
+		driver.walk_direction = facing_dir
+		driver.update(fighter)
+		assert_eq(driver.current_action_name, "walk_fwd", "Advance selects walk_fwd")
+		assert_true(
+			rig.basis.z.x * facing_dir > 0.99,
+			"Advance model forward basis.z.x (%f) faces opponent (%d)" % [rig.basis.z.x, facing_dir]
+		)
+
 	rig.free()
+
+	# Also verify Theron on both sides
+	var theron_rig := FighterRig.new()
+	assert_true(theron_rig.load_fighter("theron"), "Theron rig loads")
+	(Engine.get_main_loop() as SceneTree).root.add_child(theron_rig)
+	var theron_driver := PoseDriver.new()
+	theron_driver.setup(theron_rig)
+	var theron_fighter := world.fighters[0]
+	theron_fighter.fighter_id = "theron"
+
+	for facing_dir in [1, -1]:
+		theron_fighter.facing = facing_dir
+		theron_fighter.state = SimFighter.State.IDLE
+		theron_driver.update(theron_fighter)
+		assert_true(
+			theron_rig.basis.z.x * facing_dir > 0.99,
+			(
+				"Theron idle model forward basis.z.x (%f) faces facing_dir (%d)"
+				% [theron_rig.basis.z.x, facing_dir]
+			)
+		)
+
+		theron_fighter.state = SimFighter.State.WALK
+		theron_driver.walk_direction = -facing_dir  # retreat
+		theron_driver.update(theron_fighter)
+		assert_true(
+			theron_rig.basis.z.x * facing_dir > 0.99,
+			(
+				"Theron retreat model forward basis.z.x (%f) faces facing_dir (%d)"
+				% [theron_rig.basis.z.x, facing_dir]
+			)
+		)
+
+	theron_rig.free()
+
+
+func test_gore_debris_and_burst_joint_local() -> void:
+	var gore := GoreManager.new()
+	(Engine.get_main_loop() as SceneTree).root.add_child(gore)
+
+	# Test burst parameters
+	gore.burst(Vector3(0, 1.0, 0), false, true)
+	assert_true(gore.particles.size() > 0, "severed burst spawned particles")
+
+	# Find CPUParticles3D in particles pool
+	var burst_particle: CPUParticles3D = null
+	for p in gore.particles:
+		if p is CPUParticles3D:
+			burst_particle = p as CPUParticles3D
+			break
+	assert_true(burst_particle != null, "CPUParticles3D found")
+	assert_eq(burst_particle.amount, 28, "normal gore severed particle amount is 28 (small burst)")
+	assert_eq(burst_particle.spread, 45.0, "severed particle spread is tight (45 deg)")
+	assert_true(burst_particle.initial_velocity_max <= 2.0, "particle velocity is small (<= 2 m/s)")
+	assert_true(burst_particle.mesh is SphereMesh, "droplet is SphereMesh")
+	assert_true(
+		(burst_particle.mesh as SphereMesh).radius <= 0.02, "droplet radius is small (<= 0.02m)"
+	)
+
+	# Test debris scaling consistency: visual mesh scale matches collision shape size
+	var rig := FighterRig.new()
+	rig.load_fighter("atalanta")
+	var sample_piece: MeshInstance3D = rig.limb_meshes["arm_l"][0]
+	gore.debris(sample_piece, Transform3D.IDENTITY, 1.0)
+	var spawned_body: RigidBody3D = gore.chunks.back() as RigidBody3D
+	assert_true(spawned_body != null, "debris body spawned")
+
+	var visual: MeshInstance3D = spawned_body.find_child("*", true, false) as MeshInstance3D
+	var collision: CollisionShape3D = (
+		spawned_body.find_children("*", "CollisionShape3D", true, false)[0] as CollisionShape3D
+	)
+	assert_true(visual != null and collision != null, "visual and collision present in debris")
+
+	var col_shape := collision.shape as BoxShape3D
+	var max_col_dim := maxf(col_shape.size.x, maxf(col_shape.size.y, col_shape.size.z))
+	assert_true(max_col_dim <= 0.355, "collision max dimension clamped to <= 0.35m")
+	assert_true(visual.scale.x <= 1.0, "visual scale adjusted to match collision size")
+
+	rig.free()
+	gore.free()
