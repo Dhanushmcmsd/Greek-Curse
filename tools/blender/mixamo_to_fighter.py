@@ -71,12 +71,15 @@ def build_rigged_armature(root, height, width, joints_pos):
     
     root_pos = joints_pos.get("root", (0, 0, height * 0.45))
     spine_pos = joints_pos.get("spine", (0, 0, height * 0.55))
+    neck_pos = joints_pos.get("neck", joints_pos.get("head", (0, 0, height * 0.85)))
     head_pos = joints_pos.get("head", (0, 0, height * 0.88))
     
+    # Spine bone runs from root to neck/base-of-head; head bone pivots at neck
+    head_pivot = neck_pos
     specs = [
         ("root", None, (0, 0, 0), root_pos),
-        ("spine", "root", root_pos, spine_pos),
-        ("head", "spine", spine_pos, (0, 0, height)),
+        ("spine", "root", root_pos, head_pivot),
+        ("head", "spine", head_pivot, (head_pivot[0], head_pivot[1], height)),
     ]
     
     for side in ["l", "r"]:
@@ -194,6 +197,7 @@ def convert_character(fbx_name, target_id, target_height_m, target_width_m, out_
     mixamo_to_joint = {
         "mixamorig:Hips": "root",
         "mixamorig:Spine": "spine",
+        "mixamorig:Neck": "neck",
         "mixamorig:Head": "head",
         "mixamorig:LeftArm": "upper_arm.l",
         "mixamorig:LeftForeArm": "forearm.l",
@@ -346,6 +350,11 @@ def convert_character(fbx_name, target_id, target_height_m, target_width_m, out_
     out_dir.mkdir(parents=True, exist_ok=True)
     out_glb = out_dir / f"fighter_{target_id}.glb"
     
+    # Remove any unparented or stray objects before export
+    for obj in list(bpy.data.objects):
+        if obj != root and obj not in root.children_recursive:
+            bpy.data.objects.remove(obj, do_unlink=True)
+            
     bpy.ops.object.select_all(action="DESELECT")
     root.select_set(True)
     for c in root.children_recursive:

@@ -46,10 +46,36 @@ def retarget_clip(fbx_path, out_glb_path, clip_name):
     src_arm = src_arms[0]
     src_arm.name = "SRC_Armature"
     
-    # Create target 15-bone armature
+    # Create target 15-bone armature matching source joint layout
     target_root = bpy.data.objects.new("ROOT_TARGET", None)
     bpy.context.collection.objects.link(target_root)
-    tgt_arm = build_rigged_armature(target_root, 1.8, 0.45, {})
+    
+    # Sample source joint positions to preserve matching bone lengths and pivots
+    joints_pos = {}
+    src_map = {
+        "mixamorig:Hips": "root",
+        "mixamorig:Spine": "spine",
+        "mixamorig:Neck": "neck",
+        "mixamorig:Head": "head",
+        "mixamorig:LeftArm": "upper_arm.l",
+        "mixamorig:LeftForeArm": "forearm.l",
+        "mixamorig:LeftHand": "hand.l",
+        "mixamorig:RightArm": "upper_arm.r",
+        "mixamorig:RightForeArm": "forearm.r",
+        "mixamorig:RightHand": "hand.r",
+        "mixamorig:LeftUpLeg": "thigh.l",
+        "mixamorig:LeftLeg": "shin.l",
+        "mixamorig:LeftFoot": "foot.l",
+        "mixamorig:RightUpLeg": "thigh.r",
+        "mixamorig:RightLeg": "shin.r",
+        "mixamorig:RightFoot": "foot.r",
+    }
+    for b_src, j_name in src_map.items():
+        if b_src in src_arm.data.bones:
+            head_w = src_arm.matrix_world @ src_arm.data.bones[b_src].head_local
+            joints_pos[j_name] = (head_w.x, head_w.y, head_w.z)
+            
+    tgt_arm = build_rigged_armature(target_root, 1.8, 0.45, joints_pos)
     tgt_arm.name = "Skeleton"
     
     # Add constraints
