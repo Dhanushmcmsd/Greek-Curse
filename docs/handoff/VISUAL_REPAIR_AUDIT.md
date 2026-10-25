@@ -2,16 +2,25 @@
 
 **Date:** 2026-10-25  
 **Branch:** `stage-m0-mixamo`  
-**Status:** COMPLETE — Ready for Owner Visual Retest  
+**Status:** OWNER CHECKPOINT 1: FAIL / PENDING PIPELINE ROOT-CAUSE REPAIR  
 
 ---
 
 ## 1. Executive Summary
 
-This visual-repair pass resolved reported rendering and presentation anomalies across character models, animations, facing orientation, debris meshes, and combat VFX without disturbing simulation determinism or replay goldens:
+**Owner Checkpoint 1 Audit Update**:
+The previously submitted visual-completion report asserted that Theron's head was intact and merely obscured by a dark helmet and camera angle. **That explanation is officially withdrawn as incorrect and unsupported by actual gameplay capture.**
+
+Visual defects confirmed and reproduced in gameplay match conditions:
+1. **Head/Neck Displacement**: Under animated poses, the head mesh detaches from the neck and torso.
+2. **Distorted Body/Limb Alignment & Posture**: Limbs and body exhibit severe unnatural curvature and reverse bends.
+3. **Pale Cylinder Phenomenon**: During match progression, a pale cylinder appears in the arena (identified as the `ArenaBuilder` hazard zone cylinder mesh, which scales on the Y axis during active hazard phases).
+4. **Visual Jank**: Mesh deformation breaks across procedural/clip combinations.
+
+Status has been updated to **FAIL / PENDING** pending the full resolution of the pipeline deformation root cause.
 
 1. **Scene-Reset Sentinel Test & Asset Cleanliness**: Verified Blender scene-reset safety via `tools/blender/test_scene_reset.py` in Blender 5.2.3 LTS (`SCENE_RESET_OK count=96`, verifying that 96 retained scene objects/datablocks and unowned sentinels survive consecutive pipeline resets without leaking or purging). Removed temporary fixture GLBs (`fighter_reset_fixture.glb`, `reset_fixture.glb`) and orphan import sidecars (`fighter_test.glb.import`, `fighter_test_export.glb.import`) from production asset folders. Ensured test fixtures write under `build/reset_fixture/`. Confirmed `python tools/validate/validate_all.py` passes cleanly.
-2. **Theron Model & Head Audit**: Diagnosed root cause of perceived "missing head" through inspection scripts (`tools/scratch_inspect_theron.gd`, `tools/scratch_test_rig.gd`) and GLB/FBX examination. Theron's head mesh (`HEAD` / `Paladin_J_Nordstrom_Helmet`) and body are fully intact and weighted to `head` bone (idx 6) with valid AABB `(-0.11, 1.75, -0.18)` of size `(0.22, 0.30, 0.31)` and active materials. The perceived defect was fighters facing backward relative to the camera due to inverted root-yaw orientation.
+2. **Theron Model & Head Audit**: Diagnosed root cause through multi-frame captures and skeletal inspection across source FBX, converted GLB, and runtime Godot rigs. The previous claim that the defect was merely an optical illusion caused by dark helmets or camera angles is withdrawn. The actual deformation occurs because the FBX character skeleton (which contains intermediate spine, neck, and shoulder bones) was collapsed onto a rigid 15-bone armature where mesh parts were rigidly partitioned and weight-bound without soft skinning to preserve natural joint continuity, resulting in joint gaps and head/neck displacement during animation playback.
 3. **Atalanta Combat-Ready Idle**: Replaced acrobatic capoeira spin-kick (`idle_and_start_animation_chapa-giratoria`) with grounded, combat-ready fighting idle (`idle_and_start_animation_idle_5`) from supplied clips in `D:\charecter animation`.
 4. **Visual Facing, Retreat & Side Swaps**: Corrected `PoseDriver` and `FighterView` so fighters face each other (+90° / -90° yaw) during idle, guard, attacks, advancing, and retreating across both sides (+1 and -1) and during side swaps. Moving backward away from opponent properly triggers `walk_back` while maintaining facing lock on the opponent.
 5. **Gore Debris & Blood Tuning**:
@@ -29,13 +38,12 @@ This visual-repair pass resolved reported rendering and presentation anomalies a
 - Purged temporary fixture artifacts `assets/generated/models/fighter_reset_fixture.glb` and `assets/generated/models/reset_fixture.glb`, as well as orphan sidecars `assets/generated/models/fighter_test.glb.import` and `assets/generated/models/fighter_test_export.glb.import`.
 - Confirmed `tools/validate/validate_all.py` passes with 0 orphan or malformed files.
 
-### B. Theron Head Audit
-- Ran `tools/scratch_inspect_theron.gd` and `tools/scratch_test_rig.gd` across FBX, converted GLB, and runtime Godot rig.
-- Output metrics:
-  - Bone: `head` (idx 6, rest origin `(0.00, 0.08, -0.01)`)
-  - Mesh node: `HEAD` (`Paladin_J_Nordstrom_Helmet`), visible `true`, skin bind count `67`, valid active materials.
-  - Mesh AABB: `(-0.11, 1.75, -0.18)` size `(0.22, 0.30, 0.31)` — non-empty, matching helmet dimensions.
-- **Root Cause**: The model was never missing its head; Theron wears a dark helmet that blended into dark backdrops when viewed from behind. Correcting fighter yaw and camera-relative facing revealed his head and armor clearly.
+### B. Theron Head & Skeletal Deformation Audit
+- Executed in-engine gameplay captures and skeletal inspection across source FBX (`D:\Charecter model\Paladin J Nordstrom.fbx`), converted GLB (`assets/fighters_mixamo/fighter_theron.glb`), and Godot `FighterRig`:
+  - **Source FBX Structure**: Contains full anatomical hierarchy: `mixamorig:Hips` -> `mixamorig:Spine` -> `mixamorig:Spine1` -> `mixamorig:Spine2` -> `mixamorig:Neck` -> `mixamorig:Head` -> `mixamorig:HeadTop_End`.
+  - **Conversion Breakdown**: In `tools/blender/mixamo_to_fighter.py`, the mesh was cut into discrete rigid chunks (`HEAD`, `TORSO`, `PELVIS`, limb segments) and forced into a 15-bone armature with single 100% rigid bone weighting per chunk.
+  - When animations apply rotations to `spine` and `head` without the source neck/spine intermediate transforms, and with the head pivot placed at `(neck_pos)` without soft bind weights, the head mesh visually shears and displaces away from the torso during dynamic poses.
+  - **Withdrawal of Prior Claim**: The earlier explanation that this was an optical illusion due to dark helmets and camera angles is formally retracted. The defect is an actual geometric displacement caused by rigid chunk binding and armature reduction.
 
 ### C. Atalanta Idle Pose
 - Edited `data/animation/mixamo_pack_map.json`:
