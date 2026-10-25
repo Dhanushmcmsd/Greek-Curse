@@ -23,9 +23,20 @@ This document defines the strict specification that any fighter 3D asset (`.glb`
 
 ---
 
-## 2. Skeleton Hierarchy (15 Shared Bones)
+## 2. Skeleton Hierarchy & Rig Contracts
 
-Every fighter model must share the exact 15-bone hierarchy with identical bone names:
+The engine supports two distinct rig contracts:
+
+### A. Rich Deform Rig Contract (`contract: "mixamo_deform"`)
+For imported high-fidelity characters (Mixamo FBX source):
+- **Full Anatomical Armature Retained**: Keeps all original deform bones, intermediate twist/spine bones (`Spine1`, `Spine2`, `Neck`), and facial/accessory joints (65–99 bones).
+- **Soft Skinning Preserved**: Continuous skin weights are maintained across joints. Head, neck, and torso form a single unbroken mesh segment (`TORSO_HEAD`), ensuring head and neck never detach or shear under animation.
+- **Canonical 15-Bone Mapping**: The 15 primary anatomical deform bones are renamed or mapped to the canonical joint identifiers (`root`, `spine`, `head`, `upper_arm.l`, `forearm.l`, `hand.l`, `upper_arm.r`, `forearm.r`, `hand.r`, `thigh.l`, `shin.l`, `foot.l`, `thigh.r`, `shin.r`, `foot.r`).
+- **Modular Limb Partitioning**: The four amputatable limb branches (`arm_l`, `arm_r`, `leg_l`, `leg_r`) are cleanly partitioned into continuous skinned modular meshes tagged with `limb_group` meta (`LIMB_ARM_L`, `LIMB_ARM_R`, `LIMB_LEG_L`, `LIMB_LEG_R`), preserving intact boundary positions and skinning weights.
+
+### B. Legacy 15-Bone Rigid Rig Contract (Fallback / Procedural Fighters)
+For low-poly procedural prototype fighters:
+- Exactly 15 bones sharing the standard hierarchy:
 
 ```
 root (Pelvis / Floor anchor)

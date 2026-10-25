@@ -25,7 +25,22 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 		rig.fighter_width = model_info["width"]
 		rig.skeleton = rig.model.find_child("Skeleton3D", true, false) as Skeleton3D
 		assert_true(rig.skeleton != null, "skeleton found " + model_info["id"])
-		assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones " + model_info["id"])
+		var is_rich_deform: bool = rig.skeleton.get_bone_count() > 15
+		if is_rich_deform:
+			assert_true(
+				rig.skeleton.get_bone_count() >= 15,
+				"rich deform rig has >= 15 bones: " + model_info["id"]
+			)
+			for req_bone in FighterRig.REQUIRED_BONES:
+				assert_true(
+					rig.skeleton.find_bone(req_bone) >= 0,
+					(
+						"required mapped bone '%s' exists on skeleton for %s"
+						% [req_bone, model_info["id"]]
+					)
+				)
+		else:
+			assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones " + model_info["id"])
 
 		for slot in SimLimbs.LIMB_NAMES:
 			var suffix := slot.to_upper()
@@ -44,12 +59,23 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 				var mesh: Node = rig.model.find_child(type + "_" + part + "_" + side, true, false)
 				if mesh != null:
 					rig.limb_meshes[slot].append(mesh)
+			if rig.limb_meshes[slot].is_empty():
+				var target_tag := "LIMB_" + suffix
+				var target_suffix := "_" + suffix
+				for child in rig.model.find_children("*", "MeshInstance3D", true, false):
+					if (
+						child.has_meta("limb_group")
+						and str(child.get_meta("limb_group")) == target_tag
+					):
+						rig.limb_meshes[slot].append(child)
+					elif str(child.name).ends_with(target_suffix):
+						rig.limb_meshes[slot].append(child)
 			for part in ["CUT_", "BONE_"]:
 				var mesh: Node = rig.model.find_child(part + type + side, true, false)
 				if mesh != null:
 					rig.stump_meshes[slot].append(mesh)
 
-			assert_eq(rig.limb_meshes[slot].size(), 3, "three limb meshes for " + slot)
+			assert_true(rig.limb_meshes[slot].size() >= 1, "at least one limb mesh for " + slot)
 			assert_eq(rig.stump_meshes[slot].size(), 2, "two stump meshes for " + slot)
 
 			# Prove hiding limb hides actual rendered meshes

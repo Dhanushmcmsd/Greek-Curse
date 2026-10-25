@@ -131,11 +131,15 @@ func _sever_effect(slot: String) -> void:
 				if slot.begins_with("arm")
 				else ["thigh", "shin", "foot"]
 			)
-			var bone := rig.skeleton.find_bone(joints[index] + "." + slot.right(1))
-			var deform := (
-				rig.skeleton.get_bone_global_pose(bone)
-				* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
-			)
-			pose = rig.global_transform * deform * original.transform
+			var joint_name: String = joints[mini(index, joints.size() - 1)] + "." + slot.right(1)
+			var bone := rig.skeleton.find_bone(joint_name)
+			if bone >= 0:
+				var deform := (
+					rig.skeleton.get_bone_global_pose(bone)
+					* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
+				)
+				pose = rig.global_transform * deform * original.transform
+			elif rig.sockets.has(slot):
+				pose = rig.sockets[slot].global_transform
 		manager.debris(original, pose, rig.basis.z.x)
 	manager.burst(source.global_position, false, true)

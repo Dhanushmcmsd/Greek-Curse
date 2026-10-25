@@ -85,10 +85,21 @@ func setup(target: FighterRig) -> void:
 					)
 				):
 					bone = joints[part] + "." + slot.right(1)
+			var is_limb_meta: bool = (
+				mesh.has_meta("limb_group")
+				and str(mesh.get_meta("limb_group")) == "LIMB_" + slot.to_upper()
+			)
+			if name.ends_with("_" + slot.to_upper()) or is_limb_meta:
+				bone = ("foot." if prefix == "LEG" else "hand.") + slot.right(1)
+		var target_bone_idx := rig.skeleton.find_bone(bone)
+		if target_bone_idx == -1:
+			target_bone_idx = rig.skeleton.find_bone("spine")
+		if target_bone_idx == -1:
+			target_bone_idx = 0
 		var vertices := PackedVector3Array()
 		for surface in mesh.mesh.get_surface_count():
 			vertices.append_array(mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX])
-		_bounds.append([mesh, rig.skeleton.find_bone(bone), vertices])
+		_bounds.append([mesh, target_bone_idx, vertices])
 	_cape = rig.model.find_child("CAPE", true, false) as Node3D
 	if _cape != null:
 		_cape_rest = _cape.transform
@@ -300,11 +311,14 @@ func _attachments(fighter: SimFighter, stopped: bool) -> void:
 		var bone := rig.skeleton.find_bone(
 			("upper_arm." if slot.begins_with("arm") else "thigh.") + slot.right(1)
 		)
-		var deform := (
-			rig.skeleton.get_bone_global_pose(bone)
-			* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
-		)
-		rig.sockets[slot].transform = deform * _socket_rest[slot]
+		if bone >= 0:
+			var deform := (
+				rig.skeleton.get_bone_global_pose(bone)
+				* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
+			)
+			rig.sockets[slot].transform = deform * _socket_rest[slot]
+		else:
+			rig.sockets[slot].transform = _socket_rest[slot]
 		var state: String = fighter.limbs.parts[slot].state
 		if _last_states.get(slot, "healthy") != "severed" and state == "severed":
 			_twitch[slot] = int(data["settings"]["stump_twitch_ticks"])
@@ -337,6 +351,7 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 		and fighter.limbs.usable("leg_r")
 		and fighter.pose in ["standing", "hop", "walk_a"]
 	)
+	var spine_bone := rig.skeleton.find_bone("spine")
 	for item in _bounds:
 		var mesh: MeshInstance3D = item[0]
 		if not mesh.is_visible_in_tree():
@@ -344,12 +359,14 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 		var bone: int = item[1]
 		# When standing with intact legs, floor grounding is defined by foot contact;
 		# decorative torso/cloak mesh extensions should not pull grounding down below the feet.
-		if has_healthy_feet and bone == rig.skeleton.find_bone("spine"):
+		if has_healthy_feet and bone == spine_bone:
 			continue
-		var deform := (
-			rig.skeleton.get_bone_global_pose(bone)
-			* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
-		)
+		var deform := Transform3D.IDENTITY
+		if bone >= 0:
+			deform = (
+				rig.skeleton.get_bone_global_pose(bone)
+				* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
+			)
 		var transform := Transform3D(rig.basis, Vector3.ZERO) * deform * mesh.transform
 		for vertex in item[2]:
 			floor_min = minf(floor_min, (transform * vertex).y)

@@ -75,15 +75,24 @@ func debris(mesh: MeshInstance3D, pose: Transform3D, direction: float) -> void:
 	body.physics_material_override.bounce = 0.35
 	var box := mesh.mesh.get_aabb()
 	var center := box.get_center()
+
+	# Keep visual mesh and collision dimensions consistent:
+	# Clamping oversize partitions at the transform/scale level so visual and collider match.
+	var max_dim := maxf(box.size.x, maxf(box.size.y, box.size.z))
+	var s := 1.0
+	if max_dim > 0.35:
+		s = 0.35 / max_dim
+
 	var visual := MeshInstance3D.new()
 	visual.mesh = mesh.mesh
-	visual.position = -center
+	visual.position = -center * s
+	visual.scale = Vector3.ONE * s
 	for surface in mesh.mesh.get_surface_count():
 		visual.set_surface_override_material(surface, mesh.get_active_material(surface))
 	body.add_child(visual)
 	var collision := CollisionShape3D.new()
 	var shape := BoxShape3D.new()
-	shape.size = box.size.max(Vector3.ONE * 0.03)
+	shape.size = (box.size * s).max(Vector3.ONE * 0.03)
 	collision.shape = shape
 	body.add_child(collision)
 	_register(body, chunks, int(config["chunk_cap"]), float(config["chunk_lifetime"]))
@@ -100,16 +109,16 @@ func burst(at: Vector3, blocked: bool, severed: bool = false) -> void:
 	var effect := CPUParticles3D.new()
 	effect.one_shot = true
 	effect.explosiveness = 1.0
-	effect.amount = 12 if blocked or off else int((70 if severed else 18) * level)
-	effect.lifetime = float(config["particle_lifetime"])
+	effect.amount = 8 if blocked or off else int((28 if severed else 14) * level)
+	effect.lifetime = 0.28 if severed else float(config["particle_lifetime"])
 	effect.direction = Vector3(0, 1, 0)
-	effect.spread = 75
-	effect.initial_velocity_min = 1.0
-	effect.initial_velocity_max = 4.0 if severed else 2.0
+	effect.spread = 45.0 if severed else 60.0
+	effect.initial_velocity_min = 0.8
+	effect.initial_velocity_max = 2.0 if severed else 1.4
 	effect.gravity = Vector3(0, -9, 0)
 	effect.color = Color("a0ddff") if blocked else Color("e3bd76") if off else blood_color()
 	var drop := SphereMesh.new()
-	drop.radius = 0.016 if not severed else 0.025
+	drop.radius = 0.012 if not severed else 0.018
 	drop.height = drop.radius * 2
 	var material := StandardMaterial3D.new()
 	material.albedo_color = effect.color
@@ -133,14 +142,14 @@ func burst(at: Vector3, blocked: bool, severed: bool = false) -> void:
 	if severed or blocked:
 		var ring := MeshInstance3D.new()
 		var torus := TorusMesh.new()
-		torus.inner_radius = 0.16
-		torus.outer_radius = 0.19
+		torus.inner_radius = 0.08
+		torus.outer_radius = 0.11
 		ring.mesh = torus
 		ring.material_override = material
 		ring.rotation.x = PI / 2
-		_register(ring, particles, int(config["particle_cap"]), 0.3)
+		_register(ring, particles, int(config["particle_cap"]), 0.2)
 		ring.global_position = at
-		create_tween().tween_property(ring, "scale", Vector3.ONE * (4.5 if severed else 2.2), 0.25)
+		create_tween().tween_property(ring, "scale", Vector3.ONE * (1.6 if severed else 1.2), 0.18)
 
 
 func splat(at: Vector3, wall: bool) -> void:

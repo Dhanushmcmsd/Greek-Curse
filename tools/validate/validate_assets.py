@@ -97,10 +97,17 @@ def check_assets():
                     m_nodes = m_info["data"]["nodes"]
                     m_joints = set(m_info["skins"][0]["joints"])
                     m_parents = {c: i for i, node in enumerate(m_nodes) for c in node.get("children", [])}
-                    m_hierarchy = sorted((m_nodes[i]["name"], m_nodes[m_parents[i]]["name"] if m_parents.get(i) in m_joints else "") for i in m_joints)
-                    mixamo_skeletons.append(m_hierarchy)
-            if mixamo_skeletons and any(s != mixamo_skeletons[0] for s in mixamo_skeletons[1:]):
-                errors.append("mixamo fighter skeleton hierarchies differ")
+                    req_15 = {
+                        "root", "spine", "head",
+                        "upper_arm.l", "forearm.l", "hand.l",
+                        "upper_arm.r", "forearm.r", "hand.r",
+                        "thigh.l", "shin.l", "foot.l",
+                        "thigh.r", "shin.r", "foot.r"
+                    }
+                    jnames = {m_nodes[j]["name"] for j in m_joints}
+                    missing_bones = req_15 - jnames
+                    if missing_bones:
+                        errors.append(f"mixamo_{mid}: missing required bones {sorted(missing_bones)}")
         except Exception as err:
             errors.append(f"mixamo manifest validation error: {err}")
 
