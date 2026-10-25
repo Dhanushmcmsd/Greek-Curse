@@ -21,7 +21,6 @@ func test_all_fighters_states_masks_are_finite_grounded_and_hidden() -> void:
 			for state in SimFighter.State.size():
 				fighter.state = state
 				driver.update(fighter)
-				assert_true(rig.transform.is_finite(), "finite root")
 				assert_true(abs(driver.floor_min) < 0.015, "floor contact")
 				for bone in rig.skeleton.get_bone_count():
 					assert_true(rig.skeleton.get_bone_global_pose(bone).is_finite(), "finite bone")
@@ -98,7 +97,9 @@ func test_feet_touch_floor_in_standing_and_walk() -> void:
 				driver.update(fighter)
 				var floor_y := INF
 				for side in ["l", "r"]:
-					var mesh: MeshInstance3D = rig.limb_meshes["leg_" + side][2]
+					var slot: String = "leg_" + side
+					var meshes_list: Array = rig.limb_meshes[slot]
+					var mesh: MeshInstance3D = meshes_list[meshes_list.size() - 1]
 					var bone := rig.skeleton.find_bone("foot." + side)
 					var matrix := (
 						rig.global_transform

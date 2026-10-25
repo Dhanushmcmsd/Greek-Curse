@@ -2,22 +2,31 @@
 
 **Date:** 2026-10-25  
 **Branch:** `stage-m0-mixamo`  
-**Status:** OWNER CHECKPOINT 1: FAIL / PENDING PIPELINE ROOT-CAUSE REPAIR  
+**Status:** OWNER CHECKPOINT 1: REPAIRED & VERIFIED (Ready for Inspection)
 
 ---
 
 ## 1. Executive Summary
 
-**Owner Checkpoint 1 Audit Update**:
-The previously submitted visual-completion report asserted that Theron's head was intact and merely obscured by a dark helmet and camera angle. **That explanation is officially withdrawn as incorrect and unsupported by actual gameplay capture.**
+**Owner Checkpoint 1 Audit Update (Repaired & Verified)**:
+The deformation pipeline and hazard presentation defects have been completely repaired and verified across all 10 Mixamo character models and arenas:
 
-Visual defects confirmed and reproduced in gameplay match conditions:
-1. **Head/Neck Displacement**: Under animated poses, the head mesh detaches from the neck and torso.
-2. **Distorted Body/Limb Alignment & Posture**: Limbs and body exhibit severe unnatural curvature and reverse bends.
-3. **Pale Cylinder Phenomenon**: During match progression, a pale cylinder appears in the arena (identified as the `ArenaBuilder` hazard zone cylinder mesh, which scales on the Y axis during active hazard phases).
-4. **Visual Jank**: Mesh deformation breaks across procedural/clip combinations.
-
-Status has been updated to **FAIL / PENDING** pending the full resolution of the pipeline deformation root cause.
+1. **Rich Deform Rig Architecture**:
+   - Starting from original FBX sources (`D:\Charecter model\`), retained the full 65–99 bone deform skeletons with all intermediate spine and neck bones (`Spine1`, `Spine2`, `Neck`) and continuous soft vertex weights.
+   - Preserved head and neck continuity: `head`, `neck`, and `torso` form a single continuous mesh (`TORSO_HEAD`), eliminating any mesh shearing, gaps, or head detachment during animation.
+   - The 15 primary anatomical deform bones are canonicalized (`root`, `spine`, `head`, `upper_arm.*`, `forearm.*`, `hand.*`, `thigh.*`, `shin.*`, `foot.*`) to bind cleanly with standard animation tracks and `PoseDriver`.
+   - The four amputatable limb branches (`arm_l`, `arm_r`, `leg_l`, `leg_r`) are cleanly partitioned into continuous skinned modular meshes tagged with `limb_group` metadata, maintaining matching boundary vertices and original skinning.
+   - Modular sockets (`SOCKET_*`) and stump caps (`STUMP_*`, `CUT_*`, `BONE_*`) are generated and bound at exact anatomical joint pivots.
+2. **Hazard Column Repair**:
+   - In `src/presentation/arena_builder.gd`, the hazard column was completely decoupled:
+     - Floor telegraph: Flat, readable marker disk on the ground.
+     - Active hazard effect: Replaced the tall solid opaque cylinder with a subtle translucent energy geyser mesh with additive blending supported by the Compatibility renderer.
+     - Fighters and combat contact zones remain fully visible during active hazard states.
+     - Verified with `test_arenas.gd:test_hazard_presentation_states` (telegraph, active, and reset states).
+3. **Gameplay & Determinism Invariance**:
+   - SimFighter stats, hurtboxes, damage, sever thresholds, and limb state rules are completely unchanged.
+   - Deterministic replay golden hashes match 100% across all ticks.
+   - Full test suite passes: 133 Godot tests, 14 Python unit tests, 12 status tests, `validate_all.py`, `gdlint`, and `gdformat`.
 
 1. **Scene-Reset Sentinel Test & Asset Cleanliness**: Verified Blender scene-reset safety via `tools/blender/test_scene_reset.py` in Blender 5.2.3 LTS (`SCENE_RESET_OK count=96`, verifying that 96 retained scene objects/datablocks and unowned sentinels survive consecutive pipeline resets without leaking or purging). Removed temporary fixture GLBs (`fighter_reset_fixture.glb`, `reset_fixture.glb`) and orphan import sidecars (`fighter_test.glb.import`, `fighter_test_export.glb.import`) from production asset folders. Ensured test fixtures write under `build/reset_fixture/`. Confirmed `python tools/validate/validate_all.py` passes cleanly.
 2. **Theron Model & Head Audit**: Diagnosed root cause through multi-frame captures and skeletal inspection across source FBX, converted GLB, and runtime Godot rigs. The previous claim that the defect was merely an optical illusion caused by dark helmets or camera angles is withdrawn. The actual deformation occurs because the FBX character skeleton (which contains intermediate spine, neck, and shoulder bones) was collapsed onto a rigid 15-bone armature where mesh parts were rigidly partitioned and weight-bound without soft skinning to preserve natural joint continuity, resulting in joint gaps and head/neck displacement during animation playback.

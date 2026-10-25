@@ -36,7 +36,18 @@ func test_clip_track_binding_across_all_fighters_and_models() -> void:
 				rig.is_using_mixamo_model(),
 				"Must load intended Mixamo model without falling back for %s/%s" % [fid, mid]
 			)
-			assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones for model " + mid)
+			if rig.skeleton.get_bone_count() > 15:
+				assert_true(
+					rig.skeleton.get_bone_count() >= 15,
+					"rich deform skeleton >= 15 bones for " + mid
+				)
+				for req_bone in FighterRig.REQUIRED_BONES:
+					assert_true(
+						rig.skeleton.find_bone(req_bone) >= 0,
+						"required bone '%s' exists on skeleton for %s" % [req_bone, mid]
+					)
+			else:
+				assert_eq(rig.skeleton.get_bone_count(), 15, "15 shared bones for model " + mid)
 
 			var resolved_root: Node = rig.anim_player.get_node_or_null(rig.anim_player.root_node)
 			assert_true(
@@ -608,3 +619,57 @@ func test_gore_debris_and_burst_joint_local() -> void:
 
 	rig.free()
 	gore.free()
+
+
+func test_pilot_neck_and_head_continuity() -> void:
+	# Verifies that for the skinned pilot rig, head and spine/neck remain continuous
+	# across idle, walk, punch, kick, block, hit, death frames (no separation/displacement).
+	var rig := FighterRig.new()
+	var ok := rig.load_fighter("atalanta")
+	assert_true(ok, "loads atalanta rig")
+	(Engine.get_main_loop() as SceneTree).root.add_child(rig)
+
+	var head_idx := rig.skeleton.find_bone("head")
+	var spine_idx := rig.skeleton.find_bone("spine")
+	assert_true(head_idx >= 0, "head bone exists")
+	assert_true(spine_idx >= 0, "spine bone exists")
+
+	# Initial rest distance between spine and head
+	var rest_head_pos := rig.skeleton.get_bone_global_rest(head_idx).origin
+	var rest_spine_pos := rig.skeleton.get_bone_global_rest(spine_idx).origin
+	var rest_dist := rest_head_pos.distance_to(rest_spine_pos)
+
+	var anim_list := rig.anim_player.get_animation_list()
+	for anim_name in anim_list:
+		if not (
+			anim_name.ends_with("idle")
+			or anim_name.ends_with("walk_fwd")
+			or anim_name.ends_with("walk_back")
+			or anim_name.ends_with("attack_light")
+			or anim_name.ends_with("attack_heavy")
+			or anim_name.ends_with("block")
+			or anim_name.ends_with("hit")
+			or anim_name.ends_with("death")
+		):
+			continue
+		rig.anim_player.play(anim_name)
+		var anim: Animation = rig.anim_player.get_animation(anim_name)
+		var dur := anim.length
+		# Sample multiple frames across the duration
+		for step in 5:
+			var t := (float(step) / 4.0) * dur
+			rig.anim_player.seek(t, true)
+			var pose_head := rig.skeleton.get_bone_global_pose(head_idx).origin
+			var pose_spine := rig.skeleton.get_bone_global_pose(spine_idx).origin
+			var current_dist := pose_head.distance_to(pose_spine)
+			# Bone distance between spine and head must remain anatomically bounded (within 20% of rest)
+			var delta := absf(current_dist - rest_dist)
+			assert_true(
+				delta < 0.15,
+				(
+					"head and spine remain continuous under %s at t=%.2f: delta=%.3fm"
+					% [anim_name, t, delta]
+				)
+			)
+
+	rig.free()

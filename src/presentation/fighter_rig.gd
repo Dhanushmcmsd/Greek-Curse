@@ -164,6 +164,15 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 			var mesh := model.find_child(type + "_" + part + "_" + side, true, false)
 			if mesh != null:
 				limb_meshes[slot].append(mesh)
+		if limb_meshes[slot].is_empty():
+			# Support skinned Mixamo meshes partitioned by limb (e.g. *_ARM_L, limb_group="LIMB_ARM_L")
+			var target_tag := "LIMB_" + suffix
+			var target_suffix := "_" + suffix
+			for child in model.find_children("*", "MeshInstance3D", true, false):
+				if child.has_meta("limb_group") and str(child.get_meta("limb_group")) == target_tag:
+					limb_meshes[slot].append(child)
+				elif str(child.name).ends_with(target_suffix):
+					limb_meshes[slot].append(child)
 		for part in ["CUT_", "BONE_"]:
 			var mesh := model.find_child(part + type + side, true, false)
 			if mesh != null:
