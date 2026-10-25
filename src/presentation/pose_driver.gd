@@ -13,6 +13,8 @@ var reach_mismatch_mm: int = 0
 var caption: String = ""
 var pack_map: Dictionary = {}
 var walk_direction: int = 0
+var current_action_name: String = ""
+var current_clip_id: String = ""
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _socket_rest: Dictionary = {}
@@ -433,10 +435,10 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
 	elif fighter.state == SimFighter.State.WALK:
 		var speed_val: int = fighter.walk_speed if "walk_speed" in fighter else 20
-		if speed_val > 30 and actions.has("run"):
-			act_key = "run"
-		elif walk_direction != 0 and walk_direction != fighter.facing and actions.has("walk_back"):
+		if walk_direction != 0 and walk_direction != fighter.facing and actions.has("walk_back"):
 			act_key = "walk_back"
+		elif speed_val > 30 and actions.has("run"):
+			act_key = "run"
 		else:
 			act_key = "walk_fwd"
 	elif fighter.state == SimFighter.State.IDLE:
@@ -453,11 +455,18 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		act_key = "grab"
 
 	if act_key == "" or not actions.has(act_key):
+		current_action_name = ""
+		current_clip_id = ""
 		return false
 
 	var clip_name: String = fighter.fighter_id + "_" + act_key
 	if not rig.anim_player.has_animation(clip_name):
+		current_action_name = ""
+		current_clip_id = ""
 		return false
+
+	current_action_name = act_key
+	current_clip_id = str(actions[act_key].get("clip", ""))
 
 	if is_attack:
 		var total_ticks := maxi(

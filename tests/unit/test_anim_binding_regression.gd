@@ -459,3 +459,40 @@ func test_visual_multi_frame_sequences() -> void:
 
 	rig.free()
 	sub_viewport.free()
+
+
+func test_atalanta_idle_and_backward_walk_presentation() -> void:
+	var rig := FighterRig.new()
+	var loaded := rig.load_fighter("atalanta")
+	assert_true(loaded, "Atalanta rig loaded")
+	(Engine.get_main_loop() as SceneTree).root.add_child(rig)
+
+	var driver := PoseDriver.new()
+	driver.setup(rig)
+
+	var world := ProtoFixture.world_with()
+	var fighter := world.fighters[1]
+	fighter.fighter_id = "atalanta"
+	fighter.state = SimFighter.State.IDLE
+	fighter.facing = -1
+
+	driver.update(fighter)
+	assert_eq(driver.current_action_name, "idle", "Atalanta plays idle")
+	assert_eq(
+		driver.current_clip_id,
+		"idle_and_start_animation_idle_5",
+		"Atalanta uses combat-ready idle clip"
+	)
+
+	# Verify backward walk selection when walk_direction opposes facing
+	fighter.state = SimFighter.State.WALK
+	fighter.walk_speed = 22
+	driver.walk_direction = 1  # Opposes facing (-1) -> moving backward
+	driver.update(fighter)
+	assert_eq(driver.current_action_name, "walk_back", "Moving backward triggers walk_back")
+
+	driver.walk_direction = -1  # Matches facing (-1) -> moving forward
+	driver.update(fighter)
+	assert_eq(driver.current_action_name, "walk_fwd", "Moving forward triggers walk_fwd")
+
+	rig.free()

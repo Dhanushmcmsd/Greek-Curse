@@ -167,3 +167,4 @@ Owner Checkpoint 1: Run interactive playtest (`scenes/match/match_prototype.tscn
 
 | 2026-10-24 | 10–13 | HUD, reproducible pipeline, shared rigs and five regrown limbs complete. 93 tests, 23 replays and 40 attachment cases pass. Checkpoint B awaits owner testing. | COMPLETE |
 | 2026-10-24 | 14 | Fixed reported Checkpoint B defects and completed stage 14 at owner request. 103 tests, full pose matrices and corrected 64-match soak pass; retest requested. | COMPLETE |
+| 2026-10-25 | M0 | Visual repair pass: Theron head audit (intact), Atalanta combat idle (idle_5), visual facing and backward walk, clamped debris chunks and joint-local blood bursts. 130 tests pass, replay hashes preserved. See docs/handoff/VISUAL_REPAIR_AUDIT.md. | COMPLETE |

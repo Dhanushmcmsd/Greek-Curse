@@ -10,6 +10,8 @@ var _rest_color: Color = Color(0.8, 0.8, 0.8)
 var _flash_ticks: int = 0
 var _last_states: Dictionary = {}
 var _pose_time: float = 0.0
+var _prev_x: int = -999999
+var _has_prev_x: bool = false
 
 
 func setup(
@@ -96,6 +98,14 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 		if state == "severed" and _last_states.get(slot, "healthy") != "severed":
 			_sever_effect(slot)
 		_last_states[slot] = state
+	if _has_prev_x:
+		var dx := fighter.x - _prev_x
+		if dx != 0:
+			driver.walk_direction = 1 if dx > 0 else -1
+		elif fighter.state != SimFighter.State.WALK:
+			driver.walk_direction = 0
+	_prev_x = fighter.x
+	_has_prev_x = true
 	driver.update(fighter, frozen or visual_stop > 0)
 	if visual_stop > 0:
 		visual_stop -= 1
