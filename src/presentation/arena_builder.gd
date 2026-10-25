@@ -50,23 +50,59 @@ func _ready() -> void:
 		var glow := StandardMaterial3D.new()
 		glow.albedo_color = Color("ff6425") if data["hazard"]["type"] == "lava" else Color("a9eaff")
 		glow.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		glow.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		glow.albedo_color.a = 0.65
 		marker.material_override = glow
 		marker.position = Vector3(float(int(zone[0]) + int(zone[1])) / 2000.0, 0.02, 0)
 		marker.visible = false
 		add_child(marker)
 		markers.append(marker)
 
+		# Separate active hazard geyser/energy column:
+		var column := MeshInstance3D.new()
+		var col_mesh := CylinderMesh.new()
+		col_mesh.top_radius = plane.top_radius * 0.85
+		col_mesh.bottom_radius = plane.top_radius * 0.95
+		col_mesh.height = 3.2
+		column.mesh = col_mesh
+		var col_mat := StandardMaterial3D.new()
+		col_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		col_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+		var col_base: Color = (
+			Color(1.0, 0.45, 0.18, 0.22)
+			if data["hazard"]["type"] == "lava"
+			else Color(0.6, 0.9, 1.0, 0.20)
+		)
+		col_mat.albedo_color = col_base
+		column.material_override = col_mat
+		column.position = Vector3(marker.position.x, 1.6, 0)
+		column.visible = false
+		add_child(column)
+		marker.set_meta("active_column", column)
+
 
 func sync(world: SimWorld) -> void:
 	for marker in markers:
 		marker.visible = false
+		var col: MeshInstance3D = marker.get_meta("active_column", null) as MeshInstance3D
+		if col != null:
+			col.visible = false
 	if not world.hazards_enabled or world.tick < world.hazard_offset:
 		return
 	var rule: Dictionary = data["hazard"]
 	var age := (world.tick - world.hazard_offset) % int(rule["period"])
 	var cycle := (world.tick - world.hazard_offset) / int(rule["period"])
 	var marker := markers[(cycle + world.hazard_zone) % markers.size()]
-	marker.visible = age < int(rule["telegraph_ticks"]) + int(rule["active_ticks"])
-	marker.scale.y = 220.0 if age >= int(rule["telegraph_ticks"]) else 1.0
-	if bool(SettingsHooks.get_value("flash_reduction")):
-		marker.scale.y = minf(marker.scale.y, 20)
+	var is_visible: bool = age < int(rule["telegraph_ticks"]) + int(rule["active_ticks"])
+	marker.visible = is_visible
+	marker.scale.y = 1.0
+
+	var column: MeshInstance3D = marker.get_meta("active_column", null) as MeshInstance3D
+	var is_active: bool = age >= int(rule["telegraph_ticks"]) and is_visible
+	if column != null:
+		column.visible = is_active
+		if is_active:
+			var mat := column.material_override as StandardMaterial3D
+			if mat != null:
+				var max_alpha := 0.12 if bool(SettingsHooks.get_value("flash_reduction")) else 0.22
+				mat.albedo_color.a = max_alpha
