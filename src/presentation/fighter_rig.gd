@@ -66,6 +66,7 @@ var anim_player: AnimationPlayer
 var replacements: Dictionary = {}
 var fighter_height: float = 1.8
 var fighter_width: float = 0.45
+var loaded_fighter_model_id: String = ""
 var loaded_model_path: String = ""
 var binding_audit_log: Array[Dictionary] = []
 var _states: Dictionary = {}
@@ -78,6 +79,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	var mid: String = model_override
 	if mid == "":
 		mid = str(row.get("model_id", id))
+	loaded_fighter_model_id = mid
 	var mixamo_path := "res://assets/fighters_mixamo/fighter_%s.glb" % mid
 	var legacy_path := "res://assets/generated/models/fighter_%s.glb" % id
 	var path := ""
@@ -233,11 +235,46 @@ func attach_regrown(slot: String, id: String) -> bool:
 	if not result.ok or not slot.begins_with(str(result.value["slot"])):
 		return false
 	detach_regrown(slot)
+
+	# 1. Check for elemental limb variant matching the loaded fighter model and slot
+	# Example: assets/limbs_elemental/elemental_atalanta_arm_l.glb
+	var elemental_path := ""
+	if loaded_fighter_model_id != "":
+		var candidate := (
+			"res://assets/limbs_elemental/elemental_%s_%s.glb" % [loaded_fighter_model_id, slot]
+		)
+		if ResourceLoader.exists(candidate):
+			elemental_path = candidate
+
+	if elemental_path != "" and skeleton != null:
+		var scene := load(elemental_path) as PackedScene
+		if scene != null:
+			var inst := scene.instantiate()
+			var limb_mesh: MeshInstance3D = null
+			for child in inst.find_children("*", "MeshInstance3D", true, false):
+				limb_mesh = child as MeshInstance3D
+				break
+			if limb_mesh != null:
+				limb_mesh.get_parent().remove_child(limb_mesh)
+				limb_mesh.owner = null
+				skeleton.add_child(limb_mesh)
+				limb_mesh.skeleton = NodePath("..")
+				limb_mesh.set_meta("limb_id", id)
+				limb_mesh.set_meta("is_elemental", true)
+				replacements[slot] = limb_mesh
+				set_limb_visible(slot, false)
+				show_stump(slot, false)
+				inst.queue_free()
+				return true
+			inst.queue_free()
+
+	# 2. Fallback to generated prototype limb model attached to socket
 	var info := ModelLoader.load_model("res://assets/generated/models/limb_%s.glb" % id)
 	if info.root == null:
 		return false
 	var replacement := info.root
 	replacement.set_meta("limb_id", id)
+	replacement.set_meta("is_elemental", false)
 	var base_scale := Vector3(fighter_width / 0.45, fighter_height / 1.8, fighter_width / 0.45)
 	# If parent socket is inside a scaled hierarchy (such as Mixamo BoneAttachment3D at 0.01 scale),
 	# compensate the scale factor so the limb renders at natural world dimensions.
@@ -256,7 +293,8 @@ func attach_regrown(slot: String, id: String) -> bool:
 func detach_regrown(slot: String) -> void:
 	if replacements.has(slot):
 		var old: Node = replacements[slot]
-		old.get_parent().remove_child(old)
+		if old.get_parent() != null:
+			old.get_parent().remove_child(old)
 		old.free()
 		replacements.erase(slot)
 	set_limb_visible(slot, true)
