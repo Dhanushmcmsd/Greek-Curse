@@ -43,8 +43,11 @@ def build_arissa_intact_pilot():
     print(f"Exported intact model: {model_glb}")
     
     # 2. Retarget core action set directly
+    # Note: Idle.fbx has chest_fwd pointing +Y (Hips Y rot -43 deg combat angle),
+    # aligning with walk_fwd, walk_back, punch_jab, and kick_thrust.
+    # idle (5).fbx faced -Y (Hips Y rot -155 deg), causing a 180 deg reverse facing.
     core_clips = [
-        ("idle", anim_dir / "idle and start animation/idle (5).fbx", True),
+        ("idle", anim_dir / "idle and start animation/Idle.fbx", True),
         ("walk_fwd", anim_dir / "walking front/walking.fbx", True),
         ("walk_back", anim_dir / "walking back/Walking Backwards.fbx", True),
         ("punch_jab", anim_dir / "punch/Lead Jab.fbx", True),
