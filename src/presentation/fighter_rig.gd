@@ -142,6 +142,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 							anim_player.add_animation_library("", default_lib)
 						var dup_anim: Animation = anim.duplicate(true)
 						_bind_animation_to_skeleton(dup_anim, clip_file)
+						if act_key in ["idle", "walk_fwd", "walk_back", "run"]:
+							dup_anim.loop_mode = Animation.LOOP_LINEAR
+						else:
+							dup_anim.loop_mode = Animation.LOOP_NONE
 						if default_lib.has_animation(target_name):
 							default_lib.remove_animation(target_name)
 						default_lib.add_animation(target_name, dup_anim)
@@ -234,7 +238,14 @@ func attach_regrown(slot: String, id: String) -> bool:
 		return false
 	var replacement := info.root
 	replacement.set_meta("limb_id", id)
-	replacement.scale = Vector3(fighter_width / 0.45, fighter_height / 1.8, fighter_width / 0.45)
+	var base_scale := Vector3(fighter_width / 0.45, fighter_height / 1.8, fighter_width / 0.45)
+	# If parent socket is inside a scaled hierarchy (such as Mixamo BoneAttachment3D at 0.01 scale),
+	# compensate the scale factor so the limb renders at natural world dimensions.
+	var sock: Node3D = sockets[slot] as Node3D
+	var sock_global_scale: Vector3 = sock.global_transform.basis.get_scale()
+	if sock_global_scale.x > 0.0 and sock_global_scale.x < 0.1:
+		base_scale *= (1.0 / sock_global_scale.x)
+	replacement.scale = base_scale
 	attach_to_socket(slot, replacement)
 	replacements[slot] = replacement
 	set_limb_visible(slot, false)

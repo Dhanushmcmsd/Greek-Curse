@@ -1,7 +1,8 @@
 extends TestBase
-## Unit contract tests for Gate A intact pilot, facing calibration, and amputation mechanics.
+## Unit contract tests for Gate A intact pilot, facing, looping, and regrowth.
 
 const PilotPreviewScript := preload("res://src/presentation/pilot_gate_a_preview.gd")
+const PREVIEW_SCENE_PATH := "res://scenes/debug/pilot_gate_a_preview.tscn"
 
 
 func test_gate_a_intact_pilot_and_bone_mapping() -> void:
@@ -40,8 +41,8 @@ func test_gate_a_intact_pilot_and_bone_mapping() -> void:
 	root.queue_free()
 
 
-func test_gate_a_core_actions_and_facing_alignment() -> void:
-	var scene_pck := load("res://scenes/debug/pilot_gate_a_preview.tscn") as PackedScene
+func test_gate_a_core_actions_looping_and_facing() -> void:
+	var scene_pck := load(PREVIEW_SCENE_PATH) as PackedScene
 	assert_true(scene_pck != null, "Preview scene must instantiate")
 	var pilot: Node = scene_pck.instantiate()
 	pilot.call("init_model_and_anims")
@@ -61,6 +62,16 @@ func test_gate_a_core_actions_and_facing_alignment() -> void:
 			"Action '%s' must animate at least 65 deform channels" % act
 		)
 
+		# Explicit loop mode validation:
+		# Locomotion and idle must loop continuously (LOOP_LINEAR).
+		# Attacks must remain one-shot (LOOP_NONE).
+		if act in ["idle", "walk_fwd", "walk_back"]:
+			assert_eq(
+				anim.loop_mode, Animation.LOOP_LINEAR, "Action '%s' must loop continuously" % act
+			)
+		else:
+			assert_eq(anim.loop_mode, Animation.LOOP_NONE, "Action '%s' must be one-shot" % act)
+
 	# Check neck-head and limb bone length continuity across actions
 	var neck_idx: int = skel.find_bone("mixamorig_Neck")
 	var head_idx: int = skel.find_bone("mixamorig_Head")
@@ -68,9 +79,6 @@ func test_gate_a_core_actions_and_facing_alignment() -> void:
 	var rest_head_pos: Vector3 = skel.get_bone_global_rest(head_idx).origin
 	var rest_neck_head: float = rest_neck_pos.distance_to(rest_head_pos)
 
-	# Facing landmark check:
-	# In Godot local space, chest normal points forward (+Z or -Z).
-	# Left shoulder should be at positive local X, Right shoulder at negative local X.
 	var ls_idx: int = skel.find_bone("mixamorig_LeftShoulder")
 	var rs_idx: int = skel.find_bone("mixamorig_RightShoulder")
 	var hips_idx: int = skel.find_bone("mixamorig_Hips")
@@ -90,16 +98,12 @@ func test_gate_a_core_actions_and_facing_alignment() -> void:
 				"Neck-to-head distance must remain continuous in %s" % act
 			)
 
-			# Verify anatomical facing:
-			# Chest normal (shoulder_cross_up) must have consistent sign with other clips
-			# and not be reversed by 180 degrees
 			var ls_pos: Vector3 = skel.get_bone_global_pose(ls_idx).origin
 			var rs_pos: Vector3 = skel.get_bone_global_pose(rs_idx).origin
 			var hips_pos: Vector3 = skel.get_bone_global_pose(hips_idx).origin
 			var up_vec: Vector3 = (head_pos - hips_pos).normalized()
 			var right_vec: Vector3 = (rs_pos - ls_pos).normalized()
 			var chest_fwd: Vector3 = right_vec.cross(up_vec).normalized()
-			# In Idle, Walk, Jab, Kick, chest_fwd Z coordinate is negative in Godot armature space
 			assert_true(
 				chest_fwd.z < 0.2,
 				(
@@ -111,34 +115,63 @@ func test_gate_a_core_actions_and_facing_alignment() -> void:
 	pilot.queue_free()
 
 
-func test_gate_a_amputation_pilot_partitioning() -> void:
-	var part_model_path := "res://build/pilot_gate_a/arissa_partitioned.glb"
-	assert_true(ResourceLoader.exists(part_model_path), "Partitioned model must exist")
+func test_gate_a_regrowth_attachment_and_lifecycle() -> void:
+	var scene_pck := load(PREVIEW_SCENE_PATH) as PackedScene
+	assert_true(scene_pck != null, "Preview scene must instantiate")
+	var pilot: Node = scene_pck.instantiate()
+	pilot.call("init_model_and_anims")
 
-	var scene_pck := load(part_model_path) as PackedScene
-	assert_true(scene_pck != null, "PackedScene must load")
-	var root: Node = scene_pck.instantiate()
+	# 1. Verify BoneAttachment3D sockets exist under Skeleton3D
+	var skel: Skeleton3D = pilot.get("skeleton")
+	assert_true(skel != null, "Skeleton must exist")
+	var sock_arm: Node3D = pilot.get("socket_arm_l")
+	var sock_leg: Node3D = pilot.get("socket_leg_l")
+	assert_true(sock_arm != null, "Socket ATTACH_ARM_L must exist")
+	assert_true(sock_leg != null, "Socket ATTACH_LEG_L must exist")
 
-	# Assert sockets and stumps exist
-	var sock_arm_l := root.find_child("SOCKET_ARM_L", true, false)
-	var sock_leg_l := root.find_child("SOCKET_LEG_L", true, false)
-	var stump_arm_l := root.find_child("STUMP_ARM_L", true, false)
-	var stump_leg_l := root.find_child("STUMP_LEG_L", true, false)
-	assert_true(sock_arm_l != null, "SOCKET_ARM_L must exist")
-	assert_true(sock_leg_l != null, "SOCKET_LEG_L must exist")
-	assert_true(stump_arm_l != null, "STUMP_ARM_L must exist")
-	assert_true(stump_leg_l != null, "STUMP_LEG_L must exist")
+	# 2. Test initial healthy state
+	pilot.call("_update_limb_visibilities")
+	var arm_status: String = pilot.get("arm_attachment_status")
+	assert_eq(arm_status, "NATURAL (Intact)", "Initial arm status must be intact")
 
-	# Assert limb mesh partitions exist
-	var arm_l_meshes: Array[Node] = []
-	var leg_l_meshes: Array[Node] = []
-	for c in root.find_children("*", "MeshInstance3D", true, false):
-		if str(c.name).ends_with("_ARM_L"):
-			arm_l_meshes.append(c)
-		elif str(c.name).ends_with("_LEG_L"):
-			leg_l_meshes.append(c)
+	# 3. Test severance
+	pilot.set("arm_l_severed", true)
+	pilot.call("_update_limb_visibilities")
+	arm_status = pilot.get("arm_attachment_status")
+	assert_eq(arm_status, "SEVERED (Stump visible)", "Arm status after sever must be stump visible")
+	var stump_arm: Node3D = pilot.get("stump_arm_l")
+	assert_true(stump_arm != null and stump_arm.visible, "Stump cap must be visible when severed")
 
-	assert_true(arm_l_meshes.size() >= 1, "Arm L meshes must be partitioned")
-	assert_true(leg_l_meshes.size() >= 1, "Leg L meshes must be partitioned")
+	# 4. Test real arm replacement attachment
+	pilot.set("regrown_arm_attached", true)
+	pilot.call("_update_limb_visibilities")
+	arm_status = pilot.get("arm_attachment_status")
+	assert_true(arm_status.begins_with("SUCCESS"), "Regrown arm must succeed: %s" % arm_status)
+	var regrown_node: Node3D = pilot.get("regrown_arm_node")
+	assert_true(regrown_node != null, "Real regrown arm mesh node must be instantiated")
+	assert_false(stump_arm.visible, "Stump cap must be hidden when replacement is attached")
 
-	root.queue_free()
+	# 5. Test real leg replacement attachment
+	pilot.set("leg_l_severed", true)
+	pilot.set("regrown_leg_attached", true)
+	pilot.call("_update_limb_visibilities")
+	var leg_status: String = pilot.get("leg_attachment_status")
+	assert_true(leg_status.begins_with("SUCCESS"), "Regrown leg must succeed: %s" % leg_status)
+	var regrown_leg: Node3D = pilot.get("regrown_leg_node")
+	assert_true(regrown_leg != null, "Real regrown leg mesh node must be instantiated")
+
+	# 6. Test natural arm restoration cleans up replacement
+	pilot.set("arm_l_severed", false)
+	pilot.set("regrown_arm_attached", false)
+	pilot.call("_update_limb_visibilities")
+	assert_true(
+		pilot.get("regrown_arm_node") == null,
+		"Regrown node must be freed when natural arm restored"
+	)
+
+	# 7. Test model reload/mode toggle does not leave stale references
+	pilot.call("init_model_and_anims")
+	assert_true(pilot.get("regrown_arm_node") == null, "Reload must clear replacement node")
+	assert_true(pilot.get("socket_arm_l") != null, "Socket must be re-bound cleanly on reload")
+
+	pilot.queue_free()

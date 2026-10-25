@@ -6,8 +6,9 @@ extends Node3D
 ## - Fixed world direction markers (+X / -X).
 ## - Dummy opponent on active combat facing side.
 ## - Multi-camera toggle: Front (Combat) vs Side (Profile).
-## - Interactive Amputation toggles: Arm Sever [1], Leg Sever [2], Regrow [3], Intact Mode [M].
-## - Controls: [SPACE] Cycle Action | [F] Flip Facing | [C] Camera View | [1..3] Limb States
+## - Interactive Amputation toggles:
+##   Arm Sever [1], Leg Sever [2], Regrow Arm [3], Regrow Leg [4], Intact Mode [M].
+## - Controls: [SPACE] Cycle Action | [F] Facing | [C] Camera | [1..4] Limbs | [M] Mode
 
 var anim_player: AnimationPlayer
 var model: Node3D
@@ -21,14 +22,22 @@ var facing_dir: float = 1.0
 var is_partitioned_mode: bool = true
 var arm_l_severed: bool = false
 var leg_l_severed: bool = false
-var regrown_attached: bool = false
+var regrown_arm_attached: bool = false
+var regrown_leg_attached: bool = false
 
 var limb_meshes_arm_l: Array[MeshInstance3D] = []
 var limb_meshes_leg_l: Array[MeshInstance3D] = []
 var stump_arm_l: Node3D
 var stump_leg_l: Node3D
 var socket_arm_l: Node3D
-var regrown_limb_node: Node3D
+var socket_leg_l: Node3D
+
+var regrown_arm_node: Node3D
+var regrown_leg_node: Node3D
+
+# Attachment status strings for verifiable HUD
+var arm_attachment_status: String = "INTACT"
+var leg_attachment_status: String = "INTACT"
 
 var cam_front: Camera3D
 var cam_side: Camera3D
@@ -45,19 +54,19 @@ func _ready() -> void:
 	cam_front = Camera3D.new()
 	cam_front.position = Vector3(0, 1.1, 2.5)
 	add_child(cam_front)
-	cam_front.look_at(Vector3(0, 0.9, 0), Vector3.UP)
+	cam_front.look_at_from_position(cam_front.position, Vector3(0, 0.9, 0), Vector3.UP)
 	cam_front.current = true
 
 	cam_side = Camera3D.new()
 	cam_side.position = Vector3(2.5, 1.1, 0)
 	add_child(cam_side)
-	cam_side.look_at(Vector3(0, 0.9, 0), Vector3.UP)
+	cam_side.look_at_from_position(cam_side.position, Vector3(0, 0.9, 0), Vector3.UP)
 	cam_side.current = false
 
 	var light := DirectionalLight3D.new()
 	light.position = Vector3(1, 3, 2)
 	add_child(light)
-	light.look_at(Vector3.ZERO, Vector3.UP)
+	light.look_at_from_position(light.position, Vector3.ZERO, Vector3.UP)
 
 	var env := WorldEnvironment.new()
 	var we := Environment.new()
@@ -122,6 +131,9 @@ func _create_marker(pos: Vector3, col: Color, _label_text: String) -> void:
 
 
 func init_model_and_anims() -> void:
+	# Clear obsolete nodes before replacing model
+	_clear_regrown_attachments()
+
 	if model != null:
 		model.queue_free()
 		model = null
@@ -155,10 +167,57 @@ func init_model_and_anims() -> void:
 			if a_player != null and not a_player.get_animation_list().is_empty():
 				var clip: Animation = a_player.get_animation(a_player.get_animation_list()[0])
 				var dup_clip: Animation = clip.duplicate(true)
+				# Configure continuous looping for locomotion and idle
+				if act in ["idle", "walk_fwd", "walk_back"]:
+					dup_clip.loop_mode = Animation.LOOP_LINEAR
+				else:
+					dup_clip.loop_mode = Animation.LOOP_NONE
 				default_lib.add_animation(act, dup_clip)
 			a_scene.queue_free()
 
+	_setup_bone_attachment_sockets()
 	_cache_partitioned_nodes()
+
+
+func _clear_regrown_attachments() -> void:
+	if regrown_arm_node != null:
+		if regrown_arm_node.get_parent() != null:
+			regrown_arm_node.get_parent().remove_child(regrown_arm_node)
+		regrown_arm_node.queue_free()
+		regrown_arm_node = null
+	if regrown_leg_node != null:
+		if regrown_leg_node.get_parent() != null:
+			regrown_leg_node.get_parent().remove_child(regrown_leg_node)
+		regrown_leg_node.queue_free()
+		regrown_leg_node = null
+
+
+func _setup_bone_attachment_sockets() -> void:
+	if skeleton == null:
+		return
+
+	# Setup BoneAttachment3D sockets directly under Skeleton3D for reliable joint-following
+	var arm_bone_name := "mixamorig_LeftArm"
+	if skeleton.find_bone(arm_bone_name) >= 0:
+		var existing_arm := skeleton.get_node_or_null("ATTACH_ARM_L")
+		if existing_arm != null:
+			existing_arm.queue_free()
+		var ba_arm := BoneAttachment3D.new()
+		ba_arm.name = "ATTACH_ARM_L"
+		ba_arm.bone_name = arm_bone_name
+		skeleton.add_child(ba_arm)
+		socket_arm_l = ba_arm
+
+	var leg_bone_name := "mixamorig_LeftUpLeg"
+	if skeleton.find_bone(leg_bone_name) >= 0:
+		var existing_leg := skeleton.get_node_or_null("ATTACH_LEG_L")
+		if existing_leg != null:
+			existing_leg.queue_free()
+		var ba_leg := BoneAttachment3D.new()
+		ba_leg.name = "ATTACH_LEG_L"
+		ba_leg.bone_name = leg_bone_name
+		skeleton.add_child(ba_leg)
+		socket_leg_l = ba_leg
 
 
 func _cache_partitioned_nodes() -> void:
@@ -166,7 +225,6 @@ func _cache_partitioned_nodes() -> void:
 	limb_meshes_leg_l.clear()
 	stump_arm_l = model.find_child("STUMP_ARM_L", true, false) as Node3D
 	stump_leg_l = model.find_child("STUMP_LEG_L", true, false) as Node3D
-	socket_arm_l = model.find_child("SOCKET_ARM_L", true, false) as Node3D
 
 	for child in model.find_children("*", "MeshInstance3D", true, false):
 		var mesh_name: String = str(child.name)
@@ -189,34 +247,56 @@ func _update_limb_visibilities() -> void:
 	for m in limb_meshes_arm_l:
 		m.visible = not arm_l_severed
 	if stump_arm_l != null:
-		stump_arm_l.visible = arm_l_severed and not regrown_attached
+		stump_arm_l.visible = arm_l_severed and not regrown_arm_attached
 
 	# Leg L visibility
 	for m in limb_meshes_leg_l:
 		m.visible = not leg_l_severed
 	if stump_leg_l != null:
-		stump_leg_l.visible = leg_l_severed
+		stump_leg_l.visible = leg_l_severed and not regrown_leg_attached
 
-	# Regrown attachment
-	if regrown_attached:
-		if regrown_limb_node == null and socket_arm_l != null:
-			var regrown_mesh := MeshInstance3D.new()
-			var cyl := CylinderMesh.new()
-			cyl.top_radius = 0.04
-			cyl.bottom_radius = 0.05
-			cyl.height = 0.55
-			regrown_mesh.mesh = cyl
-			var mat := StandardMaterial3D.new()
-			mat.albedo_color = Color(0.9, 0.7, 0.2)
-			regrown_mesh.material_override = mat
-			regrown_mesh.position = Vector3(0, -0.28, 0)
-			regrown_limb_node = Node3D.new()
-			regrown_limb_node.add_child(regrown_mesh)
-			socket_arm_l.add_child(regrown_limb_node)
+	# Regrown Arm Attachment (Real rubber chicken arm asset)
+	if regrown_arm_attached and arm_l_severed:
+		if regrown_arm_node == null:
+			var arm_res_path := "res://assets/generated/models/limb_rubber_chicken_arm.glb"
+			if not ResourceLoader.exists(arm_res_path):
+				arm_attachment_status = "FAILED (Asset not found: %s)" % arm_res_path
+			elif socket_arm_l == null:
+				arm_attachment_status = "FAILED (Missing socket: ATTACH_ARM_L)"
+			else:
+				var arm_pck := load(arm_res_path) as PackedScene
+				var arm_inst: Node3D = arm_pck.instantiate() as Node3D
+				# Compensate Skeleton3D 0.01 scale so limb renders at natural world proportions
+				arm_inst.scale = Vector3(100.0, 100.0, 100.0)
+				socket_arm_l.add_child(arm_inst)
+				regrown_arm_node = arm_inst
+				arm_attachment_status = "SUCCESS (rubber_chicken_arm bound to mixamorig_LeftArm)"
 	else:
-		if regrown_limb_node != null:
-			regrown_limb_node.queue_free()
-			regrown_limb_node = null
+		if regrown_arm_node != null:
+			regrown_arm_node.queue_free()
+			regrown_arm_node = null
+		arm_attachment_status = ("SEVERED (Stump visible)" if arm_l_severed else "NATURAL (Intact)")
+
+	# Regrown Leg Attachment (Real Hermes sandal leg asset)
+	if regrown_leg_attached and leg_l_severed:
+		if regrown_leg_node == null:
+			var leg_res_path := "res://assets/generated/models/limb_hermes_sandal_leg.glb"
+			if not ResourceLoader.exists(leg_res_path):
+				leg_attachment_status = "FAILED (Asset not found: %s)" % leg_res_path
+			elif socket_leg_l == null:
+				leg_attachment_status = "FAILED (Missing socket: ATTACH_LEG_L)"
+			else:
+				var leg_pck := load(leg_res_path) as PackedScene
+				var leg_inst: Node3D = leg_pck.instantiate() as Node3D
+				leg_inst.scale = Vector3(100.0, 100.0, 100.0)
+				socket_leg_l.add_child(leg_inst)
+				regrown_leg_node = leg_inst
+				leg_attachment_status = "SUCCESS (hermes_sandal_leg bound to mixamorig_LeftUpLeg)"
+	else:
+		if regrown_leg_node != null:
+			regrown_leg_node.queue_free()
+			regrown_leg_node = null
+		leg_attachment_status = ("SEVERED (Stump visible)" if leg_l_severed else "NATURAL (Intact)")
 
 
 func play_action(act_name: String) -> void:
@@ -252,22 +332,32 @@ func _unhandled_input(event: InputEvent) -> void:
 			_update_hud()
 		elif event.keycode == KEY_1:
 			arm_l_severed = not arm_l_severed
+			if not arm_l_severed:
+				regrown_arm_attached = false
 			_update_limb_visibilities()
 			_update_hud()
 		elif event.keycode == KEY_2:
 			leg_l_severed = not leg_l_severed
+			if not leg_l_severed:
+				regrown_leg_attached = false
 			_update_limb_visibilities()
 			_update_hud()
 		elif event.keycode == KEY_3:
 			if arm_l_severed:
-				regrown_attached = not regrown_attached
+				regrown_arm_attached = not regrown_arm_attached
+				_update_limb_visibilities()
+				_update_hud()
+		elif event.keycode == KEY_4:
+			if leg_l_severed:
+				regrown_leg_attached = not regrown_leg_attached
 				_update_limb_visibilities()
 				_update_hud()
 		elif event.keycode == KEY_M:
 			is_partitioned_mode = not is_partitioned_mode
 			arm_l_severed = false
 			leg_l_severed = false
-			regrown_attached = false
+			regrown_arm_attached = false
+			regrown_leg_attached = false
 			init_model_and_anims()
 			_apply_model_facing()
 			play_action(actions[current_action_idx])
@@ -283,29 +373,31 @@ func _update_hud() -> void:
 	var dur: float = anim.length if anim != null else 0.0
 	var tracks: int = anim.get_track_count() if anim != null else 0
 	var bone_cnt: int = skeleton.get_bone_count() if skeleton != null else 0
+	var loop_str: String = (
+		"LOOP_LINEAR (Continuous)"
+		if anim != null and anim.loop_mode == Animation.LOOP_LINEAR
+		else "LOOP_NONE (One-Shot)"
+	)
 	var facing_str: String = "RIGHT (+X Target)" if facing_dir > 0 else "LEFT (-X Target)"
 	var cam_str: String = "SIDE PROFILE" if is_side_cam else "FRONT COMBAT"
 	var mode_str: String = (
 		"PARTITIONED (Amputation Pilot)" if is_partitioned_mode else "INTACT REFERENCE"
 	)
-	var arm_str: String = (
-		"REGROWN ATTACHED"
-		if regrown_attached
-		else ("SEVERED (STUMP ON)" if arm_l_severed else "INTACT")
-	)
-	var leg_str: String = "SEVERED (STUMP ON)" if leg_l_severed else "INTACT"
 
 	hud_label.text = (
-		"""[GATE A & AMPUTATION PILOT PREVIEW]
+		"""[GATE A & AMPUTATION / REGROWTH PILOT PREVIEW]
 Mode: %s | Camera: %s
 Model: %s (Deform Bones: %d)
-Active Action: %s (Duration: %.2fs, Channels: %d)
+Active Action: %s (Duration: %.2fs, Channels: %d, Mode: %s)
 Combat Facing: %s (RotY: %.1f°)
-Limb Status: Left Arm: [%s] | Left Leg: [%s]
+Limb Bindings:
+  Left Arm: [%s]
+  Left Leg: [%s]
 Controls:
   [SPACE] Cycle Action | [F] Flip Facing | [C] Toggle Camera
-  [1] Toggle Left Arm Sever | [2] Toggle Left Leg Sever
-  [3] Toggle Regrown Arm Attachment | [M] Toggle Intact/Partitioned Model
+  [1] Toggle Left Arm Sever | [3] Toggle Regrown Arm (Rubber Chicken)
+  [2] Toggle Left Leg Sever | [4] Toggle Regrown Leg (Hermes Sandal)
+  [M] Toggle Intact/Partitioned Model
 """
 		% [
 			mode_str,
@@ -315,9 +407,10 @@ Controls:
 			act.to_upper(),
 			dur,
 			tracks,
+			loop_str,
 			facing_str,
 			rad_to_deg(model.rotation.y) if model != null else 0.0,
-			arm_str,
-			leg_str,
+			arm_attachment_status,
+			leg_attachment_status,
 		]
 	)
