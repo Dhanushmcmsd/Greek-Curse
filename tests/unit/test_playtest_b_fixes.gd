@@ -10,7 +10,8 @@ func test_normal_jabs_sever_an_arm_without_fixture_overrides() -> void:
 		world.fighters[1].x = 430
 		var severed := false
 		for tick in 480:
-			world.step([SimInput.LIGHT, 0])
+			var gap := absi(world.fighters[1].x - world.fighters[0].x)
+			world.step([SimInput.RIGHT if gap > 550 else SimInput.LIGHT, 0])
 			if world.fighters[1].limbs.losses > 0:
 				severed = true
 				break

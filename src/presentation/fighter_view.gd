@@ -16,6 +16,7 @@ var _recoil: float = 0.0
 var _bleed_tick: int = 0
 var _trail_point := Vector3.ZERO
 var _trailing := false
+var _impact_frames: int = 0
 
 
 func setup(
@@ -44,7 +45,13 @@ func setup(
 
 
 func show_fighter(fighter: SimFighter, frozen: bool = false) -> void:
-	position.x = float(fighter.x) / 1000.0
+	var target_x := float(fighter.x) / 1000.0
+	if _impact_frames > 0:
+		if not frozen and visual_stop == 0:
+			position.x = lerpf(position.x, target_x, 0.38)
+			_impact_frames -= 1
+	else:
+		position.x = target_x
 	position.y = float(fighter.y) / 1000.0
 	position.z = 0.0
 	if rig != null:
@@ -175,6 +182,7 @@ func _sever_effect(slot: String) -> void:
 
 func recoil(direction: float, blocked: bool) -> void:
 	_recoil = direction * (0.035 if blocked else 0.09)
+	_impact_frames = 8
 
 
 func impact_point(zone: String) -> Vector3:

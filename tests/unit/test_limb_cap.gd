@@ -26,6 +26,6 @@ func test_random_chains_are_bounded_and_deterministic() -> void:
 				world.tick += gap
 				SimSeverance.hit(world, 1, 0, zone, damage, [])
 			assert_eq(a.hash_state(), b.hash_state(), "paired hash")
-			assert_true(a.amputations.size() <= 2, "cap invariant")
+			assert_true(a.amputations.size() <= int(a.limb_rules["limb_cap"]), "cap invariant")
 			for limb in a.fighters[1].limbs.parts.values():
 				assert_true(limb.integrity >= 0, "nonnegative")

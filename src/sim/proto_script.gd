@@ -7,5 +7,6 @@ static func inputs_at(tick: int) -> Array:
 	if tick < 80:
 		return [SimInput.RIGHT, SimInput.LEFT]
 	# Keep walking in. A round reset puts the fighters back at their marks, and a
-	# held attack does not move them on its own.
-	return [SimInput.RIGHT | SimInput.LIGHT, 0]
+	# held attack does not move them on its own. Release attacks periodically
+	# to pursue after knockback, as a player must do to maintain pressure.
+	return [SimInput.RIGHT | (SimInput.LIGHT if tick % 50 >= 25 else 0), 0]

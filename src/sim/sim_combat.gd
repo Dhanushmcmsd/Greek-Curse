@@ -187,12 +187,25 @@ static func _push(
 ) -> void:
 	var sign := 1 if defender.x >= attacker.x else -1
 	var distance := attacker.attack_block_push if blocked else attacker.attack_knockback
-	defender.x += sign * Fx.percent(distance, defender.knockback_percent)
+	if not blocked and attacker.hits_done + 1 < attacker.attack_hit_count:
+		distance = mini(distance, 45)
+	var previous_x := defender.x
+	var requested := Fx.percent(distance, defender.knockback_percent)
+	defender.x += sign * requested
 	var low := world._low(defender)
 	var high := world._high(defender)
 	var bounced := attacker.attack_wall_bounce and (defender.x < low or defender.x > high)
 	defender.x = Fx.clamp_i(defender.x, low, high)
-	if bounced and attacker.attack_launch_y > defender.y:
+	# At a wall the attacker absorbs the unspent separation, preserving an escape gap.
+	var unspent := maxi(0, requested - absi(defender.x - previous_x))
+	attacker.x = Fx.clamp_i(
+		attacker.x - sign * unspent, world._low(attacker), world._high(attacker)
+	)
+	if (
+		not blocked
+		and (bounced or attacker.hits_done + 1 >= attacker.attack_hit_count)
+		and attacker.attack_launch_y > defender.y
+	):
 		defender.y = attacker.attack_launch_y
 
 

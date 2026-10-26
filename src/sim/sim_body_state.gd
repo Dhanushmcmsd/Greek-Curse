@@ -14,12 +14,15 @@ static func derive(limbs: SimLimbs) -> Dictionary:
 				arms += 1
 			else:
 				legs += 1
+	# Attached fractured legs cannot support a standing fighter either.
+	var unsupported_legs := int(not limbs.usable("leg_l")) + int(not limbs.usable("leg_r"))
+	var unsupported_arms := int(not limbs.usable("arm_l")) + int(not limbs.usable("arm_r"))
 	var profile := "full"
-	if arms + legs >= 3:
+	if unsupported_legs > 0 and unsupported_arms + unsupported_legs >= 3:
 		profile = "torso_mode"
-	elif legs == 2:
+	elif unsupported_legs == 2:
 		profile = "no_legs"
-	elif legs == 1:
+	elif unsupported_legs == 1:
 		profile = "one_leg"
 	elif arms == 2:
 		profile = "no_arms"

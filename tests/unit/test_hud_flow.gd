@@ -37,8 +37,11 @@ func test_severance_hud_receives_credit() -> void:
 	var world := ProtoFixture.world_with()
 	ReplayCheck.configure(world, "severance")
 	var hud := CombatHud.new()
-	for tick in 80:
-		hud.consume(world.step([16, 0]), world)
+	for tick in 180:
+		var gap := absi(world.fighters[1].x - world.fighters[0].x)
+		hud.consume(world.step([SimInput.RIGHT if gap > 450 else SimInput.LIGHT, 0]), world)
+		if hud.credit_text.contains("arm_l"):
+			break
 	assert_true(hud.credit_text.contains("arm_l"), "credit banner driven by events")
 	hud.free()
 

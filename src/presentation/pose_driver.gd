@@ -57,6 +57,8 @@ func setup(target: FighterRig) -> void:
 	for mesh in rig.model.find_children("*", "MeshInstance3D", true, false):
 		var bone := "spine"
 		var name := str(mesh.name)
+		if name.begins_with("WOUND_"):
+			continue
 		if (
 			name.begins_with("HEAD")
 			or name.begins_with("HELM")
@@ -201,7 +203,15 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 				index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
 			)
 	if clip_active:
-		if stopped:
+		if (
+			stopped
+			and (
+				fighter.state
+				not in [
+					SimFighter.State.STARTUP, SimFighter.State.ACTIVE, SimFighter.State.RECOVERY
+				]
+			)
+		):
 			rig.anim_player.seek(rig.anim_player.current_animation_position, true)
 		for slot in SimLimbs.LIMB_NAMES:
 			if fighter.limbs.parts[slot].state == "cracked":
@@ -213,6 +223,16 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 						bone,
 						rig.skeleton.get_bone_pose_rotation(bone) * Quaternion(Vector3.RIGHT, 0.3)
 					)
+				if fighter.pose == "crawl" and slot.begins_with("leg"):
+					var knee := rig.skeleton.find_bone("shin." + slot.right(1))
+					if knee >= 0:
+						rig.skeleton.set_bone_pose_rotation(
+							knee,
+							(
+								rig.skeleton.get_bone_pose_rotation(knee)
+								* Quaternion(Vector3.RIGHT, -1.3)
+							)
+						)
 	_root_pose(fighter, settings, clip_active)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
@@ -280,6 +300,16 @@ func _select(fighter: SimFighter) -> String:
 
 
 func _root_pose(fighter: SimFighter, settings: Dictionary, clip_active: bool = false) -> void:
+	if clip_active and fighter.pose == "crawl":
+		var head := rig.skeleton.find_bone("head")
+		var pelvis := rig.skeleton.find_bone("root")
+		var torso := (
+			rig.skeleton.get_bone_global_pose(head).origin
+			- rig.skeleton.get_bone_global_pose(pelvis).origin
+		)
+		rig.rotation.x = clampf(
+			atan2(torso.y, absf(torso.z)) - deg_to_rad(12.0), 0.0, deg_to_rad(80.0)
+		)
 	if not clip_active:
 		if fighter.pose == "crawl":
 			rig.rotation.x = deg_to_rad(float(settings["crawl_pitch_degrees"]))
@@ -489,7 +519,7 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		return false
 	if not pack_map["fighters"].has(fighter.fighter_id):
 		return false
-	if fighter.pose in ["crawl", "torso"] or preview_pose != "":
+	if fighter.pose == "torso" or preview_pose != "":
 		return false
 
 	var f_map: Dictionary = pack_map["fighters"][fighter.fighter_id]
@@ -505,7 +535,13 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		)
 	):
 		is_attack = true
-		act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
+		act_key = "move_" + fighter.move_name
+		if not actions.has(act_key):
+			act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
+	elif (
+		fighter.pose == "crawl" and fighter.state in [SimFighter.State.IDLE, SimFighter.State.WALK]
+	):
+		act_key = "crawl"
 	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
 		act_key = "block"
 	elif fighter.state == SimFighter.State.WALK:
@@ -561,7 +597,15 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		var anim_len := rig.anim_player.get_animation(clip_name).length
 		rig.anim_player.speed_scale = 1.0
 		rig.anim_player.play(clip_name)
-		rig.anim_player.seek(clampf(warp_t, 0.0, 1.0) * anim_len, true)
+		var start := float(actions[act_key].get("start_seconds", 0.0))
+		var end := float(actions[act_key].get("end_seconds", anim_len))
+		rig.anim_player.seek(lerpf(start, end, clampf(warp_t, 0.0, 1.0)), true)
+		var source_side := str(actions[act_key].get("strike_side", fighter.attack_slot.right(1)))
+		if (
+			source_side != fighter.attack_slot.right(1)
+			and fighter.limbs.parts.has(fighter.attack_slot)
+		):
+			_mirror_attack_pose()
 	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name, 0.1)
@@ -575,7 +619,7 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name, 0.1)
 		rig.anim_player.speed_scale = float(actions[act_key].get("speed_scale", 1.0))
-		if not stopped:
+		if not stopped and (act_key != "crawl" or fighter.state == SimFighter.State.WALK):
 			rig.anim_player.advance(1.0 / 60.0)
 
 	return true
@@ -630,3 +674,35 @@ static func _action_for_move(move_name: String, move_data: Dictionary) -> String
 			if cat == "ultimate":
 				return "zeus_wrath"
 			return "punch_jab"
+
+
+func _mirror_attack_pose() -> void:
+	var skeleton := rig.skeleton
+	skeleton.force_update_all_bone_transforms()
+	var reflection := Basis.from_scale(Vector3(-1, 1, 1))
+	var goals: Array[Basis] = []
+	for bone in skeleton.get_bone_count():
+		var name := skeleton.get_bone_name(bone)
+		var opposite := name.replace(".l", ".TEMP").replace(".r", ".l").replace(".TEMP", ".r")
+		opposite = opposite.replace("Left", "TEMP").replace("Right", "Left").replace(
+			"TEMP", "Right"
+		)
+		var source := skeleton.find_bone(opposite)
+		if source < 0:
+			source = bone
+		var motion := (
+			skeleton.get_bone_global_pose(source).basis.orthonormalized()
+			* skeleton.get_bone_global_rest(source).basis.orthonormalized().inverse()
+		)
+		goals.append(
+			(
+				reflection
+				* motion
+				* reflection
+				* skeleton.get_bone_global_rest(bone).basis.orthonormalized()
+			)
+		)
+	for bone in skeleton.get_bone_count():
+		var parent := skeleton.get_bone_parent(bone)
+		var local := goals[bone] if parent < 0 else goals[parent].inverse() * goals[bone]
+		skeleton.set_bone_pose_rotation(bone, local.get_rotation_quaternion())

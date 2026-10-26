@@ -10,7 +10,8 @@ func _initialize() -> void:
 	var hashes: Array = []
 	var order: Array = []
 	for i in 150:
-		var row := [SimInput.LIGHT, 0]
+		var gap: int = absi(world.fighters[1].x - world.fighters[0].x)
+		var row := [SimInput.RIGHT if gap > 450 else SimInput.LIGHT, 0]
 		inputs.append(row)
 		for event in world.step(row):
 			if event.kind >= SimEvent.Kind.LIMB_STATE_CHANGED:
@@ -20,6 +21,17 @@ func _initialize() -> void:
 		if world.tick % 30 == 0:
 			hashes.append(str(world.hash_state()))
 	var file := FileAccess.open("res://tests/golden/severance_01.replay.json", FileAccess.WRITE)
-	file.store_string(JSON.stringify({"seed": 1, "scenario": "severance", "inputs": inputs,
-		"hashes_every": 30, "hashes": hashes, "final_hash": str(world.hash_state()), "events": order}))
+	file.store_string(
+		JSON.stringify(
+			{
+				"seed": 1,
+				"scenario": "severance",
+				"inputs": inputs,
+				"hashes_every": 30,
+				"hashes": hashes,
+				"final_hash": str(world.hash_state()),
+				"events": order
+			}
+		)
+	)
 	quit(0 if world.amputations.size() == 1 else 1)

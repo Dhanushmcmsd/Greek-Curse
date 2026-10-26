@@ -33,5 +33,15 @@ func _initialize() -> void:
 		quit(1)
 		return
 	file.store_string(JSON.stringify(payload))
-	print("RECORDED %s ticks=%d" % [path, world.tick])
+	var summary := FileAccess.open("res://tests/golden/proto_match_01.json", FileAccess.WRITE)
+	summary.store_string(
+		(
+			JSON.stringify(
+				{"final_hash": str(world.hash_state()), "wins": world.wins, "ticks": world.tick},
+				"  "
+			)
+			+ "\n"
+		)
+	)
+	print("RECORDED %s ticks=%d phase=%d" % [path, world.tick, world.phase])
 	quit(0)

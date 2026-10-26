@@ -23,7 +23,8 @@ static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 	if _busy(fighter):
 		if not _try_cancel(world, fighter):
 			_age_move(world, fighter)
-			fighter.x += fighter.facing * fighter.attack_hop
+			if not fighter.landed_hit:
+				fighter.x += fighter.facing * fighter.attack_hop
 		_gravity(world, fighter)
 		return
 	_move_or_block(world, fighter, mask)
