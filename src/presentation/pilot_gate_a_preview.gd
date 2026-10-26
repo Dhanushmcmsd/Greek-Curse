@@ -59,7 +59,7 @@ func _ready() -> void:
 	cam_front.current = true
 
 	cam_side = Camera3D.new()
-	cam_side.position = Vector3(2.5, 1.1, 0)
+	cam_side.position = Vector3(-2.5, 1.1, 0)
 	add_child(cam_side)
 	cam_side.look_at_from_position(cam_side.position, Vector3(0, 0.9, 0), Vector3.UP)
 	cam_side.current = false
@@ -117,6 +117,50 @@ func _ready() -> void:
 
 	_apply_model_facing()
 	play_action("idle")
+
+	# Command line flags support for verifiable captures and testing
+	var user_args := OS.get_cmdline_user_args()
+	for arg in user_args:
+		if arg == "--sever-arm":
+			arm_l_severed = true
+		elif arg == "--sever-leg":
+			leg_l_severed = true
+		elif arg == "--regrow-arm":
+			arm_l_severed = true
+			regrown_arm_attached = true
+		elif arg == "--regrow-leg":
+			leg_l_severed = true
+			regrown_leg_attached = true
+		elif arg.begins_with("--action="):
+			var act := arg.substr("--action=".length())
+			if act in actions:
+				current_action_idx = actions.find(act)
+				play_action(act)
+		elif arg == "--side-cam":
+			is_side_cam = true
+			cam_front.current = false
+			cam_side.current = true
+		elif arg == "--face-left":
+			facing_dir = -1.0
+			_apply_model_facing()
+
+	_update_limb_visibilities()
+	_update_hud()
+
+	for arg in user_args:
+		if arg.begins_with("--shot="):
+			var shot_path := arg.substr("--shot=".length())
+			call_deferred("_save_shot_and_quit", shot_path)
+
+
+func _save_shot_and_quit(shot_path: String) -> void:
+	for f in range(3):
+		await RenderingServer.frame_post_draw
+	var img := get_viewport().get_texture().get_image()
+	if img != null:
+		img.save_png(shot_path)
+		print("Saved pilot shot: ", shot_path)
+	get_tree().quit(0)
 
 
 func _create_marker(pos: Vector3, col: Color, _label_text: String) -> void:
@@ -268,19 +312,31 @@ func _update_limb_visibilities() -> void:
 				else:
 					var pck := load(arm_res_path) as PackedScene
 					var inst := pck.instantiate()
-					var limb_mesh: MeshInstance3D = null
+					var meshes_to_add: Array[MeshInstance3D] = []
 					for child in inst.find_children("*", "MeshInstance3D", true, false):
-						limb_mesh = child as MeshInstance3D
-						break
-					if limb_mesh != null:
-						limb_mesh.get_parent().remove_child(limb_mesh)
-						limb_mesh.owner = null
-						skeleton.add_child(limb_mesh)
-						limb_mesh.skeleton = NodePath("..")
-						regrown_arm_node = limb_mesh
-						arm_attachment_status = (
-							"SUCCESS [ID: elemental_atalanta_arm_l] (%s)" % arm_res_path
-						)
+						if child is MeshInstance3D:
+							meshes_to_add.append(child as MeshInstance3D)
+					if not meshes_to_add.is_empty():
+						var container := Node3D.new()
+						container.name = "PILOT_REGROWN_ARM"
+						var attach_ok := true
+						for m in meshes_to_add:
+							if not FighterRig.adapt_mesh_skin_to_skeleton(m, skeleton):
+								attach_ok = false
+								break
+							m.get_parent().remove_child(m)
+							m.owner = null
+							container.add_child(m)
+							m.skeleton = NodePath("../..")
+						if attach_ok:
+							skeleton.add_child(container)
+							regrown_arm_node = container
+							arm_attachment_status = (
+								"SUCCESS [ID: elemental_atalanta_arm_l] (%s)" % arm_res_path
+							)
+						else:
+							container.queue_free()
+							arm_attachment_status = "FAILED: stump visible (Skin adaptation failed)"
 						inst.queue_free()
 					else:
 						arm_attachment_status = (
@@ -309,19 +365,31 @@ func _update_limb_visibilities() -> void:
 				else:
 					var pck := load(leg_res_path) as PackedScene
 					var inst := pck.instantiate()
-					var limb_mesh: MeshInstance3D = null
+					var meshes_to_add: Array[MeshInstance3D] = []
 					for child in inst.find_children("*", "MeshInstance3D", true, false):
-						limb_mesh = child as MeshInstance3D
-						break
-					if limb_mesh != null:
-						limb_mesh.get_parent().remove_child(limb_mesh)
-						limb_mesh.owner = null
-						skeleton.add_child(limb_mesh)
-						limb_mesh.skeleton = NodePath("..")
-						regrown_leg_node = limb_mesh
-						leg_attachment_status = (
-							"SUCCESS [ID: elemental_atalanta_leg_l] (%s)" % leg_res_path
-						)
+						if child is MeshInstance3D:
+							meshes_to_add.append(child as MeshInstance3D)
+					if not meshes_to_add.is_empty():
+						var container := Node3D.new()
+						container.name = "PILOT_REGROWN_LEG"
+						var attach_ok := true
+						for m in meshes_to_add:
+							if not FighterRig.adapt_mesh_skin_to_skeleton(m, skeleton):
+								attach_ok = false
+								break
+							m.get_parent().remove_child(m)
+							m.owner = null
+							container.add_child(m)
+							m.skeleton = NodePath("../..")
+						if attach_ok:
+							skeleton.add_child(container)
+							regrown_leg_node = container
+							leg_attachment_status = (
+								"SUCCESS [ID: elemental_atalanta_leg_l] (%s)" % leg_res_path
+							)
+						else:
+							container.queue_free()
+							leg_attachment_status = "FAILED: stump visible (Skin adaptation failed)"
 						inst.queue_free()
 					else:
 						leg_attachment_status = (

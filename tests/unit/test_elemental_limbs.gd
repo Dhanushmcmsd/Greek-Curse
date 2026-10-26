@@ -44,11 +44,19 @@ func test_elemental_limbs_shared_skeleton_binding_on_atalanta_and_theron() -> vo
 			assert_true(rig.replacements.has(slot), "replacement tracked for " + slot)
 
 			var rep: Node = rig.replacements[slot]
-			assert_true(rep is MeshInstance3D, "replacement is MeshInstance3D for " + slot)
-			var limb_mesh := rep as MeshInstance3D
-			assert_true(limb_mesh.get_meta("is_elemental", false), "is marked as elemental")
-			assert_eq(limb_mesh.get_parent(), rig.skeleton, "parent is Skeleton3D")
-			assert_eq(limb_mesh.skeleton, NodePath(".."), "bound to deform skeleton")
+			assert_true(rep != null, "replacement node exists for " + slot)
+			assert_true(rep.get_meta("is_elemental", false), "is marked as elemental")
+			var meshes: Array[MeshInstance3D] = []
+			if rep is MeshInstance3D:
+				meshes.append(rep as MeshInstance3D)
+			else:
+				for ch in rep.get_children():
+					if ch is MeshInstance3D:
+						meshes.append(ch as MeshInstance3D)
+			assert_false(meshes.is_empty(), "contains MeshInstance3D for " + slot)
+			for limb_mesh in meshes:
+				assert_true(limb_mesh.skin != null, "has valid Skin for " + slot)
+				assert_true(limb_mesh.skin.get_bind_count() > 0, "skin has binds for " + slot)
 
 			# Verify natural mesh is hidden
 			for nat_mesh: MeshInstance3D in rig.limb_meshes[slot]:

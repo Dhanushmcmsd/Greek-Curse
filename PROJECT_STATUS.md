@@ -1,5 +1,6 @@
 # PROJECT_STATUS.md - Severed: Trials of Olympus
 
+
 > Single source of truth. Cursor updates this file at the end of **every** stage (use `tools/status/update_status.py` once stage 04 exists). If a session is interrupted, open the project and paste `RESUME_PROMPT.md`.
 
 > Status values: NOT_STARTED, IN_PROGRESS, COMPLETE, PARTIAL, BLOCKED.

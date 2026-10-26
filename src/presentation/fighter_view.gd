@@ -86,6 +86,8 @@ func spark(blocked: bool) -> void:
 
 
 func _apply_color(body_color: Color) -> void:
+	if _body == null:
+		return
 	var material := StandardMaterial3D.new()
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = body_color

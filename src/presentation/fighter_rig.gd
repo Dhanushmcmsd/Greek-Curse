@@ -234,7 +234,6 @@ func attach_regrown(slot: String, id: String) -> bool:
 	var result := DataLoader.new().load_json("res://data/limbs/%s.json" % id)
 	if not result.ok or not slot.begins_with(str(result.value["slot"])):
 		return false
-	detach_regrown(slot)
 
 	# 1. Primary: Skinned elemental replacement model matching character and slot
 	var elemental_path := ""
@@ -249,29 +248,48 @@ func attach_regrown(slot: String, id: String) -> bool:
 		var scene := load(elemental_path) as PackedScene
 		if scene != null:
 			var inst := scene.instantiate()
-			var limb_mesh: MeshInstance3D = null
+			var limb_meshes_to_attach: Array[MeshInstance3D] = []
 			for child in inst.find_children("*", "MeshInstance3D", true, false):
-				limb_mesh = child as MeshInstance3D
-				break
-			if limb_mesh != null:
-				limb_mesh.get_parent().remove_child(limb_mesh)
-				limb_mesh.owner = null
-				skeleton.add_child(limb_mesh)
-				limb_mesh.skeleton = NodePath("..")
-				limb_mesh.set_meta("limb_id", id)
-				limb_mesh.set_meta("resource_path", elemental_path)
-				limb_mesh.set_meta("is_elemental", true)
-				replacements[slot] = limb_mesh
-				set_limb_visible(slot, false)
-				show_stump(slot, false)
-				inst.queue_free()
-				return true
+				if child is MeshInstance3D:
+					limb_meshes_to_attach.append(child as MeshInstance3D)
+
+			if not limb_meshes_to_attach.is_empty():
+				# Transactional binding: validate and prepare all meshes before touching rig state
+				var container := Node3D.new()
+				container.name = "REPLACEMENT_" + slot.to_upper()
+				container.set_meta("limb_id", id)
+				container.set_meta("resource_path", elemental_path)
+				container.set_meta("is_elemental", true)
+				var attach_ok := true
+				for lm in limb_meshes_to_attach:
+					if not adapt_mesh_skin_to_skeleton(lm, skeleton):
+						attach_ok = false
+						break
+					lm.get_parent().remove_child(lm)
+					lm.owner = null
+					container.add_child(lm)
+					lm.skeleton = NodePath("../..")
+					lm.set_meta("limb_id", id)
+					lm.set_meta("resource_path", elemental_path)
+					lm.set_meta("is_elemental", true)
+
+				if attach_ok:
+					detach_regrown(slot)
+					skeleton.add_child(container)
+					replacements[slot] = container
+					set_limb_visible(slot, false)
+					show_stump(slot, false)
+					inst.queue_free()
+					return true
+				# Rollback partial attachments on failure
+				container.queue_free()
+
 			inst.queue_free()
-		# If elemental scene failed to load or has no mesh, do NOT silently fall back to legacy prototype.
-		# Show severed stump and log explicit failure.
-		Log.error(
+
+		# Failed to load/bind elemental limb: keep severed stump visible, log failure
+		push_error(
 			(
-				"FighterRig: Failed to instantiate elemental limb for %s on %s (%s). Showing stump."
+				"FighterRig: Failed to load/bind elemental limb for %s on %s (%s). Showing stump."
 				% [slot, loaded_fighter_model_id, elemental_path]
 			)
 		)
@@ -285,6 +303,7 @@ func attach_regrown(slot: String, id: String) -> bool:
 		set_limb_visible(slot, false)
 		show_stump(slot, true)
 		return false
+	detach_regrown(slot)
 	var replacement := info.root
 	replacement.set_meta("limb_id", id)
 	replacement.set_meta("is_elemental", false)
@@ -318,7 +337,7 @@ func sync(fighter: SimFighter) -> void:
 		var state: String = fighter.limbs.parts[slot].state
 		var regrown: String = fighter.limbs.parts[slot].regrown_id
 		if regrown != "" and state != "severed":
-			if not replacements.has(slot) or replacements[slot].get_meta("limb_id") != regrown:
+			if not replacements.has(slot) or replacements[slot].get_meta("limb_id", "") != regrown:
 				attach_regrown(slot, regrown)
 		elif replacements.has(slot):
 			detach_regrown(slot)
@@ -341,8 +360,73 @@ func pose_limb(slot: String, angle: float) -> void:
 		skeleton.set_bone_pose_rotation(
 			index, _rest_rotations[index] * Quaternion(Vector3.RIGHT, angle)
 		)
+	# Only apply rigid transform to socket attachments; skinned replacements deform with skeleton bones
 	if replacements.has(slot):
-		replacements[slot].rotation.x = angle
+		var rep: Node = replacements[slot]
+		if not rep.get_meta("is_elemental", false) and not rep.name.begins_with("REPLACEMENT_"):
+			rep.rotation.x = angle
+
+
+static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skeleton3D) -> bool:
+	if mesh.skin == null or target_skel == null:
+		return false
+	var orig_skin: Skin = mesh.skin
+	var new_skin := Skin.new()
+	var bone_map: Dictionary = _get_bone_map()
+
+	for b in orig_skin.get_bind_count():
+		var b_name := orig_skin.get_bind_name(b)
+		var b_pose := orig_skin.get_bind_pose(b)
+		var target_bone := b_name
+
+		if target_skel.find_bone(target_bone) == -1:
+			if target_skel.find_bone("mixamorig_" + target_bone) != -1:
+				target_bone = "mixamorig_" + target_bone
+			elif bone_map.has(target_bone) and target_skel.find_bone(bone_map[target_bone]) != -1:
+				target_bone = bone_map[target_bone]
+			elif target_bone == "root" and target_skel.find_bone("mixamorig_Hips") != -1:
+				target_bone = "mixamorig_Hips"
+			elif target_bone == "thigh.l" and target_skel.find_bone("mixamorig_LeftUpLeg") != -1:
+				target_bone = "mixamorig_LeftUpLeg"
+			elif target_bone == "shin.l" and target_skel.find_bone("mixamorig_LeftLeg") != -1:
+				target_bone = "mixamorig_LeftLeg"
+			elif target_bone == "foot.l" and target_skel.find_bone("mixamorig_LeftFoot") != -1:
+				target_bone = "mixamorig_LeftFoot"
+			elif target_bone == "thigh.r" and target_skel.find_bone("mixamorig_RightUpLeg") != -1:
+				target_bone = "mixamorig_RightUpLeg"
+			elif target_bone == "shin.r" and target_skel.find_bone("mixamorig_RightLeg") != -1:
+				target_bone = "mixamorig_RightLeg"
+			elif target_bone == "foot.r" and target_skel.find_bone("mixamorig_RightFoot") != -1:
+				target_bone = "mixamorig_RightFoot"
+			elif target_bone == "upper_arm.l" and target_skel.find_bone("mixamorig_LeftArm") != -1:
+				target_bone = "mixamorig_LeftArm"
+			elif (
+				target_bone == "forearm.l" and target_skel.find_bone("mixamorig_LeftForeArm") != -1
+			):
+				target_bone = "mixamorig_LeftForeArm"
+			elif target_bone == "hand.l" and target_skel.find_bone("mixamorig_LeftHand") != -1:
+				target_bone = "mixamorig_LeftHand"
+			elif target_bone == "upper_arm.r" and target_skel.find_bone("mixamorig_RightArm") != -1:
+				target_bone = "mixamorig_RightArm"
+			elif (
+				target_bone == "forearm.r" and target_skel.find_bone("mixamorig_RightForeArm") != -1
+			):
+				target_bone = "mixamorig_RightForeArm"
+			elif target_bone == "hand.r" and target_skel.find_bone("mixamorig_RightHand") != -1:
+				target_bone = "mixamorig_RightHand"
+			else:
+				# Unmapped or dummy bone (such as neutral_bone) -> safely map to skeleton root
+				if target_skel.find_bone("root") != -1:
+					target_bone = "root"
+				elif target_skel.find_bone("mixamorig_Hips") != -1:
+					target_bone = "mixamorig_Hips"
+				else:
+					target_bone = target_skel.get_bone_name(0)
+
+		new_skin.add_named_bind(target_bone, b_pose)
+
+	mesh.skin = new_skin
+	return true
 
 
 func _tint(node: Node, color: Color) -> void:
@@ -386,10 +470,13 @@ func _update_stump_palette() -> void:
 
 static func _get_bone_map() -> Dictionary:
 	if _bone_map_cache.is_empty():
-		var res: Dictionary = (
-			DataLoader.new().load_json("res://data/animation/mixamo_bone_map.json").value
-		)
-		_bone_map_cache = res.get("bone_map", {})
+		var path := "res://data/animation/mixamo_bone_map.json"
+		if FileAccess.file_exists(path):
+			var file := FileAccess.open(path, FileAccess.READ)
+			if file != null:
+				var parsed = JSON.parse_string(file.get_as_text())
+				if parsed is Dictionary:
+					_bone_map_cache = parsed.get("bone_map", {})
 	return _bone_map_cache
 
 
