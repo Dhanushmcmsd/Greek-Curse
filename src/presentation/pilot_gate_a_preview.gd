@@ -180,6 +180,7 @@ func init_model_and_anims() -> void:
 	_clear_regrown_attachments()
 
 	if model != null:
+		remove_child(model)
 		model.queue_free()
 		model = null
 
@@ -405,6 +406,12 @@ func _update_limb_visibilities() -> void:
 			regrown_leg_node.queue_free()
 			regrown_leg_node = null
 		leg_attachment_status = ("SEVERED (Stump visible)" if leg_l_severed else "NATURAL (Intact)")
+
+	# A request is not a successful attachment. Keep caps visible on failure.
+	if stump_arm_l != null:
+		stump_arm_l.visible = arm_l_severed and regrown_arm_node == null
+	if stump_leg_l != null:
+		stump_leg_l.visible = leg_l_severed and regrown_leg_node == null
 
 
 func play_action(act_name: String) -> void:

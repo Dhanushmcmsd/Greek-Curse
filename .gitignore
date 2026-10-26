@@ -1,9 +1,14 @@
 # Godot
 .godot/
 
-# Build and test output at the repository root.
-# Do not ignore tools/build/, which is a source folder.
-/build/
+# Build and test output at the repository root (not tools/build/).
+/build/*
+# The preview loads these generated assets at runtime.
+!/build/pilot_gate_a/
+/build/pilot_gate_a/*
+!/build/pilot_gate_a/anim_*.glb
+!/build/pilot_gate_a/arissa_*.glb
+!/build/pilot_gate_a/pilot_manifest.json
 
 # Blender backups
 *.blend1
@@ -23,6 +28,16 @@ desktop.ini
 
 # Mixamo raw assets and processed local fighters
 *.fbx
-/assets/fighters_mixamo/
-/assets/limbs_elemental/
+/assets/fighters_mixamo/*
+!/assets/fighters_mixamo/fighter_*.glb
+!/assets/fighters_mixamo/fighter_*_texture_*.png
+!/assets/fighters_mixamo/fighter_*_texture_*.jpg
+!/assets/fighters_mixamo/mixamo_models_manifest.json
+!/assets/fighters_mixamo/anims/
+/assets/fighters_mixamo/anims/*
+!/assets/fighters_mixamo/anims/*.glb
+!/assets/fighters_mixamo/anims/mixamo_anims_manifest.json
+/assets/limbs_elemental/*
+!/assets/limbs_elemental/*.glb
+!/assets/limbs_elemental/limbs_manifest.json
 

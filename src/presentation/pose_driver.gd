@@ -17,6 +17,7 @@ var current_action_name: String = ""
 var current_clip_id: String = ""
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
+var _skin_vertices: Dictionary = {}
 var _socket_rest: Dictionary = {}
 var _cape: Node3D
 var _last_creak: int = -1
@@ -125,6 +126,7 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 	phase = pose_name
 	var clip_active := _drive_clip(fighter, stopped)
 	if not clip_active:
+		rig.anim_player.stop()
 		var style: Dictionary = data["styles"].get(fighter.fighter_id, data["styles"]["theron"])
 		var rotations: Dictionary = (
 			style["idle"] if pose_name == "idle" else data["poses"][pose_name]["bones"]
@@ -198,6 +200,17 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 			rig.skeleton.set_bone_pose_rotation(
 				index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
 			)
+	if clip_active:
+		for slot in SimLimbs.LIMB_NAMES:
+			if fighter.limbs.parts[slot].state == "cracked":
+				var bone := rig.skeleton.find_bone(
+					("upper_arm." if slot.begins_with("arm") else "thigh.") + slot.right(1)
+				)
+				if bone >= 0:
+					rig.skeleton.set_bone_pose_rotation(
+						bone,
+						rig.skeleton.get_bone_pose_rotation(bone) * Quaternion(Vector3.RIGHT, 0.3)
+					)
 	_root_pose(fighter, settings, clip_active)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
@@ -361,6 +374,9 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 		# decorative torso/cloak mesh extensions should not pull grounding down below the feet.
 		if has_healthy_feet and bone == spine_bone:
 			continue
+		if mesh.skin != null:
+			floor_min = minf(floor_min, _skinned_floor(mesh))
+			continue
 		var deform := Transform3D.IDENTITY
 		if bone >= 0:
 			deform = (
@@ -372,6 +388,9 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 			floor_min = minf(floor_min, (transform * vertex).y)
 	for replacement in rig.replacements.values():
 		for mesh in replacement.find_children("*", "MeshInstance3D", true, false):
+			if mesh.skin != null:
+				floor_min = minf(floor_min, _skinned_floor(mesh))
+				continue
 			var relative: Transform3D = (
 				rig.global_transform.affine_inverse() * mesh.global_transform
 			)
@@ -397,6 +416,39 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 			reach_mismatch_mm = absi(
 				int(abs(position.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
 			)
+
+
+func _skinned_floor(mesh: MeshInstance3D) -> float:
+	# Use the same weighted skin deformation as the renderer. A whole leg is
+	# not rigidly attached to its foot; that approximation caused vertical snaps.
+	var key := mesh.mesh.get_instance_id()
+	if not _skin_vertices.has(key):
+		var surfaces: Array = []
+		for surface in mesh.mesh.get_surface_count():
+			surfaces.append(mesh.mesh.surface_get_arrays(surface))
+		_skin_vertices[key] = surfaces
+	var poses: Array[Transform3D] = []
+	for bind in mesh.skin.get_bind_count():
+		var bone := rig.skeleton.find_bone(mesh.skin.get_bind_name(bind))
+		if bone < 0:
+			bone = mesh.skin.get_bind_bone(bind)
+		poses.append(rig.skeleton.get_bone_global_pose(bone) * mesh.skin.get_bind_pose(bind))
+	var relative := rig.global_transform.affine_inverse() * rig.skeleton.global_transform
+	var transform := Transform3D(rig.basis, Vector3.ZERO) * relative
+	var minimum := INF
+	for arrays in _skin_vertices[key]:
+		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+		var influences := joints.size() / maxi(1, vertices.size())
+		for vertex in vertices.size():
+			var deformed := Vector3.ZERO
+			for influence in influences:
+				var offset: int = vertex * influences + influence
+				if weights[offset] > 0.0:
+					deformed += (poses[joints[offset]] * vertices[vertex]) * weights[offset]
+			minimum = minf(minimum, (transform * deformed).y)
+	return minimum
 
 
 static func _slot_for(bone: String) -> String:
@@ -450,6 +502,8 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 	):
 		is_attack = true
 		act_key = _action_for_move(fighter.move_name, moves.get(fighter.move_name, {}))
+	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
+		act_key = "block"
 	elif fighter.state == SimFighter.State.WALK:
 		var speed_val: int = fighter.walk_speed if "walk_speed" in fighter else 20
 		if walk_direction != 0 and walk_direction != fighter.facing and actions.has("walk_back"):
@@ -501,6 +555,7 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 				contact_phase + ((current_ratio - startup_ratio) / span) * (1.0 - contact_phase)
 			)
 		var anim_len := rig.anim_player.get_animation(clip_name).length
+		rig.anim_player.speed_scale = 1.0
 		rig.anim_player.play(clip_name)
 		rig.anim_player.seek(clampf(warp_t, 0.0, 1.0) * anim_len, true)
 	elif act_key in ["walk_fwd", "walk_back", "run"]:

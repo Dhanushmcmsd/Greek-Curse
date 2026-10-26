@@ -103,6 +103,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 
 	var anim_path := "res://assets/fighters/%s/anims/anims.glb" % id
 	anim_player = AnimationPlayer.new()
+	anim_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	model.add_child(anim_player)
 	anim_player.root_node = NodePath("..")
 	if ResourceLoader.exists(anim_path):
@@ -142,7 +143,12 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 						else:
 							default_lib = AnimationLibrary.new()
 							anim_player.add_animation_library("", default_lib)
-						var dup_anim: Animation = anim.duplicate(true)
+						var source_skeleton := (
+							loaded_glb.find_child("Skeleton3D", true, false) as Skeleton3D
+						)
+						var dup_anim: Animation = retarget_animation(
+							anim, source_skeleton, skeleton
+						)
 						_bind_animation_to_skeleton(dup_anim, clip_file)
 						if act_key in ["idle", "walk_fwd", "walk_back", "run"]:
 							dup_anim.loop_mode = Animation.LOOP_LINEAR
@@ -344,7 +350,7 @@ func sync(fighter: SimFighter) -> void:
 		set_limb_visible(slot, state != "severed" and regrown == "")
 		show_stump(slot, state == "severed")
 		groups[slot].rotation.z = 0.3 if state == "cracked" else 0.0
-		pose_limb(slot, 0.3 if state == "cracked" else 0.0)
+		# Animation owns bone rotations; damage offsets are applied after clip evaluation.
 		if _states.get(slot, "") != state:
 			for mesh in limb_meshes[slot]:
 				_tint(mesh, Color(0.45, 0.2, 0.35) if state == "bruised" else Color.WHITE)
@@ -367,66 +373,174 @@ func pose_limb(slot: String, angle: float) -> void:
 			rep.rotation.x = angle
 
 
+static func resolve_bone(skel: Skeleton3D, bone_name: String) -> int:
+	var clean := bone_name.replace("mixamorig:", "").replace("mixamorig_", "")
+	for candidate in [bone_name, clean, "mixamorig_" + clean, _get_bone_map().get(clean, "")]:
+		var index := skel.find_bone(str(candidate))
+		if index >= 0:
+			return index
+	# Only primary joints have a unique inverse mapping. Helper bones must not
+	# collapse into a hand/head/root and overwrite the actual joint's animation.
+	var primary := {
+		"root": "Hips",
+		"spine": "Spine",
+		"head": "Head",
+		"upper_arm.l": "LeftArm",
+		"forearm.l": "LeftForeArm",
+		"hand.l": "LeftHand",
+		"upper_arm.r": "RightArm",
+		"forearm.r": "RightForeArm",
+		"hand.r": "RightHand",
+		"thigh.l": "LeftUpLeg",
+		"shin.l": "LeftLeg",
+		"foot.l": "LeftFoot",
+		"thigh.r": "RightUpLeg",
+		"shin.r": "RightLeg",
+		"foot.r": "RightFoot",
+	}
+	if primary.has(clean):
+		return skel.find_bone("mixamorig_" + str(primary[clean]))
+	return -1
+
+
 static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skeleton3D) -> bool:
-	if mesh.skin == null or target_skel == null:
+	var source := mesh.get_node_or_null(mesh.skeleton) as Skeleton3D
+	if mesh.skin == null or target_skel == null or source == null:
 		return false
-	var orig_skin: Skin = mesh.skin
-	var new_skin := Skin.new()
-	var bone_map: Dictionary = _get_bone_map()
-
-	for b in orig_skin.get_bind_count():
-		var b_name := orig_skin.get_bind_name(b)
-		var b_pose := orig_skin.get_bind_pose(b)
-		var target_bone := b_name
-
-		if target_skel.find_bone(target_bone) == -1:
-			if target_skel.find_bone("mixamorig_" + target_bone) != -1:
-				target_bone = "mixamorig_" + target_bone
-			elif bone_map.has(target_bone) and target_skel.find_bone(bone_map[target_bone]) != -1:
-				target_bone = bone_map[target_bone]
-			elif target_bone == "root" and target_skel.find_bone("mixamorig_Hips") != -1:
-				target_bone = "mixamorig_Hips"
-			elif target_bone == "thigh.l" and target_skel.find_bone("mixamorig_LeftUpLeg") != -1:
-				target_bone = "mixamorig_LeftUpLeg"
-			elif target_bone == "shin.l" and target_skel.find_bone("mixamorig_LeftLeg") != -1:
-				target_bone = "mixamorig_LeftLeg"
-			elif target_bone == "foot.l" and target_skel.find_bone("mixamorig_LeftFoot") != -1:
-				target_bone = "mixamorig_LeftFoot"
-			elif target_bone == "thigh.r" and target_skel.find_bone("mixamorig_RightUpLeg") != -1:
-				target_bone = "mixamorig_RightUpLeg"
-			elif target_bone == "shin.r" and target_skel.find_bone("mixamorig_RightLeg") != -1:
-				target_bone = "mixamorig_RightLeg"
-			elif target_bone == "foot.r" and target_skel.find_bone("mixamorig_RightFoot") != -1:
-				target_bone = "mixamorig_RightFoot"
-			elif target_bone == "upper_arm.l" and target_skel.find_bone("mixamorig_LeftArm") != -1:
-				target_bone = "mixamorig_LeftArm"
-			elif (
-				target_bone == "forearm.l" and target_skel.find_bone("mixamorig_LeftForeArm") != -1
+	var original := mesh.skin
+	for surface in mesh.mesh.get_surface_count():
+		var arrays := mesh.mesh.surface_get_arrays(surface)
+		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+		for influence in weights.size():
+			if (
+				weights[influence] > 0.0
+				and original.get_bind_name(joints[influence]) == "neutral_bone"
 			):
-				target_bone = "mixamorig_LeftForeArm"
-			elif target_bone == "hand.l" and target_skel.find_bone("mixamorig_LeftHand") != -1:
-				target_bone = "mixamorig_LeftHand"
-			elif target_bone == "upper_arm.r" and target_skel.find_bone("mixamorig_RightArm") != -1:
-				target_bone = "mixamorig_RightArm"
-			elif (
-				target_bone == "forearm.r" and target_skel.find_bone("mixamorig_RightForeArm") != -1
-			):
-				target_bone = "mixamorig_RightForeArm"
-			elif target_bone == "hand.r" and target_skel.find_bone("mixamorig_RightHand") != -1:
-				target_bone = "mixamorig_RightHand"
-			else:
-				# Unmapped or dummy bone (such as neutral_bone) -> safely map to skeleton root
-				if target_skel.find_bone("root") != -1:
-					target_bone = "root"
-				elif target_skel.find_bone("mixamorig_Hips") != -1:
-					target_bone = "mixamorig_Hips"
-				else:
-					target_bone = target_skel.get_bone_name(0)
-
-		new_skin.add_named_bind(target_bone, b_pose)
-
-	mesh.skin = new_skin
+				return false
+	var adapted := Skin.new()
+	# Bind poses are in each joint's local coordinate system. The pilot keeps
+	# centimetre bones, whereas normalized match assets use metres. Convert the
+	# entire bind transform, including its origin, before assigning the new rig.
+	var ratios: Array[float] = []
+	for name in ["forearm.l", "forearm.r", "shin.l", "shin.r"]:
+		var src := resolve_bone(source, name)
+		var dst := resolve_bone(target_skel, name)
+		if src >= 0 and dst >= 0:
+			var length := source.get_bone_rest(src).origin.length()
+			if length > 0.00001:
+				ratios.append(target_skel.get_bone_rest(dst).origin.length() / length)
+	if ratios.is_empty():
+		return false
+	ratios.sort()
+	var unit_scale := ratios[ratios.size() / 2]
+	var conversion := Transform3D(Basis.IDENTITY.scaled(Vector3.ONE * unit_scale), Vector3.ZERO)
+	for bind in original.get_bind_count():
+		var name := str(original.get_bind_name(bind))
+		if name.is_empty():
+			var index := original.get_bind_bone(bind)
+			if index < 0 or index >= source.get_bone_count():
+				return false
+			name = source.get_bone_name(index)
+		var target := resolve_bone(target_skel, name)
+		if target < 0:
+			# Exporter sentinel is unweighted, but still needs a valid bind entry.
+			if name != "neutral_bone":
+				return false
+			target = resolve_bone(target_skel, "root")
+		if target < 0:
+			return false
+		adapted.add_named_bind(
+			target_skel.get_bone_name(target), conversion * original.get_bind_pose(bind)
+		)
+	mesh.skin = adapted
 	return true
+
+
+static func retarget_animation(
+	clip: Animation, source: Skeleton3D, target: Skeleton3D
+) -> Animation:
+	if source == null or target == null or source.get_bone_count() == target.get_bone_count():
+		return clip.duplicate(true)
+	# The old clips bake WORLD rotations into a reduced hierarchy. Reconstruct
+	# those rotations, then express them relative to the actual target parents.
+	# Copying their local tracks directly stretches limbs and doubles spine turns.
+	var result := Animation.new()
+	result.length = clip.length
+	result.loop_mode = clip.loop_mode
+	var tracks: Dictionary = {}
+	for bone in target.get_bone_count():
+		var name := target.get_bone_name(bone)
+		var rotation_track := result.add_track(Animation.TYPE_ROTATION_3D)
+		result.track_set_path(rotation_track, NodePath("Skeleton3D:" + name))
+		tracks[bone] = rotation_track
+		var position_track := result.add_track(Animation.TYPE_POSITION_3D)
+		result.track_set_path(position_track, NodePath("Skeleton3D:" + name))
+		result.position_track_insert_key(position_track, 0.0, target.get_bone_rest(bone).origin)
+	var frame_count := maxi(1, ceili(clip.length * 30.0))
+	for frame in range(frame_count + 1):
+		var sample_time := minf(float(frame) / 30.0, clip.length)
+		var local_rotations: Dictionary = {}
+		for bone in source.get_bone_count():
+			local_rotations[bone] = (
+				source.get_bone_rest(bone).basis.orthonormalized().get_rotation_quaternion()
+			)
+		for track in clip.get_track_count():
+			var name := clip.track_get_path(track).get_concatenated_subnames()
+			var bone := source.find_bone(name)
+			if bone >= 0 and clip.track_get_type(track) == Animation.TYPE_ROTATION_3D:
+				local_rotations[bone] = clip.rotation_track_interpolate(track, sample_time)
+		var source_globals: Dictionary = {}
+		for bone in source.get_bone_count():
+			_source_rotation(bone, source, local_rotations, source_globals)
+		var globals: Dictionary = {}
+		for bone in target.get_bone_count():
+			_retarget_bone(bone, source, target, globals, source_globals)
+			var parent := target.get_bone_parent(bone)
+			var parent_rotation: Quaternion = (
+				globals[parent] if parent >= 0 else Quaternion.IDENTITY
+			)
+			result.rotation_track_insert_key(
+				tracks[bone], sample_time, parent_rotation.inverse() * globals[bone]
+			)
+	return result
+
+
+static func _retarget_bone(
+	bone: int,
+	source: Skeleton3D,
+	target: Skeleton3D,
+	globals: Dictionary,
+	source_globals: Dictionary
+) -> void:
+	if globals.has(bone):
+		return
+	var parent := target.get_bone_parent(bone)
+	var parent_rotation := Quaternion.IDENTITY
+	if parent >= 0:
+		_retarget_bone(parent, source, target, globals, source_globals)
+		parent_rotation = globals[parent]
+	var source_bone := source.find_bone(target.get_bone_name(bone))
+	if source_bone >= 0:
+		globals[bone] = source_globals[source_bone]
+	else:
+		globals[bone] = (
+			parent_rotation
+			* target.get_bone_rest(bone).basis.orthonormalized().get_rotation_quaternion()
+		)
+
+
+static func _source_rotation(
+	bone: int, source: Skeleton3D, local: Dictionary, global: Dictionary
+) -> void:
+	if global.has(bone):
+		return
+	var parent := source.get_bone_parent(bone)
+	var rotation: Quaternion = local[bone]
+	if parent >= 0:
+		_source_rotation(parent, source, local, global)
+		rotation = global[parent] * rotation
+	global[bone] = rotation
 
 
 func _tint(node: Node, color: Color) -> void:

@@ -491,7 +491,7 @@ func test_atalanta_idle_and_backward_walk_presentation() -> void:
 	assert_eq(driver.current_action_name, "idle", "Atalanta plays idle")
 	assert_eq(
 		driver.current_clip_id,
-		"idle_and_start_animation_idle_5",
+		"idle_and_start_animation_idle",
 		"Atalanta uses combat-ready idle clip"
 	)
 

@@ -21,6 +21,7 @@ from mathutils import Vector, Matrix
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools/blender"))
 
+from externalize_glb_images import externalize_large_glb
 from lib.materials import material
 from lib.primitives import empty, shape
 
@@ -47,6 +48,12 @@ def get_mixamo_paths():
 
 def classify_mixamo_bone(bone_name):
     clean = bone_name.replace("mixamorig:", "")
+    # Primary joints have already been renamed before partitioning. Recognize
+    # both naming schemes or arms/legs end up in the always-visible torso mesh.
+    for prefix in ("upper_arm", "forearm", "hand", "thigh", "shin", "foot"):
+        if clean.startswith(prefix + "."):
+            limb = "ARM" if prefix in ("upper_arm", "forearm", "hand") else "LEG"
+            return limb + "_" + clean.rsplit(".", 1)[1].upper()
     if clean.startswith("LeftArm") or clean.startswith("LeftForeArm") or clean.startswith("LeftHand"):
         return "ARM_L"
     if clean.startswith("RightArm") or clean.startswith("RightForeArm") or clean.startswith("RightHand"):
@@ -315,6 +322,7 @@ def convert_character_skinned(fbx_name, target_id, target_height_m, target_width
         export_all_influences=True,
     )
     
+    externalize_large_glb(out_glb)
     h = hashlib.sha256(out_glb.read_bytes()).hexdigest()
     print(f"Exported skinned {target_id} -> {out_glb} (SHA-256: {h})")
     return out_glb, h

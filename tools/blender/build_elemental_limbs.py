@@ -136,22 +136,35 @@ def build_elemental_limbs(only_chars=None):
                     bpy.ops.mesh.flip_normals()
                     bpy.ops.object.mode_set(mode="OBJECT")
 
-                # Remap vertex groups
-                target_vg_map = {}
-                for vg in list(elem_mesh.vertex_groups):
-                    orig_name = vg.name
-                    # First map mixamo names to canonical
-                    canon_name = PRIMARY_BONE_RENAME.get(orig_name, orig_name.replace("mixamorig:", ""))
+                # Rebuild groups by canonical name. Renaming in place collides
+                # with the unused left-side groups when mirroring the right limb,
+                # producing .001 names which glTF exports as neutral-bone weights.
+                names = {}
+                for vg in elem_mesh.vertex_groups:
+                    canon = PRIMARY_BONE_RENAME.get(vg.name, vg.name.replace("mixamorig:", ""))
                     if side == "l":
-                        if canon_name in R_TO_L_BONE_MAP:
-                            canon_name = R_TO_L_BONE_MAP[canon_name]
-                        elif canon_name.startswith("RightHand"):
-                            canon_name = canon_name.replace("RightHand", "LeftHand")
-                    target_vg_map[vg] = canon_name
-
-                # Apply renames
-                for vg, new_name in target_vg_map.items():
-                    vg.name = new_name
+                        canon = R_TO_L_BONE_MAP.get(canon, canon.replace("RightHand", "LeftHand"))
+                    names[vg.index] = canon
+                weights = []
+                for vertex in elem_mesh.data.vertices:
+                    mapped = {}
+                    for group in vertex.groups:
+                        if group.weight <= 0:
+                            continue
+                        name = names[group.group]
+                        if name not in fighter_skel.data.bones:
+                            raise ValueError(f"Unmapped weighted bone {name} in {src_limb_glb}")
+                        mapped[name] = mapped.get(name, 0.0) + group.weight
+                    if not mapped:
+                        raise ValueError(f"Unweighted vertex {vertex.index} in {src_limb_glb}")
+                    weights.append(mapped)
+                elem_mesh.vertex_groups.clear()
+                groups = {name: elem_mesh.vertex_groups.new(name=name)
+                          for name in sorted({name for row in weights for name in row})}
+                for index, row in enumerate(weights):
+                    total = sum(row.values())
+                    for name, weight in row.items():
+                        groups[name].add([index], weight / total, "REPLACE")
 
                 # Bind Armature modifier to fighter skeleton
                 for mod in elem_mesh.modifiers:
