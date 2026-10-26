@@ -19,7 +19,7 @@ func push(mask: int, tick: int, window: int) -> void:
 			kept_bits.append(bits[index])
 			kept_ticks.append(ticks[index])
 			kept_directions.append(directions[index])
-	for bit in [SimInput.LIGHT, SimInput.HEAVY, SimInput.KICK, SimInput.DODGE]:
+	for bit in SimInput.ATTACK_BITS + [SimInput.DODGE]:
 		if (rose & bit) != 0:
 			kept_bits.append(bit)
 			kept_ticks.append(tick)

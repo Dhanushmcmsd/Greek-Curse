@@ -2,6 +2,10 @@ extends SceneTree
 
 
 func _initialize() -> void:
+	call_deferred("_run")
+
+
+func _run() -> void:
 	var fixture = load("res://tests/proto_fixture.gd")
 	var recorder_script = load("res://src/input/input_recorder.gd")
 	var results: Array = []
@@ -12,7 +16,7 @@ func _initialize() -> void:
 		var recorder = recorder_script.new()
 		recorder.initial = world.export_limb_state()
 		var allowed: Array = []
-		for input in [16, 32, 64, 18, 34, 72, 80]:
+		for input in [16, 32, 64, SimInput.KICK_RIGHT, SimInput.BODY]:
 			var chosen := SimMoveAvailability.select(world.fighters[0], input, world.body_rules)
 			if not chosen.is_empty():
 				allowed.append({"input": input, "move": chosen["id"]})

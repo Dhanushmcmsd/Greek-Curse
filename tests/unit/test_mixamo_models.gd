@@ -137,8 +137,8 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 						rig.replacements.has(slot), "replacement cleared after detach: " + slot
 					)
 					for mesh: MeshInstance3D in rig.limb_meshes[slot]:
-						assert_true(
-							mesh.visible, "natural mesh restored after detach: " + mesh.name
+						assert_false(
+							mesh.visible, "natural mesh stays hidden after detach: " + mesh.name
 						)
 				else:
 					assert_false(

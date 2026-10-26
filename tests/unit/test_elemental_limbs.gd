@@ -67,7 +67,7 @@ func test_elemental_limbs_shared_skeleton_binding_on_atalanta_and_theron() -> vo
 			rig.detach_regrown(slot)
 			assert_false(rig.replacements.has(slot), "cleared replacement on " + slot)
 			for nat_mesh: MeshInstance3D in rig.limb_meshes[slot]:
-				assert_true(nat_mesh.visible, "natural mesh restored on " + slot)
+				assert_false(nat_mesh.visible, "detaching does not restore natural mesh on " + slot)
 
 		rig.get_parent().remove_child(rig)
 		rig.free()

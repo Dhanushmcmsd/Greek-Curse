@@ -18,12 +18,12 @@ static func derive(limbs: SimLimbs) -> Dictionary:
 	var unsupported_legs := int(not limbs.usable("leg_l")) + int(not limbs.usable("leg_r"))
 	var unsupported_arms := int(not limbs.usable("arm_l")) + int(not limbs.usable("arm_r"))
 	var profile := "full"
-	if unsupported_legs > 0 and unsupported_arms + unsupported_legs >= 3:
+	if unsupported_legs == 1:
+		profile = "one_leg"
+	elif unsupported_legs == 2 and unsupported_arms > 0:
 		profile = "torso_mode"
 	elif unsupported_legs == 2:
 		profile = "no_legs"
-	elif unsupported_legs == 1:
-		profile = "one_leg"
 	elif arms == 2:
 		profile = "no_arms"
 	elif arms == 1:

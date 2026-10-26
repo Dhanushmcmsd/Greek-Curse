@@ -13,6 +13,9 @@ const BLOCK := 128
 const DODGE := 256
 const SUPER := 512
 const ULTIMATE := 1024
+const KICK_RIGHT := 2048
+const BODY := 4096
+const ATTACK_BITS := [LIGHT, HEAVY, KICK, KICK_RIGHT, BODY]
 
 
 static func has_bit(mask: int, bit: int) -> bool:

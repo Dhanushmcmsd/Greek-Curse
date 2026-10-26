@@ -348,8 +348,9 @@ func detach_regrown(slot: String) -> void:
 			old.get_parent().remove_child(old)
 		old.free()
 		replacements.erase(slot)
-	set_limb_visible(slot, true)
-	show_stump(slot, false)
+	# Removing a replacement must not resurrect a natural severed limb.
+	set_limb_visible(slot, false)
+	show_stump(slot, true)
 
 
 func sync(fighter: SimFighter) -> void:

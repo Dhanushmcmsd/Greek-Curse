@@ -28,7 +28,7 @@ func test_chicken_reach_and_missed_heavy_stagger() -> void:
 	world.step([16, 0])
 	assert_eq(fighter.hit_x + fighter.hit_w, 780, "600 times 130 percent")
 	world = ProtoFixture.world_with()
-	fighter = _grant(world, "arm_l", "rubber_chicken_arm")
+	fighter = _grant(world, "arm_r", "rubber_chicken_arm")
 	world.step([32, 0])
 	for tick in 100:
 		if fighter.state == SimFighter.State.STAGGER:
@@ -42,9 +42,9 @@ func test_giant_hand_heavy_damage_and_larger_hurtbox() -> void:
 	var world := ProtoFixture.world_with()
 	var fighter := world.fighters[0]
 	var before := fighter.limbs.world_boxes(0, 0, 500, 2050, "standing")
-	_grant(world, "arm_l", "cyclops_giant_hand")
+	_grant(world, "arm_r", "cyclops_giant_hand")
 	var after := fighter.limbs.world_boxes(0, 0, 500, 2050, "standing")
-	assert_eq(int(after[3]["rect"][2]), Fx.percent(int(before[3]["rect"][2]), 140), "wider arm")
+	assert_eq(int(after[4]["rect"][2]), Fx.percent(int(before[4]["rect"][2]), 140), "wider arm")
 	world.step([32, 0])
 	assert_eq(
 		fighter.attack_damage,

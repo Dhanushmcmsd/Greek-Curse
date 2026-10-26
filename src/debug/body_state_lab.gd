@@ -19,4 +19,4 @@ func _set_mask(mask: int) -> void:
 	SimBodyState.apply_mask(world.fighters[0], mask)
 	_recorder.initial = world.export_limb_state()
 	var info := SimBodyState.derive(world.fighters[0].limbs)
-	_lab_text.text = "P1 %s | A/D move J/K/L attack | Forward+punch: right arm" % info["profile"]
+	_lab_text.text = "P1 %s | A/D move J/K fists L/O feet B body" % info["profile"]

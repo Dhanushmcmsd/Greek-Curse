@@ -25,11 +25,13 @@ var _cape_angle: float = 0.0
 var _cape_rest := Transform3D.IDENTITY
 var _last_states: Dictionary = {}
 var _twitch: Dictionary = {}
+var _one_leg: OneLegMotion
 var _beam: MeshInstance3D
 
 
 func setup(target: FighterRig) -> void:
 	rig = target
+	_one_leg = OneLegMotion.new()
 	_beam = MeshInstance3D.new()
 	_beam.mesh = BoxMesh.new()
 	var glow := StandardMaterial3D.new()
@@ -233,9 +235,16 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 								* Quaternion(Vector3.RIGHT, -1.3)
 							)
 						)
+	# Visibility belongs to limb state, even if a legacy clip writes mesh properties.
+	rig.sync(fighter)
+	var one_leg := _one_leg.apply(rig, fighter, time)
 	_root_pose(fighter, settings, clip_active)
+	if one_leg.active:
+		rig.rotation.x += float(one_leg.pitch)
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
+	if one_leg.active:
+		rig.position.y += float(one_leg.lift)
 	_projectile(fighter)
 	if _cape != null and not stopped:
 		_cape_angle = lerpf(
@@ -391,7 +400,7 @@ func _attachments(fighter: SimFighter, stopped: bool) -> void:
 			)
 
 
-func _ground(fighter: SimFighter, settings: Dictionary) -> void:
+func _ground(fighter: SimFighter, _settings: Dictionary) -> void:
 	floor_min = INF
 	var has_healthy_feet := (
 		fighter.limbs.usable("leg_l")
@@ -433,10 +442,6 @@ func _ground(fighter: SimFighter, settings: Dictionary) -> void:
 	if is_finite(floor_min):
 		rig.position.y = -floor_min
 		floor_min += rig.position.y
-	if fighter.pose == "hop" and fighter.state == SimFighter.State.WALK:
-		rig.position.y += (
-			abs(sin(time * float(settings["quirk_rate"]))) * float(settings["hop_height_m"])
-		)
 	if fighter.state == SimFighter.State.ACTIVE:
 		if fighter.hit_w == 0:
 			reach_mismatch_mm = 0
@@ -542,6 +547,8 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		fighter.pose == "crawl" and fighter.state in [SimFighter.State.IDLE, SimFighter.State.WALK]
 	):
 		act_key = "crawl"
+	elif fighter.pose == "hop" and fighter.state in [SimFighter.State.IDLE, SimFighter.State.WALK]:
+		act_key = "idle"
 	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
 		act_key = "block"
 	elif fighter.state == SimFighter.State.WALK:

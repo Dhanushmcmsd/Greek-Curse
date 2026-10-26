@@ -59,7 +59,7 @@ func _ready() -> void:
 	_credit.position = Vector2(350, 530)
 	add_child(_credit)
 	_hint.text = (
-		"A/D move | J/K/L attacks | Shift block | Space dodge | Esc pause"
+		"A/D move | J/K fists | L/O feet | B body | Shift block | Space dodge | Esc pause"
 		+ " | U super / I ultimate"
 	)
 	_hint.add_theme_font_size_override("font_size", 16)

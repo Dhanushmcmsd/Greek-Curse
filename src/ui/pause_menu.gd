@@ -41,10 +41,10 @@ func _pressed(title: String) -> void:
 		"Controls":
 			var dialog := AcceptDialog.new()
 			dialog.dialog_text = (
-				"P1: A/D, J/K/L, Shift, Space, U/I"
-				+ "\nP2: arrows, keypad 1/2/3, keypad 0/dot"
-				+ "\nForward+punch: right arm. Down+kick: right leg. J+L: grab."
-				+ "\nGamepad: stick, X/Y/A, RB/B, LT, RT+LT."
+				"P1: A/D, J/K fists, L/O feet, B body, Shift, Space, U/I"
+				+ "\nP2: arrows; keypad 1/2 fists, 3/6 feet, 7 body, 0 block, dot dodge"
+				+ "\nJ/K: left/right fist. L/O: left/right foot. Missing limbs disable their keys. J+L: grab."
+				+ "\nGamepad: X/Y fists, A/RB feet, LB body, R3 guard, B dodge, LT super."
 			)
 			add_child(dialog)
 			dialog.popup_centered()

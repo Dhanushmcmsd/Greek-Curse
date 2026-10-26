@@ -31,7 +31,9 @@ func test_all_forty_attachments() -> void:
 					var box: AABB = mesh.global_transform * mesh.get_aabb()
 					assert_true(box.position.y >= -0.015, "not below floor " + id + limb["id"])
 				rig.detach_regrown(slot)
-				assert_true(rig.groups[slot].visible, "natural visibility restored")
+				assert_false(rig.groups[slot].visible, "detach keeps natural limb hidden")
+				rig.sync(world.fighters[0])
+				assert_true(rig.groups[slot].visible, "healthy simulation restores natural limb")
 				count += 1
 		rig.free()
 	assert_eq(count, 40, "all compatible combinations")

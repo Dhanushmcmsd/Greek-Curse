@@ -7,7 +7,9 @@ static func capture(world: SimWorld, index: int) -> Dictionary:
 	var own := world.fighters[index]
 	var other := world.fighters[1 - index]
 	var options: Array = []
-	for mask in [16, 32, 64, 18, 34, 72, 80, 17, 33, SimInput.SUPER, SimInput.ULTIMATE]:
+	for mask in [
+		16, 32, 64, SimInput.KICK_RIGHT, SimInput.BODY, 80, SimInput.SUPER, SimInput.ULTIMATE
+	]:
 		var chosen := SimMoveAvailability.select(own, mask, world.body_rules)
 		if chosen.is_empty() or not SimAbilities.ready(world, own, str(chosen.get("id", ""))):
 			continue

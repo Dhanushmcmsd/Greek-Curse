@@ -24,7 +24,11 @@
     "p1_super",
     "p1_ultimate",
     "p2_super",
-    "p2_ultimate"
+    "p2_ultimate",
+    "p1_kick_right",
+    "p1_body",
+    "p2_kick_right",
+    "p2_body"
   ],
   "properties": {
     "p1_left": {
@@ -557,6 +561,98 @@
       }
     },
     "p2_ultimate": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_kick_right": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p1_body": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_kick_right": {
+      "type": "object",
+      "required": [
+        "key",
+        "button",
+        "device"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "button": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 20
+        },
+        "device": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 1
+        }
+      }
+    },
+    "p2_body": {
       "type": "object",
       "required": [
         "key",

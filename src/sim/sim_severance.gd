@@ -32,6 +32,15 @@ static func hit(
 	if limb == null or limb.state == "severed":
 		return
 	limb.refresh(rules)
+	if not fighter.limbs.usable(zone) and fighter.attack_slot == zone and fighter.move_id > 0:
+		fighter.clear_move()
+		fighter.hit_w = 0
+		fighter.hit_h = 0
+		if (
+			fighter.state
+			in [SimFighter.State.STARTUP, SimFighter.State.ACTIVE, SimFighter.State.RECOVERY]
+		):
+			fighter.state = SimFighter.State.IDLE
 	var live := fighter.chain.is_live(world.tick, rules)
 	if limb.integrity == 0:
 		if (live and previous != "healthy") or (pending and count_hit):

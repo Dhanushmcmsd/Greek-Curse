@@ -21,6 +21,15 @@ static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 		_dodge_motion(world, fighter, mask)
 		return
 	if _busy(fighter):
+		if (
+			fighter.limbs.parts.has(fighter.attack_slot)
+			and not fighter.limbs.usable(fighter.attack_slot)
+		):
+			fighter.clear_move()
+			fighter.hit_w = 0
+			fighter.hit_h = 0
+			fighter.state = SimFighter.State.IDLE
+			return
 		if not _try_cancel(world, fighter):
 			_age_move(world, fighter)
 			if not fighter.landed_hit:
@@ -112,7 +121,7 @@ static func _attack_level(mask: int) -> bool:
 	return (
 		SimInput.has_bit(mask, SimInput.LIGHT)
 		or SimInput.has_bit(mask, SimInput.HEAVY)
-		or SimInput.has_bit(mask, SimInput.KICK)
+		or SimInput.has_bit(mask, SimInput.KICK | SimInput.KICK_RIGHT | SimInput.BODY)
 	)
 
 
@@ -138,6 +147,8 @@ static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 
 
 static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
+	if fighter.pose == "hop" and fighter.attack_slot.begins_with("leg"):
+		return false
 	if not fighter.attack_can_cancel:
 		return false
 	if fighter.move_age < fighter.cancel_start or fighter.move_age >= fighter.cancel_end:
@@ -153,7 +164,7 @@ static func _chosen_move(
 	world: SimWorld, fighter: SimFighter, mask: int, allow_level: bool
 ) -> Dictionary:
 	var effective := mask & (SimInput.LEFT | SimInput.RIGHT | SimInput.DOWN)
-	for bit in [SimInput.LIGHT, SimInput.HEAVY, SimInput.KICK]:
+	for bit in SimInput.ATTACK_BITS:
 		if _wants(world, fighter, bit, mask, allow_level):
 			effective |= bit
 			if not allow_level or not mask & bit:
@@ -211,19 +222,10 @@ static func _begin_named(
 	_consume_edges(fighter, move_id)
 
 
-static func _consume_edges(fighter: SimFighter, move_id: String) -> void:
-	if move_id.begins_with("body_"):
-		for bit in [SimInput.LIGHT, SimInput.HEAVY, SimInput.KICK]:
-			fighter.buffer.consume(bit)
-	elif move_id == "jab_of_hermes":
-		fighter.buffer.consume(SimInput.LIGHT)
-	elif move_id == "cyclops_smash":
-		fighter.buffer.consume(SimInput.HEAVY)
-	elif move_id == "pegasus_kick":
-		fighter.buffer.consume(SimInput.KICK)
-	elif move_id == "grab":
-		fighter.buffer.consume(SimInput.LIGHT)
-		fighter.buffer.consume(SimInput.KICK)
+static func _consume_edges(fighter: SimFighter, _move_id: String) -> void:
+	# Consume the command that started any equipped move, not just default IDs.
+	for bit in SimInput.ATTACK_BITS:
+		fighter.buffer.consume(bit)
 
 
 static func _dodge_motion(world: SimWorld, fighter: SimFighter, mask: int) -> void:

@@ -9,6 +9,8 @@ const BITS := {
 	"light": SimInput.LIGHT,
 	"heavy": SimInput.HEAVY,
 	"kick": SimInput.KICK,
+	"kick_right": SimInput.KICK_RIGHT,
+	"body": SimInput.BODY,
 	"block": SimInput.BLOCK,
 	"dodge": SimInput.DODGE,
 	"super": SimInput.SUPER,

@@ -8,6 +8,11 @@ static func resolve(world: SimWorld, events: Array) -> void:
 		var attacker: SimFighter = world.fighters[attacker_index]
 		if attacker.state != SimFighter.State.ACTIVE or attacker.hit_w <= 0 or attacker.hit_h <= 0:
 			continue
+		if (
+			attacker.limbs.parts.has(attacker.attack_slot)
+			and not attacker.limbs.usable(attacker.attack_slot)
+		):
+			continue
 		if attacker.hits_done >= attacker.attack_hit_count:
 			continue
 		if attacker.hits_done > 0 and attacker.move_age < attacker.next_hit_age:
