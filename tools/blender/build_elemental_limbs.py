@@ -1,7 +1,7 @@
 """Builds non-destructive converted GLB replacement limb assets from supplied elemental limbs.
 Reads:
   - Source models from d:\\Elemental_Limbs_10_Characters\\Elemental_Limbs
-  - Character scales and offsets from build/character_scales.json
+  - Character scales and offsets from assets/fighters_mixamo/model_dimensions.json
 Outputs:
   - Processed skinned limb assets under assets/limbs_elemental/
   - Generates both Right (_R) and mirrored Left (_L) articulated skinned models.
@@ -65,7 +65,7 @@ def get_paths():
     paths_file = ROOT / "tools/blender/mixamo_paths.json"
     cfg = json.loads(paths_file.read_text())
     limbs_dir = Path(cfg["elemental_limbs_dir"])
-    scales_file = ROOT / "build/character_scales.json"
+    scales_file = ROOT / "assets/fighters_mixamo/model_dimensions.json"
     scales = json.loads(scales_file.read_text())
     return limbs_dir, scales
 

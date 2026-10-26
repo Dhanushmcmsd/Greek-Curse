@@ -97,19 +97,34 @@ func test_feet_touch_floor_in_standing_and_walk() -> void:
 				driver.update(fighter)
 				var floor_y := INF
 				for side in ["l", "r"]:
-					var slot: String = "leg_" + side
-					var meshes_list: Array = rig.limb_meshes[slot]
-					var mesh: MeshInstance3D = meshes_list[meshes_list.size() - 1]
-					var bone := rig.skeleton.find_bone("foot." + side)
-					var matrix := (
-						rig.global_transform
-						* rig.skeleton.get_bone_global_pose(bone)
-						* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
-						* mesh.transform
-					)
-					for surface in mesh.mesh.get_surface_count():
-						for vertex in mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]:
-							floor_y = minf(floor_y, (matrix * vertex).y)
+					# Evaluate weighted vertices in world space independently of the
+					# driver's cached bounds. A whole leg is not rigidly bound to a foot.
+					for mesh: MeshInstance3D in rig.limb_meshes["leg_" + side]:
+						for surface in mesh.mesh.get_surface_count():
+							var arrays := mesh.mesh.surface_get_arrays(surface)
+							var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+							var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+							var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+							var stride := joints.size() / vertices.size()
+							for vertex in vertices.size():
+								var world_vertex := Vector3.ZERO
+								for influence in stride:
+									var offset: int = vertex * stride + influence
+									if weights[offset] <= 0.0:
+										continue
+									var bind := joints[offset]
+									var bone := rig.skeleton.find_bone(
+										mesh.skin.get_bind_name(bind)
+									)
+									if bone < 0:
+										bone = mesh.skin.get_bind_bone(bind)
+									var transform := (
+										rig.skeleton.global_transform
+										* rig.skeleton.get_bone_global_pose(bone)
+										* mesh.skin.get_bind_pose(bind)
+									)
+									world_vertex += (transform * vertices[vertex]) * weights[offset]
+								floor_y = minf(floor_y, world_vertex.y)
 				assert_true(abs(floor_y) <= 0.015, "actual foot vertices touch floor " + id)
 		rig.free()
 

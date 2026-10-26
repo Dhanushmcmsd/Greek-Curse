@@ -19,16 +19,14 @@
           "speed_scale": 0.9
         },
         "walk_back": {
-          "clip": "walking_back_injured_walk_backwards",
+          "clip": "walking_back_walking_backwards",
           "loop": true,
-          "speed_scale": -0.9,
-          "derived": true,
-          "recipe": "speed_scale(-0.9)"
+          "speed_scale": 0.9
         },
         "run": {
           "clip": "walking_front_walking",
           "derived": true,
-          "recipe": "walking_front_walking sped up 1.6x with +10 deg forward torso lean",
+          "recipe": "walking_front_walking played faster",
           "loop": true,
           "speed_scale": 1.4400000000000002,
           "additive_lean_x": 10.0
@@ -195,21 +193,19 @@
           "speed_scale": 1.0
         },
         "walk_fwd": {
-          "clip": "walking_front_wheelbarrow_walk",
+          "clip": "walking_front_walking",
           "loop": true,
           "speed_scale": 1.15
         },
         "walk_back": {
           "clip": "walking_back_walking_backwards",
           "loop": true,
-          "speed_scale": -1.15,
-          "derived": true,
-          "recipe": "speed_scale(-1.15)"
+          "speed_scale": 1.15
         },
         "run": {
-          "clip": "walking_front_wheelbarrow_walk",
+          "clip": "walking_front_walking",
           "derived": true,
-          "recipe": "walking_front_wheelbarrow_walk sped up 1.6x with +10 deg forward torso lean",
+          "recipe": "walking_front_walking played faster",
           "loop": true,
           "speed_scale": 1.8399999999999999,
           "additive_lean_x": 10.0
@@ -376,21 +372,19 @@
           "speed_scale": 1.0
         },
         "walk_fwd": {
-          "clip": "walking_front_long_step_forward",
+          "clip": "walking_front_walking",
           "loop": true,
           "speed_scale": 1.0
         },
         "walk_back": {
-          "clip": "walking_back_backward_walking_turn",
+          "clip": "walking_back_walking_backwards",
           "loop": true,
-          "speed_scale": -1.0,
-          "derived": true,
-          "recipe": "speed_scale(-1.0)"
+          "speed_scale": 1.0
         },
         "run": {
-          "clip": "walking_front_long_step_forward",
+          "clip": "walking_front_walking",
           "derived": true,
-          "recipe": "walking_front_long_step_forward sped up 1.6x with +10 deg forward torso lean",
+          "recipe": "walking_front_walking played faster",
           "loop": true,
           "speed_scale": 1.6,
           "additive_lean_x": 10.0
@@ -557,21 +551,19 @@
           "speed_scale": 0.95
         },
         "walk_fwd": {
-          "clip": "walking_front_strut_walking",
+          "clip": "walking_front_walking",
           "loop": true,
           "speed_scale": 0.95
         },
         "walk_back": {
-          "clip": "walking_back_backward_walking_turn",
+          "clip": "walking_back_walking_backwards",
           "loop": true,
-          "speed_scale": -0.95,
-          "derived": true,
-          "recipe": "speed_scale(-0.95)"
+          "speed_scale": 0.95
         },
         "run": {
-          "clip": "walking_front_strut_walking",
+          "clip": "walking_front_walking",
           "derived": true,
-          "recipe": "walking_front_strut_walking sped up 1.6x with +10 deg forward torso lean",
+          "recipe": "walking_front_walking played faster",
           "loop": true,
           "speed_scale": 1.52,
           "additive_lean_x": 10.0

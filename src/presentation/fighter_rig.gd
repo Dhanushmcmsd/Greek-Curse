@@ -83,7 +83,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	var mixamo_path := "res://assets/fighters_mixamo/fighter_%s.glb" % mid
 	var legacy_path := "res://assets/generated/models/fighter_%s.glb" % id
 	var path := ""
-	if ResourceLoader.exists(mixamo_path):
+	if FileAccess.file_exists(mixamo_path) or ResourceLoader.exists(mixamo_path):
 		path = mixamo_path
 	elif ResourceLoader.exists(legacy_path):
 		push_warning(
@@ -94,7 +94,9 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		push_error("Missing fighter model: " + mixamo_path + " or " + legacy_path)
 		return false
 	loaded_model_path = path
-	model = (load(path) as PackedScene).instantiate()
+	model = ModelLoader.instantiate_scene(path)
+	if model == null:
+		return false
 	add_child(model)
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
 	if skeleton != null:
@@ -127,9 +129,16 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 			var clip_file: String = clip_info.get("clip", "")
 			if clip_file == "":
 				continue
-			var anim_glb_path := "res://assets/fighters_mixamo/anims/%s.glb" % clip_file
-			if ResourceLoader.exists(anim_glb_path):
-				var loaded_glb := (load(anim_glb_path) as PackedScene).instantiate()
+			var anim_glb_path := "res://assets/fighters_mixamo/source_anims/%s.glb" % clip_file
+			if (
+				not FileAccess.file_exists(anim_glb_path)
+				and not ResourceLoader.exists(anim_glb_path)
+			):
+				anim_glb_path = "res://assets/fighters_mixamo/anims/%s.glb" % clip_file
+			if FileAccess.file_exists(anim_glb_path) or ResourceLoader.exists(anim_glb_path):
+				var loaded_glb := ModelLoader.instantiate_scene(anim_glb_path)
+				if loaded_glb == null:
+					continue
 				var clip_ap := (
 					loaded_glb.find_child("AnimationPlayer", true, false) as AnimationPlayer
 				)
@@ -160,6 +169,14 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 				loaded_glb.queue_free()
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
+	var dimensions_path := "res://assets/fighters_mixamo/model_dimensions.json"
+	if is_using_mixamo_model() and FileAccess.file_exists(dimensions_path):
+		var dimensions: Dictionary = JSON.parse_string(
+			FileAccess.get_file_as_string(dimensions_path)
+		)
+		var model_dimensions: Dictionary = dimensions.get(mid, {})
+		fighter_height = float(model_dimensions.get("target_height_m", fighter_height))
+		fighter_width = float(model_dimensions.get("target_width_m", fighter_width))
 	for slot in SimLimbs.LIMB_NAMES:
 		var suffix := slot.to_upper()
 		groups[slot] = model.find_child("LIMB_" + suffix, true, false)
@@ -247,13 +264,12 @@ func attach_regrown(slot: String, id: String) -> bool:
 		var candidate := (
 			"res://assets/limbs_elemental/elemental_%s_%s.glb" % [loaded_fighter_model_id, slot]
 		)
-		if ResourceLoader.exists(candidate):
+		if FileAccess.file_exists(candidate) or ResourceLoader.exists(candidate):
 			elemental_path = candidate
 
 	if elemental_path != "" and skeleton != null:
-		var scene := load(elemental_path) as PackedScene
-		if scene != null:
-			var inst := scene.instantiate()
+		var inst := ModelLoader.instantiate_scene(elemental_path)
+		if inst != null:
 			var limb_meshes_to_attach: Array[MeshInstance3D] = []
 			for child in inst.find_children("*", "MeshInstance3D", true, false):
 				if child is MeshInstance3D:
@@ -348,7 +364,7 @@ func sync(fighter: SimFighter) -> void:
 		elif replacements.has(slot):
 			detach_regrown(slot)
 		set_limb_visible(slot, state != "severed" and regrown == "")
-		show_stump(slot, state == "severed")
+		show_stump(slot, state == "severed" or (regrown != "" and not replacements.has(slot)))
 		groups[slot].rotation.z = 0.3 if state == "cracked" else 0.0
 		# Animation owns bone rotations; damage offsets are applied after clip evaluation.
 		if _states.get(slot, "") != state:
@@ -408,15 +424,21 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	if mesh.skin == null or target_skel == null or source == null:
 		return false
 	var original := mesh.skin
+	var bind_names: Array[String] = []
+	for bind in original.get_bind_count():
+		var name := str(original.get_bind_name(bind))
+		if name.is_empty():
+			var index := original.get_bind_bone(bind)
+			if index < 0 or index >= source.get_bone_count():
+				return false
+			name = source.get_bone_name(index)
+		bind_names.append(name)
 	for surface in mesh.mesh.get_surface_count():
 		var arrays := mesh.mesh.surface_get_arrays(surface)
 		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
 		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
 		for influence in weights.size():
-			if (
-				weights[influence] > 0.0
-				and original.get_bind_name(joints[influence]) == "neutral_bone"
-			):
+			if weights[influence] > 0.0 and bind_names[joints[influence]] == "neutral_bone":
 				return false
 	var adapted := Skin.new()
 	# Bind poses are in each joint's local coordinate system. The pilot keeps
@@ -436,12 +458,7 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	var unit_scale := ratios[ratios.size() / 2]
 	var conversion := Transform3D(Basis.IDENTITY.scaled(Vector3.ONE * unit_scale), Vector3.ZERO)
 	for bind in original.get_bind_count():
-		var name := str(original.get_bind_name(bind))
-		if name.is_empty():
-			var index := original.get_bind_bone(bind)
-			if index < 0 or index >= source.get_bone_count():
-				return false
-			name = source.get_bone_name(index)
+		var name := bind_names[bind]
 		var target := resolve_bone(target_skel, name)
 		if target < 0:
 			# Exporter sentinel is unweighted, but still needs a valid bind entry.
@@ -460,15 +477,29 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 static func retarget_animation(
 	clip: Animation, source: Skeleton3D, target: Skeleton3D
 ) -> Animation:
-	if source == null or target == null or source.get_bone_count() == target.get_bone_count():
+	if source == null or target == null:
 		return clip.duplicate(true)
-	# The old clips bake WORLD rotations into a reduced hierarchy. Reconstruct
-	# those rotations, then express them relative to the actual target parents.
-	# Copying their local tracks directly stretches limbs and doubles spine turns.
+	# Transfer motion relative to each joint's rest frame, including the source
+	# armature's coordinate basis. Preserve target lengths, rolls and all helper
+	# joints instead of copying absolute rotations from a different character.
 	var result := Animation.new()
 	result.length = clip.length
 	result.loop_mode = clip.loop_mode
 	var tracks: Dictionary = {}
+	var source_basis := _asset_basis(source)
+	var target_basis := _asset_basis(target)
+	var source_rest: Dictionary = {}
+	var target_rest: Dictionary = {}
+	for bone in source.get_bone_count():
+		source_rest[bone] = (
+			source_basis
+			* source.get_bone_global_rest(bone).basis.orthonormalized().get_rotation_quaternion()
+		)
+	for bone in target.get_bone_count():
+		target_rest[bone] = (
+			target_basis
+			* target.get_bone_global_rest(bone).basis.orthonormalized().get_rotation_quaternion()
+		)
 	for bone in target.get_bone_count():
 		var name := target.get_bone_name(bone)
 		var rotation_track := result.add_track(Animation.TYPE_ROTATION_3D)
@@ -495,7 +526,17 @@ static func retarget_animation(
 			_source_rotation(bone, source, local_rotations, source_globals)
 		var globals: Dictionary = {}
 		for bone in target.get_bone_count():
-			_retarget_bone(bone, source, target, globals, source_globals)
+			_retarget_bone(
+				bone,
+				source,
+				target,
+				globals,
+				source_globals,
+				source_rest,
+				target_rest,
+				source_basis,
+				target_basis
+			)
 			var parent := target.get_bone_parent(bone)
 			var parent_rotation: Quaternion = (
 				globals[parent] if parent >= 0 else Quaternion.IDENTITY
@@ -511,23 +552,49 @@ static func _retarget_bone(
 	source: Skeleton3D,
 	target: Skeleton3D,
 	globals: Dictionary,
-	source_globals: Dictionary
+	source_globals: Dictionary,
+	source_rest: Dictionary,
+	target_rest: Dictionary,
+	source_basis: Quaternion,
+	target_basis: Quaternion
 ) -> void:
 	if globals.has(bone):
 		return
 	var parent := target.get_bone_parent(bone)
 	var parent_rotation := Quaternion.IDENTITY
 	if parent >= 0:
-		_retarget_bone(parent, source, target, globals, source_globals)
+		_retarget_bone(
+			parent,
+			source,
+			target,
+			globals,
+			source_globals,
+			source_rest,
+			target_rest,
+			source_basis,
+			target_basis
+		)
 		parent_rotation = globals[parent]
-	var source_bone := source.find_bone(target.get_bone_name(bone))
+	var source_bone := resolve_bone(source, target.get_bone_name(bone))
 	if source_bone >= 0:
-		globals[bone] = source_globals[source_bone]
+		var motion: Quaternion = (
+			source_basis * source_globals[source_bone] * source_rest[source_bone].inverse()
+		)
+		globals[bone] = target_basis.inverse() * motion * target_rest[bone]
 	else:
 		globals[bone] = (
 			parent_rotation
 			* target.get_bone_rest(bone).basis.orthonormalized().get_rotation_quaternion()
 		)
+
+
+static func _asset_basis(skel: Skeleton3D) -> Quaternion:
+	var transform := Transform3D.IDENTITY
+	var node: Node = skel
+	while node is Node3D and not node is FighterRig:
+		transform = (node as Node3D).transform * transform
+		node = node.get_parent()
+	return transform.basis.orthonormalized().get_rotation_quaternion()
 
 
 static func _source_rotation(

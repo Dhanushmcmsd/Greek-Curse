@@ -77,35 +77,39 @@ def convert_character_skinned(fbx_name, target_id, target_height_m, target_width
     arm_src = [o for o in bpy.data.objects if o.type == "ARMATURE"][0]
     meshes = [o for o in bpy.data.objects if o.type == "MESH" and o.name != "Cube"]
     
-    # Apply all transforms initially so coordinates are aligned
+    # Detach meshes before applying transforms. Scaling both an armature and
+    # its children scales the geometry twice but the joints only once.
+    worlds = {m: m.matrix_world.copy() for m in meshes}
+    for m in meshes:
+        m.parent = None
+        m.matrix_world = worlds[m]
     bpy.ops.object.select_all(action="DESELECT")
     arm_src.select_set(True)
     for m in meshes:
         m.select_set(True)
     bpy.context.view_layer.objects.active = arm_src
     bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    
-    # Calculate bounding height across all meshes
-    min_z = min(min(v.co.z for v in m.data.vertices) for m in meshes if len(m.data.vertices) > 0)
-    max_z = max(max(v.co.z for v in m.data.vertices) for m in meshes if len(m.data.vertices) > 0)
+
+    min_z = min(v.co.z for m in meshes for v in m.data.vertices)
+    max_z = max(v.co.z for m in meshes for v in m.data.vertices)
     raw_h = max_z - min_z
     scale_f = target_height_m / raw_h
-    
-    # Scale armature and meshes to exact target height and floor at z=0
-    # We apply scale directly to vertices and armature bones to preserve 1.0 object transform
-    bpy.ops.object.select_all(action="DESELECT")
-    arm_src.location.z -= min_z
-    arm_src.scale = (scale_f, scale_f, scale_f)
+    normalization = Matrix.Scale(scale_f, 4) @ Matrix.Translation((0, 0, -min_z))
+    arm_src.data.transform(normalization)
     for m in meshes:
-        m.location.z -= min_z
-        m.scale = (scale_f, scale_f, scale_f)
-    bpy.context.view_layer.objects.active = arm_src
-    bpy.ops.object.select_all(action="DESELECT")
-    arm_src.select_set(True)
-    for m in meshes:
-        m.select_set(True)
-    bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
-    
+        m.data.transform(normalization)
+        m.parent = arm_src
+        m.matrix_parent_inverse = Matrix.Identity(4)
+        m.matrix_basis = Matrix.Identity(4)
+    # Persist the exact normalization for replacement limb generation.
+    dimensions_file = ROOT / "assets/fighters_mixamo/model_dimensions.json"
+    dimensions = json.loads(dimensions_file.read_text()) if dimensions_file.exists() else {}
+    dimensions[target_id] = {"fbx": fbx_name, "min_z": min_z, "raw_h": raw_h,
+                             "scale_f": scale_f, "target_height_m": target_height_m,
+                             "target_width_m": target_width_m}
+    dimensions_file.parent.mkdir(parents=True, exist_ok=True)
+    dimensions_file.write_text(json.dumps(dimensions, indent=2) + "\n")
+
     # Sample actual scaled joint positions from Mixamo armature for sockets and stump caps
     joints_pos = {}
     mixamo_to_joint = {

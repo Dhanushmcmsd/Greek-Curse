@@ -201,6 +201,8 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 				index, rig.skeleton.get_bone_pose_rotation(index).slerp(target, smooth)
 			)
 	if clip_active:
+		if stopped:
+			rig.anim_player.seek(rig.anim_player.current_animation_position, true)
 		for slot in SimLimbs.LIMB_NAMES:
 			if fighter.limbs.parts[slot].state == "cracked":
 				var bone := rig.skeleton.find_bone(
@@ -560,7 +562,7 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		rig.anim_player.seek(clampf(warp_t, 0.0, 1.0) * anim_len, true)
 	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
-			rig.anim_player.play(clip_name)
+			rig.anim_player.play(clip_name, 0.1)
 		var configured_scale: float = float(actions[act_key].get("speed_scale", 1.0))
 		rig.anim_player.speed_scale = (
 			configured_scale * float(fighter.walk_speed if "walk_speed" in fighter else 20) / 20.0
@@ -569,7 +571,7 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			rig.anim_player.advance(1.0 / 60.0)
 	else:
 		if rig.anim_player.current_animation != clip_name:
-			rig.anim_player.play(clip_name)
+			rig.anim_player.play(clip_name, 0.1)
 		rig.anim_player.speed_scale = float(actions[act_key].get("speed_scale", 1.0))
 		if not stopped:
 			rig.anim_player.advance(1.0 / 60.0)

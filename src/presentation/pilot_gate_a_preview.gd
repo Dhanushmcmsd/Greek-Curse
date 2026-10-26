@@ -189,11 +189,10 @@ func init_model_and_anims() -> void:
 		if is_partitioned_mode
 		else "res://build/pilot_gate_a/arissa_intact.glb"
 	)
-	var pck := load(model_path) as PackedScene
-	if pck == null:
+	model = ModelLoader.instantiate_scene(model_path)
+	if model == null:
 		push_error("Failed to load model: " + model_path)
 		return
-	model = pck.instantiate()
 	add_child(model)
 	skeleton = model.find_child("Skeleton3D", true, false) as Skeleton3D
 
@@ -306,13 +305,20 @@ func _update_limb_visibilities() -> void:
 		if regrown_arm_node == null:
 			if skeleton != null:
 				var arm_res_path := "res://assets/limbs_elemental/elemental_atalanta_arm_l.glb"
-				if not ResourceLoader.exists(arm_res_path):
+				if (
+					not FileAccess.file_exists(arm_res_path)
+					and not ResourceLoader.exists(arm_res_path)
+				):
 					arm_attachment_status = (
 						"FAILED: stump visible (Asset missing: %s)" % arm_res_path
 					)
 				else:
-					var pck := load(arm_res_path) as PackedScene
-					var inst := pck.instantiate()
+					var inst := ModelLoader.instantiate_scene(arm_res_path)
+					if inst == null:
+						arm_attachment_status = "FAILED: cannot read current limb asset"
+						if stump_arm_l != null:
+							stump_arm_l.visible = true
+						return
 					var meshes_to_add: Array[MeshInstance3D] = []
 					for child in inst.find_children("*", "MeshInstance3D", true, false):
 						if child is MeshInstance3D:
@@ -359,13 +365,20 @@ func _update_limb_visibilities() -> void:
 		if regrown_leg_node == null:
 			if skeleton != null:
 				var leg_res_path := "res://assets/limbs_elemental/elemental_atalanta_leg_l.glb"
-				if not ResourceLoader.exists(leg_res_path):
+				if (
+					not FileAccess.file_exists(leg_res_path)
+					and not ResourceLoader.exists(leg_res_path)
+				):
 					leg_attachment_status = (
 						"FAILED: stump visible (Asset missing: %s)" % leg_res_path
 					)
 				else:
-					var pck := load(leg_res_path) as PackedScene
-					var inst := pck.instantiate()
+					var inst := ModelLoader.instantiate_scene(leg_res_path)
+					if inst == null:
+						leg_attachment_status = "FAILED: cannot read current limb asset"
+						if stump_leg_l != null:
+							stump_leg_l.visible = true
+						return
 					var meshes_to_add: Array[MeshInstance3D] = []
 					for child in inst.find_children("*", "MeshInstance3D", true, false):
 						if child is MeshInstance3D:
