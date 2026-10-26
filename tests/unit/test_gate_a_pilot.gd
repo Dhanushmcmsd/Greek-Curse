@@ -139,7 +139,7 @@ func test_gate_a_regrowth_attachment_and_lifecycle() -> void:
 	pilot.call("_update_limb_visibilities")
 	arm_status = pilot.get("arm_attachment_status")
 	assert_eq(arm_status, "SEVERED (Stump visible)", "Arm status after sever must be stump visible")
-	var stump_arm: Node3D = pilot.get("stump_arm_l")
+	var stump_arm: Node3D = pilot.get("wound_arm")
 	assert_true(stump_arm != null and stump_arm.visible, "Stump cap must be visible when severed")
 
 	# 4. Test real arm replacement attachment

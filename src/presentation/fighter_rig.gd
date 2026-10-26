@@ -206,6 +206,9 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 			var mesh := model.find_child(part + type + side, true, false)
 			if mesh != null:
 				stump_meshes[slot].append(mesh)
+		var wound := LimbFinish.wound(skeleton, slot)
+		if wound != null:
+			stump_meshes[slot].append(wound)
 		show_stump(slot, false)
 	return true
 
@@ -223,12 +226,7 @@ func set_limb_visible(slot: String, shown: bool) -> void:
 func show_stump(slot: String, shown: bool) -> void:
 	stumps[slot].visible = shown
 	for mesh in stump_meshes[slot]:
-		mesh.visible = (
-			shown
-			and not (
-				str(mesh.name).begins_with("BONE") and SettingsHooks.get_value("gore") == "off"
-			)
-		)
+		mesh.visible = shown and str(mesh.name).begins_with("WOUND_")
 
 
 func attach_to_socket(slot: String, node: Node3D) -> void:
@@ -298,6 +296,7 @@ func attach_regrown(slot: String, id: String) -> bool:
 				if attach_ok:
 					detach_regrown(slot)
 					skeleton.add_child(container)
+					LimbFinish.bridge(container, limb_meshes[slot], skeleton, slot)
 					replacements[slot] = container
 					set_limb_visible(slot, false)
 					show_stump(slot, false)
@@ -639,6 +638,8 @@ func _update_stump_palette() -> void:
 		color = Color("555963")
 	for meshes in stump_meshes.values():
 		for mesh in meshes:
+			if mesh.material_override is ShaderMaterial:
+				mesh.material_override.set_shader_parameter("flesh", color)
 			if str(mesh.name).begins_with("CUT"):
 				for surface in mesh.mesh.get_surface_count():
 					var material := (

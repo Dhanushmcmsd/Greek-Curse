@@ -31,7 +31,11 @@ func test_four_models_have_working_limbs_and_stumps() -> void:
 			for mesh in rig.limb_meshes[slot]:
 				assert_true(not mesh.visible, "imported skinned geometry hidden")
 			for mesh in rig.stump_meshes[slot]:
-				assert_true(mesh.visible, "imported stump geometry shown")
+				assert_eq(
+					mesh.visible,
+					str(mesh.name).begins_with("WOUND_"),
+					"only recessed wound is shown"
+				)
 			rig.set_limb_visible(slot, true)
 			rig.show_stump(slot, false)
 		rig.free()

@@ -10,6 +10,7 @@ var player: OptionButton
 var slot: OptionButton
 var limb: OptionButton
 var description: Label
+var model_ids: Array[String] = ["theron", "atalanta"]
 var catalog: Dictionary
 var bar: HBoxContainer
 var cards: HBoxContainer
@@ -89,6 +90,7 @@ func _ready() -> void:
 	close.custom_minimum_size = Vector2(180, 52)
 	close.pressed.connect(close_panel)
 	actions.add_child(close)
+	player.item_selected.connect(func(_index: int): _populate(slot.selected))
 	slot.item_selected.connect(_populate)
 	limb.item_selected.connect(_describe)
 	chooser.hide()
@@ -119,7 +121,12 @@ func _populate(index: int) -> void:
 			limb.set_item_metadata(item, id)
 			var card := LimbCard.new()
 			cards.add_child(card)
-			card.setup(id, catalog[id]["display_name"])
+			card.setup(
+				id,
+				catalog[id]["display_name"],
+				model_ids[player.selected],
+				SimLimbs.LIMB_NAMES[index]
+			)
 			card.pressed.connect(_describe.bind(item))
 	_describe(0)
 
@@ -128,7 +135,10 @@ func _describe(index: int) -> void:
 	limb.select(index)
 	for i in cards.get_child_count():
 		cards.get_child(i).modulate = Color.WHITE if i == index else Color(0.6, 0.65, 0.75)
-	description.text = "\n".join(catalog[limb.get_item_metadata(index)]["tooltip_lines"].values())
+	description.text = (
+		"Elemental appearance matches your fighter. Choose a combat perk below.\n"
+		+ "\n".join(catalog[limb.get_item_metadata(index)]["tooltip_lines"].values())
+	)
 
 
 func _apply() -> void:

@@ -27,6 +27,8 @@ var regrown_leg_attached: bool = false
 
 var limb_meshes_arm_l: Array[MeshInstance3D] = []
 var limb_meshes_leg_l: Array[MeshInstance3D] = []
+var wound_arm: MeshInstance3D
+var wound_leg: MeshInstance3D
 var stump_arm_l: Node3D
 var stump_leg_l: Node3D
 var socket_arm_l: Node3D
@@ -284,6 +286,8 @@ func _cache_partitioned_nodes() -> void:
 		elif mesh_name.ends_with("_LEG_L"):
 			limb_meshes_leg_l.append(child)
 
+	wound_arm = LimbFinish.wound(skeleton, "arm_l")
+	wound_leg = LimbFinish.wound(skeleton, "leg_l")
 	_update_limb_visibilities()
 
 
@@ -337,6 +341,7 @@ func _update_limb_visibilities() -> void:
 							m.skeleton = NodePath("../..")
 						if attach_ok:
 							skeleton.add_child(container)
+							LimbFinish.bridge(container, limb_meshes_arm_l, skeleton, "arm_l")
 							regrown_arm_node = container
 							arm_attachment_status = (
 								"SUCCESS [ID: elemental_atalanta_arm_l] (%s)" % arm_res_path
@@ -397,6 +402,7 @@ func _update_limb_visibilities() -> void:
 							m.skeleton = NodePath("../..")
 						if attach_ok:
 							skeleton.add_child(container)
+							LimbFinish.bridge(container, limb_meshes_leg_l, skeleton, "leg_l")
 							regrown_leg_node = container
 							leg_attachment_status = (
 								"SUCCESS [ID: elemental_atalanta_leg_l] (%s)" % leg_res_path
@@ -422,9 +428,13 @@ func _update_limb_visibilities() -> void:
 
 	# A request is not a successful attachment. Keep caps visible on failure.
 	if stump_arm_l != null:
-		stump_arm_l.visible = arm_l_severed and regrown_arm_node == null
+		stump_arm_l.hide()
+	if wound_arm != null:
+		wound_arm.visible = arm_l_severed and regrown_arm_node == null
 	if stump_leg_l != null:
-		stump_leg_l.visible = leg_l_severed and regrown_leg_node == null
+		stump_leg_l.hide()
+	if wound_leg != null:
+		wound_leg.visible = leg_l_severed and regrown_leg_node == null
 
 
 func play_action(act_name: String) -> void:

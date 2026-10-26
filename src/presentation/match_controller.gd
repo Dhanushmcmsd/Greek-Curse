@@ -199,6 +199,9 @@ func _build_stage() -> void:
 	_results = ResultsStub.new()
 	add_child(_results)
 	_match_tools = MatchTools.new()
+	for index in _views.size():
+		if _views[index].rig != null:
+			_match_tools.model_ids[index] = _views[index].rig.loaded_fighter_model_id
 	add_child(_match_tools)
 	_match_tools.new_match_requested.connect(_restart)
 	_match_tools.replacement_requested.connect(_start_with_replacement)
@@ -288,15 +291,17 @@ func _consume(events: Array) -> void:
 	for event in events:
 		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
 			_views[event.other].flash()
+			_views[event.other].recoil(
+				signf(_views[event.other].position.x - _views[event.actor].position.x),
+				event.kind == SimEvent.Kind.BLOCK
+			)
 			var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			if gore != null:
 				gore.burst(
-					_views[event.other].position + Vector3(0, 1.2, 0),
+					_views[event.other].impact_point(str(event.payload.get("zone", "body"))),
 					event.kind == SimEvent.Kind.BLOCK
 				)
-			(_camera as FightCamera).impact(
-				0.025 + minf(0.08, float(longest_combos[event.actor]) * 0.009)
-			)
+			(_camera as FightCamera).impact(0.04 + minf(0.07, float(event.amount) * 0.002))
 			for view in _views:
 				view.visual_stop = int(
 					SettingsHooks.scale_amount(float(world.hitstop_remaining), "hitstop_percent")

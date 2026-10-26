@@ -341,6 +341,8 @@ func _attachments(fighter: SimFighter, stopped: bool) -> void:
 		if not stopped:
 			_twitch[slot] = maxi(0, int(_twitch[slot]) - 1)
 		for cap in rig.stump_meshes[slot]:
+			if str(cap.name).begins_with("WOUND_"):
+				continue
 			cap.rotation.z = (
 				(
 					deg_to_rad(float(data["settings"]["stump_twitch_degrees"]))

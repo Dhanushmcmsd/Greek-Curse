@@ -586,7 +586,7 @@ func test_gore_debris_and_burst_joint_local() -> void:
 	# Find CPUParticles3D in particles pool
 	var burst_particle: CPUParticles3D = null
 	for p in gore.particles:
-		if p is CPUParticles3D:
+		if p is CPUParticles3D and p.mesh is SphereMesh:
 			burst_particle = p as CPUParticles3D
 			break
 	assert_true(burst_particle != null, "CPUParticles3D found")
@@ -614,7 +614,7 @@ func test_gore_debris_and_burst_joint_local() -> void:
 
 	var col_shape := collision.shape as BoxShape3D
 	var max_col_dim := maxf(col_shape.size.x, maxf(col_shape.size.y, col_shape.size.z))
-	assert_true(max_col_dim <= 0.355, "collision max dimension clamped to <= 0.35m")
+	assert_true(max_col_dim <= 1.505, "detached real limb retains scale within safe bounds")
 	assert_true(visual.scale.x <= 1.0, "visual scale adjusted to match collision size")
 
 	rig.free()

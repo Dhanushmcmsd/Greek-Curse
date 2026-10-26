@@ -12,6 +12,10 @@ var _last_states: Dictionary = {}
 var _pose_time: float = 0.0
 var _prev_x: int = -999999
 var _has_prev_x: bool = false
+var _recoil: float = 0.0
+var _bleed_tick: int = 0
+var _trail_point := Vector3.ZERO
+var _trailing := false
 
 
 func setup(
@@ -109,6 +113,27 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 	_prev_x = fighter.x
 	_has_prev_x = true
 	driver.update(fighter, frozen or visual_stop > 0)
+	rig.rotation.z -= _recoil
+	if not frozen:
+		_recoil *= 0.78
+		_bleed_tick += 1
+		if _bleed_tick % 30 == 0 and is_inside_tree():
+			var manager := get_tree().get_first_node_in_group("gore_manager") as GoreManager
+			if manager != null:
+				for slot in SimLimbs.LIMB_NAMES:
+					if fighter.limbs.parts[slot].state == "severed":
+						manager.ooze(rig.sockets[slot].global_position)
+	if not frozen and visual_stop == 0 and is_inside_tree():
+		var active := (
+			fighter.state == SimFighter.State.ACTIVE and fighter.limbs.usable(fighter.attack_slot)
+		)
+		var point := impact_point(fighter.attack_slot)
+		if active and _trailing:
+			var manager := get_tree().get_first_node_in_group("gore_manager") as GoreManager
+			if manager != null:
+				manager.trail(_trail_point, point)
+		_trail_point = point
+		_trailing = active
 	if visual_stop > 0:
 		visual_stop -= 1
 
@@ -116,7 +141,6 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 func _sever_effect(slot: String) -> void:
 	if not is_inside_tree():
 		return
-	var source: Node3D = rig.groups[slot]
 	var manager := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 	if manager == null:
 		return
@@ -126,6 +150,8 @@ func _sever_effect(slot: String) -> void:
 		pieces = rig.replacements[slot].find_children("*", "MeshInstance3D", true, false)
 	for index in pieces.size():
 		var original: MeshInstance3D = pieces[index]
+		if str(original.name).begins_with("SEAM_"):
+			continue
 		var pose := original.global_transform
 		if not replacement:
 			var joints: Array = (
@@ -144,4 +170,27 @@ func _sever_effect(slot: String) -> void:
 			elif rig.sockets.has(slot):
 				pose = rig.sockets[slot].global_transform
 		manager.debris(original, pose, rig.basis.z.x)
-	manager.burst(source.global_position, false, true)
+	manager.burst(rig.sockets[slot].global_position, false, true)
+
+
+func recoil(direction: float, blocked: bool) -> void:
+	_recoil = direction * (0.035 if blocked else 0.09)
+
+
+func impact_point(zone: String) -> Vector3:
+	if rig == null or rig.skeleton == null:
+		return global_position + Vector3(0, 1.2, 0)
+	var joint := "spine"
+	if zone == "head":
+		joint = "head"
+	elif zone.begins_with("arm"):
+		joint = "forearm." + zone.right(1)
+	elif zone.begins_with("leg"):
+		joint = "shin." + zone.right(1)
+	var bone := FighterRig.resolve_bone(rig.skeleton, joint)
+	if bone < 0:
+		return global_position + Vector3(0, 1.2, 0)
+	return (
+		rig.skeleton.global_transform * rig.skeleton.get_bone_global_pose(bone).origin
+		+ Vector3(0, 0, 0.25)
+	)

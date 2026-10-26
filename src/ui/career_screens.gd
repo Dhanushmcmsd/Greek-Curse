@@ -192,7 +192,7 @@ static func _obol(host: MenuHost, fighter: Dictionary) -> void:
 			):
 				var card := LimbCard.new()
 				options.add_child(card)
-				card.setup(id, Router.career.limbs[id]["display_name"])
+				card.setup(id, Router.career.limbs[id]["display_name"], fighter["id"], slot)
 				host.label(
 					"\n".join(Router.career.limbs[id]["tooltip_lines"].values()), 18, options
 				)

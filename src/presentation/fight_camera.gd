@@ -38,7 +38,10 @@ func track(world: SimWorld) -> void:
 
 
 func impact(strength: float, severed: bool = false) -> void:
-	kick = minf(float(settings["shake_max"]), SettingsHooks.scale_amount(strength, "shake_percent"))
+	var incoming := minf(
+		float(settings["shake_max"]), SettingsHooks.scale_amount(strength, "shake_percent")
+	)
 	if bool(SettingsHooks.get_value("flash_reduction")):
-		kick *= 0.35
-	sever_zoom = 0.25 if severed and kick > 0 else 0.0
+		incoming *= 0.35
+	kick = maxf(kick, incoming)
+	sever_zoom = maxf(sever_zoom, (0.55 if severed else 0.16) if kick > 0 else 0.0)

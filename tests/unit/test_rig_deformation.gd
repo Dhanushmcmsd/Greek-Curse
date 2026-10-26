@@ -69,6 +69,9 @@ func test_all_40_replacements_have_real_deform_weights() -> void:
 				assert_eq(
 					mesh.get_node(mesh.skeleton), rig.skeleton, "renderer uses fighter skeleton"
 				)
+				# Seam shells preserve native shoulder weights; validate their binding above.
+				if str(mesh.name).begins_with("SEAM_"):
+					continue
 				var limb_weight := 0.0
 				for surface in mesh.mesh.get_surface_count():
 					var arrays: Array = mesh.mesh.surface_get_arrays(surface)

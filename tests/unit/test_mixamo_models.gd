@@ -78,6 +78,7 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 			assert_true(rig.limb_meshes[slot].size() >= 1, "at least one limb mesh for " + slot)
 			assert_eq(rig.stump_meshes[slot].size(), 2, "two stump meshes for " + slot)
 
+			rig.stump_meshes[slot].append(LimbFinish.wound(rig.skeleton, slot))
 			# Prove hiding limb hides actual rendered meshes
 			rig.set_limb_visible(slot, false)
 			rig.show_stump(slot, true)
@@ -86,7 +87,11 @@ func test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown() -> void:
 			for mesh: MeshInstance3D in rig.limb_meshes[slot]:
 				assert_false(mesh.visible, "rendered mesh hidden " + mesh.name)
 			for mesh: MeshInstance3D in rig.stump_meshes[slot]:
-				assert_true(mesh.visible, "stump mesh shown " + mesh.name)
+				assert_eq(
+					mesh.visible,
+					str(mesh.name).begins_with("WOUND_"),
+					"only wound shown " + mesh.name
+				)
 
 			# Restore
 			rig.set_limb_visible(slot, true)
