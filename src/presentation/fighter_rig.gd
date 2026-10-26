@@ -236,8 +236,7 @@ func attach_regrown(slot: String, id: String) -> bool:
 		return false
 	detach_regrown(slot)
 
-	# 1. Check for elemental limb variant matching the loaded fighter model and slot
-	# Example: assets/limbs_elemental/elemental_atalanta_arm_l.glb
+	# 1. Primary: Skinned elemental replacement model matching character and slot
 	var elemental_path := ""
 	if loaded_fighter_model_id != "":
 		var candidate := (
@@ -260,6 +259,7 @@ func attach_regrown(slot: String, id: String) -> bool:
 				skeleton.add_child(limb_mesh)
 				limb_mesh.skeleton = NodePath("..")
 				limb_mesh.set_meta("limb_id", id)
+				limb_mesh.set_meta("resource_path", elemental_path)
 				limb_mesh.set_meta("is_elemental", true)
 				replacements[slot] = limb_mesh
 				set_limb_visible(slot, false)
@@ -267,17 +267,28 @@ func attach_regrown(slot: String, id: String) -> bool:
 				inst.queue_free()
 				return true
 			inst.queue_free()
+		# If elemental scene failed to load or has no mesh, do NOT silently fall back to legacy prototype.
+		# Show severed stump and log explicit failure.
+		Log.error(
+			(
+				"FighterRig: Failed to instantiate elemental limb for %s on %s (%s). Showing stump."
+				% [slot, loaded_fighter_model_id, elemental_path]
+			)
+		)
+		set_limb_visible(slot, false)
+		show_stump(slot, true)
+		return false
 
-	# 2. Fallback to generated prototype limb model attached to socket
+	# 2. Temporary fallback for non-character models or explicitly unmapped limbs
 	var info := ModelLoader.load_model("res://assets/generated/models/limb_%s.glb" % id)
 	if info.root == null:
+		set_limb_visible(slot, false)
+		show_stump(slot, true)
 		return false
 	var replacement := info.root
 	replacement.set_meta("limb_id", id)
 	replacement.set_meta("is_elemental", false)
 	var base_scale := Vector3(fighter_width / 0.45, fighter_height / 1.8, fighter_width / 0.45)
-	# If parent socket is inside a scaled hierarchy (such as Mixamo BoneAttachment3D at 0.01 scale),
-	# compensate the scale factor so the limb renders at natural world dimensions.
 	var sock: Node3D = sockets[slot] as Node3D
 	var sock_global_scale: Vector3 = sock.global_transform.basis.get_scale()
 	if sock_global_scale.x > 0.0 and sock_global_scale.x < 0.1:

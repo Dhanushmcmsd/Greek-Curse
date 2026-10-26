@@ -256,13 +256,15 @@ func _update_limb_visibilities() -> void:
 	if stump_leg_l != null:
 		stump_leg_l.visible = leg_l_severed and not regrown_leg_attached
 
-	# Regrown Arm Attachment (Elemental Phoenix Ember or legacy rubber chicken arm)
+	# Regrown Arm Attachment (Elemental Phoenix Ember)
 	if regrown_arm_attached and arm_l_severed:
 		if regrown_arm_node == null:
-			if use_elemental_limbs and skeleton != null:
+			if skeleton != null:
 				var arm_res_path := "res://assets/limbs_elemental/elemental_atalanta_arm_l.glb"
 				if not ResourceLoader.exists(arm_res_path):
-					arm_attachment_status = "FAILED (Asset not found: %s)" % arm_res_path
+					arm_attachment_status = (
+						"FAILED: stump visible (Asset missing: %s)" % arm_res_path
+					)
 				else:
 					var pck := load(arm_res_path) as PackedScene
 					var inst := pck.instantiate()
@@ -276,26 +278,17 @@ func _update_limb_visibilities() -> void:
 						skeleton.add_child(limb_mesh)
 						limb_mesh.skeleton = NodePath("..")
 						regrown_arm_node = limb_mesh
-						arm_attachment_status = "SUCCESS (Phoenix Ember Arm Skinned to Skeleton3D)"
+						arm_attachment_status = (
+							"SUCCESS [ID: elemental_atalanta_arm_l] (%s)" % arm_res_path
+						)
 						inst.queue_free()
 					else:
 						arm_attachment_status = (
-							"FAILED (No MeshInstance3D found in %s)" % arm_res_path
+							"FAILED: stump visible (No MeshInstance3D in %s)" % arm_res_path
 						)
 						inst.queue_free()
 			else:
-				var arm_res_path := "res://assets/generated/models/limb_rubber_chicken_arm.glb"
-				if not ResourceLoader.exists(arm_res_path):
-					arm_attachment_status = "FAILED (Asset not found: %s)" % arm_res_path
-				elif socket_arm_l == null:
-					arm_attachment_status = "FAILED (Missing socket: ATTACH_ARM_L)"
-				else:
-					var arm_pck := load(arm_res_path) as PackedScene
-					var arm_inst: Node3D = arm_pck.instantiate() as Node3D
-					arm_inst.scale = Vector3(100.0, 100.0, 100.0)
-					socket_arm_l.add_child(arm_inst)
-					regrown_arm_node = arm_inst
-					arm_attachment_status = "SUCCESS (rubber_chicken_arm bound to mixamorig_LeftArm)"
+				arm_attachment_status = "FAILED: stump visible (Skeleton3D missing)"
 	else:
 		if regrown_arm_node != null:
 			if regrown_arm_node.get_parent() != null:
@@ -304,13 +297,15 @@ func _update_limb_visibilities() -> void:
 			regrown_arm_node = null
 		arm_attachment_status = ("SEVERED (Stump visible)" if arm_l_severed else "NATURAL (Intact)")
 
-	# Regrown Leg Attachment (Elemental Phoenix Ember or legacy Hermes sandal leg)
+	# Regrown Leg Attachment (Elemental Phoenix Ember)
 	if regrown_leg_attached and leg_l_severed:
 		if regrown_leg_node == null:
-			if use_elemental_limbs and skeleton != null:
+			if skeleton != null:
 				var leg_res_path := "res://assets/limbs_elemental/elemental_atalanta_leg_l.glb"
 				if not ResourceLoader.exists(leg_res_path):
-					leg_attachment_status = "FAILED (Asset not found: %s)" % leg_res_path
+					leg_attachment_status = (
+						"FAILED: stump visible (Asset missing: %s)" % leg_res_path
+					)
 				else:
 					var pck := load(leg_res_path) as PackedScene
 					var inst := pck.instantiate()
@@ -324,26 +319,17 @@ func _update_limb_visibilities() -> void:
 						skeleton.add_child(limb_mesh)
 						limb_mesh.skeleton = NodePath("..")
 						regrown_leg_node = limb_mesh
-						leg_attachment_status = "SUCCESS (Phoenix Ember Leg Skinned to Skeleton3D)"
+						leg_attachment_status = (
+							"SUCCESS [ID: elemental_atalanta_leg_l] (%s)" % leg_res_path
+						)
 						inst.queue_free()
 					else:
 						leg_attachment_status = (
-							"FAILED (No MeshInstance3D found in %s)" % leg_res_path
+							"FAILED: stump visible (No MeshInstance3D in %s)" % leg_res_path
 						)
 						inst.queue_free()
 			else:
-				var leg_res_path := "res://assets/generated/models/limb_hermes_sandal_leg.glb"
-				if not ResourceLoader.exists(leg_res_path):
-					leg_attachment_status = "FAILED (Asset not found: %s)" % leg_res_path
-				elif socket_leg_l == null:
-					leg_attachment_status = "FAILED (Missing socket: ATTACH_LEG_L)"
-				else:
-					var leg_pck := load(leg_res_path) as PackedScene
-					var leg_inst: Node3D = leg_pck.instantiate() as Node3D
-					leg_inst.scale = Vector3(100.0, 100.0, 100.0)
-					socket_leg_l.add_child(leg_inst)
-					regrown_leg_node = leg_inst
-					leg_attachment_status = "SUCCESS (hermes_sandal_leg bound to mixamorig_LeftUpLeg)"
+				leg_attachment_status = "FAILED: stump visible (Skeleton3D missing)"
 	else:
 		if regrown_leg_node != null:
 			if regrown_leg_node.get_parent() != null:
