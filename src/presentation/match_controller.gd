@@ -124,6 +124,20 @@ func _load_match() -> void:
 		_require(loader, "res://data/moves/cyclops_smash.json"),
 		_require(loader, "res://data/moves/pegasus_kick.json"),
 		_require(loader, "res://data/moves/grab.json"),
+		_require(loader, "res://data/moves/muay_thai_flurry.json"),
+		_require(loader, "res://data/moves/thunder_elbow_strike.json"),
+		_require(loader, "res://data/moves/phantom_flurry.json"),
+		_require(loader, "res://data/moves/phantom_ambush.json"),
+		_require(loader, "res://data/moves/spartan_flurry.json"),
+		_require(loader, "res://data/moves/divine_uppercut.json"),
+		_require(loader, "res://data/moves/ghost_sweep_chain.json"),
+		_require(loader, "res://data/moves/olympian_crusher.json"),
+		_require(loader, "res://data/moves/lightning_jab_chain.json"),
+		_require(loader, "res://data/moves/titan_combo_kick.json"),
+		_require(loader, "res://data/moves/olympian_barrage.json"),
+		_require(loader, "res://data/moves/spartan_cross.json"),
+		_require(loader, "res://data/moves/sweeping_hydra.json"),
+		_require(loader, "res://data/moves/satyr_dropkick.json"),
 	]
 	_combat = _require(loader, "res://data/balance/combat.json")
 	for name in DirAccess.get_files_at("res://data/moves"):
@@ -294,6 +308,14 @@ func _consume(events: Array) -> void:
 			var zone: String = str(event.payload.get("zone", "body"))
 			var blocked: bool = event.kind == SimEvent.Kind.BLOCK
 			var combo_hits: int = int(event.payload.get("chain_hits", 0))
+			# Compute combo VFX tier for escalating visuals (Tekken 8 Heat style)
+			var vfx_combo_tier := 0
+			if combo_hits >= 15:
+				vfx_combo_tier = 3
+			elif combo_hits >= 10:
+				vfx_combo_tier = 2
+			elif combo_hits >= 6:
+				vfx_combo_tier = 1
 			_views[event.other].flash()
 			_views[event.other].recoil(
 				signf(_views[event.other].position.x - _views[event.actor].position.x), blocked
@@ -301,28 +323,50 @@ func _consume(events: Array) -> void:
 			# Forward reactive hit info to defender's view for zone-specific reactions
 			var move_name: String = str(event.payload.get("attacker_move", ""))
 			_views[event.other].notify_hit(zone, blocked, combo_hits, move_name)
-			var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
+			var gore: GoreManager = (
+				get_tree().get_first_node_in_group("gore_manager") as GoreManager
+			)
 			if gore != null:
-				gore.burst(_views[event.other].impact_point(zone), blocked)
+				gore.burst(_views[event.other].impact_point(zone), blocked, false, vfx_combo_tier)
+				# Wall-bounce VFX when fighter hits wall
+				var move_data: Dictionary = {}
+				for m in world.moves:
+					if str(m.get("id", "")) == move_name:
+						move_data = m
+						break
+				if (
+					move_data.get("wall_bounce", false)
+					and absf(_views[event.other].position.x) > 3.8
+				):
+					gore.wall_splat_burst(_views[event.other].impact_point(zone))
 			# Escalating camera impact based on combo
-			var base_impact := 0.04 + minf(0.07, float(event.amount) * 0.002)
+			var base_impact := 0.04 + minf(0.08, float(event.amount) * 0.0025)
 			if combo_hits > 2:
-				base_impact += minf(0.06, float(combo_hits) * 0.012)
+				base_impact += minf(0.07, float(combo_hits) * 0.014)
 			(_camera as FightCamera).impact(base_impact)
 			var stop_att: int = int(event.payload.get("hitstop_attacker", world.hitstop_remaining))
 			var stop_def: int = int(event.payload.get("hitstop_defender", world.hitstop_remaining))
-			_views[event.actor].visual_stop = maxi(_views[event.actor].visual_stop, int(SettingsHooks.scale_amount(float(stop_att), "hitstop_percent")))
-			_views[event.other].visual_stop = maxi(_views[event.other].visual_stop, int(SettingsHooks.scale_amount(float(stop_def), "hitstop_percent")))
+			_views[event.actor].visual_stop = maxi(
+				_views[event.actor].visual_stop,
+				int(SettingsHooks.scale_amount(float(stop_att), "hitstop_percent"))
+			)
+			_views[event.other].visual_stop = maxi(
+				_views[event.other].visual_stop,
+				int(SettingsHooks.scale_amount(float(stop_def), "hitstop_percent"))
+			)
 			damage_dealt[event.actor] += event.amount
 			# Escalating screen shake for combos
-			var combo_shake := 0.04 if event.amount < 25 else 0.1
+			var combo_shake := 0.04 if event.amount < 25 else 0.12
 			if combo_hits > 2:
-				combo_shake += minf(0.08, float(combo_hits) * 0.015)
+				combo_shake += minf(0.09, float(combo_hits) * 0.016)
 			_shake = SettingsHooks.scale_amount(combo_shake, "shake_percent")
 		elif event.kind == SimEvent.Kind.ABILITY:
 			if event.payload["type"] in ["superpower", "ultimate"]:
-				var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
-				gore.burst(_views[event.actor].position + Vector3(0, 1.3, 0), true)
+				var gore_node: GoreManager = (
+					get_tree().get_first_node_in_group("gore_manager") as GoreManager
+				)
+				if gore_node != null:
+					gore_node.burst(_views[event.actor].position + Vector3(0, 1.3, 0), true)
 				(_camera as FightCamera).impact(0.08, event.payload["type"] == "ultimate")
 		elif event.kind == SimEvent.Kind.LIMB_SEVERED:
 			# Dramatic sever: big camera impact + slowmo for all views

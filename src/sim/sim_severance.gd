@@ -43,13 +43,30 @@ static func hit(
 			fighter.state = SimFighter.State.IDLE
 	var live := fighter.chain.is_live(world.tick, rules)
 
-	# ─── Amputation gating: must be in the configured amputation round ───
+	# ─── Amputation gating: exactly 1 per match, in round 2 when nearing conclusion ───
 	var amputation_round: int = int(rules.get("amputation_round", 2))
-	var in_amputation_window: bool = world.round_index >= amputation_round
+	var in_amputation_window := true
+	if bool(rules.get("match_mode", false)) and world.rounds_to_win >= 2:
+		var round_almost_ends: bool = (
+			world.round_index > amputation_round
+			or (
+				world.round_index == amputation_round
+				and (
+					world.round_tick >= Fx.percent(world.round_ticks, 40)
+					or fighter.health <= int(world.max_health) / 2
+				)
+			)
+		)
+		in_amputation_window = round_almost_ends
 
 	if limb.integrity == 0:
 		if (live and previous != "healthy") or (pending and count_hit):
-			if fighter.limbs.amputation_occurred or fighter.limbs.losses >= int(rules.get("limb_cap", 1)):
+			var cap: int = int(rules.get("limb_cap", 1))
+			if (
+				world.amputations.size() >= cap
+				or (fighter.limbs.amputation_occurred and cap <= 1)
+				or fighter.limbs.losses >= cap
+			):
 				if not limb.cap_blocked:
 					_emit(
 						world,
@@ -61,7 +78,7 @@ static func hit(
 					)
 				limb.cap_blocked = true
 			elif not in_amputation_window:
-				# Not yet in amputation round — just leave limb at zero/cracked, don't sever
+				# Not yet in amputation round / window — leave limb cracked/pending
 				limb.zero_pending = true
 			else:
 				var target_limb := zone
@@ -126,7 +143,9 @@ static func _sever(
 	amputated_penalty.expires_tick = 2147483647
 	if zone.begins_with("leg"):
 		amputated_penalty.speed_percent = int(world.limb_rules.get("leg_loss_speed_percent", 75))
-	amputated_penalty.damage_percent = int(world.limb_rules.get("amputation_rage_bonus_percent", 115))
+	amputated_penalty.damage_percent = int(
+		world.limb_rules.get("amputation_rage_bonus_percent", 115)
+	)
 	fighter.modifiers.append(amputated_penalty)
 	SimModifier.fury(fighter, world.tick, world.limb_rules)
 

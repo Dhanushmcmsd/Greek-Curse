@@ -262,20 +262,23 @@ static func _gravity(world: SimWorld, fighter: SimFighter) -> void:
 	if fighter.y <= world.floor_y:
 		fighter.y = world.floor_y
 		return
-	# Use reduced gravity scale for launched/airborne fighters to allow longer combos
+	# Use reduced gravity scale for launched juggle combos
 	var base_gravity := int(world.combat["gravity_mm_per_tick"])
 	var is_airborne := fighter.y > world.floor_y
-	var launch_scale := float(world.combat.get("launch_gravity_scale", 1.0))
-	var gravity := int(float(base_gravity) * launch_scale) if is_airborne else base_gravity
+	var is_juggle := (
+		is_airborne and fighter.state == SimFighter.State.HITSTUN and fighter.attack_launch_y > 0
+	)
+	var launch_pct: int = int(world.combat.get("launch_gravity_percent", 72)) if is_juggle else 100
+	var gravity: int = Fx.percent(base_gravity, launch_pct)
 	# Progressive juggle gravity: each successive airborne hit adds juggle_gravity_per_tick
 	var juggle_extra := int(world.combat.get("juggle_gravity_per_tick", 0))
-	if is_airborne and fighter.state == SimFighter.State.HITSTUN and fighter.hits_done > 1:
+	if is_juggle and fighter.hits_done > 1:
 		gravity += juggle_extra * mini(fighter.hits_done - 1, 4)
 	fighter.y -= gravity
 	if fighter.y < world.floor_y:
 		fighter.y = world.floor_y
 		# Landing: brief invulnerability if wakeup_invuln_ticks configured
-		if fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.KO]:
+		if fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.KO] and is_juggle:
 			var invuln := int(world.combat.get("wakeup_invuln_ticks", 0))
 			if invuln > 0:
 				fighter.invulnerable_until = maxi(fighter.invulnerable_until, world.tick + invuln)

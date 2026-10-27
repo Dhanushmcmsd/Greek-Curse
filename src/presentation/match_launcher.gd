@@ -14,6 +14,7 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	rules["arena_max_x"] = int(arena["bounds"][1])
 	rules["spawn_x"] = arena["spawn_x"]
 	rules.merge(config.rules, true)
+	rules["match_mode"] = true
 	var fighters: Array = []
 	for id in config.fighter_ids:
 		fighters.append(loader.load_json("res://data/fighters/%s.json" % id).value)
@@ -44,6 +45,7 @@ static func make_world(config: MatchConfig) -> SimWorld:
 		world, arena, bool(config.rules.get("hazards", arena["hazards_default_on"])), config.seed
 	)
 	LimbCatalog.install(world)
+	world.limb_rules["match_mode"] = true
 	_install_abilities(world, config, loader)
 	world.setup({"initial_limb_states": config.initial_limbs})
 	for index in mini(config.initial_limbs.size(), world.fighters.size()):

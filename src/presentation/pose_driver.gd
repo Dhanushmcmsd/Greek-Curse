@@ -173,7 +173,11 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 				)
 			elif bone == "spine" and fighter.state == SimFighter.State.HITSTUN:
 				# Light hits play flinch blend with torso twist
-				angles.y += 14.0 * (1.0 if last_hit_zone.ends_with("r") else -1.0) * exp(-float(fighter.state_tick) * 0.25)
+				angles.y += (
+					14.0
+					* (1.0 if last_hit_zone.ends_with("r") else -1.0)
+					* exp(-float(fighter.state_tick) * 0.25)
+				)
 			if bone == "spine" and fighter.move_id == 0:
 				angles.x += (
 					sin(time * float(settings["breath_rate"])) * float(settings["breath_degrees"])
@@ -305,8 +309,14 @@ func _select(fighter: SimFighter) -> String:
 			# Dynamic Reactions:
 			# - Heavy hits (e.g. thunder_elbow_strike): Trigger reaction_gut_crumple or wall bounce
 			# - Light hits: Flinch blend with torso twist
-			if last_attacker_move == "thunder_elbow_strike" or last_attacker_move == "phantom_ambush":
-				if moves.get(last_attacker_move, {}).get("wall_bounce", false) and (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600):
+			if (
+				last_attacker_move == "thunder_elbow_strike"
+				or last_attacker_move == "phantom_ambush"
+			):
+				if (
+					moves.get(last_attacker_move, {}).get("wall_bounce", false)
+					and (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600)
+				):
 					selected = "reaction_wall_splat_bounce"
 				else:
 					selected = "reaction_gut_crumple"

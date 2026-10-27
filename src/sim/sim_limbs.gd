@@ -14,10 +14,7 @@ var rules: Dictionary = {}
 var catalog: Dictionary = {}
 var modifiers: Array[SimModifier] = []
 
-
-var limb_damage_tracker: Dictionary = {
-	"arm_l": 0, "arm_r": 0, "leg_l": 0, "leg_r": 0
-}
+var limb_damage_tracker: Dictionary = {"arm_l": 0, "arm_r": 0, "leg_l": 0, "leg_r": 0}
 var amputation_occurred: bool = false
 
 
@@ -38,7 +35,7 @@ func setup(row: Dictionary, combat: Dictionary, toughness: int) -> void:
 
 func register_limb_hit(limb_id: String, damage: int, is_block: bool) -> void:
 	if is_block:
-		damage = int(damage * 0.25)
+		damage = Fx.percent(damage, 25)
 	if limb_damage_tracker.has(limb_id):
 		limb_damage_tracker[limb_id] += damage
 
