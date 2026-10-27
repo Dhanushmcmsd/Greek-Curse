@@ -145,9 +145,9 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 		visual_stop -= 1
 
 
-func notify_hit(zone: String, blocked: bool, combo_hits: int) -> void:
+func notify_hit(zone: String, blocked: bool, combo_hits: int, move_name: String = "") -> void:
 	if driver != null:
-		driver.on_hit(zone, blocked, combo_hits)
+		driver.on_hit(zone, blocked, combo_hits, move_name)
 
 
 func _sever_effect(slot: String) -> void:

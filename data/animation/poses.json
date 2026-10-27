@@ -1816,6 +1816,298 @@
           0
         ]
       }
+    },
+    "combo_knee_barrage_startup": {
+      "bones": {
+        "spine": [
+          -5,
+          5,
+          0
+        ],
+        "thigh.r": [
+          -25,
+          0,
+          0
+        ],
+        "shin.r": [
+          60,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -30,
+          0,
+          10
+        ],
+        "upper_arm.r": [
+          -40,
+          0,
+          -10
+        ]
+      }
+    },
+    "combo_knee_barrage_active": {
+      "bones": {
+        "spine": [
+          15,
+          8,
+          0
+        ],
+        "thigh.r": [
+          -85,
+          0,
+          5
+        ],
+        "shin.r": [
+          95,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -60,
+          0,
+          15
+        ],
+        "upper_arm.r": [
+          -70,
+          0,
+          -15
+        ],
+        "thigh.l": [
+          15,
+          0,
+          0
+        ],
+        "shin.l": [
+          20,
+          0,
+          0
+        ]
+      }
+    },
+    "combo_knee_barrage_recovery": {
+      "bones": {
+        "spine": [
+          5,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -35,
+          0,
+          0
+        ],
+        "shin.r": [
+          40,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -20,
+          0,
+          5
+        ],
+        "upper_arm.r": [
+          -25,
+          0,
+          -5
+        ]
+      }
+    },
+    "strike_downward_elbow_startup": {
+      "bones": {
+        "spine": [
+          -15,
+          -10,
+          0
+        ],
+        "upper_arm.r": [
+          -110,
+          15,
+          -20
+        ],
+        "forearm.r": [
+          -90,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -20,
+          0,
+          10
+        ]
+      }
+    },
+    "strike_downward_elbow_active": {
+      "bones": {
+        "spine": [
+          25,
+          15,
+          0
+        ],
+        "head": [
+          15,
+          10,
+          0
+        ],
+        "upper_arm.r": [
+          -65,
+          -20,
+          30
+        ],
+        "forearm.r": [
+          -100,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -40,
+          0,
+          -15
+        ],
+        "thigh.r": [
+          -30,
+          0,
+          0
+        ],
+        "shin.r": [
+          45,
+          0,
+          0
+        ]
+      }
+    },
+    "strike_downward_elbow_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          5,
+          0
+        ],
+        "upper_arm.r": [
+          -35,
+          0,
+          10
+        ],
+        "forearm.r": [
+          -45,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -20,
+          0,
+          -5
+        ]
+      }
+    },
+    "reaction_gut_crumple": {
+      "bones": {
+        "spine": [
+          42,
+          -8,
+          0
+        ],
+        "head": [
+          28,
+          -12,
+          0
+        ],
+        "upper_arm.l": [
+          20,
+          0,
+          -15
+        ],
+        "upper_arm.r": [
+          25,
+          0,
+          15
+        ],
+        "forearm.l": [
+          -55,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -55,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -35,
+          0,
+          5
+        ],
+        "shin.l": [
+          50,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -30,
+          0,
+          -5
+        ],
+        "shin.r": [
+          45,
+          0,
+          0
+        ]
+      }
+    },
+    "reaction_wall_splat_bounce": {
+      "bones": {
+        "spine": [
+          -25,
+          15,
+          0
+        ],
+        "head": [
+          -15,
+          20,
+          0
+        ],
+        "upper_arm.l": [
+          60,
+          0,
+          35
+        ],
+        "upper_arm.r": [
+          50,
+          0,
+          -30
+        ],
+        "forearm.l": [
+          -20,
+          0,
+          0
+        ],
+        "forearm.r": [
+          -20,
+          0,
+          0
+        ],
+        "thigh.l": [
+          15,
+          0,
+          0
+        ],
+        "shin.l": [
+          20,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -15,
+          0,
+          0
+        ],
+        "shin.r": [
+          35,
+          0,
+          0
+        ]
+      }
     }
   },
   "walk": [
@@ -1894,6 +2186,16 @@
       "startup": "ultimate_cast_startup",
       "active": "ultimate_cast_active",
       "recovery": "ultimate_cast_recovery"
+    },
+    "combo_knee_barrage": {
+      "startup": "combo_knee_barrage_startup",
+      "active": "combo_knee_barrage_active",
+      "recovery": "combo_knee_barrage_recovery"
+    },
+    "strike_downward_elbow": {
+      "startup": "strike_downward_elbow_startup",
+      "active": "strike_downward_elbow_active",
+      "recovery": "strike_downward_elbow_recovery"
     }
   },
   "styles": {

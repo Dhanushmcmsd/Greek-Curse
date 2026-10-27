@@ -10,6 +10,7 @@ func test_duration_refresh_and_meter() -> void:
 	assert_eq(SimModifier.percent_for(fighter, 359), 115, "active at last tick")
 	assert_eq(SimModifier.percent_for(fighter, 360), 100, "expired at end")
 	world.tick = 100
+	world.limb_rules["limb_cap"] = 2
 	for i in 3:
 		SimSeverance.hit(world, 1, 0, "leg_l", 30, [])
 	assert_eq(fighter.modifiers.size(), 1, "refresh without stacking")

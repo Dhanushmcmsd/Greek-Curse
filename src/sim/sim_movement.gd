@@ -153,9 +153,15 @@ static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
 		return false
 	if fighter.move_age < fighter.cancel_start or fighter.move_age >= fighter.cancel_end:
 		return false
+	# If an arm is missing/severed, disable associated two-handed move cancels
+	var has_both_arms := fighter.limbs.usable("arm_l") and fighter.limbs.usable("arm_r")
 	var chosen := _chosen_move(world, fighter, 0, false)
 	if chosen.is_empty() or not fighter.cancel_into.has(chosen["id"]):
 		return false
+	if not has_both_arms:
+		var target_move_id: String = chosen["id"]
+		if target_move_id in ["olympian_barrage", "grab", "hephaestus_forge_shield"]:
+			return false
 	_begin_named(world, fighter, chosen["id"], chosen["slot"])
 	return true
 

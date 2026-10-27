@@ -48,6 +48,7 @@ func _ready() -> void:
 	_build_stage()
 	world = _make_world()
 	_match_tools.catalog = world.fighters[0].limbs.catalog
+	_match_tools.populate_combos(world.moves)
 	_sync(true)
 	if "--results-demo" in OS.get_cmdline_user_args():
 		for tick in 5000:
@@ -298,7 +299,8 @@ func _consume(events: Array) -> void:
 				signf(_views[event.other].position.x - _views[event.actor].position.x), blocked
 			)
 			# Forward reactive hit info to defender's view for zone-specific reactions
-			_views[event.other].notify_hit(zone, blocked, combo_hits)
+			var move_name: String = str(event.payload.get("attacker_move", ""))
+			_views[event.other].notify_hit(zone, blocked, combo_hits, move_name)
 			var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			if gore != null:
 				gore.burst(_views[event.other].impact_point(zone), blocked)
@@ -307,10 +309,10 @@ func _consume(events: Array) -> void:
 			if combo_hits > 2:
 				base_impact += minf(0.06, float(combo_hits) * 0.012)
 			(_camera as FightCamera).impact(base_impact)
-			for view in _views:
-				view.visual_stop = int(
-					SettingsHooks.scale_amount(float(world.hitstop_remaining), "hitstop_percent")
-				)
+			var stop_att: int = int(event.payload.get("hitstop_attacker", world.hitstop_remaining))
+			var stop_def: int = int(event.payload.get("hitstop_defender", world.hitstop_remaining))
+			_views[event.actor].visual_stop = maxi(_views[event.actor].visual_stop, int(SettingsHooks.scale_amount(float(stop_att), "hitstop_percent")))
+			_views[event.other].visual_stop = maxi(_views[event.other].visual_stop, int(SettingsHooks.scale_amount(float(stop_def), "hitstop_percent")))
 			damage_dealt[event.actor] += event.amount
 			# Escalating screen shake for combos
 			var combo_shake := 0.04 if event.amount < 25 else 0.1

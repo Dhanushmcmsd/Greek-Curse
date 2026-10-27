@@ -14,6 +14,10 @@ var model_ids: Array[String] = ["theron", "atalanta"]
 var catalog: Dictionary
 var bar: HBoxContainer
 var cards: HBoxContainer
+var _combo_panel: PanelContainer
+var _tab_bar: HBoxContainer
+var _limb_tab: Button
+var _combo_tab: Button
 
 
 func _ready() -> void:
@@ -29,10 +33,19 @@ func _ready() -> void:
 	fresh.text = "New match"
 	fresh.pressed.connect(func(): new_match_requested.emit())
 	bar.add_child(fresh)
-	var limbs := Button.new()
-	limbs.text = "Replacement limbs"
-	limbs.pressed.connect(open)
-	bar.add_child(limbs)
+	var limbs_btn := Button.new()
+	limbs_btn.text = "Replacement limbs"
+	limbs_btn.pressed.connect(open)
+	bar.add_child(limbs_btn)
+	var combo_btn := Button.new()
+	combo_btn.text = "Combo list"
+	combo_btn.pressed.connect(open_combos)
+	bar.add_child(combo_btn)
+	_build_limb_panel()
+	_build_combo_panel()
+
+
+func _build_limb_panel() -> void:
 	chooser = PanelContainer.new()
 	chooser.position = Vector2.ZERO
 	chooser.size = Vector2(1280, 720)
@@ -96,16 +109,111 @@ func _ready() -> void:
 	chooser.hide()
 
 
+func _build_combo_panel() -> void:
+	_combo_panel = PanelContainer.new()
+	_combo_panel.position = Vector2.ZERO
+	_combo_panel.size = Vector2(1280, 720)
+	var bg := StyleBoxFlat.new()
+	bg.bg_color = Color("0d1520")
+	bg.content_margin_left = 80
+	bg.content_margin_right = 80
+	bg.content_margin_top = 30
+	bg.content_margin_bottom = 30
+	_combo_panel.add_theme_stylebox_override("panel", bg)
+	add_child(_combo_panel)
+	var outer := VBoxContainer.new()
+	outer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	outer.add_theme_constant_override("separation", 10)
+	_combo_panel.add_child(outer)
+	var header_row := HBoxContainer.new()
+	outer.add_child(header_row)
+	var title := Label.new()
+	title.text = "MOVE LIST  /  COMBOS"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.add_theme_font_size_override("font_size", 28)
+	title.add_theme_color_override("font_color", Color("e4bc6b"))
+	header_row.add_child(title)
+	var close := Button.new()
+	close.text = "Close"
+	close.custom_minimum_size = Vector2(140, 44)
+	close.pressed.connect(close_panel)
+	header_row.add_child(close)
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	outer.add_child(scroll)
+	var grid := GridContainer.new()
+	grid.columns = 5
+	grid.add_theme_constant_override("h_separation", 24)
+	grid.add_theme_constant_override("v_separation", 8)
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(grid)
+	for hdr in ["Move", "Category", "Hits", "Damage", "Cancel into"]:
+		var h := Label.new()
+		h.text = hdr
+		h.add_theme_color_override("font_color", Color("88aacc"))
+		h.add_theme_font_size_override("font_size", 14)
+		h.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		grid.add_child(h)
+	_combo_panel.set_meta("grid", grid)
+	_combo_panel.hide()
+
+
+func populate_combos(move_rows: Array) -> void:
+	var grid: GridContainer = _combo_panel.get_meta("grid")
+	for child in grid.get_children():
+		if child is Label and child.get_meta("data_row", false):
+			grid.remove_child(child)
+			child.queue_free()
+	for row in move_rows:
+		var name_lbl := Label.new()
+		name_lbl.text = str(row.get("display_name", row.get("id", "?")))
+		name_lbl.add_theme_font_size_override("font_size", 16)
+		name_lbl.set_meta("data_row", true)
+		name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var cat_lbl := Label.new()
+		cat_lbl.text = str(row.get("category", "-"))
+		cat_lbl.set_meta("data_row", true)
+		var hits_lbl := Label.new()
+		hits_lbl.text = str(row.get("hit_count", 1))
+		hits_lbl.set_meta("data_row", true)
+		hits_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var dmg_lbl := Label.new()
+		dmg_lbl.text = str(row.get("damage", "-"))
+		dmg_lbl.set_meta("data_row", true)
+		dmg_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var cancel_ids: Array = row.get("cancel_into", [])
+		var cancel_lbl := Label.new()
+		cancel_lbl.text = ", ".join(cancel_ids) if not cancel_ids.is_empty() else "—"
+		cancel_lbl.set_meta("data_row", true)
+		cancel_lbl.add_theme_color_override(
+			"font_color", Color("66cc88") if not cancel_ids.is_empty() else Color("555555")
+		)
+		cancel_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		cancel_lbl.custom_minimum_size.x = 220
+		for lbl in [name_lbl, cat_lbl, hits_lbl, dmg_lbl, cancel_lbl]:
+			grid.add_child(lbl)
+
+
 func open() -> void:
 	_populate(slot.selected)
 	chooser.show()
+	_combo_panel.hide()
 	bar.hide()
 	panel_changed.emit(true)
 	player.grab_focus()
 
 
+func open_combos() -> void:
+	chooser.hide()
+	_combo_panel.show()
+	bar.hide()
+	panel_changed.emit(true)
+
+
 func close_panel() -> void:
 	chooser.hide()
+	_combo_panel.hide()
+	bar.show()
 	panel_changed.emit(false)
 
 

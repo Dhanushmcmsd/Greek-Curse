@@ -1,0 +1,40 @@
+{
+  "id": "muay_thai_flurry",
+  "display_name": "Titan Knee Rush",
+  "startup_ticks": 14,
+  "active_ticks": 32,
+  "recovery_ticks": 18,
+  "damage": 26,
+  "limb_damage": 34,
+  "on_block_pushback": 18,
+  "hitstop_attacker": 3,
+  "hitstop_defender": 4,
+  "cancel_into": [
+    "thunder_elbow_strike"
+  ],
+  "cancel_start": 24,
+  "cancel_end": 32,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 4,
+  "hit_interval": 8,
+  "launch_y": 60,
+  "wall_bounce": false,
+  "limb_side": "leg_r",
+  "zone_priority": 2,
+  "hitstun_ticks": 16,
+  "blockstun_ticks": 10,
+  "knockback_mm": 220,
+  "hitbox": {
+    "x": 100,
+    "y": 480,
+    "w": 620,
+    "h": 750
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 4,
+  "category": "combo_special",
+  "anim_set": "combo_knee_barrage"
+}

@@ -44,7 +44,7 @@ static func hit(
 	var live := fighter.chain.is_live(world.tick, rules)
 	if limb.integrity == 0:
 		if (live and previous != "healthy") or (pending and count_hit):
-			if fighter.limbs.losses >= int(rules["limb_cap"]):
+			if fighter.limbs.amputation_occurred or fighter.limbs.losses >= int(rules.get("limb_cap", 1)):
 				if not limb.cap_blocked:
 					_emit(
 						world,
@@ -56,7 +56,15 @@ static func hit(
 					)
 				limb.cap_blocked = true
 			else:
-				_sever(world, victim, attacker, zone, events)
+				var target_limb := zone
+				var best_damaged := fighter.limbs.highest_damaged_limb()
+				if best_damaged != "" and fighter.limbs.parts[best_damaged].state != "severed":
+					target_limb = best_damaged
+				var acc_damage: int = int(fighter.limbs.limb_damage_tracker.get(target_limb, 0))
+				if acc_damage >= int(rules.get("amputation_threshold", 65)) or target_limb == zone:
+					_sever(world, victim, attacker, target_limb, events)
+				else:
+					limb.zero_pending = true
 		else:
 			limb.zero_pending = true
 	if limb.state != previous:
@@ -80,6 +88,7 @@ static func _sever(
 	limb.regrown_id = ""
 	limb.zero_pending = false
 	fighter.limbs.losses += 1
+	fighter.limbs.amputation_occurred = true
 	var credit := fighter.chain.credit_for(zone, attacker)
 	var record := {
 		"limb": zone,
@@ -99,6 +108,16 @@ static func _sever(
 		victim,
 		{"limb": zone, "credit": record}
 	)
+	# Post-amputation penalty & rage compensation:
+	# - Reduce movement speed by 25% if leg lost
+	# - Rage damage increase of +15% to compensate
+	var amputated_penalty := SimModifier.new()
+	amputated_penalty.id = "amputation_status:" + zone
+	amputated_penalty.expires_tick = 2147483647
+	if zone.begins_with("leg"):
+		amputated_penalty.speed_percent = 75
+	amputated_penalty.damage_percent = 115
+	fighter.modifiers.append(amputated_penalty)
 	SimModifier.fury(fighter, world.tick, world.limb_rules)
 	fighter.meter = mini(
 		int(world.combat["meter_max"]),

@@ -89,6 +89,8 @@ static func _connect(
 	defender.health -= main
 	if defender.health < 0:
 		defender.health = 0
+	if zone in SimLimbs.LIMB_NAMES:
+		defender.limbs.register_limb_hit(zone, limb, blocked)
 	SimSeverance.hit(world, 1 - attacker_index, attacker_index, zone, limb, events)
 	_fill_meter(world, attacker, Fx.percent(main, int(world.combat["meter_dealt_percent"])), events)
 	_fill_meter(world, defender, Fx.percent(main, int(world.combat["meter_taken_percent"])), events)
@@ -113,7 +115,13 @@ static func _connect(
 		material = (
 			"stone" if defender.limbs.parts[zone].regrown_id == "marble_statue_leg" else "bone"
 		)
-	impact.payload = {"zone": zone, "material": material}
+	impact.payload = {
+		"zone": zone,
+		"material": material,
+		"hitstop_attacker": attacker.attack_hitstop_self,
+		"hitstop_defender": attacker.attack_hitstop_other,
+		"attacker_move": attacker.move_name
+	}
 	events.append(impact)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_self)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_other)

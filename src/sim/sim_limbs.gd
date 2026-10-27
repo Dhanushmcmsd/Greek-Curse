@@ -15,10 +15,18 @@ var catalog: Dictionary = {}
 var modifiers: Array[SimModifier] = []
 
 
+var limb_damage_tracker: Dictionary = {
+	"arm_l": 0, "arm_r": 0, "leg_l": 0, "leg_r": 0
+}
+var amputation_occurred: bool = false
+
+
 func setup(row: Dictionary, combat: Dictionary, toughness: int) -> void:
 	var curve: Array = combat["toughness_percent"]
 	max_integrity = Fx.percent(int(combat["integrity_base"]), int(curve[toughness]))
 	integrity = {}
+	limb_damage_tracker = {"arm_l": 0, "arm_r": 0, "leg_l": 0, "leg_r": 0}
+	amputation_occurred = false
 	for name in LIMB_NAMES:
 		integrity[name] = max_integrity
 		var limb := SimLimb.new()
@@ -26,6 +34,25 @@ func setup(row: Dictionary, combat: Dictionary, toughness: int) -> void:
 		limb.max_integrity = max_integrity
 		parts[name] = limb
 	profiles = row["hurtboxes"]
+
+
+func register_limb_hit(limb_id: String, damage: int, is_block: bool) -> void:
+	if is_block:
+		damage = int(damage * 0.25)
+	if limb_damage_tracker.has(limb_id):
+		limb_damage_tracker[limb_id] += damage
+
+
+func highest_damaged_limb() -> String:
+	var best_limb: String = ""
+	var max_dmg: int = -1
+	for name in LIMB_NAMES:
+		if parts.has(name) and parts[name].state != "severed":
+			var dmg: int = int(limb_damage_tracker.get(name, 0))
+			if dmg > max_dmg:
+				max_dmg = dmg
+				best_limb = name
+	return best_limb
 
 
 func apply_limb_damage(zone: String, amount: int) -> int:

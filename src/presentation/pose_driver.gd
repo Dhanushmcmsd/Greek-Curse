@@ -17,6 +17,7 @@ var current_action_name: String = ""
 var current_clip_id: String = ""
 ## Reactive combat state
 var last_hit_zone: String = ""
+var last_attacker_move: String = ""
 var last_hit_tick: int = -1
 var block_impact_tick: int = 0
 var sever_reaction_tick: int = 0
@@ -170,6 +171,9 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 					float(style["twist"])
 					* (-1.0 if fighter.state == SimFighter.State.STARTUP else 1.0)
 				)
+			elif bone == "spine" and fighter.state == SimFighter.State.HITSTUN:
+				# Light hits play flinch blend with torso twist
+				angles.y += 14.0 * (1.0 if last_hit_zone.ends_with("r") else -1.0) * exp(-float(fighter.state_tick) * 0.25)
 			if bone == "spine" and fighter.move_id == 0:
 				angles.x += (
 					sin(time * float(settings["breath_rate"])) * float(settings["breath_degrees"])
@@ -293,13 +297,23 @@ func _select(fighter: SimFighter) -> String:
 	var selected := "idle"
 	match fighter.state:
 		SimFighter.State.KO:
-			selected = "knockdown"
+			if fighter.state_tick > 20:
+				selected = "idle"
+			else:
+				selected = "knockdown"
 		SimFighter.State.HITSTUN:
-			# Zone-specific hit reactions
-			if last_hit_zone == "head":
+			# Dynamic Reactions:
+			# - Heavy hits (e.g. thunder_elbow_strike): Trigger reaction_gut_crumple or wall bounce
+			# - Light hits: Flinch blend with torso twist
+			if last_attacker_move == "thunder_elbow_strike" or last_attacker_move == "phantom_ambush":
+				if moves.get(last_attacker_move, {}).get("wall_bounce", false) and (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600):
+					selected = "reaction_wall_splat_bounce"
+				else:
+					selected = "reaction_gut_crumple"
+			elif last_hit_zone == "head":
 				selected = "hit_head_snap"
 			elif last_hit_zone == "torso":
-				selected = "hit_gut" if fighter.state_tick < 8 else "hit_heavy"
+				selected = "hit_gut" if fighter.state_tick < 8 else "reaction_gut_crumple"
 			elif fighter.state_tick > int(data["settings"]["reaction_split_ticks"]):
 				selected = "hit_heavy"
 			else:
@@ -331,8 +345,9 @@ func _select(fighter: SimFighter) -> String:
 
 
 ## Called by fighter_view when a hit/block event arrives
-func on_hit(zone: String, blocked: bool, combo_hits: int) -> void:
+func on_hit(zone: String, blocked: bool, combo_hits: int, move_name: String = "") -> void:
 	last_hit_zone = zone
+	last_attacker_move = move_name
 	if blocked:
 		block_impact_tick = int(data["settings"].get("block_impact_ticks", 8))
 	combo_count = combo_hits
