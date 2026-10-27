@@ -108,7 +108,9 @@ func debris(mesh: MeshInstance3D, pose: Transform3D, direction: float) -> void:
 	_register(body, chunks, int(config["chunk_cap"]), float(config["chunk_lifetime"]))
 	body.global_transform = Transform3D(pose.basis.orthonormalized(), pose * center)
 	body.linear_velocity = Vector3(direction * 3.8, 4.5, randf_range(-1.2, 1.2))
-	body.angular_velocity = Vector3(randf_range(3.0, 6.0), randf_range(2.0, 5.0) * direction, randf_range(4.0, 8.0))
+	body.angular_velocity = Vector3(
+		randf_range(3.0, 6.0), randf_range(2.0, 5.0) * direction, randf_range(4.0, 8.0)
+	)
 	# Arterial spray trailing the debris
 	var spray := CPUParticles3D.new()
 	spray.emitting = false

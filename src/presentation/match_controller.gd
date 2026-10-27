@@ -291,21 +291,17 @@ func _consume(events: Array) -> void:
 	for event in events:
 		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
 			var zone: String = str(event.payload.get("zone", "body"))
-			var blocked := event.kind == SimEvent.Kind.BLOCK
+			var blocked: bool = event.kind == SimEvent.Kind.BLOCK
 			var combo_hits: int = int(event.payload.get("chain_hits", 0))
 			_views[event.other].flash()
 			_views[event.other].recoil(
-				signf(_views[event.other].position.x - _views[event.actor].position.x),
-				blocked
+				signf(_views[event.other].position.x - _views[event.actor].position.x), blocked
 			)
 			# Forward reactive hit info to defender's view for zone-specific reactions
 			_views[event.other].notify_hit(zone, blocked, combo_hits)
 			var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			if gore != null:
-				gore.burst(
-					_views[event.other].impact_point(zone),
-					blocked
-				)
+				gore.burst(_views[event.other].impact_point(zone), blocked)
 			# Escalating camera impact based on combo
 			var base_impact := 0.04 + minf(0.07, float(event.amount) * 0.002)
 			if combo_hits > 2:

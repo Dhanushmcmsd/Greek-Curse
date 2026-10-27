@@ -338,8 +338,10 @@ func on_hit(zone: String, blocked: bool, combo_hits: int) -> void:
 	combo_count = combo_hits
 	var settings: Dictionary = data["settings"]
 	combo_shake = clampf(
-		float(settings.get("combo_shake_base", 0.006))
-		+ float(settings.get("combo_shake_per_hit", 0.003)) * combo_hits,
+		(
+			float(settings.get("combo_shake_base", 0.006))
+			+ float(settings.get("combo_shake_per_hit", 0.003)) * combo_hits
+		),
 		0.0,
 		float(settings.get("combo_shake_max", 0.025))
 	)

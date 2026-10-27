@@ -7,33 +7,19 @@
   "input_buffer_ticks": 6,
   "stamina_regen_per_tick": 1,
   "block_stamina_per_tick": 1,
-  "stagger_ticks": 15,
-  "dodge_ticks": 10,
+  "stagger_ticks": 20,
+  "dodge_ticks": 12,
   "dodge_iframe_start": 1,
   "dodge_iframe_end": 8,
   "dodge_cost": 20,
   "dodge_cooldown_ticks": 18,
-  "dodge_mm_per_tick": 50,
+  "dodge_mm_per_tick": 40,
   "grab_ticks": 10,
   "meter_max": 100,
   "meter_dealt_percent": 20,
   "meter_taken_percent": 10,
   "integrity_base": 100,
-  "toughness_percent": [
-    0,
-    80,
-    90,
-    100,
-    115,
-    140
-  ],
+  "toughness_percent": [0, 80, 90, 100, 115, 140],
   "gravity_mm_per_tick": 12,
-  "zone_order": [
-    "head",
-    "arm_l",
-    "arm_r",
-    "leg_l",
-    "leg_r",
-    "torso"
-  ]
+  "zone_order": ["head", "arm_l", "arm_r", "leg_l", "leg_r", "torso"]
 }

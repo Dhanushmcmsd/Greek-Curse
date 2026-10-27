@@ -186,7 +186,9 @@ func _sever_effect(slot: String) -> void:
 	manager.burst(rig.sockets[slot].global_position, false, true)
 	# Additional blood splatter
 	for i in 3:
-		var offset := Vector3(randf_range(-0.15, 0.15), randf_range(0.0, 0.3), randf_range(-0.1, 0.1))
+		var offset := Vector3(
+			randf_range(-0.15, 0.15), randf_range(0.0, 0.3), randf_range(-0.1, 0.1)
+		)
 		manager.burst(rig.sockets[slot].global_position + offset, false, true)
 	# Notify pose driver for sever reaction
 	if driver != null:
