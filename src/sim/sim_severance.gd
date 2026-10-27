@@ -42,6 +42,11 @@ static func hit(
 		):
 			fighter.state = SimFighter.State.IDLE
 	var live := fighter.chain.is_live(world.tick, rules)
+
+	# ─── Amputation gating: must be in the configured amputation round ───
+	var amputation_round: int = int(rules.get("amputation_round", 2))
+	var in_amputation_window: bool = world.round_index >= amputation_round
+
 	if limb.integrity == 0:
 		if (live and previous != "healthy") or (pending and count_hit):
 			if fighter.limbs.amputation_occurred or fighter.limbs.losses >= int(rules.get("limb_cap", 1)):
@@ -55,6 +60,9 @@ static func hit(
 						{"limb": zone}
 					)
 				limb.cap_blocked = true
+			elif not in_amputation_window:
+				# Not yet in amputation round — just leave limb at zero/cracked, don't sever
+				limb.zero_pending = true
 			else:
 				var target_limb := zone
 				var best_damaged := fighter.limbs.highest_damaged_limb()
@@ -108,17 +116,21 @@ static func _sever(
 		victim,
 		{"limb": zone, "credit": record}
 	)
-	# Post-amputation penalty & rage compensation:
-	# - Reduce movement speed by 25% if leg lost
-	# - Rage damage increase of +15% to compensate
+
+	# ── Post-amputation stat penalties & rage compensation ──
+	# Leg loss: -25% movement speed
+	# Arm loss: disables 2-handed cancel moves (handled in sim_movement._try_cancel)
+	# Rage: +15% damage to compensate (total modifier = 115%)
 	var amputated_penalty := SimModifier.new()
 	amputated_penalty.id = "amputation_status:" + zone
 	amputated_penalty.expires_tick = 2147483647
 	if zone.begins_with("leg"):
-		amputated_penalty.speed_percent = 75
-	amputated_penalty.damage_percent = 115
+		amputated_penalty.speed_percent = int(world.limb_rules.get("leg_loss_speed_percent", 75))
+	amputated_penalty.damage_percent = int(world.limb_rules.get("amputation_rage_bonus_percent", 115))
 	fighter.modifiers.append(amputated_penalty)
 	SimModifier.fury(fighter, world.tick, world.limb_rules)
+
+	# Top off meter on sever — dramatic comeback fuel
 	fighter.meter = mini(
 		int(world.combat["meter_max"]),
 		(
@@ -128,6 +140,11 @@ static func _sever(
 			)
 		)
 	)
+
+	# Wakeup invulnerability so the amputated player has a grace window
+	var invuln_ticks: int = int(world.limb_rules.get("wake_up_recovery_ticks", 20))
+	fighter.invulnerable_until = world.tick + invuln_ticks
+
 	_emit(
 		world,
 		events,
