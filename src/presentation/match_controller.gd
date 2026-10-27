@@ -290,31 +290,48 @@ func _consume(events: Array) -> void:
 	(_hud as CombatHud).consume(events, world)
 	for event in events:
 		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
+			var zone: String = str(event.payload.get("zone", "body"))
+			var blocked := event.kind == SimEvent.Kind.BLOCK
+			var combo_hits: int = int(event.payload.get("chain_hits", 0))
 			_views[event.other].flash()
 			_views[event.other].recoil(
 				signf(_views[event.other].position.x - _views[event.actor].position.x),
-				event.kind == SimEvent.Kind.BLOCK
+				blocked
 			)
+			# Forward reactive hit info to defender's view for zone-specific reactions
+			_views[event.other].notify_hit(zone, blocked, combo_hits)
 			var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			if gore != null:
 				gore.burst(
-					_views[event.other].impact_point(str(event.payload.get("zone", "body"))),
-					event.kind == SimEvent.Kind.BLOCK
+					_views[event.other].impact_point(zone),
+					blocked
 				)
-			(_camera as FightCamera).impact(0.04 + minf(0.07, float(event.amount) * 0.002))
+			# Escalating camera impact based on combo
+			var base_impact := 0.04 + minf(0.07, float(event.amount) * 0.002)
+			if combo_hits > 2:
+				base_impact += minf(0.06, float(combo_hits) * 0.012)
+			(_camera as FightCamera).impact(base_impact)
 			for view in _views:
 				view.visual_stop = int(
 					SettingsHooks.scale_amount(float(world.hitstop_remaining), "hitstop_percent")
 				)
 			damage_dealt[event.actor] += event.amount
-			_shake = SettingsHooks.scale_amount(0.04 if event.amount < 25 else 0.1, "shake_percent")
+			# Escalating screen shake for combos
+			var combo_shake := 0.04 if event.amount < 25 else 0.1
+			if combo_hits > 2:
+				combo_shake += minf(0.08, float(combo_hits) * 0.015)
+			_shake = SettingsHooks.scale_amount(combo_shake, "shake_percent")
 		elif event.kind == SimEvent.Kind.ABILITY:
 			if event.payload["type"] in ["superpower", "ultimate"]:
 				var gore := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 				gore.burst(_views[event.actor].position + Vector3(0, 1.3, 0), true)
 				(_camera as FightCamera).impact(0.08, event.payload["type"] == "ultimate")
 		elif event.kind == SimEvent.Kind.LIMB_SEVERED:
-			(_camera as FightCamera).impact(0.13, true)
+			# Dramatic sever: big camera impact + slowmo for all views
+			(_camera as FightCamera).impact(0.18, true)
+			for view in _views:
+				view.visual_stop = maxi(view.visual_stop, 30)
+			_shake = SettingsHooks.scale_amount(0.15, "shake_percent")
 		elif event.kind == SimEvent.Kind.KO:
 			_banner = "KO"
 		elif event.kind == SimEvent.Kind.ROUND_START:

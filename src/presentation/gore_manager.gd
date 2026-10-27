@@ -107,8 +107,32 @@ func debris(mesh: MeshInstance3D, pose: Transform3D, direction: float) -> void:
 	body.add_child(collision)
 	_register(body, chunks, int(config["chunk_cap"]), float(config["chunk_lifetime"]))
 	body.global_transform = Transform3D(pose.basis.orthonormalized(), pose * center)
-	body.linear_velocity = Vector3(direction * 2.8, 3.4, 0.9)
-	body.angular_velocity = Vector3(4.0, 2.0 * direction, 5.0)
+	body.linear_velocity = Vector3(direction * 3.8, 4.5, randf_range(-1.2, 1.2))
+	body.angular_velocity = Vector3(randf_range(3.0, 6.0), randf_range(2.0, 5.0) * direction, randf_range(4.0, 8.0))
+	# Arterial spray trailing the debris
+	var spray := CPUParticles3D.new()
+	spray.emitting = false
+	spray.amount = 16
+	spray.lifetime = 0.5
+	spray.one_shot = false
+	spray.explosiveness = 0.0
+	spray.direction = Vector3(0, -1, 0)
+	spray.spread = 25.0
+	spray.initial_velocity_min = 0.3
+	spray.initial_velocity_max = 1.0
+	spray.gravity = Vector3(0, -6, 0)
+	spray.color = blood_color()
+	var spray_drop := SphereMesh.new()
+	spray_drop.radius = 0.008
+	spray_drop.height = 0.016
+	var spray_mat := StandardMaterial3D.new()
+	spray_mat.albedo_color = blood_color()
+	spray_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	spray_drop.material = spray_mat
+	spray.mesh = spray_drop
+	body.add_child(spray)
+	spray.emitting = true
+	get_tree().create_timer(1.5).timeout.connect(func(): spray.emitting = false)
 
 
 func burst(at: Vector3, blocked: bool, severed: bool = false) -> void:

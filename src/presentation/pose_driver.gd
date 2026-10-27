@@ -15,6 +15,14 @@ var pack_map: Dictionary = {}
 var walk_direction: int = 0
 var current_action_name: String = ""
 var current_clip_id: String = ""
+## Reactive combat state
+var last_hit_zone: String = ""
+var last_hit_tick: int = -1
+var block_impact_tick: int = 0
+var sever_reaction_tick: int = 0
+var sever_slowmo_tick: int = 0
+var combo_count: int = 0
+var combo_shake: float = 0.0
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _skin_vertices: Dictionary = {}
@@ -259,13 +267,19 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 		)
 		var turn := Basis(Vector3.RIGHT, _cape_angle)
 		_cape.transform = Transform3D(turn, pivot - turn * pivot) * _cape_rest
+	tick_reactive(stopped)
 	if stopped:
-		rig.position.x += sin(time * 60.0) * float(settings["hitstop_shake_m"])
+		var shake_amount := float(settings["hitstop_shake_m"]) + combo_shake
+		rig.position.x += sin(time * 60.0) * shake_amount
+		rig.position.z += cos(time * 45.0) * shake_amount * 0.5
 
 
 func _select(fighter: SimFighter) -> String:
 	if preview_pose != "":
 		return preview_pose
+	# Sever reaction overrides everything for dramatic effect
+	if sever_reaction_tick > 0:
+		return "sever_reaction"
 	if (
 		fighter.move_id > 0
 		and (
@@ -281,11 +295,15 @@ func _select(fighter: SimFighter) -> String:
 		SimFighter.State.KO:
 			selected = "knockdown"
 		SimFighter.State.HITSTUN:
-			selected = (
-				"hit_heavy"
-				if fighter.state_tick > int(data["settings"]["reaction_split_ticks"])
-				else "hit_light"
-			)
+			# Zone-specific hit reactions
+			if last_hit_zone == "head":
+				selected = "hit_head_snap"
+			elif last_hit_zone == "torso":
+				selected = "hit_gut" if fighter.state_tick < 8 else "hit_heavy"
+			elif fighter.state_tick > int(data["settings"]["reaction_split_ticks"]):
+				selected = "hit_heavy"
+			else:
+				selected = "hit_light"
 		SimFighter.State.STAGGER:
 			selected = "stagger"
 		SimFighter.State.DODGE:
@@ -300,12 +318,51 @@ func _select(fighter: SimFighter) -> String:
 			selected = "hit_heavy"
 		_:
 			if fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
-				selected = "block"
+				# Block impact animation that transitions back to block
+				if block_impact_tick > 0:
+					selected = "block_impact"
+				else:
+					selected = "block"
 			elif fighter.pose in ["crawl", "torso", "hop"]:
 				selected = "torso_scuttle" if fighter.pose == "torso" else fighter.pose
 			elif fighter.state == SimFighter.State.WALK:
 				selected = "walk_a"
 	return selected
+
+
+## Called by fighter_view when a hit/block event arrives
+func on_hit(zone: String, blocked: bool, combo_hits: int) -> void:
+	last_hit_zone = zone
+	if blocked:
+		block_impact_tick = int(data["settings"].get("block_impact_ticks", 8))
+	combo_count = combo_hits
+	var settings: Dictionary = data["settings"]
+	combo_shake = clampf(
+		float(settings.get("combo_shake_base", 0.006))
+		+ float(settings.get("combo_shake_per_hit", 0.003)) * combo_hits,
+		0.0,
+		float(settings.get("combo_shake_max", 0.025))
+	)
+
+
+## Called by fighter_view when a limb is severed
+func on_sever() -> void:
+	var settings: Dictionary = data["settings"]
+	sever_reaction_tick = int(settings.get("sever_reaction_ticks", 45))
+	sever_slowmo_tick = int(settings.get("sever_slowmo_ticks", 30))
+
+
+## Called each frame to tick down reactive timers
+func tick_reactive(stopped: bool) -> void:
+	if stopped:
+		return
+	if block_impact_tick > 0:
+		block_impact_tick -= 1
+	if sever_reaction_tick > 0:
+		sever_reaction_tick -= 1
+	if sever_slowmo_tick > 0:
+		sever_slowmo_tick -= 1
+	combo_shake *= 0.92
 
 
 func _root_pose(fighter: SimFighter, settings: Dictionary, clip_active: bool = false) -> void:

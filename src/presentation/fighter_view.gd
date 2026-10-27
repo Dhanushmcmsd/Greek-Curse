@@ -145,6 +145,11 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 		visual_stop -= 1
 
 
+func notify_hit(zone: String, blocked: bool, combo_hits: int) -> void:
+	if driver != null:
+		driver.on_hit(zone, blocked, combo_hits)
+
+
 func _sever_effect(slot: String) -> void:
 	if not is_inside_tree():
 		return
@@ -177,7 +182,15 @@ func _sever_effect(slot: String) -> void:
 			elif rig.sockets.has(slot):
 				pose = rig.sockets[slot].global_transform
 		manager.debris(original, pose, rig.basis.z.x)
+	# Dramatic gore burst for amputation
 	manager.burst(rig.sockets[slot].global_position, false, true)
+	# Additional blood splatter
+	for i in 3:
+		var offset := Vector3(randf_range(-0.15, 0.15), randf_range(0.0, 0.3), randf_range(-0.1, 0.1))
+		manager.burst(rig.sockets[slot].global_position + offset, false, true)
+	# Notify pose driver for sever reaction
+	if driver != null:
+		driver.on_sever()
 
 
 func recoil(direction: float, blocked: bool) -> void:
