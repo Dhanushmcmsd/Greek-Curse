@@ -33,3 +33,15 @@ Verified on 2026-10-28 with Godot 4.7.2 and NVIDIA GTX 1650:
 - Render capture: CONTINUATION_RENDER_OK, no script errors.
 - Real-time AI match: LIVE_MATCH_OK awards=1 round=3 debris=1 rendered_frames=1376. The second-round loser had one detached leg, visible blood and one complete physical limb on the floor. Screenshots are in docs/playtest/polish.
 - GDScript lint and formatting checks passed.
+
+## Floor, scale and combo follow-up — 2026-10-28
+
+All playable roster collision heights and all selected visual skins now use 1.8 m. Imported GLBs retain their baked source measurements; the model root applies one uniform conversion, preserving body proportions. Controller visual metadata follows the same match height. Reach diagnostics now include the skeleton-to-model transform instead of incorrectly assuming an unscaled skeleton.
+
+The six multi-hit commands are regression-tested against all four opponents at 600 mm center spacing: every scheduled contact must land. Attack animation sampling uses measured source-clip extension anchors for each scheduled contact. Lightning Jab Chain uses the boxing combination clip instead of stretching one lead jab across four hits. `tools/anim/calibrate_combo_contacts.gd` reproduces the measured anchors; these are a presentation calibration, not a new motion-capture set.
+
+Olympus has a continuous flagstone floor with original generated weathered albedo, scanned micro-normal detail, mipmapped anisotropic filtering, and a long broken fade into the distant ruins. It replaces disconnected flat grey tiles. Impact effects use short asymmetric flashes, fine fading sparks, and a brief local light; the oversized concentric rings are removed from ordinary combo impacts. Accessibility settings and effect caps remain in effect.
+
+Reference comparison: the aim is grounded contact and readable layered effects, informed by [Technicolor's MK11 gameplay-animation account](https://www.technicolorgames.com/news/for-mortal-kombat-11-technicolor-animation-games-mixes-it-up-to-keep-super-heroic-actions-grounded-in-realism/) and [Atomhawk's MK11 art/FX work](https://atomhawk.com/project/mortal-kombat-11/). The assets and shipped rigs here remain this project's own; this pass does not claim equivalent AAA production quality.
+
+Follow-up verification: 173 Godot tests passed, 0 failed, 0 skipped; 15 Python validator tests passed; GDScript lint and formatting passed. The animation attack matrix covered 2,432 cases. The six-combo/four-opponent contact regression passed all 24 combinations. Render capture completed without script/shader errors. Real-time match: LIVE_MATCH_OK awards=1 round=3 debris=1 rendered_frames=1425. Final screenshots: docs/playtest/refinement. The full log is saved beside these screenshots. Replay hashes were regenerated and independently verified after the intentional collision-height change.

@@ -535,7 +535,14 @@ func _ground(fighter: SimFighter, _settings: Dictionary) -> void:
 			if not fighter.limbs.parts.has(slot):
 				tip_name = "head"
 			var tip := rig.skeleton.find_bone(tip_name)
-			var position := rig.transform * rig.skeleton.get_bone_global_pose(tip).origin
+			var position := (
+				(
+					rig.transform
+					* rig.global_transform.affine_inverse()
+					* rig.skeleton.global_transform
+				)
+				* rig.skeleton.get_bone_global_pose(tip).origin
+			)
 			reach_mismatch_mm = absi(
 				int(abs(position.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
 			)
@@ -698,6 +705,31 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			warp_t = (
 				contact_phase + ((current_ratio - startup_ratio) / span) * (1.0 - contact_phase)
 			)
+		# Multi-strike clips use explicit contact anchors rather than one stretched hit.
+		var anchors: Array = actions[act_key].get("contact_phases", [])
+		if anchors.size() == fighter.attack_hit_count and anchors.size() > 1:
+			var age := float(fighter.state_tick)
+			var previous_tick := 0.0
+			var previous_phase := 0.0
+			for hit_index in anchors.size() + 1:
+				var next_tick := float(total_ticks)
+				var next_phase := 1.0
+				if hit_index < anchors.size():
+					next_tick = float(
+						fighter.startup_ticks + hit_index * fighter.attack_hit_interval
+					)
+					next_phase = float(anchors[hit_index])
+				if age <= next_tick:
+					warp_t = lerpf(
+						previous_phase,
+						next_phase,
+						clampf(
+							(age - previous_tick) / maxf(1.0, next_tick - previous_tick), 0.0, 1.0
+						)
+					)
+					break
+				previous_tick = next_tick
+				previous_phase = next_phase
 		var anim_len := rig.anim_player.get_animation(clip_name).length
 		rig.anim_player.speed_scale = 1.0
 		rig.anim_player.play(clip_name)

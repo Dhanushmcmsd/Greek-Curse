@@ -198,6 +198,8 @@ func _sever_ring(at: Vector3) -> void:
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.billboard_keep_scale = true
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = Color(1.0, 0.55, 0.1)
@@ -314,15 +316,15 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 		color = Color("ffb24f")  # Default gold
 	var effect := CPUParticles3D.new()
 	effect.emitting = false
-	var base_count := 28 if severed else (14 + combo_tier * 3)
+	var base_count := 48 if severed else (32 + combo_tier * 8)
 	effect.amount = 12 if reduced else base_count
-	effect.lifetime = 0.32 if blocked else (0.55 if severed else (0.42 + float(combo_tier) * 0.04))
+	effect.lifetime = 0.24 if blocked else 0.34
 	effect.one_shot = true
 	effect.explosiveness = 1.0
 	effect.local_coords = false
 	effect.direction = Vector3.UP
 	effect.spread = 180.0
-	effect.initial_velocity_min = 1.4
+	effect.initial_velocity_min = 0.7
 	effect.initial_velocity_max = 5.5 if severed else (3.8 + float(combo_tier) * 0.6)
 	effect.gravity = Vector3(0, -3.5, 0)
 	effect.angle_min = -180.0
@@ -330,10 +332,12 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	effect.damping_min = 2.0
 	effect.damping_max = 4.5
 	var streak := QuadMesh.new()
-	streak.size = Vector2(0.02 + float(combo_tier) * 0.004, 0.15 + float(combo_tier) * 0.02)
+	streak.size = Vector2(0.009, 0.09 + float(combo_tier) * 0.012)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.billboard_keep_scale = true
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = color * (0.55 if reduced else 1.0)
@@ -343,7 +347,8 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	streak.material = mat
 	effect.mesh = streak
 	var gradient := Gradient.new()
-	gradient.set_color(0, Color(1, 1, 1, 1))
+	gradient.set_color(0, Color(1, 0.95, 0.8, 1))
+	gradient.add_point(0.25, Color(1, 0.65, 0.24, 0.8))
 	gradient.set_color(1, Color(1, 1, 1, 0))
 	effect.color_ramp = gradient
 	_register(effect, particles, int(config["particle_cap"]), 0.65)
@@ -367,16 +372,19 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	flash.global_position = at + Vector3(0, 0, 0.08)
 	var expand_scale := 2.5 if severed else (2.0 + float(combo_tier) * 0.22)
 	var tween := create_tween().set_parallel(true)
-	tween.tween_property(flash, "scale", Vector3.ONE * expand_scale, 0.28)
+	tween.tween_property(flash, "scale", Vector3.ONE * expand_scale, 0.16)
 	tween.tween_method(
-		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.28
+		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.16
 	)
-	# Heavy hit or combo: spawn concentric shockwave ring
-	if not blocked and not reduced and (severed or combo_tier >= 2):
-		_shockwave_ring(at, color)
-	# At high combo tiers, spawn extra outer energy ring
-	if not reduced and combo_tier >= 2:
-		_combo_energy_burst(at, color, combo_tier)
+	# A brief local light binds the impact to the character materials.
+	if not reduced:
+		var light := OmniLight3D.new()
+		light.light_color = color
+		light.light_energy = 1.4 + float(combo_tier) * 0.25
+		light.omni_range = 1.2
+		_register(light, particles, int(config["particle_cap"]), 0.12)
+		light.global_position = at + Vector3(0, 0, 0.25)
+		create_tween().tween_property(light, "light_energy", 0.0, 0.1)
 
 
 ## Energy shockwave ring for heavy hits — Tekken-style impact emphasis

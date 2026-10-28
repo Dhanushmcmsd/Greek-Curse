@@ -173,3 +173,36 @@ func test_ballistic_launch_rises_falls_and_recovers() -> void:
 	assert_true(peak > 300, "visible arc rather than teleport")
 	assert_eq(b.y, 0, "returns to floor")
 	assert_eq(b.state_tick, 20, "grounded recovery starts on landing")
+
+
+func test_all_roster_combo_contacts_at_common_height() -> void:
+	for opponent in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		for move in [
+			"spartan_flurry",
+			"muay_thai_flurry",
+			"phantom_flurry",
+			"lightning_jab_chain",
+			"ghost_sweep_chain",
+			"titan_combo_kick"
+		]:
+			var config := MatchConfig.new()
+			config.fighter_ids.assign(["theron", opponent])
+			var world := MatchLauncher.make_world(config)
+			world.hazards_enabled = false
+			var a := world.fighters[0]
+			var b := world.fighters[1]
+			a.x = -300
+			b.x = 300
+			b.health = 10000
+			assert_eq(a.height_mm, b.height_mm, "common collision height")
+			var row := {}
+			for entry in world.moves:
+				if entry.id == move:
+					row = entry
+			SimMovement._begin_named(world, a, move, str(row.limb_side))
+			var contacts := 0
+			for tick in 150:
+				for event in world.step([0, 0]):
+					if event.kind == SimEvent.Kind.HIT:
+						contacts += 1
+			assert_eq(contacts, int(row.get("hit_count", 1)), opponent + " " + move)

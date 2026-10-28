@@ -1,8 +1,8 @@
 {
-  "version": 2,
+  "version": 2.0,
   "source": "Mixamo Character Animation Collection (46 clips)",
-  "seed": 20261025,
-  "fps": 30,
+  "seed": 20261025.0,
+  "fps": 30.0,
   "fighters": {
     "theron": {
       "archetype": "heavy_brawler",
@@ -28,7 +28,7 @@
           "derived": true,
           "recipe": "walking_front_walking played faster",
           "loop": true,
-          "speed_scale": 1.4400000000000002,
+          "speed_scale": 1.44,
           "additive_lean_x": 10.0
         },
         "block": {
@@ -172,14 +172,14 @@
           "derived": true,
           "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
           "derived": true,
           "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -265,17 +265,30 @@
         "move_sweeping_hydra": {
           "clip": "idle_and_start_animation_chapa-giratoria",
           "contact_phase": 0.375,
-          "end_seconds": 2.83333333333333,
+          "end_seconds": 2.63768886439005,
           "loop": false,
           "move_id": "sweeping_hydra",
-          "start_seconds": 2.03333333333333,
-          "strike_side": "l"
+          "start_seconds": 0.362399993896484,
+          "strike_side": "l",
+          "contact_phases": [
+            0.0966910192604582,
+            0.345548306627851,
+            0.868148610099375
+          ]
         },
         "move_muay_thai_flurry": {
           "clip": "kick_flying_knee_punch_combo",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0905759796395354,
+            0.324014985833201,
+            0.510766190788133,
+            0.876487300491543
+          ],
+          "start_seconds": 0.147200006484985,
+          "end_seconds": 2.57610004019737
         },
         "move_thunder_elbow_strike": {
           "clip": "punch_illegal_elbow_punch",
@@ -290,7 +303,14 @@
           "clip": "punch_jab_cross",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.139988684347051,
+            0.333003392571964,
+            0.809106339526749
+          ],
+          "start_seconds": 0.256666684150696,
+          "end_seconds": 1.82822227827708
         },
         "move_phantom_ambush": {
           "clip": "punch_elbow_punch",
@@ -305,7 +325,14 @@
           "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.174326466849251,
+            0.304983272140554,
+            0.762282090660112
+          ],
+          "start_seconds": 0.251111106872559,
+          "end_seconds": 1.51311110019684
         },
         "move_divine_uppercut": {
           "clip": "punch_punching",
@@ -314,22 +341,43 @@
           "strike_side": "r"
         },
         "move_lightning_jab_chain": {
-          "clip": "punch_lead_jab",
+          "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.167751119251614,
+            0.205469703907626,
+            0.488359088827712,
+            0.771248473747799
+          ],
+          "start_seconds": 0.242866662502289,
+          "end_seconds": 1.55433332204819
         },
         "move_ghost_sweep_chain": {
           "clip": "kick_martelo_2",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.311320752266167,
+            0.575471701455227
+          ],
+          "start_seconds": 0.260000014305115,
+          "end_seconds": 0.966666686534882
         },
         "move_titan_combo_kick": {
           "clip": "kick_jump_attack",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0686784611302763,
+            0.470759625229745,
+            0.906347553004169
+          ],
+          "start_seconds": 0.0866666603088379,
+          "end_seconds": 3.28999993801117
         },
         "move_olympian_crusher": {
           "clip": "punch_standing_2h_magic_attack_01",
@@ -386,7 +434,7 @@
           "derived": true,
           "recipe": "walking_front_walking played faster",
           "loop": true,
-          "speed_scale": 1.8399999999999999,
+          "speed_scale": 1.84,
           "additive_lean_x": 10.0
         },
         "block": {
@@ -530,14 +578,14 @@
           "derived": true,
           "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
           "derived": true,
           "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -623,17 +671,30 @@
         "move_sweeping_hydra": {
           "clip": "idle_and_start_animation_chapa-giratoria",
           "contact_phase": 0.375,
-          "end_seconds": 2.83333333333333,
+          "end_seconds": 2.63768886439005,
           "loop": false,
           "move_id": "sweeping_hydra",
-          "start_seconds": 2.03333333333333,
-          "strike_side": "l"
+          "start_seconds": 0.362399993896484,
+          "strike_side": "l",
+          "contact_phases": [
+            0.0966910192604582,
+            0.345548306627851,
+            0.868148610099375
+          ]
         },
         "move_muay_thai_flurry": {
           "clip": "kick_flying_knee_punch_combo",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0905759796395354,
+            0.324014985833201,
+            0.510766190788133,
+            0.876487300491543
+          ],
+          "start_seconds": 0.147200006484985,
+          "end_seconds": 2.57610004019737
         },
         "move_thunder_elbow_strike": {
           "clip": "punch_illegal_elbow_punch",
@@ -648,7 +709,14 @@
           "clip": "punch_jab_cross",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.139988684347051,
+            0.333003392571964,
+            0.809106339526749
+          ],
+          "start_seconds": 0.256666684150696,
+          "end_seconds": 1.82822227827708
         },
         "move_phantom_ambush": {
           "clip": "punch_elbow_punch",
@@ -663,7 +731,14 @@
           "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.174326466849251,
+            0.304983272140554,
+            0.762282090660112
+          ],
+          "start_seconds": 0.251111106872559,
+          "end_seconds": 1.51311110019684
         },
         "move_divine_uppercut": {
           "clip": "punch_punching",
@@ -672,22 +747,43 @@
           "strike_side": "r"
         },
         "move_lightning_jab_chain": {
-          "clip": "punch_lead_jab",
+          "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.167751119251614,
+            0.205469703907626,
+            0.488359088827712,
+            0.771248473747799
+          ],
+          "start_seconds": 0.242866662502289,
+          "end_seconds": 1.55433332204819
         },
         "move_ghost_sweep_chain": {
           "clip": "kick_martelo_2",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.311320752266167,
+            0.575471701455227
+          ],
+          "start_seconds": 0.260000014305115,
+          "end_seconds": 0.966666686534882
         },
         "move_titan_combo_kick": {
           "clip": "kick_jump_attack",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0686784611302763,
+            0.470759625229745,
+            0.906347553004169
+          ],
+          "start_seconds": 0.0866666603088379,
+          "end_seconds": 3.28999993801117
         },
         "move_olympian_crusher": {
           "clip": "punch_standing_2h_magic_attack_01",
@@ -888,14 +984,14 @@
           "derived": true,
           "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
           "derived": true,
           "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -981,17 +1077,30 @@
         "move_sweeping_hydra": {
           "clip": "idle_and_start_animation_chapa-giratoria",
           "contact_phase": 0.375,
-          "end_seconds": 2.83333333333333,
+          "end_seconds": 2.63768886439005,
           "loop": false,
           "move_id": "sweeping_hydra",
-          "start_seconds": 2.03333333333333,
-          "strike_side": "l"
+          "start_seconds": 0.362399993896484,
+          "strike_side": "l",
+          "contact_phases": [
+            0.0966910192604582,
+            0.345548306627851,
+            0.868148610099375
+          ]
         },
         "move_muay_thai_flurry": {
           "clip": "kick_flying_knee_punch_combo",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0905759796395354,
+            0.324014985833201,
+            0.510766190788133,
+            0.876487300491543
+          ],
+          "start_seconds": 0.147200006484985,
+          "end_seconds": 2.57610004019737
         },
         "move_thunder_elbow_strike": {
           "clip": "punch_illegal_elbow_punch",
@@ -1006,7 +1115,14 @@
           "clip": "punch_jab_cross",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.139988684347051,
+            0.333003392571964,
+            0.809106339526749
+          ],
+          "start_seconds": 0.256666684150696,
+          "end_seconds": 1.82822227827708
         },
         "move_phantom_ambush": {
           "clip": "punch_elbow_punch",
@@ -1021,7 +1137,14 @@
           "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.174326466849251,
+            0.304983272140554,
+            0.762282090660112
+          ],
+          "start_seconds": 0.251111106872559,
+          "end_seconds": 1.51311110019684
         },
         "move_divine_uppercut": {
           "clip": "punch_punching",
@@ -1030,22 +1153,43 @@
           "strike_side": "r"
         },
         "move_lightning_jab_chain": {
-          "clip": "punch_lead_jab",
+          "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.167751119251614,
+            0.205469703907626,
+            0.488359088827712,
+            0.771248473747799
+          ],
+          "start_seconds": 0.242866662502289,
+          "end_seconds": 1.55433332204819
         },
         "move_ghost_sweep_chain": {
           "clip": "kick_martelo_2",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.311320752266167,
+            0.575471701455227
+          ],
+          "start_seconds": 0.260000014305115,
+          "end_seconds": 0.966666686534882
         },
         "move_titan_combo_kick": {
           "clip": "kick_jump_attack",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0686784611302763,
+            0.470759625229745,
+            0.906347553004169
+          ],
+          "start_seconds": 0.0866666603088379,
+          "end_seconds": 3.28999993801117
         },
         "move_olympian_crusher": {
           "clip": "punch_standing_2h_magic_attack_01",
@@ -1246,14 +1390,14 @@
           "derived": true,
           "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
           "derived": true,
           "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
           "loop": false,
-          "telegraph_ticks": 42
+          "telegraph_ticks": 42.0
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -1339,17 +1483,30 @@
         "move_sweeping_hydra": {
           "clip": "idle_and_start_animation_chapa-giratoria",
           "contact_phase": 0.375,
-          "end_seconds": 2.83333333333333,
+          "end_seconds": 2.63768886439005,
           "loop": false,
           "move_id": "sweeping_hydra",
-          "start_seconds": 2.03333333333333,
-          "strike_side": "l"
+          "start_seconds": 0.362399993896484,
+          "strike_side": "l",
+          "contact_phases": [
+            0.0966910192604582,
+            0.345548306627851,
+            0.868148610099375
+          ]
         },
         "move_muay_thai_flurry": {
           "clip": "kick_flying_knee_punch_combo",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0905759796395354,
+            0.324014985833201,
+            0.510766190788133,
+            0.876487300491543
+          ],
+          "start_seconds": 0.147200006484985,
+          "end_seconds": 2.57610004019737
         },
         "move_thunder_elbow_strike": {
           "clip": "punch_illegal_elbow_punch",
@@ -1364,7 +1521,14 @@
           "clip": "punch_jab_cross",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.139988684347051,
+            0.333003392571964,
+            0.809106339526749
+          ],
+          "start_seconds": 0.256666684150696,
+          "end_seconds": 1.82822227827708
         },
         "move_phantom_ambush": {
           "clip": "punch_elbow_punch",
@@ -1379,7 +1543,14 @@
           "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.174326466849251,
+            0.304983272140554,
+            0.762282090660112
+          ],
+          "start_seconds": 0.251111106872559,
+          "end_seconds": 1.51311110019684
         },
         "move_divine_uppercut": {
           "clip": "punch_punching",
@@ -1388,22 +1559,43 @@
           "strike_side": "r"
         },
         "move_lightning_jab_chain": {
-          "clip": "punch_lead_jab",
+          "clip": "punch_boxing",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "l"
+          "strike_side": "l",
+          "contact_phases": [
+            0.167751119251614,
+            0.205469703907626,
+            0.488359088827712,
+            0.771248473747799
+          ],
+          "start_seconds": 0.242866662502289,
+          "end_seconds": 1.55433332204819
         },
         "move_ghost_sweep_chain": {
           "clip": "kick_martelo_2",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.311320752266167,
+            0.575471701455227
+          ],
+          "start_seconds": 0.260000014305115,
+          "end_seconds": 0.966666686534882
         },
         "move_titan_combo_kick": {
           "clip": "kick_jump_attack",
           "loop": false,
           "contact_phase": 0.4,
-          "strike_side": "r"
+          "strike_side": "r",
+          "contact_phases": [
+            0.0686784611302763,
+            0.470759625229745,
+            0.906347553004169
+          ],
+          "start_seconds": 0.0866666603088379,
+          "end_seconds": 3.28999993801117
         },
         "move_olympian_crusher": {
           "clip": "punch_standing_2h_magic_attack_01",

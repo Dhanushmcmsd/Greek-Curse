@@ -21,11 +21,20 @@ static func install(model: Node3D, stage: Node3D) -> void:
 	bronze.metallic = 0.75
 	bronze.roughness = 0.48
 	for mesh in model.find_children("*", "MeshInstance3D", true, false):
-		var name := str(mesh.name)
-		if name.begins_with("TILE") or name.begins_with("FLOOR"):
-			mesh.material_override = stone
-		else:
-			mesh.hide()
+		mesh.hide()
+	var floor_mesh := MeshInstance3D.new()
+	var floor_plane := PlaneMesh.new()
+	floor_plane.size = Vector2(32, 22)
+	floor_mesh.mesh = floor_plane
+	var floor_material := ShaderMaterial.new()
+	floor_material.shader = load("res://assets/shaders/ruins_floor.gdshader")
+	floor_material.set_shader_parameter(
+		"stone", load("res://assets/environment/ruins/olympus_flagstones.png")
+	)
+	floor_material.set_shader_parameter("stone_normal", stone.normal_texture)
+	floor_mesh.material_override = floor_material
+	stage.add_child(floor_mesh)
+	floor_mesh.position = Vector3(0, -0.015, -4)
 	var backdrop := MeshInstance3D.new()
 	var plane := QuadMesh.new()
 	plane.size = Vector2(40, 22.5)

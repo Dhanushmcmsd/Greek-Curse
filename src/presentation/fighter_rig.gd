@@ -177,6 +177,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		var model_dimensions: Dictionary = dimensions.get(mid, {})
 		fighter_height = float(model_dimensions.get("target_height_m", fighter_height))
 		fighter_width = float(model_dimensions.get("target_width_m", fighter_width))
+	# Imported meshes are already baked to their recorded height. Normalize the entire rig.
+	model.scale *= 1.8 / fighter_height
+	fighter_width *= 1.8 / fighter_height
+	fighter_height = 1.8
 	for slot in SimLimbs.LIMB_NAMES:
 		var suffix := slot.to_upper()
 		groups[slot] = model.find_child("LIMB_" + suffix, true, false)

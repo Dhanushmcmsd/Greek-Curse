@@ -15,7 +15,10 @@ func test_mesh_height_matches_every_model_skeleton() -> void:
 		var height: float = dimensions[model_id]["target_height_m"]
 		assert_near(bounds.position.y, 0.0, 0.002, model_id + " feet rest on floor")
 		assert_near(bounds.size.y, height, 0.002, model_id + " mesh is normalized exactly once")
-		assert_near(rig.fighter_height, height, 0.002, "visual metadata matches the selected model")
+		assert_near(rig.fighter_height, 1.8, 0.002, "common visual height")
+		assert_near(
+			bounds.size.y * rig.model.scale.y, 1.8, 0.002, "baked mesh scaled once to common height"
+		)
 		rig.free()
 
 

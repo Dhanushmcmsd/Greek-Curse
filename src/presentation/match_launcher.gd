@@ -17,7 +17,11 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	rules["match_mode"] = true
 	var fighters: Array = []
 	for id in config.fighter_ids:
-		fighters.append(loader.load_json("res://data/fighters/%s.json" % id).value)
+		var row: Dictionary = loader.load_json("res://data/fighters/%s.json" % id).value.duplicate(
+			true
+		)
+		row["height_mm"] = 1800
+		fighters.append(row)
 	var moves: Array = []
 	for id in ["jab_of_hermes", "cyclops_smash", "pegasus_kick", "grab"]:
 		moves.append(loader.load_json("res://data/moves/%s.json" % id).value)

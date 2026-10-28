@@ -20,6 +20,10 @@ func capture() -> void:
 	for frame in 8:
 		await process_frame
 	await shot("res://build/continuation_knee.png")
+	var effects = get_first_node_in_group("gore_manager")
+	effects.impact(Vector3(0.15, 1.1, 0.2), false, false, 2)
+	await create_timer(0.045).timeout
+	await shot("res://build/refine_impact.png")
 	var defender: SimFighter = match_node.world.fighters[1]
 	defender.state = SimFighter.State.HITSTUN
 	defender.state_tick = 28

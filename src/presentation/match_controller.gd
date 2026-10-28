@@ -119,6 +119,8 @@ func _load_match() -> void:
 		_require(loader, "res://data/fighters/%s.json" % match_config.fighter_ids[0]),
 		_require(loader, "res://data/fighters/%s.json" % match_config.fighter_ids[1]),
 	]
+	for row in _fighter_rows:
+		row["height_mm"] = 1800
 	_move_rows = [
 		_require(loader, "res://data/moves/jab_of_hermes.json"),
 		_require(loader, "res://data/moves/cyclops_smash.json"),
