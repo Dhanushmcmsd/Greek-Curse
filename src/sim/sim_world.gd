@@ -157,6 +157,7 @@ func snapshot_hash() -> int:
 					fighter.y,
 					int(fighter.launched),
 					fighter.launch_velocity,
+					fighter.knockback_velocity,
 					fighter.juggle_hits,
 					int(fighter.wall_bounced),
 					fighter.facing,
@@ -368,6 +369,7 @@ func _reset_bodies() -> void:
 		fighter.health = max_health
 		fighter.launched = false
 		fighter.launch_velocity = 0
+		fighter.knockback_velocity = 0
 		fighter.juggle_hits = 0
 		fighter.wall_bounced = false
 		fighter.invulnerable_until = 0

@@ -31,7 +31,8 @@ def read_psa(path):
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('root');ap.add_argument('output');args=ap.parse_args()
     root=pathlib.Path(args.root);out=pathlib.Path(args.output);out.mkdir(parents=True,exist_ok=True)
-    selected=['FrontPunch_1','FrontPunch_1_2ndBackPunch','FrontPunch_1_3rdBackPunch','BackPunch_1','FrontKick_1','BackKick_1','DuckFrontKick_1','DuckBackPunch_1']
+    selected=['FrontPunch_1','FrontPunch_1_2ndBackPunch','FrontPunch_1_3rdBackPunch','BackPunch_1','FrontKick_1','BackKick_1','DuckFrontKick_1','DuckBackPunch_1','BackPunch_2','BackPunch_3','BackKick_3_2ndBackPunch','BackKick_3_3rdFrontKick','FrontKick_2_2ndFrontPunch']
+    selected=sorted(set(selected + [clip for style in json.loads(pathlib.Path('data/animation/fighter_styles.json').read_text()).values() for clip in style['sources'].values()]))
     report={'extensions':dict(collections.Counter(p.suffix for p in root.rglob('*') if p.is_file())),'clips':[]}
     for name in selected:
         clip=read_psa(root/'attack'/(name+'.psa'))

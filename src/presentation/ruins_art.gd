@@ -66,6 +66,7 @@ static func install(model: Node3D, stage: Node3D) -> void:
 			shaft.position.y = 1.45
 			for ring_height in [0.3, 0.42, 2.53, 2.64]:
 				_stone_part(column, stone, Vector3(0, ring_height, 0), Vector3(0.73, 0.09, 0.73))
+	_install_pillar_mist(stage)
 	for x in [-4.3, 4.3]:
 		_stone_part(stage, stone, Vector3(x, 0.35, -0.15), Vector3(0.36, 0.7, 0.36))
 		var bowl := MeshInstance3D.new()
@@ -123,3 +124,27 @@ static func _stone_part(parent: Node3D, material: Material, at: Vector3, size: V
 	mesh.material_override = material
 	parent.add_child(mesh)
 	mesh.position = at
+
+
+static func _install_pillar_mist(stage: Node3D) -> void:
+	var atlas := load("res://assets/vfx/exported/smoke_flipbook.png")
+	var shader := load("res://assets/shaders/pillar_mist.gdshader")
+	for side in [-1.0, 1.0]:
+		for layer in 3:
+			var plume := MeshInstance3D.new()
+			plume.name = "PillarMist"
+			var quad := QuadMesh.new()
+			quad.size = Vector2(2.4 + layer * 0.25, 1.4)
+			plume.mesh = quad
+			plume.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			var material := ShaderMaterial.new()
+			material.shader = shader
+			material.set_shader_parameter("smoke_atlas", atlas)
+			material.set_shader_parameter(
+				"phase", float(layer) * 0.31 + (0.15 if side < 0 else 0.0)
+			)
+			plume.material_override = material
+			stage.add_child(plume)
+			plume.position = Vector3(
+				side * (4.9 + layer * 0.15), 0.45 + layer * 0.22, -1.8 + layer * 0.18
+			)

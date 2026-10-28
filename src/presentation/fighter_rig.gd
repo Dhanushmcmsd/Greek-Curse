@@ -124,7 +124,17 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	if pm_res.ok and pm_res.value is Dictionary and pm_res.value.has("fighters"):
 		var f_map: Dictionary = pm_res.value["fighters"].get(id, {})
 		var actions: Dictionary = f_map.get("actions", {})
+		var retarget_cache: Dictionary = {}
 		for act_key in actions:
+			var baked := (
+				"res://assets/animations/exported/"
+				+ id
+				+ "/"
+				+ str(act_key).trim_prefix("move_")
+				+ ".res"
+			)
+			if mid == id and str(act_key).begins_with("move_") and ResourceLoader.exists(baked):
+				continue
 			var clip_info: Dictionary = actions[act_key]
 			var clip_file: String = clip_info.get("clip", "")
 			if clip_file == "":
@@ -155,9 +165,12 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 						var source_skeleton := (
 							loaded_glb.find_child("Skeleton3D", true, false) as Skeleton3D
 						)
-						var dup_anim: Animation = retarget_animation(
-							anim, source_skeleton, skeleton
-						)
+						var cache_key: String = anim_glb_path + ":" + str(anim_name)
+						if not retarget_cache.has(cache_key):
+							retarget_cache[cache_key] = retarget_animation(
+								anim, source_skeleton, skeleton
+							)
+						var dup_anim: Animation = retarget_cache[cache_key].duplicate(true)
 						_bind_animation_to_skeleton(dup_anim, clip_file)
 						if act_key in ["idle", "walk_fwd", "walk_back", "run"]:
 							dup_anim.loop_mode = Animation.LOOP_LINEAR

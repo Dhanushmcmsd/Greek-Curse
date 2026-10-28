@@ -48,7 +48,7 @@ func _ready() -> void:
 	_build_stage()
 	world = _make_world()
 	_match_tools.catalog = world.fighters[0].limbs.catalog
-	_match_tools.populate_combos(world.moves)
+	_match_tools.populate_combos(_player_move_rows())
 	_sync(true)
 	if "--results-demo" in OS.get_cmdline_user_args():
 		for tick in 5000:
@@ -318,6 +318,7 @@ func _consume(events: Array) -> void:
 				vfx_combo_tier = 2
 			elif combo_hits >= 6:
 				vfx_combo_tier = 1
+			vfx_combo_tier = maxi(vfx_combo_tier, int(event.payload.get("impact_weight", 0)))
 			_views[event.other].flash()
 			_views[event.other].recoil(
 				signf(_views[event.other].position.x - _views[event.actor].position.x), blocked
@@ -483,3 +484,15 @@ func result_summary() -> Dictionary:
 		"amputations": world.amputations.duplicate(true),
 		"date": Time.get_datetime_string_from_system()
 	}
+
+
+func _player_move_rows() -> Array:
+	var rows: Array = []
+	var fighter: SimFighter = world.fighters[0]
+	for move in world.moves:
+		if move.has("owner"):
+			if move.owner == fighter.fighter_id and not fighter.moveset_aliases.is_empty():
+				rows.append(move)
+		elif not fighter.moveset_aliases.has(str(move.id)):
+			rows.append(move)
+	return rows

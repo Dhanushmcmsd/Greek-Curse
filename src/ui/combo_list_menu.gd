@@ -314,6 +314,8 @@ func populate(move_rows: Array) -> void:
 
 
 static func _format_input(row: Dictionary) -> String:
+	if row.has("input_label"):
+		return str(row.input_label)
 	var commands := {
 		"olympian_crusher": "Down + Right Kick",
 		"muay_thai_flurry": "Forward + Right Kick",
@@ -323,6 +325,8 @@ static func _format_input(row: Dictionary) -> String:
 		"spartan_flurry": "Down + Left Punch",
 		"divine_uppercut": "Down + Right Punch",
 		"ghost_sweep_chain": "Forward + Left Kick",
+		"hoplite_sweep_chain": "Down + Left Kick",
+		"olympian_heel_chain": "Back + Left Kick",
 		"lightning_jab_chain": "Forward + Left Punch",
 		"titan_combo_kick": "Back + Right Kick"
 	}

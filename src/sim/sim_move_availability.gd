@@ -27,20 +27,25 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 		return {"id": "grab", "slot": slot}
 	var command := command_move(fighter.facing, mask)
 	if command != "":
-		return {"id": command, "slot": "arm_l" if command == "olympian_crusher" else slot}
+		return {
+			"id": fighter.moveset_aliases.get(command, command),
+			"slot": "arm_l" if command == "olympian_crusher" else slot
+		}
 	var selected: Array = fighter.loadout.get(category, [])
 	var id: String = (
 		rules["default_moves"][category]
 		if selected.is_empty()
 		else selected[mini(int(right), selected.size() - 1)]
 	)
-	return {"id": id, "slot": slot}
+	return {"id": fighter.moveset_aliases.get(id, id), "slot": slot}
 
 
 static func command_move(facing: int, mask: int) -> String:
 	var forward := bool(mask & (SimInput.RIGHT if facing > 0 else SimInput.LEFT))
 	var back := bool(mask & (SimInput.LEFT if facing > 0 else SimInput.RIGHT))
 	if mask & SimInput.DOWN:
+		if mask & SimInput.KICK and not mask & SimInput.KICK_RIGHT:
+			return "hoplite_sweep_chain"
 		if mask & SimInput.KICK_RIGHT:
 			return "olympian_crusher"
 		if mask & SimInput.LIGHT:
@@ -57,6 +62,8 @@ static func command_move(facing: int, mask: int) -> String:
 		if mask & SimInput.KICK:
 			return "ghost_sweep_chain"
 	if back:
+		if mask & SimInput.KICK and not mask & SimInput.KICK_RIGHT:
+			return "olympian_heel_chain"
 		if mask & SimInput.LIGHT:
 			return "phantom_flurry"
 		if mask & SimInput.HEAVY:

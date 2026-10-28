@@ -18,14 +18,14 @@ func test_gap_of_90_continues_and_91_breaks() -> void:
 func test_cancel_window_is_half_open() -> void:
 	var world := _pair()
 	world.step([SimInput.LIGHT, 0])
-	while world.fighters[0].move_age < 6 and world.fighters[0].state != SimFighter.State.IDLE:
+	while world.fighters[0].move_age < 10 and world.fighters[0].state != SimFighter.State.IDLE:
 		world.step([0, 0])
-	assert_eq(world.fighters[0].move_age, 6, "window is open")
+	assert_eq(world.fighters[0].move_age, 10, "window is open")
 	world.step([SimInput.HEAVY, 0])
 	assert_eq(world.fighters[0].move_name, "cyclops_smash", "heavy cancel")
 	var late := _pair()
 	late.step([SimInput.LIGHT, 0])
-	while late.fighters[0].move_age < 10 and late.fighters[0].state != SimFighter.State.IDLE:
+	while late.fighters[0].move_age < 20 and late.fighters[0].state != SimFighter.State.IDLE:
 		late.step([0, 0])
 	late.step([SimInput.HEAVY, 0])
 	assert_eq(late.fighters[0].move_name, "jab_of_hermes", "cancel has closed")

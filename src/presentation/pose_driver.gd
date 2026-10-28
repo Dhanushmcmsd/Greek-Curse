@@ -24,6 +24,8 @@ var sever_reaction_tick: int = 0
 var sever_slowmo_tick: int = 0
 var combo_count: int = 0
 var combo_shake: float = 0.0
+var _attack_blend_from: Array[Quaternion] = []
+var _last_attack_age: int = -1
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _skin_vertices: Dictionary = {}
@@ -689,6 +691,11 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		current_clip_id = ""
 		return false
 
+	if is_attack and (current_action_name != act_key or fighter.state_tick < _last_attack_age):
+		_attack_blend_from.clear()
+		for bone in rig.skeleton.get_bone_count():
+			_attack_blend_from.append(rig.skeleton.get_bone_pose_rotation(bone))
+	_last_attack_age = fighter.state_tick if is_attack else -1
 	current_action_name = act_key
 	current_clip_id = str(actions[act_key].get("clip", ""))
 
@@ -744,6 +751,15 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			and fighter.limbs.parts.has(fighter.attack_slot)
 		):
 			_mirror_attack_pose()
+		if actions[act_key].has("export_source"):
+			_stabilize_exported_arms(fighter, actions[act_key])
+		if fighter.state_tick < 3 and _attack_blend_from.size() == rig.skeleton.get_bone_count():
+			var blend := float(fighter.state_tick + 1) / 3.0
+			for bone in rig.skeleton.get_bone_count():
+				rig.skeleton.set_bone_pose_rotation(
+					bone,
+					_attack_blend_from[bone].slerp(rig.skeleton.get_bone_pose_rotation(bone), blend)
+				)
 	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name, 0.1)
@@ -844,3 +860,86 @@ func _mirror_attack_pose() -> void:
 		var parent := skeleton.get_bone_parent(bone)
 		var local := goals[bone] if parent < 0 else goals[parent].inverse() * goals[bone]
 		skeleton.set_bone_pose_rotation(bone, local.get_rotation_quaternion())
+
+
+func _stabilize_exported_arms(fighter: SimFighter, action: Dictionary) -> void:
+	# Source weapon gestures need an unarmed contact constraint on our proportions.
+	# Solve shoulder/elbow/wrist together; never move a detached or unusable arm.
+	var nearest := 0
+	var distance := INF
+	for hit in fighter.attack_hit_count:
+		var gap := absf(
+			float(fighter.state_tick - fighter.startup_ticks - hit * fighter.attack_hit_interval)
+		)
+		if gap < distance:
+			distance = gap
+			nearest = hit
+	var slots: Array = action.get("contact_slots", [])
+	var active_slot: String = fighter.attack_slot
+	if nearest < slots.size():
+		active_slot = str(slots[nearest])
+		if fighter.attack_slot.ends_with("r"):
+			active_slot = (
+				active_slot.left(active_slot.length() - 1)
+				+ ("l" if active_slot.ends_with("r") else "r")
+			)
+	var extension := 1.0 - smoothstep(0.0, 7.0, distance)
+	for side in ["l", "r"]:
+		if fighter.limbs.usable("arm_" + side):
+			_solve_guard_arm(side, extension if active_slot == "arm_" + side else 0.0)
+
+
+func _solve_guard_arm(side: String, extension: float) -> void:
+	var skel := rig.skeleton
+	var upper := skel.find_bone("upper_arm." + side)
+	var lower := skel.find_bone("forearm." + side)
+	var hand := skel.find_bone("hand." + side)
+	if upper < 0 or lower < 0 or hand < 0:
+		return
+	skel.force_update_all_bone_transforms()
+	var shoulder := skel.get_bone_global_pose(upper).origin
+	var elbow := skel.get_bone_global_pose(lower).origin
+	var wrist := skel.get_bone_global_pose(hand).origin
+	var first := shoulder.distance_to(elbow)
+	var second := elbow.distance_to(wrist)
+	var sign_x := signf(skel.get_bone_global_rest(upper).origin.x)
+	var goal := (
+		shoulder + Vector3(-sign_x * 0.06, -0.10, lerpf(0.20, (first + second) * 0.92, extension))
+	)
+	var direction := (goal - shoulder).normalized()
+	var reach := minf(shoulder.distance_to(goal), (first + second) * 0.97)
+	goal = shoulder + direction * reach
+	var along := (first * first - second * second + reach * reach) / (2.0 * reach)
+	var bend := Vector3(sign_x, -0.8, -0.2)
+	bend = (bend - direction * bend.dot(direction)).normalized()
+	var elbow_goal := (
+		shoulder + direction * along + bend * sqrt(maxf(0.0, first * first - along * along))
+	)
+	_aim_joint(upper, elbow - shoulder, elbow_goal - shoulder)
+	skel.force_update_all_bone_transforms()
+	elbow = skel.get_bone_global_pose(lower).origin
+	wrist = skel.get_bone_global_pose(hand).origin
+	_aim_joint(lower, wrist - elbow, goal - elbow)
+	skel.force_update_all_bone_transforms()
+	var rest_relative := (
+		skel.get_bone_global_rest(lower).basis.inverse() * skel.get_bone_global_rest(hand).basis
+	)
+	var hand_global := skel.get_bone_global_pose(lower).basis * rest_relative
+	var parent := skel.get_bone_parent(hand)
+	var hand_local := skel.get_bone_global_pose(parent).basis.inverse() * hand_global
+	skel.set_bone_pose_rotation(hand, hand_local.orthonormalized().get_rotation_quaternion())
+
+
+func _aim_joint(bone: int, from: Vector3, to: Vector3) -> void:
+	if from.length_squared() < 0.000001 or to.length_squared() < 0.000001:
+		return
+	var skel := rig.skeleton
+	var global_rotation := (
+		skel.get_bone_global_pose(bone).basis.orthonormalized().get_rotation_quaternion()
+	)
+	var desired := Quaternion(from.normalized(), to.normalized()) * global_rotation
+	var parent := skel.get_bone_parent(bone)
+	var parent_rotation := (
+		skel.get_bone_global_pose(parent).basis.orthonormalized().get_rotation_quaternion()
+	)
+	skel.set_bone_pose_rotation(bone, parent_rotation.inverse() * desired)

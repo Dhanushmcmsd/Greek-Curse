@@ -13,10 +13,26 @@ func run() -> void:
 	scene.world.fighters[0].x = -500
 	scene.world.fighters[1].x = 500
 	var movement = load("res://src/sim/sim_movement.gd")
-	for move in ["jab_of_hermes", "pegasus_kick", "divine_uppercut"]:
+	for move in [
+		"jab_of_hermes",
+		"pegasus_kick",
+		"divine_uppercut",
+		"cyclops_smash",
+		"hoplite_sweep_chain",
+		"olympian_heel_chain"
+	]:
 		var a = scene.world.fighters[0]
 		a.clear_move()
-		movement._begin_named(scene.world, a, move, "leg_l" if move == "pegasus_kick" else "arm_l")
+		movement._begin_named(
+			scene.world,
+			a,
+			move,
+			(
+				"leg_l"
+				if move in ["pegasus_kick", "hoplite_sweep_chain", "olympian_heel_chain"]
+				else "arm_r"
+			)
+		)
 		a.state = 3
 		a.state_tick = a.startup_ticks
 		scene._sync(false)

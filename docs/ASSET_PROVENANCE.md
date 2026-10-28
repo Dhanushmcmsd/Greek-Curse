@@ -37,3 +37,5 @@ Prompt: Create a production game material texture, square 2048x2048, strictly or
 ## User-supplied exports, 2026-10-29
 
 The animation resources in assets/animations/exported and images in assets/vfx/exported derive from the user's supplied Exports tree. They are separate from the original/CC0 assets documented above. See EXPORTED_MOTION_PASS.md, exported_motion_inventory.json and exported_texture_sources.json for source identity, conversion, fingerprints and limitations.
+
+The combat weight/style follow-up expands selected PSA coverage and reuses the supplied smoke atlas at pillar bases. See COMBAT_WEIGHT_PASS.md and data/animation/fighter_styles.json for per-fighter assignments and corrective retargeting. The external strategy repository supplies reference data only; no compiled gameplay scripts are distributed.

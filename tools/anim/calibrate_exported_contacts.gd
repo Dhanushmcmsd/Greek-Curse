@@ -6,15 +6,25 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	var rig = load("res://src/presentation/fighter_rig.gd").new()
-	root.add_child(rig)
-	rig.load_fighter("theron")
 	var path := "res://data/animation/mixamo_pack_map.json"
 	var mapping: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
-	for action in mapping.fighters.theron.actions:
+	for id in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		_calibrate(id, mapping)
+	FileAccess.open(path, FileAccess.WRITE).store_string(
+		JSON.stringify(mapping, "  ", false) + "\n"
+	)
+	quit()
+
+
+func _calibrate(id: String, mapping: Dictionary) -> void:
+	var rig = load("res://src/presentation/fighter_rig.gd").new()
+	root.add_child(rig)
+	rig.load_fighter(id)
+	for action in mapping.fighters[id].actions:
 		if (
-			not mapping.fighters.theron.actions[action].has("export_source")
-			or mapping.fighters.theron.actions[action].has("contact_phases")
+			str(action).begins_with("move_" + id + "_")
+			or not mapping.fighters[id].actions[action].has("export_source")
+			or mapping.fighters[id].actions[action].has("contact_phases")
 		):
 			continue
 		var move: Dictionary = JSON.parse_string(
@@ -23,12 +33,12 @@ func _run() -> void:
 			)
 		)
 		var tip: String = "foot." if move.category == "kick" else "hand."
-		var animation: Animation = rig.anim_player.get_animation("theron_" + action)
+		var animation: Animation = rig.anim_player.get_animation(id + "_" + action)
 		var length := minf(animation.length, 6.0)
 		var peak := -INF
 		var peak_time := 0.0
 		var side := "l"
-		rig.anim_player.play("theron_" + action)
+		rig.anim_player.play(id + "_" + action)
 		for frame in int(length * 30) + 1:
 			var time := minf(float(frame) / 30.0, length)
 			rig.anim_player.seek(time, true)
@@ -49,7 +59,7 @@ func _run() -> void:
 					side = candidate
 		var start := maxf(0.0, peak_time - (0.5 if move.category == "heavy" else 0.3))
 		var end := minf(animation.length, peak_time + (0.5 if move.category == "kick" else 0.35))
-		for fighter in mapping.fighters.values():
+		for fighter in [mapping.fighters[id]]:
 			fighter.actions[action]["start_seconds"] = start
 			fighter.actions[action]["end_seconds"] = end
 			fighter.actions[action]["contact_phase"] = (
@@ -57,7 +67,4 @@ func _run() -> void:
 			)
 			fighter.actions[action]["strike_side"] = side
 		print(action, " ", start, " -> ", peak_time, " -> ", end, " side=", side, " reach=", peak)
-	FileAccess.open(path, FileAccess.WRITE).store_string(
-		JSON.stringify(mapping, "  ", false) + "\n"
-	)
-	quit()
+	rig.free()

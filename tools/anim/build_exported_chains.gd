@@ -8,20 +8,48 @@ func _initialize() -> void:
 func run() -> void:
 	var path := "res://data/animation/mixamo_pack_map.json"
 	var mapping: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var shared := {
+		"quick_fury": ["jab_of_hermes", "thunder_elbow_strike", "phantom_ambush"],
+		"spartan_flurry": ["jab_of_hermes", "thunder_elbow_strike", "phantom_ambush"],
+		"phantom_flurry": ["jab_of_hermes", "spartan_cross", "phantom_ambush"],
+		"lightning_jab_chain":
+		["jab_of_hermes", "jab_of_hermes", "thunder_elbow_strike", "phantom_ambush"],
+		"muay_thai_flurry":
+		["pegasus_kick", "thunder_elbow_strike", "satyr_dropkick", "phantom_ambush"],
+		"titan_combo_kick": ["satyr_dropkick", "pegasus_kick", "titan_combo_kick"],
+		"ghost_sweep_chain": ["ghost_sweep_chain", "pegasus_kick"],
+		"sweeping_hydra": ["sweeping_hydra", "satyr_dropkick", "pegasus_kick"],
+		"hoplite_sweep_chain": ["ghost_sweep_chain", "spartan_cross", "pegasus_kick"],
+		"olympian_heel_chain": ["pegasus_kick", "satyr_dropkick"]
+	}
 	for id in mapping.fighters:
-		for move in ["spartan_flurry", "phantom_flurry", "lightning_jab_chain"]:
-			var sequence := ["jab_of_hermes", "thunder_elbow_strike", "phantom_ambush"]
-			if move == "lightning_jab_chain":
-				sequence.insert(1, "jab_of_hermes")
+		var sequences: Dictionary = shared.duplicate()
+		if "styles" in OS.get_cmdline_user_args():
+			var styles: Dictionary = JSON.parse_string(
+				FileAccess.get_file_as_string("res://data/animation/fighter_styles.json")
+			)
+			sequences = styles[id].chains
+		var originals := {}
+		var original_settings: Dictionary = mapping.fighters[id].actions.duplicate(true)
+		for sequence in sequences.values():
+			for part in sequence:
+				originals[part] = load(
+					"res://assets/animations/exported/" + id + "/" + part + ".res"
+				)
+		for move in sequences:
+			if (
+				not OS.get_cmdline_user_args().is_empty()
+				and "styles" not in OS.get_cmdline_user_args()
+				and move not in OS.get_cmdline_user_args()
+			):
+				continue
+			var sequence: Array = sequences[move]
 			var result := Animation.new()
 			var cursor := 0.0
 			var contacts: Array = []
 			for part in sequence:
-				var clip := (
-					load("res://assets/animations/exported/" + id + "/" + part + ".res")
-					as Animation
-				)
-				var settings: Dictionary = mapping.fighters[id].actions["move_" + part]
+				var clip: Animation = originals[part]
+				var settings: Dictionary = original_settings["move_" + part]
 				var start := float(settings.start_seconds)
 				var end := float(settings.end_seconds)
 				var contact := lerpf(start, end, float(settings.contact_phase))
@@ -62,9 +90,20 @@ func run() -> void:
 			action.start_seconds = 0.0
 			action.end_seconds = cursor
 			action.contact_phases = []
+			action.contact_slots = []
+			for part in sequence:
+				var move_row: Dictionary = JSON.parse_string(
+					FileAccess.get_file_as_string("res://data/moves/" + part + ".json")
+				)
+				action.contact_slots.append(
+					(
+						("leg_" if move_row.category == "kick" else "arm_")
+						+ str(original_settings["move_" + part].get("strike_side", "l"))
+					)
+				)
 			for contact in contacts:
 				action.contact_phases.append(float(contact) / cursor)
-			action.export_source = "FrontPunch_1 > FrontPunch_1_2ndBackPunch > FrontPunch_1_3rdBackPunch"
+			action.export_source = " > ".join(sequence)
 			action.strike_side = "l"
 			print("CHAIN_OK ", id, " ", move, " contacts=", contacts.size())
 	FileAccess.open(path, FileAccess.WRITE).store_string(

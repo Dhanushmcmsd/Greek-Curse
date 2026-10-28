@@ -34,6 +34,7 @@ const STATE_NAMES: Array[String] = [
 const POSE_IDS := {"standing": 0, "crouch": 1, "hop": 2, "crawl": 3, "torso": 4}
 
 var loadout: Dictionary = {}
+var moveset_aliases: Dictionary = {}
 var ability_cooldowns: Dictionary = {}
 var ability_uses: Dictionary = {}
 var invulnerable_until: int = 0
@@ -48,6 +49,7 @@ var x: int = 0
 var y: int = 0
 var launched: bool = false
 var launch_velocity: int = 0
+var knockback_velocity: int = 0
 var juggle_hits: int = 0
 var wall_bounced: bool = false
 var facing: int = 1

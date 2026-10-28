@@ -1,0 +1,43 @@
+{
+  "id": "pyrrhus_retreat",
+  "display_name": "Warbrand Reversal",
+  "startup_ticks": 10,
+  "active_ticks": 21,
+  "recovery_ticks": 18,
+  "damage": 9,
+  "limb_damage": 22,
+  "on_block_pushback": 12,
+  "hitstop_attacker": 2,
+  "hitstop_defender": 3,
+  "cancel_into": [
+    "pyrrhus_power",
+    "divine_uppercut"
+  ],
+  "cancel_start": 29,
+  "cancel_end": 39,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 3,
+  "hit_interval": 9,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_l",
+  "zone_priority": 1,
+  "hitstun_ticks": 24,
+  "blockstun_ticks": 8,
+  "knockback_mm": 330,
+  "hitbox": {
+    "x": 120,
+    "y": 800,
+    "w": 480,
+    "h": 480
+  },
+  "cost": 26,
+  "can_cancel": true,
+  "hop_mm_per_tick": 3,
+  "category": "light",
+  "anim_set": "punch_light",
+  "owner": "pyrrhus",
+  "input_label": "Back + Left Punch / Left or Right Kick"
+}

@@ -9,11 +9,12 @@ func test_directional_commands_mirror_with_facing() -> void:
 		var forward := SimInput.RIGHT if facing == 1 else SimInput.LEFT
 		var back := SimInput.LEFT if facing == 1 else SimInput.RIGHT
 		for pair in [
-			[forward | SimInput.KICK_RIGHT, "muay_thai_flurry"],
-			[forward | SimInput.HEAVY, "thunder_elbow_strike"],
-			[back | SimInput.LIGHT, "phantom_flurry"],
-			[back | SimInput.HEAVY, "phantom_ambush"]
+			[forward | SimInput.KICK_RIGHT, "theron_pursuit"],
+			[forward | SimInput.HEAVY, "theron_power"],
+			[back | SimInput.LIGHT, "theron_retreat"],
+			[back | SimInput.HEAVY, "theron_lead"]
 		]:
+			fighter.stamina = 100
 			var chosen := SimMoveAvailability.select(fighter, pair[0], world.body_rules)
 			assert_eq(chosen.id, pair[1], "facing-relative command")
 			SimMovement._begin_named(world, fighter, chosen.id, chosen.slot)
@@ -87,6 +88,7 @@ func test_limb_tracker_is_hashed() -> void:
 
 func test_knee_rush_four_contacts_cancel_into_elbow() -> void:
 	var config := MatchConfig.new()
+	config.loadouts = [Loadout.full(0)]
 	config.rules["hazards"] = false
 	var world := MatchLauncher.make_world(config)
 	world.fighters[0].x = 0
@@ -183,7 +185,9 @@ func test_all_roster_combo_contacts_at_common_height() -> void:
 			"phantom_flurry",
 			"lightning_jab_chain",
 			"ghost_sweep_chain",
-			"titan_combo_kick"
+			"titan_combo_kick",
+			"hoplite_sweep_chain",
+			"olympian_heel_chain"
 		]:
 			var config := MatchConfig.new()
 			config.fighter_ids.assign(["theron", opponent])
@@ -278,3 +282,62 @@ func test_attacks_damage_every_opponent_in_both_directions() -> void:
 					int(row.get("hit_count", 1)),
 					opponent + " " + move + " facing=" + str(facing)
 				)
+
+
+func test_heavy_hit_carries_momentum_and_stops_at_wall() -> void:
+	var world := MatchLauncher.make_world(MatchConfig.new())
+	var a := world.fighters[0]
+	var b := world.fighters[1]
+	a.x = -225
+	b.x = 225
+	a.attack_knockback = 400
+	a.attack_hit_count = 1
+	SimCombat._push(world, b, a, false)
+	var first := b.x
+	assert_true(first < 625, "displacement is not an instant teleport")
+	assert_true(b.knockback_velocity > 0, "hit carries momentum")
+	for tick in 6:
+		SimMovement._slide_from_impact(world, b)
+	assert_true(b.x > first, "momentum continues after hitstop")
+	b.x = world._high(b) - 1
+	b.knockback_velocity = 100
+	SimMovement._slide_from_impact(world, b)
+	assert_eq(b.x, world._high(b), "wall clamps momentum")
+	assert_eq(b.knockback_velocity, 0, "no repeated wall jitter")
+
+
+func test_impulse_is_hashed_and_reset_between_rounds() -> void:
+	var a := MatchLauncher.make_world(MatchConfig.new())
+	var b := MatchLauncher.make_world(MatchConfig.new())
+	b.fighters[1].knockback_velocity = 40
+	assert_true(a.hash_state() != b.hash_state(), "momentum is deterministic state")
+	b._reset_bodies()
+	assert_eq(b.fighters[1].knockback_velocity, 0, "round reset clears momentum")
+
+
+func test_new_kick_commands_and_finisher_weight() -> void:
+	assert_eq(
+		SimMoveAvailability.command_move(1, SimInput.DOWN | SimInput.KICK),
+		"hoplite_sweep_chain",
+		"low string"
+	)
+	assert_eq(
+		SimMoveAvailability.command_move(-1, SimInput.RIGHT | SimInput.KICK),
+		"olympian_heel_chain",
+		"mirrored back string"
+	)
+	var world := MatchLauncher.make_world(MatchConfig.new())
+	world.hazards_enabled = false
+	world.fighters[0].x = -250
+	world.fighters[1].x = 250
+	SimMovement._begin_named(world, world.fighters[0], "olympian_heel_chain", "leg_l")
+	var weights: Array = []
+	var pauses: Array = []
+	for tick in 150:
+		for event in world.step([0, 0]):
+			if event.kind == SimEvent.Kind.HIT:
+				weights.append(event.payload.impact_weight)
+				pauses.append(event.payload.hitstop_defender)
+	assert_eq(weights.size(), 2, "two contacts")
+	assert_eq(weights[-1], 2, "finisher drives stronger VFX")
+	assert_true(pauses[-1] > pauses[0], "finisher has more hitstop")

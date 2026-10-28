@@ -10,20 +10,46 @@ func run() -> void:
 	var mapping: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/animation/mixamo_pack_map.json")
 	)
-	var selected := {
+	var shared := {
 		"jab_of_hermes": "FrontPunch_1",
+		"achilles_heel_snap": "DuckFrontKick_1",
+		"hammer_of_hephaestus": "BackPunch_2",
 		"spartan_cross": "BackPunch_1",
 		"pegasus_kick": "FrontKick_1",
 		"thunder_elbow_strike": "FrontPunch_1_2ndBackPunch",
 		"phantom_ambush": "FrontPunch_1_3rdBackPunch",
-		"divine_uppercut": "DuckBackPunch_1"
+		"divine_uppercut": "DuckBackPunch_1",
+		"cyclops_smash": "BackPunch_3",
+		"minotaur_haymaker": "BackPunch_2",
+		"bronze_knuckle": "BackPunch_1",
+		"gorgon_backfist": "BackPunch_3",
+		"satyr_dropkick": "BackKick_1",
+		"sweeping_hydra": "DuckFrontKick_1",
+		"olympian_crusher": "BackKick_3_2ndBackPunch",
+		"ghost_sweep_chain": "DuckFrontKick_1",
+		"titan_combo_kick": "BackKick_3_3rdFrontKick",
+		"muay_thai_flurry": "FrontKick_2_2ndFrontPunch"
 	}
 	for id in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		var selected: Dictionary = shared.duplicate()
+		if id == "theron":
+			selected["jab_of_hermes"] = "FrontPunch_1_2ndBackPunch"
+		var styles: Dictionary = JSON.parse_string(
+			FileAccess.get_file_as_string("res://data/animation/fighter_styles.json")
+		)
+		if "styles" in OS.get_cmdline_user_args():
+			selected = styles[id].sources
 		var rig = rig_script.new()
 		root.add_child(rig)
 		rig.load_fighter(id)
 		DirAccess.make_dir_recursive_absolute("res://assets/animations/exported/" + id)
 		for move in selected:
+			if (
+				not OS.get_cmdline_user_args().is_empty()
+				and "styles" not in OS.get_cmdline_user_args()
+				and move not in OS.get_cmdline_user_args()
+			):
+				continue
 			var data: Dictionary = JSON.parse_string(
 				FileAccess.get_file_as_string(
 					"res://build/exported_motion/" + selected[move] + ".json"
@@ -63,6 +89,9 @@ func run() -> void:
 						)
 					)
 			var result: Animation = rig_script.retarget_animation(clip, source, rig.skeleton)
+			load("res://tools/anim/exported_limb_alignment.gd").correct(
+				result, clip, source, rig.skeleton
+			)
 			rig._bind_animation_to_skeleton(result, selected[move])
 			var path: String = "res://assets/animations/exported/" + id + "/" + move + ".res"
 			assert(ResourceSaver.save(result, path) == OK)

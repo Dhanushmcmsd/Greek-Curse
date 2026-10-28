@@ -4,6 +4,7 @@ extends RefCounted
 
 
 static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
+	_slide_from_impact(world, fighter)
 	var profile := SimBodyState.movement(fighter, world.body_rules)
 	fighter.pose = str(profile["pose"])
 	if fighter.pose == "standing" and mask & SimInput.DOWN:
@@ -323,3 +324,13 @@ static func _gravity(world: SimWorld, fighter: SimFighter) -> void:
 			var invuln := int(world.combat.get("wakeup_invuln_ticks", 0))
 			if invuln > 0:
 				fighter.invulnerable_until = maxi(fighter.invulnerable_until, world.tick + invuln)
+
+
+static func _slide_from_impact(world: SimWorld, fighter: SimFighter) -> void:
+	if fighter.knockback_velocity == 0:
+		return
+	var requested := fighter.x + fighter.knockback_velocity
+	fighter.x = Fx.clamp_i(requested, world._low(fighter), world._high(fighter))
+	fighter.knockback_velocity = Fx.mul_div(fighter.knockback_velocity, 3, 4)
+	if requested != fighter.x or absi(fighter.knockback_velocity) < 2:
+		fighter.knockback_velocity = 0

@@ -119,17 +119,26 @@ static func _connect(
 		material = (
 			"stone" if defender.limbs.parts[zone].regrown_id == "marble_statue_leg" else "bone"
 		)
+	var finisher := (
+		not blocked
+		and attacker.attack_hit_count > 1
+		and attacker.hits_done + 1 >= attacker.attack_hit_count
+	)
+	var extra_stop := 2 if finisher and bool(world.combat.get("edge_attacks", false)) else 0
 	impact.payload = {
 		"zone": zone,
 		"material": material,
-		"hitstop_attacker": attacker.attack_hitstop_self,
-		"hitstop_defender": attacker.attack_hitstop_other,
+		"hitstop_attacker": attacker.attack_hitstop_self + extra_stop,
+		"hitstop_defender": attacker.attack_hitstop_other + extra_stop,
 		"attacker_move": attacker.move_name,
-		"wall_bounce": defender.wall_bounced
+		"wall_bounce": defender.wall_bounced,
+		"impact_weight": 2 if finisher else (1 if attacker.attack_knockback >= 300 else 0)
 	}
 	events.append(impact)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_self)
-	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_other)
+	world.hitstop_remaining = maxi(
+		world.hitstop_remaining, attacker.attack_hitstop_other + extra_stop
+	)
 	if defender.health <= 0:
 		defender.state = SimFighter.State.KO
 		defender.state_tick = 0
@@ -224,10 +233,21 @@ static func _push(
 	var bounced := (
 		not blocked and attacker.attack_wall_bounce and (defender.x < low or defender.x > high)
 	)
+	if bool(world.combat.get("edge_attacks", false)) and not blocked and not bounced:
+		# Most displacement is carried as a decaying impulse after hitstop.
+		# Early string contacts stay close enough for the scheduled follow-up.
+		if attacker.hits_done + 1 < attacker.attack_hit_count:
+			requested = mini(requested, 20)
+		defender.x = previous_x + sign * (requested / 4)
+		defender.knockback_velocity = sign * (requested / 4)
+	elif bounced:
+		defender.knockback_velocity = -sign * 35
 	defender.wall_bounced = bounced
 	defender.x = Fx.clamp_i(defender.x, low, high)
 	# At a wall the attacker absorbs the unspent separation, preserving an escape gap.
 	var unspent := maxi(0, requested - absi(defender.x - previous_x))
+	if bool(world.combat.get("edge_attacks", false)) and not blocked and not bounced:
+		unspent = 0
 	attacker.x = Fx.clamp_i(
 		attacker.x - sign * unspent, world._low(attacker), world._high(attacker)
 	)
@@ -237,7 +257,9 @@ static func _push(
 		and attacker.attack_launch_y > defender.y
 	):
 		if bool(world.combat.get("edge_attacks", false)):
-			defender.launch_velocity = maxi(25, attacker.attack_launch_y / 3)
+			defender.launch_velocity = maxi(
+				18, attacker.attack_launch_y / (3 + mini(defender.juggle_hits, 3))
+			)
 			defender.y = maxi(defender.y, world.floor_y + 1)
 		else:
 			defender.y = attacker.attack_launch_y

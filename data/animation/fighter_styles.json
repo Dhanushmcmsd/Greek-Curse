@@ -1,0 +1,201 @@
+{
+  "theron": {
+    "name": "Bulwark",
+    "aliases": {
+      "jab_of_hermes": "theron_lead",
+      "gorgon_backfist": "theron_power",
+      "pegasus_kick": "theron_rise",
+      "achilles_heel_snap": "theron_low",
+      "cyclops_smash": "theron_power",
+      "minotaur_haymaker": "theron_power",
+      "quick_fury": "theron_lead",
+      "spartan_cross": "theron_lead",
+      "spartan_flurry": "theron_pressure",
+      "lightning_jab_chain": "theron_pursuit",
+      "phantom_flurry": "theron_retreat",
+      "ghost_sweep_chain": "theron_sweep",
+      "hoplite_sweep_chain": "theron_sweep",
+      "olympian_heel_chain": "theron_retreat",
+      "muay_thai_flurry": "theron_pursuit",
+      "titan_combo_kick": "theron_retreat",
+      "thunder_elbow_strike": "theron_power",
+      "phantom_ambush": "theron_lead"
+    },
+    "sources": {
+      "theron_lead": "FrontPunch_1_2ndBackPunch",
+      "theron_power": "BackPunch_3_2ndBackPunch",
+      "theron_rise": "BackKick_1",
+      "theron_low": "DuckBackKick_1"
+    },
+    "chains": {
+      "theron_pressure": [
+        "theron_lead",
+        "theron_power"
+      ],
+      "theron_pursuit": [
+        "theron_power",
+        "theron_lead",
+        "theron_power"
+      ],
+      "theron_retreat": [
+        "theron_low",
+        "theron_lead",
+        "theron_rise"
+      ],
+      "theron_sweep": [
+        "theron_low",
+        "theron_rise"
+      ]
+    }
+  },
+  "atalanta": {
+    "name": "Huntress",
+    "aliases": {
+      "jab_of_hermes": "atalanta_lead",
+      "gorgon_backfist": "atalanta_power",
+      "pegasus_kick": "atalanta_rise",
+      "achilles_heel_snap": "atalanta_low",
+      "cyclops_smash": "atalanta_power",
+      "minotaur_haymaker": "atalanta_power",
+      "quick_fury": "atalanta_lead",
+      "spartan_cross": "atalanta_lead",
+      "spartan_flurry": "atalanta_pressure",
+      "lightning_jab_chain": "atalanta_pursuit",
+      "phantom_flurry": "atalanta_retreat",
+      "ghost_sweep_chain": "atalanta_sweep",
+      "hoplite_sweep_chain": "atalanta_sweep",
+      "olympian_heel_chain": "atalanta_retreat",
+      "muay_thai_flurry": "atalanta_pursuit",
+      "titan_combo_kick": "atalanta_retreat",
+      "thunder_elbow_strike": "atalanta_power",
+      "phantom_ambush": "atalanta_lead"
+    },
+    "sources": {
+      "atalanta_lead": "FrontPunch_1",
+      "atalanta_power": "BackPunch_1_2ndFrontPunch",
+      "atalanta_rise": "FrontKick_2",
+      "atalanta_low": "FrontKick_3"
+    },
+    "chains": {
+      "atalanta_pressure": [
+        "atalanta_lead",
+        "atalanta_rise",
+        "atalanta_lead"
+      ],
+      "atalanta_pursuit": [
+        "atalanta_lead",
+        "atalanta_rise",
+        "atalanta_power"
+      ],
+      "atalanta_retreat": [
+        "atalanta_low",
+        "atalanta_lead",
+        "atalanta_rise"
+      ],
+      "atalanta_sweep": [
+        "atalanta_low",
+        "atalanta_rise"
+      ]
+    }
+  },
+  "pyrrhus": {
+    "name": "Warbrand",
+    "aliases": {
+      "jab_of_hermes": "pyrrhus_lead",
+      "gorgon_backfist": "pyrrhus_power",
+      "pegasus_kick": "pyrrhus_rise",
+      "achilles_heel_snap": "pyrrhus_low",
+      "cyclops_smash": "pyrrhus_power",
+      "minotaur_haymaker": "pyrrhus_power",
+      "quick_fury": "pyrrhus_lead",
+      "spartan_cross": "pyrrhus_lead",
+      "spartan_flurry": "pyrrhus_pressure",
+      "lightning_jab_chain": "pyrrhus_pursuit",
+      "phantom_flurry": "pyrrhus_retreat",
+      "ghost_sweep_chain": "pyrrhus_sweep",
+      "hoplite_sweep_chain": "pyrrhus_sweep",
+      "olympian_heel_chain": "pyrrhus_retreat",
+      "muay_thai_flurry": "pyrrhus_pursuit",
+      "titan_combo_kick": "pyrrhus_retreat",
+      "thunder_elbow_strike": "pyrrhus_power",
+      "phantom_ambush": "pyrrhus_lead"
+    },
+    "sources": {
+      "pyrrhus_lead": "BackPunch_1_2ndBackPunch",
+      "pyrrhus_power": "BackPunch_2",
+      "pyrrhus_rise": "BackKick_3",
+      "pyrrhus_low": "BackKick_3_3rdFrontKick"
+    },
+    "chains": {
+      "pyrrhus_pressure": [
+        "pyrrhus_power",
+        "pyrrhus_lead",
+        "pyrrhus_power"
+      ],
+      "pyrrhus_pursuit": [
+        "pyrrhus_lead",
+        "pyrrhus_rise",
+        "pyrrhus_power"
+      ],
+      "pyrrhus_retreat": [
+        "pyrrhus_low",
+        "pyrrhus_lead",
+        "pyrrhus_rise"
+      ],
+      "pyrrhus_sweep": [
+        "pyrrhus_low",
+        "pyrrhus_rise"
+      ]
+    }
+  },
+  "sibyl": {
+    "name": "Oracle",
+    "aliases": {
+      "jab_of_hermes": "sibyl_lead",
+      "gorgon_backfist": "sibyl_power",
+      "pegasus_kick": "sibyl_rise",
+      "achilles_heel_snap": "sibyl_low",
+      "cyclops_smash": "sibyl_power",
+      "minotaur_haymaker": "sibyl_power",
+      "quick_fury": "sibyl_lead",
+      "spartan_cross": "sibyl_lead",
+      "spartan_flurry": "sibyl_pressure",
+      "lightning_jab_chain": "sibyl_pursuit",
+      "phantom_flurry": "sibyl_retreat",
+      "ghost_sweep_chain": "sibyl_sweep",
+      "hoplite_sweep_chain": "sibyl_sweep",
+      "olympian_heel_chain": "sibyl_retreat",
+      "muay_thai_flurry": "sibyl_pursuit",
+      "titan_combo_kick": "sibyl_retreat",
+      "thunder_elbow_strike": "sibyl_power",
+      "phantom_ambush": "sibyl_lead"
+    },
+    "sources": {
+      "sibyl_lead": "FrontPunch_1_3rdBackPunch",
+      "sibyl_power": "BackPunch_3",
+      "sibyl_rise": "FrontKick_1",
+      "sibyl_low": "DuckFrontKick_1"
+    },
+    "chains": {
+      "sibyl_pressure": [
+        "sibyl_lead",
+        "sibyl_power"
+      ],
+      "sibyl_pursuit": [
+        "sibyl_rise",
+        "sibyl_lead",
+        "sibyl_low",
+        "sibyl_power"
+      ],
+      "sibyl_retreat": [
+        "sibyl_low",
+        "sibyl_lead",
+        "sibyl_rise"
+      ],
+      "sibyl_sweep": [
+        "sibyl_low",
+        "sibyl_rise"
+      ]
+    }
+  }
+}
