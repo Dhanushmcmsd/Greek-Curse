@@ -367,6 +367,7 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	shader.set_shader_parameter("strength", base_strength)
 	shader.set_shader_parameter("guard", blocked)
 	shader.set_shader_parameter("combo_tier", combo_tier)
+	shader.set_shader_parameter("sparkle", load("res://assets/vfx/exported/spark_trail.png"))
 	flash.material_override = shader
 	_register(flash, particles, int(config["particle_cap"]), 0.36)
 	flash.global_position = at + Vector3(0, 0, 0.08)
@@ -376,6 +377,25 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	tween.tween_method(
 		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.16
 	)
+	if not reduced and not blocked:
+		var haze := MeshInstance3D.new()
+		var cloud := QuadMesh.new()
+		cloud.size = Vector2(0.55, 0.42)
+		haze.mesh = cloud
+		var mist := ShaderMaterial.new()
+		mist.shader = load("res://assets/shaders/impact_dust.gdshader")
+		mist.set_shader_parameter(
+			"smoke_atlas", load("res://assets/vfx/exported/smoke_flipbook.png")
+		)
+		haze.material_override = mist
+		_register(haze, particles, int(config["particle_cap"]), 0.35)
+		haze.global_position = at + Vector3(0, 0, 0.06)
+		var dissolve := create_tween().set_parallel(true)
+		dissolve.tween_property(haze, "scale", Vector3.ONE * 1.8, 0.3)
+		dissolve.tween_method(func(v: float): mist.set_shader_parameter("age", v), 0.08, 0.99, 0.3)
+		dissolve.tween_method(
+			func(v: float): mist.set_shader_parameter("opacity", v), 0.24, 0.0, 0.3
+		)
 	# A brief local light binds the impact to the character materials.
 	if not reduced:
 		var light := OmniLight3D.new()
@@ -522,10 +542,17 @@ func trail(from: Vector3, to: Vector3) -> void:
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	# Warmer, more vivid orange-amber trail for a Tekken-style energy look
 	mat.albedo_color = Color(1.0, 0.65, 0.15, 0.42)
-	var width := Vector3.UP * 0.042
+	mat.albedo_texture = load("res://assets/vfx/exported/smoke_trail.png")
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	var width := Vector3.UP * 0.035
 	ribbon.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-	for point in [from - width, from + width, to + width, from - width, to + width, to - width]:
-		ribbon.surface_add_vertex(point)
+	var points := [from - width, from + width, to + width, from - width, to + width, to - width]
+	var uvs := [
+		Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 0), Vector2(1, 1), Vector2(0, 1)
+	]
+	for index in points.size():
+		ribbon.surface_set_uv(uvs[index])
+		ribbon.surface_add_vertex(points[index])
 	ribbon.surface_end()
 	mesh.mesh = ribbon
 	mesh.material_override = mat

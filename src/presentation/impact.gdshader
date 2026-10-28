@@ -4,6 +4,7 @@ uniform vec4 tint : source_color = vec4(1.0, 0.65, 0.22, 1.0);
 uniform float strength = 1.0;
 uniform bool guard = false;
 uniform int combo_tier = 0;
+uniform sampler2D sparkle : source_color, filter_linear_mipmap;
 void fragment() {
     vec2 p = UV * 2.0 - 1.0;
     float r = length(p);
@@ -15,7 +16,8 @@ void fragment() {
     float sliver = exp(-pow(p.y * 36.0 + sin(p.x * 12.0) * 0.5, 2.0));
     sliver *= pow(max(0.0, 1.0 - abs(p.x)), 3.0) * 0.35;
     float guard_arc = exp(-pow((r - 0.55) * 45.0, 2.0)) * max(0.0, cos(a + 0.4));
-    float mask = core + bloom + rays + sliver;
+    float flecks = texture(sparkle, UV).r * smoothstep(0.18, 0.4, r) * 0.3;
+    float mask = core + bloom + rays + sliver + flecks;
     if (guard) { mask = guard_arc * 0.7 + core * 0.4 + rays * 0.25; }
     ALBEDO = mix(tint.rgb, vec3(1.0, 0.96, 0.84), core) * (1.0 + core);
     ALPHA = mask * strength * (1.0 - smoothstep(0.7, 1.0, r));

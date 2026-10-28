@@ -5,7 +5,7 @@ extends RefCounted
 
 static func install(model: Node3D, stage: Node3D) -> void:
 	var stone := StandardMaterial3D.new()
-	stone.albedo_texture = load("res://assets/environment/ruins/rock_diffuse.jpg")
+	stone.albedo_texture = load("res://assets/environment/ruins/olympus_flagstones.png")
 	stone.normal_enabled = true
 	stone.normal_texture = load("res://assets/environment/ruins/rock_normal.jpg")
 	stone.normal_scale = 0.35
@@ -14,8 +14,8 @@ static func install(model: Node3D, stage: Node3D) -> void:
 	stone.roughness = 0.95
 	stone.uv1_triplanar = true
 	stone.uv1_world_triplanar = true
-	stone.uv1_scale = Vector3.ONE * 0.7
-	stone.albedo_color = Color(0.12, 0.15, 0.18)
+	stone.uv1_scale = Vector3.ONE * 0.35
+	stone.albedo_color = Color(0.42, 0.44, 0.46)
 	var bronze := StandardMaterial3D.new()
 	bronze.albedo_color = Color(0.25, 0.16, 0.065)
 	bronze.metallic = 0.75
@@ -28,9 +28,7 @@ static func install(model: Node3D, stage: Node3D) -> void:
 	floor_mesh.mesh = floor_plane
 	var floor_material := ShaderMaterial.new()
 	floor_material.shader = load("res://assets/shaders/ruins_floor.gdshader")
-	floor_material.set_shader_parameter(
-		"stone", load("res://assets/environment/ruins/olympus_flagstones.png")
-	)
+	floor_material.set_shader_parameter("stone", stone.albedo_texture)
 	floor_material.set_shader_parameter("stone_normal", stone.normal_texture)
 	floor_mesh.material_override = floor_material
 	stage.add_child(floor_mesh)
@@ -48,25 +46,38 @@ static func install(model: Node3D, stage: Node3D) -> void:
 	backdrop.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	stage.add_child(backdrop)
 	backdrop.position = Vector3(0, 3.4, -10)
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 28102026
-	for i in 35:
-		var rock := MeshInstance3D.new()
-		var sphere := SphereMesh.new()
-		sphere.radial_segments = 9
-		sphere.rings = 5
-		rock.mesh = sphere
-		rock.material_override = stone
-		stage.add_child(rock)
-		var side := -1.0 if i % 2 == 0 else 1.0
-		rock.position = Vector3(
-			side * rng.randf_range(4.8, 8.0), rng.randf_range(-0.2, 0.1), rng.randf_range(-4.0, 0.5)
-		)
-		rock.scale = Vector3(
-			rng.randf_range(0.4, 1.7), rng.randf_range(0.4, 1.2), rng.randf_range(0.5, 1.4)
-		)
-		rock.scale *= 0.35
-		rock.rotation = Vector3(rng.randf(), rng.randf() * TAU, rng.randf())
+	# Architectural silhouettes ground the arena in front of the distant matte.
+	for side in [-1.0, 1.0]:
+		for depth in [-3.0, -6.5]:
+			var column := Node3D.new()
+			stage.add_child(column)
+			column.position = Vector3(side * (5.1 if depth == -3.0 else 6.3), 0, depth)
+			_stone_part(column, stone, Vector3(0, 0.12, 0), Vector3(0.95, 0.24, 0.95))
+			_stone_part(column, stone, Vector3(0, 2.75, 0), Vector3(0.9, 0.22, 0.9))
+			var shaft := MeshInstance3D.new()
+			var cylinder := CylinderMesh.new()
+			cylinder.top_radius = 0.26
+			cylinder.bottom_radius = 0.33
+			cylinder.height = 2.45
+			cylinder.radial_segments = 20
+			shaft.mesh = cylinder
+			shaft.material_override = stone
+			column.add_child(shaft)
+			shaft.position.y = 1.45
+			for ring_height in [0.3, 0.42, 2.53, 2.64]:
+				_stone_part(column, stone, Vector3(0, ring_height, 0), Vector3(0.73, 0.09, 0.73))
+	for x in [-4.3, 4.3]:
+		_stone_part(stage, stone, Vector3(x, 0.35, -0.15), Vector3(0.36, 0.7, 0.36))
+		var bowl := MeshInstance3D.new()
+		var basin := CylinderMesh.new()
+		basin.top_radius = 0.3
+		basin.bottom_radius = 0.14
+		basin.height = 0.18
+		basin.radial_segments = 24
+		bowl.mesh = basin
+		bowl.material_override = bronze
+		stage.add_child(bowl)
+		bowl.position = Vector3(x, 0.79, -0.15)
 	for x in [-4.3, 4.3]:
 		var fire := OmniLight3D.new()
 		fire.position = Vector3(x, 1.3, 0.2)
@@ -102,3 +113,13 @@ static func install(model: Node3D, stage: Node3D) -> void:
 		flame.color_ramp = ramp
 		stage.add_child(flame)
 		flame.position = Vector3(x, 0.95, -0.15)
+
+
+static func _stone_part(parent: Node3D, material: Material, at: Vector3, size: Vector3) -> void:
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = size
+	mesh.mesh = box
+	mesh.material_override = material
+	parent.add_child(mesh)
+	mesh.position = at

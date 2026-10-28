@@ -43,9 +43,15 @@ static func _window_connects(
 		world.tick < defender.invulnerable_until
 		or defender.in_dodge_iframe(iframe_start, iframe_end)
 	):
-		return true
+		# An invulnerable overlap is not a hit. Keep the remaining active frames live.
+		return false
 	if defender.armor_hits > 0:
 		defender.armor_hits -= 1
+		var absorbed := SimEvent.make(
+			SimEvent.Kind.BLOCK, attacker_index, 1 - attacker_index, 0, world.round_index, -1
+		)
+		absorbed.payload = {"zone": zone, "armored": true, "attacker_move": attacker.move_name}
+		events.append(absorbed)
 		return true
 	_connect(world, attacker, defender, attacker_index, zone, events)
 	return true

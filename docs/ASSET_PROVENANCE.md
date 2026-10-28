@@ -33,3 +33,7 @@ Generation prompt:
 `assets/environment/ruins/olympus_flagstones.png` was generated with the built-in image-generation tool on 2026-10-28 and copied into the project. Original saved output: `C:/Users/Admin/.codex/generated_images/01a18318-b226-7872-a142-f9e3dad4e09c/exec-1dc31c71-c4a6-447c-923f-54153b213a49.png`.
 
 Prompt: Create a production game material texture, square 2048x2048, strictly orthographic top-down seamless tileable albedo texture of ancient Greek ruined temple paving. Large irregular rectangular charcoal grey limestone flagstones with thin worn joints, pale mineral streaks, chipped eroded edges, small cracks, dark damp weathering, tiny subtle moss in a few joints. Realistic scanned stone quality. Cool neutral grey with restrained warm grey undertones. Flat diffuse overcast illumination, no directional shadows, no perspective, no borders, no text, no props, no vignette. Tiles must meet seamlessly at all four edges. Entire image is the continuous stone surface. Strong fine-grained texture and age variation without large bright patches. This will be used on a 3D fighting arena floor adjoining photorealistic stormy Greek ruins.
+
+## User-supplied exports, 2026-10-29
+
+The animation resources in assets/animations/exported and images in assets/vfx/exported derive from the user's supplied Exports tree. They are separate from the original/CC0 assets documented above. See EXPORTED_MOTION_PASS.md, exported_motion_inventory.json and exported_texture_sources.json for source identity, conversion, fingerprints and limitations.

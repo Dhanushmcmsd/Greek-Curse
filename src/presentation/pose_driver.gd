@@ -356,6 +356,8 @@ func _select(fighter: SimFighter) -> String:
 
 ## Called by fighter_view when a hit/block event arrives
 func on_hit(zone: String, blocked: bool, combo_hits: int, move_name: String = "") -> void:
+	if rig != null and rig.anim_player != null:
+		rig.anim_player.stop()
 	last_hit_zone = zone
 	last_attacker_move = move_name
 	if blocked:

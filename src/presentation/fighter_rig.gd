@@ -167,6 +167,17 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 							default_lib.remove_animation(target_name)
 						default_lib.add_animation(target_name, dup_anim)
 				loaded_glb.queue_free()
+	var exported_dir := "res://assets/animations/exported/" + id
+	if mid == id and DirAccess.dir_exists_absolute(exported_dir):
+		var library := anim_player.get_animation_library("")
+		for file in DirAccess.get_files_at(exported_dir):
+			if file.ends_with(".res"):
+				var clip_name := id + "_move_" + file.get_basename()
+				var imported := load(exported_dir + "/" + file) as Animation
+				if imported != null:
+					if library.has_animation(clip_name):
+						library.remove_animation(clip_name)
+					library.add_animation(clip_name, imported)
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
 	var dimensions_path := "res://assets/fighters_mixamo/model_dimensions.json"

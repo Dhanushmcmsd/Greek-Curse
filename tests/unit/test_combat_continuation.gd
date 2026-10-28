@@ -206,3 +206,75 @@ func test_all_roster_combo_contacts_at_common_height() -> void:
 					if event.kind == SimEvent.Kind.HIT:
 						contacts += 1
 			assert_eq(contacts, int(row.get("hit_count", 1)), opponent + " " + move)
+
+
+func test_active_window_survives_temporary_invulnerability() -> void:
+	var world := MatchLauncher.make_world(MatchConfig.new())
+	var a := world.fighters[0]
+	var b := world.fighters[1]
+	a.x = -225
+	b.x = 225
+	SimMovement._begin_named(world, a, "jab_of_hermes", "arm_l")
+	a.state = SimFighter.State.ACTIVE
+	b.invulnerable_until = world.tick + 1
+	SimCombat.resolve(world, [])
+	assert_eq(a.hits_done, 0, "invulnerability does not spend remaining active window")
+	world.tick += 1
+	var health := b.health
+	SimCombat.resolve(world, [])
+	assert_true(b.health < health, "contact lands when invulnerability ends during active frames")
+	assert_eq(a.hits_done, 1, "only one hit")
+
+
+func test_armor_absorption_emits_feedback_once() -> void:
+	var world := MatchLauncher.make_world(MatchConfig.new())
+	var a := world.fighters[0]
+	var b := world.fighters[1]
+	a.x = -225
+	b.x = 225
+	SimMovement._begin_named(world, a, "jab_of_hermes", "arm_l")
+	a.state = SimFighter.State.ACTIVE
+	b.armor_hits = 1
+	var events: Array = []
+	SimCombat.resolve(world, events)
+	SimCombat.resolve(world, events)
+	assert_eq(events.size(), 1, "one visible armored impact")
+	assert_true(events[0].payload.armored, "armor feedback distinguished from damage")
+	assert_eq(b.armor_hits, 0, "armor consumed exactly once")
+
+
+func test_attacks_damage_every_opponent_in_both_directions() -> void:
+	for opponent in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		for facing in [-1, 1]:
+			for move in [
+				"jab_of_hermes",
+				"spartan_cross",
+				"pegasus_kick",
+				"spartan_flurry",
+				"phantom_flurry",
+				"lightning_jab_chain"
+			]:
+				var config := MatchConfig.new()
+				config.fighter_ids.assign(["theron", opponent])
+				var world := MatchLauncher.make_world(config)
+				world.hazards_enabled = false
+				var a := world.fighters[0]
+				var b := world.fighters[1]
+				a.x = -225 * facing
+				b.x = 225 * facing
+				a.facing = facing
+				var row := {}
+				for entry in world.moves:
+					if entry.id == move:
+						row = entry
+				SimMovement._begin_named(world, a, move, str(row.limb_side))
+				var hits := 0
+				for tick in 140:
+					for event in world.step([0, 0]):
+						if event.kind == SimEvent.Kind.HIT:
+							hits += 1
+				assert_eq(
+					hits,
+					int(row.get("hit_count", 1)),
+					opponent + " " + move + " facing=" + str(facing)
+				)
