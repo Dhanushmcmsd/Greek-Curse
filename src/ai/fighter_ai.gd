@@ -26,7 +26,10 @@ func decide(observation: Dictionary) -> int:
 	while history.size() > delay + 2:
 		history.pop_front()
 	if tick < next_decision:
-		return last_mask
+		var held := last_mask
+		for bit in SimInput.ATTACK_BITS:
+			held &= ~bit
+		return held
 	var seen: Dictionary = {}
 	for row in history:
 		if int(row["tick"]) <= tick - delay:

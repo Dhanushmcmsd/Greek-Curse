@@ -165,8 +165,9 @@ func world_boxes(
 
 
 func hash_values() -> Array:
-	var values: Array = [max_integrity, losses]
+	var values: Array = [max_integrity, losses, int(amputation_occurred)]
 	for name in LIMB_NAMES:
+		values.append(int(limb_damage_tracker.get(name, 0)))
 		values.append(int(integrity.get(name, 0)))
 		values.append_array(parts[name].hash_values())
 	return values

@@ -34,6 +34,7 @@ var combat: Dictionary = {}
 var limb_rules: Dictionary = {}
 var body_rules: Dictionary = {}
 var amputations: Array = []
+var match_sever_awarded: bool = false
 var hitstop_remaining: int = 0
 var rng: SimRng = SimRng.new(1)
 
@@ -143,6 +144,7 @@ func snapshot_hash() -> int:
 		draw_uses,
 		rng.get_state(),
 		hitstop_remaining,
+		int(match_sever_awarded),
 	]
 	if hazards_enabled:
 		values.append_array([hazard_offset, hazard_zone, hazard_cycle, hazard_hits])
@@ -153,6 +155,10 @@ func snapshot_hash() -> int:
 				[
 					fighter.x,
 					fighter.y,
+					int(fighter.launched),
+					fighter.launch_velocity,
+					fighter.juggle_hits,
+					int(fighter.wall_bounced),
 					fighter.facing,
 					fighter.state,
 					fighter.state_tick,
@@ -165,6 +171,7 @@ func snapshot_hash() -> int:
 					fighter.meter,
 					fighter.pose_id(),
 					fighter.cooldown_ticks,
+					fighter.attack_rearm_ticks,
 					fighter.armor_hits,
 					fighter.hits_done,
 				]
@@ -227,6 +234,7 @@ func reset_for_match(mode: String) -> void:
 	wins = [0, 0]
 	draw_uses = 0
 	amputations = []
+	match_sever_awarded = false
 	for fighter in fighters:
 		fighter.modifiers.clear()
 		var rows := fighter.limbs.export_state() if mode == "career" else {}
@@ -327,6 +335,7 @@ func _finish_round(events: Array) -> void:
 
 
 func _close_round(events: Array, winner: int) -> void:
+	SimSeverance.award_round_end(self, winner, events)
 	events.append(SimEvent.make(SimEvent.Kind.ROUND_END, -1, -1, 0, round_index, winner))
 	if winner < 0:
 		if draw_uses < draw_replays:
@@ -357,10 +366,16 @@ func _reset_bodies() -> void:
 		fighter.x = spawn_x[index]
 		fighter.y = floor_y
 		fighter.health = max_health
+		fighter.launched = false
+		fighter.launch_velocity = 0
+		fighter.juggle_hits = 0
+		fighter.wall_bounced = false
+		fighter.invulnerable_until = 0
 		fighter.stamina = fighter.stamina_max
 		fighter.y = floor_y
 		fighter.pose = "standing"
 		fighter.cooldown_ticks = 0
+		fighter.attack_rearm_ticks = 0
 		fighter.chain = ChainRecord.new()
 		fighter.buffer = SimInputBuffer.new()
 		fighter.state = SimFighter.State.IDLE

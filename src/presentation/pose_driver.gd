@@ -647,6 +647,19 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		act_key = "idle"
 	elif fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.STAGGER]:
 		act_key = "stagger"
+		if fighter.state == SimFighter.State.HITSTUN:
+			act_key = (
+				"reaction_wall_splat_bounce"
+				if fighter.wall_bounced
+				else (
+					"reaction_gut_crumple"
+					if (
+						last_attacker_move
+						in ["thunder_elbow_strike", "phantom_ambush", "divine_uppercut"]
+					)
+					else "hit_head_snap" if last_hit_zone == "head" else "hit_light"
+				)
+			)
 	elif fighter.state == SimFighter.State.KO:
 		act_key = "knockdown"
 	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:

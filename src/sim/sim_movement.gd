@@ -10,6 +10,8 @@ static func advance(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 		fighter.pose = "crouch"
 	if fighter.cooldown_ticks > 0 and fighter.state != SimFighter.State.DODGE:
 		fighter.cooldown_ticks -= 1
+	if fighter.attack_rearm_ticks > 0:
+		fighter.attack_rearm_ticks -= 1
 	fighter.blocking = false
 	if fighter.state == SimFighter.State.KO:
 		return
@@ -55,7 +57,7 @@ static func _counting_down(fighter: SimFighter) -> bool:
 
 static func _tick_down(fighter: SimFighter) -> void:
 	fighter.state_tick -= 1
-	if fighter.state_tick <= 0:
+	if fighter.state_tick <= 0 and not fighter.launched:
 		fighter.state = SimFighter.State.IDLE
 		fighter.state_tick = 0
 
@@ -82,6 +84,7 @@ static func _age_move(world: SimWorld, fighter: SimFighter) -> void:
 		var stagger := SimRegrown.whiff(world, fighter)
 		fighter.state = SimFighter.State.STAGGER if stagger > 0 else SimFighter.State.IDLE
 		fighter.clear_move()
+		fighter.attack_rearm_ticks = 8 if bool(world.combat.get("edge_attacks", false)) else 0
 		fighter.state_tick = stagger
 		return
 	fighter.state_tick = fighter.move_age
@@ -126,7 +129,7 @@ static func _attack_level(mask: int) -> bool:
 
 
 static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
-	if fighter.state == SimFighter.State.STAGGER:
+	if fighter.state == SimFighter.State.STAGGER or fighter.attack_rearm_ticks > 0:
 		return
 	if _edge(world, fighter, SimInput.DODGE) and fighter.cooldown_ticks <= 0:
 		if SimStamina.try_spend(fighter, int(world.combat["dodge_cost"]), world.combat):
@@ -149,6 +152,11 @@ static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
 	if fighter.pose == "hop" and fighter.attack_slot.begins_with("leg"):
 		return false
+	if (
+		bool(world.combat.get("edge_attacks", false))
+		and (not fighter.landed_hit or fighter.hits_done < fighter.attack_hit_count)
+	):
+		return false
 	if not fighter.attack_can_cancel:
 		return false
 	if fighter.move_age < fighter.cancel_start or fighter.move_age >= fighter.cancel_end:
@@ -160,10 +168,12 @@ static func _try_cancel(world: SimWorld, fighter: SimFighter) -> bool:
 		return false
 	if not has_both_arms:
 		var target_move_id: String = chosen["id"]
-		if target_move_id in ["olympian_barrage", "grab", "hephaestus_forge_shield"]:
+		if (
+			target_move_id
+			in ["olympian_barrage", "olympian_crusher", "grab", "hephaestus_forge_shield"]
+		):
 			return false
-	_begin_named(world, fighter, chosen["id"], chosen["slot"])
-	return true
+	return _begin_named(world, fighter, chosen["id"], chosen["slot"])
 
 
 static func _chosen_move(
@@ -175,13 +185,26 @@ static func _chosen_move(
 			effective |= bit
 			if not allow_level or not mask & bit:
 				effective |= fighter.buffer.direction_for(bit)
-	return SimMoveAvailability.select(fighter, effective, world.body_rules)
+	var chosen := SimMoveAvailability.select(fighter, effective, world.body_rules)
+	if chosen.is_empty():
+		return chosen
+	for move in world.moves:
+		if move["id"] == chosen["id"]:
+			return chosen
+	# Minimal replay/test catalogs can omit advanced directional moves.
+	return SimMoveAvailability.select(
+		fighter, effective & ~(SimInput.LEFT | SimInput.RIGHT | SimInput.DOWN), world.body_rules
+	)
 
 
 static func _wants(
 	world: SimWorld, fighter: SimFighter, bit: int, mask: int, allow_level: bool
 ) -> bool:
-	if allow_level and SimInput.has_bit(mask, bit):
+	if (
+		allow_level
+		and not bool(world.combat.get("edge_attacks", false))
+		and SimInput.has_bit(mask, bit)
+	):
 		return true
 	return _edge(world, fighter, bit)
 
@@ -192,21 +215,21 @@ static func _edge(world: SimWorld, fighter: SimFighter, bit: int) -> bool:
 
 static func _begin_named(
 	world: SimWorld, fighter: SimFighter, move_id: String, slot: String
-) -> void:
+) -> bool:
 	var found := -1
 	for index in world.moves.size():
 		if str(world.moves[index]["id"]) == move_id:
 			found = index
 			break
 	if found < 0:
-		return
+		return false
 	var move: Dictionary = world.moves[found]
 	if not SimAbilities.ready(world, fighter, move_id):
-		return
+		return false
 	if fighter.limbs.parts.has(slot) and not fighter.limbs.usable(slot):
-		return
+		return false
 	if not SimStamina.try_spend(fighter, int(move["cost"]), world.combat):
-		return
+		return false
 	var scaled := Fx.percent(int(move["damage"]), fighter.power_percent)
 	var scaled_limb := Fx.percent(int(move.get("limb_damage", 0)), fighter.power_percent)
 	var percent := SimModifier.percent_for(fighter, world.tick)
@@ -226,6 +249,8 @@ static func _begin_named(
 	SimRegrown.begin(fighter, move)
 	_age_move(world, fighter)
 	_consume_edges(fighter, move_id)
+
+	return true
 
 
 static func _consume_edges(fighter: SimFighter, _move_id: String) -> void:
@@ -259,24 +284,40 @@ static func _dodge_motion(world: SimWorld, fighter: SimFighter, mask: int) -> vo
 
 
 static func _gravity(world: SimWorld, fighter: SimFighter) -> void:
+	if fighter.launched and bool(world.combat.get("edge_attacks", false)):
+		fighter.y += fighter.launch_velocity
+		fighter.launch_velocity -= 4 + mini(fighter.juggle_hits, 4)
+		if fighter.y <= world.floor_y:
+			fighter.y = world.floor_y
+			fighter.launched = false
+			fighter.launch_velocity = 0
+			fighter.juggle_hits = 0
+			if fighter.state != SimFighter.State.KO:
+				fighter.state = SimFighter.State.STAGGER
+				fighter.state_tick = 20
+				fighter.invulnerable_until = world.tick + 12
+		return
 	if fighter.y <= world.floor_y:
 		fighter.y = world.floor_y
 		return
 	# Use reduced gravity scale for launched juggle combos
 	var base_gravity := int(world.combat["gravity_mm_per_tick"])
 	var is_airborne := fighter.y > world.floor_y
-	var is_juggle := (
-		is_airborne and fighter.state == SimFighter.State.HITSTUN and fighter.attack_launch_y > 0
-	)
+	var is_juggle := is_airborne and fighter.launched
 	var launch_pct: int = int(world.combat.get("launch_gravity_percent", 72)) if is_juggle else 100
 	var gravity: int = Fx.percent(base_gravity, launch_pct)
 	# Progressive juggle gravity: each successive airborne hit adds juggle_gravity_per_tick
 	var juggle_extra := int(world.combat.get("juggle_gravity_per_tick", 0))
-	if is_juggle and fighter.hits_done > 1:
-		gravity += juggle_extra * mini(fighter.hits_done - 1, 4)
+	if is_juggle and fighter.juggle_hits > 1:
+		gravity += juggle_extra * mini(fighter.juggle_hits - 1, 4)
 	fighter.y -= gravity
-	if fighter.y < world.floor_y:
+	if fighter.y <= world.floor_y:
 		fighter.y = world.floor_y
+		fighter.launched = false
+		fighter.juggle_hits = 0
+		if is_juggle and fighter.state != SimFighter.State.KO:
+			fighter.state = SimFighter.State.STAGGER
+			fighter.state_tick = 20
 		# Landing: brief invulnerability if wakeup_invuln_ticks configured
 		if fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.KO] and is_juggle:
 			var invuln := int(world.combat.get("wakeup_invuln_ticks", 0))

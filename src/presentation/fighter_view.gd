@@ -160,36 +160,9 @@ func _sever_effect(slot: String) -> void:
 	var replacement := rig.replacements.has(slot)
 	if replacement:
 		pieces = rig.replacements[slot].find_children("*", "MeshInstance3D", true, false)
-	for index in pieces.size():
-		var original: MeshInstance3D = pieces[index]
-		if str(original.name).begins_with("SEAM_"):
-			continue
-		var pose := original.global_transform
-		if not replacement:
-			var joints: Array = (
-				["upper_arm", "forearm", "hand"]
-				if slot.begins_with("arm")
-				else ["thigh", "shin", "foot"]
-			)
-			var joint_name: String = joints[mini(index, joints.size() - 1)] + "." + slot.right(1)
-			var bone := rig.skeleton.find_bone(joint_name)
-			if bone >= 0:
-				var deform := (
-					rig.skeleton.get_bone_global_pose(bone)
-					* rig.skeleton.get_bone_global_rest(bone).affine_inverse()
-				)
-				pose = rig.global_transform * deform * original.transform
-			elif rig.sockets.has(slot):
-				pose = rig.sockets[slot].global_transform
-		manager.debris(original, pose, rig.basis.z.x)
+	manager.detached_limb(pieces, rig.sockets[slot].global_position, rig.basis.z.x)
 	# Dramatic gore burst for amputation
 	manager.burst(rig.sockets[slot].global_position, false, true)
-	# Additional blood splatter
-	for i in 3:
-		var offset := Vector3(
-			randf_range(-0.15, 0.15), randf_range(0.0, 0.3), randf_range(-0.1, 0.1)
-		)
-		manager.burst(rig.sockets[slot].global_position + offset, false, true)
 	# Notify pose driver for sever reaction
 	if driver != null:
 		driver.on_sever()

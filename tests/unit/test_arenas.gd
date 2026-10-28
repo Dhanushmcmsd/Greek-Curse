@@ -43,18 +43,18 @@ func test_hazard_seed_determinism_and_off_switch() -> void:
 func test_camera_clamps_and_gore_caps() -> void:
 	var settings: Dictionary = DataLoader.new().load_json("res://data/art/vfx.json").value["camera"]
 	var frame := FightCamera.framing(-100, 100, settings)
-	assert_eq(frame.y, 11.0, "camera max distance")
+	assert_eq(frame.y, float(settings["maximum_distance"]), "camera max distance")
 	assert_eq(FightCamera.framing(10, 11, settings).x, 2.5, "camera clamp")
 	var gore := GoreManager.new()
 	(Engine.get_main_loop() as SceneTree).root.add_child(gore)
 	for i in 640:
 		gore.splat(Vector3.ZERO, false)
 		gore.splat(Vector3.ZERO, true)
-	assert_eq(gore.floor_splats.size(), 64, "floor budget")
-	assert_eq(gore.wall_splats.size(), 32, "wall budget")
+	assert_eq(gore.floor_splats.size(), int(gore.config["floor_cap"]), "floor budget")
+	assert_eq(gore.wall_splats.size(), int(gore.config["wall_cap"]), "wall budget")
 	SettingsHooks.values["gore"] = "off"
 	gore.splat(Vector3.ZERO, false)
-	assert_eq(gore.floor_splats.size(), 64, "off adds no blood")
+	assert_eq(gore.floor_splats.size(), int(gore.config["floor_cap"]), "off adds no blood")
 	SettingsHooks.values["gore"] = "normal"
 	gore.free()
 

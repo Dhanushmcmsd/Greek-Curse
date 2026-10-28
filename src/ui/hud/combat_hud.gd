@@ -4,6 +4,7 @@ extends HudPrototype
 var diagrams: Array[BodyDiagram] = []
 var credit_text: String = ""
 var _resources: Array[Label] = []
+var _attack_timing: Array[Label] = []
 var _combos: Array[Label] = []
 var _credit: Label
 var _meters: Array = []
@@ -44,6 +45,11 @@ func _ready() -> void:
 		label.position = Vector2(40 if i == 0 else 760, 115)
 		add_child(label)
 		_resources.append(label)
+		var timing := Label.new()
+		timing.position = Vector2(40 if i == 0 else 760, 595)
+		timing.add_theme_font_size_override("font_size", 16)
+		add_child(timing)
+		_attack_timing.append(timing)
 		var combo := Label.new()
 		combo.position = Vector2(260 if i == 0 else 740, 150)
 		add_child(combo)
@@ -74,6 +80,42 @@ func show_match(world: SimWorld, banner: String) -> void:
 	super.show_match(world, banner)
 	for i in 2:
 		var fighter := world.fighters[i]
+		var timing := "READY"
+		var tint := Color("8db6b0")
+		if fighter.attack_rearm_ticks > 0:
+			timing = "RESET  %.2fs" % (float(fighter.attack_rearm_ticks) / 60.0)
+		elif fighter.move_id > 0:
+			var remaining := (
+				fighter.startup_ticks
+				+ fighter.active_ticks
+				+ fighter.recovery_ticks
+				- fighter.move_age
+			)
+			timing = (
+				"%s  %.2fs"
+				% [
+					SimFighter.STATE_NAMES[fighter.state].to_upper(),
+					float(maxi(0, remaining)) / 60.0
+				]
+			)
+			var open := (
+				fighter.landed_hit
+				and fighter.hits_done >= fighter.attack_hit_count
+				and fighter.attack_can_cancel
+			)
+			if (
+				open
+				and fighter.move_age >= fighter.cancel_start
+				and fighter.move_age < fighter.cancel_end
+			):
+				timing = "COMBO NOW  %.2fs" % (float(fighter.cancel_end - fighter.move_age) / 60.0)
+				tint = Color("f1c76d")
+			elif fighter.attack_can_cancel and fighter.move_age < fighter.cancel_start:
+				timing += (
+					"  |  LINK IN %.2fs" % (float(fighter.cancel_start - fighter.move_age) / 60.0)
+				)
+		_attack_timing[i].text = timing
+		_attack_timing[i].modulate = tint
 		_edges[i].color = Color(
 			0.7,
 			0.05,
@@ -112,7 +154,7 @@ func show_match(world: SimWorld, banner: String) -> void:
 			"%d HITS%s"
 			% [
 				chain.combo_hits,
-				"\nSEVERANCE COMBO" if chain.is_live(world.tick, world.limb_rules) else ""
+				"\nCHAIN ACTIVE" if chain.is_live(world.tick, world.limb_rules) else ""
 			]
 		)
 	_credit.text = credit_text

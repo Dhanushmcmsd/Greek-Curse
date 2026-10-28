@@ -89,8 +89,6 @@ static func _connect(
 	defender.health -= main
 	if defender.health < 0:
 		defender.health = 0
-	if zone in SimLimbs.LIMB_NAMES:
-		defender.limbs.register_limb_hit(zone, limb, blocked)
 	SimSeverance.hit(world, 1 - attacker_index, attacker_index, zone, limb, events)
 	_fill_meter(world, attacker, Fx.percent(main, int(world.combat["meter_dealt_percent"])), events)
 	_fill_meter(world, defender, Fx.percent(main, int(world.combat["meter_taken_percent"])), events)
@@ -120,7 +118,8 @@ static func _connect(
 		"material": material,
 		"hitstop_attacker": attacker.attack_hitstop_self,
 		"hitstop_defender": attacker.attack_hitstop_other,
-		"attacker_move": attacker.move_name
+		"attacker_move": attacker.move_name,
+		"wall_bounce": defender.wall_bounced
 	}
 	events.append(impact)
 	world.hitstop_remaining = maxi(world.hitstop_remaining, attacker.attack_hitstop_self)
@@ -145,6 +144,15 @@ static func _split(
 ) -> Array:
 	var main := attacker.attack_damage
 	var limb := attacker.attack_limb_damage
+	var scaling: Array = world.limb_rules.get("combo_damage_scaling", [100])
+	if (
+		not scaling.is_empty()
+		and (
+			world.tick - defender.chain.last_hit_tick
+			<= int(world.limb_rules.get("combo_gap_ticks", 90))
+		)
+	):
+		main = Fx.percent(main, int(scaling[mini(defender.chain.combo_hits, scaling.size() - 1)]))
 	if zone == "head":
 		main = Fx.percent(main, int(world.combat["head_main_percent"]))
 		limb = 0
@@ -160,7 +168,7 @@ static func _split(
 		if not (defender.limbs.usable("arm_l") and defender.limbs.usable("arm_r")):
 			keep = int(world.body_rules["one_arm_block_keep_percent"])
 		main = Fx.percent(main, keep)
-		limb = Fx.percent(attacker.attack_limb_damage, int(world.combat["block_chip_percent"]))
+		limb = Fx.percent(attacker.attack_limb_damage, 25)
 	return [main, limb, blocked]
 
 
@@ -207,7 +215,10 @@ static func _push(
 	defender.x += sign * requested
 	var low := world._low(defender)
 	var high := world._high(defender)
-	var bounced := attacker.attack_wall_bounce and (defender.x < low or defender.x > high)
+	var bounced := (
+		not blocked and attacker.attack_wall_bounce and (defender.x < low or defender.x > high)
+	)
+	defender.wall_bounced = bounced
 	defender.x = Fx.clamp_i(defender.x, low, high)
 	# At a wall the attacker absorbs the unspent separation, preserving an escape gap.
 	var unspent := maxi(0, requested - absi(defender.x - previous_x))
@@ -219,7 +230,15 @@ static func _push(
 		and (bounced or attacker.hits_done + 1 >= attacker.attack_hit_count)
 		and attacker.attack_launch_y > defender.y
 	):
-		defender.y = attacker.attack_launch_y
+		if bool(world.combat.get("edge_attacks", false)):
+			defender.launch_velocity = maxi(25, attacker.attack_launch_y / 3)
+			defender.y = maxi(defender.y, world.floor_y + 1)
+		else:
+			defender.y = attacker.attack_launch_y
+		defender.launched = true
+		defender.juggle_hits += 1
+	if bounced:
+		defender.x = Fx.clamp_i(defender.x - sign * 160, low, high)
 
 
 static func _fill_meter(world: SimWorld, fighter: SimFighter, amount: int, events: Array) -> void:

@@ -8,15 +8,13 @@ func test_duration_refresh_and_meter() -> void:
 	var fighter := world.fighters[1]
 	assert_eq(fighter.meter, 30, "thirty percent")
 	assert_eq(SimModifier.percent_for(fighter, 359), 115, "active at last tick")
-	assert_eq(SimModifier.percent_for(fighter, 360), 100, "expired at end")
+	assert_eq(SimModifier.percent_for(fighter, 360), 115, "permanent amputation compensation")
 	world.tick = 100
-	world.limb_rules["limb_cap"] = 2
-	for i in 3:
-		SimSeverance.hit(world, 1, 0, "leg_l", 30, [])
-	assert_eq(fighter.modifiers.size(), 1, "refresh without stacking")
-	assert_eq(fighter.modifiers[0].expires_tick, 460, "refreshes expiry")
-	assert_eq(fighter.meter, 60, "second loss fills again")
-	assert_eq(SimModifier.percent_for(fighter, 459, true), 120, "speed modifier")
+	for i in 4:
+		SimSeverance.hit(world, 1, 0, "leg_l", 50, [])
+	assert_eq(world.amputations.size(), 1, "second loss capped")
+	assert_eq(fighter.meter, 30, "no extra reward for capped loss")
+	assert_eq(SimModifier.percent_for(fighter, 459), 115, "damage does not stack")
 
 
 func test_speed_uses_fury_and_expires_during_hitstop() -> void:

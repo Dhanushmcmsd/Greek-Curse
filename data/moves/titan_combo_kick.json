@@ -9,9 +9,12 @@
   "on_block_pushback": 16,
   "hitstop_attacker": 3,
   "hitstop_defender": 4,
-  "cancel_into": ["muay_thai_flurry", "thunder_elbow_strike"],
-  "cancel_start": 20,
-  "cancel_end": 28,
+  "cancel_into": [
+    "muay_thai_flurry",
+    "thunder_elbow_strike"
+  ],
+  "cancel_start": 25,
+  "cancel_end": 35,
   "armor_hits": 0,
   "unblockable": false,
   "is_grab": false,
@@ -24,7 +27,12 @@
   "hitstun_ticks": 18,
   "blockstun_ticks": 11,
   "knockback_mm": 260,
-  "hitbox": { "x": 100, "y": 400, "w": 600, "h": 800 },
+  "hitbox": {
+    "x": 100,
+    "y": 400,
+    "w": 600,
+    "h": 800
+  },
   "cost": 5,
   "can_cancel": true,
   "hop_mm_per_tick": 5,

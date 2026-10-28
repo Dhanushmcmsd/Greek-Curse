@@ -2,6 +2,8 @@ class_name GoreManager
 extends Node3D
 ## Bounded cosmetic physics, never queried by the deterministic simulation.
 
+const STREAK_TEXTURE = preload("res://assets/vfx/impact_streak.png")
+
 var config: Dictionary
 var chunks: Array[Node] = []
 var floor_splats: Array[Node] = []
@@ -172,7 +174,7 @@ func burst(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int = 
 		if absf(at.x) > 3.9:
 			splat(Vector3(signf(at.x) * 4.6, at.y, at.z), true)
 	# For sever: extra secondary burst ring
-	if severed and not off:
+	if severed and not off and not bool(SettingsHooks.get_value("flash_reduction")):
 		_sever_ring(at)
 
 
@@ -182,9 +184,9 @@ func _sever_ring(at: Vector3) -> void:
 	ring.emitting = false
 	ring.one_shot = true
 	ring.explosiveness = 1.0
-	ring.amount = 32
+	ring.amount = 16
 	ring.lifetime = 0.55
-	ring.direction = Vector3(0, 0, 0)
+	ring.direction = Vector3(0, 1, 0)
 	ring.spread = 180.0
 	ring.initial_velocity_min = 2.0
 	ring.initial_velocity_max = 4.5
@@ -199,6 +201,8 @@ func _sever_ring(at: Vector3) -> void:
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = Color(1.0, 0.55, 0.1)
+	mat.albedo_texture = STREAK_TEXTURE
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	streak.material = mat
 	ring.mesh = streak
 	var gradient := Gradient.new()
@@ -221,11 +225,13 @@ func _sever_ring(at: Vector3) -> void:
 	smoke.initial_velocity_min = 0.4
 	smoke.initial_velocity_max = 1.2
 	smoke.gravity = Vector3(0, 0.5, 0)
-	var sph := SphereMesh.new()
-	sph.radius = 0.08
-	sph.height = 0.16
+	var sph := QuadMesh.new()
+	sph.size = Vector2(0.18, 0.18)
 	var smoke_mat := StandardMaterial3D.new()
-	smoke_mat.albedo_color = Color(0.18, 0.18, 0.18, 0.5)
+	smoke_mat.albedo_color = Color(0.22, 0.24, 0.26, 0.18)
+	smoke_mat.albedo_texture = load("res://assets/vfx/soft_flame.png")
+	smoke_mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	smoke_mat.billboard_keep_scale = true
 	smoke_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	smoke_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	sph.material = smoke_mat
@@ -308,7 +314,7 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 		color = Color("ffb24f")  # Default gold
 	var effect := CPUParticles3D.new()
 	effect.emitting = false
-	var base_count := 60 if severed else (36 + combo_tier * 8)
+	var base_count := 28 if severed else (14 + combo_tier * 3)
 	effect.amount = 12 if reduced else base_count
 	effect.lifetime = 0.32 if blocked else (0.55 if severed else (0.42 + float(combo_tier) * 0.04))
 	effect.one_shot = true
@@ -331,6 +337,8 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = color * (0.55 if reduced else 1.0)
+	mat.albedo_texture = STREAK_TEXTURE
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.no_depth_test = false
 	streak.material = mat
 	effect.mesh = streak
@@ -342,7 +350,7 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	effect.global_position = at
 	effect.emitting = true
 	# Flash disc — scale based on hit severity and combo tier
-	var disc_base_size := 1.3 if severed else (0.85 + float(combo_tier) * 0.12)
+	var disc_base_size := 0.65 if severed else (0.35 + float(combo_tier) * 0.06)
 	var flash := MeshInstance3D.new()
 	var disc := QuadMesh.new()
 	disc.size = Vector2.ONE * disc_base_size
@@ -364,7 +372,7 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.28
 	)
 	# Heavy hit or combo: spawn concentric shockwave ring
-	if not blocked and not reduced and (not severed or combo_tier >= 2):
+	if not blocked and not reduced and (severed or combo_tier >= 2):
 		_shockwave_ring(at, color)
 	# At high combo tiers, spawn extra outer energy ring
 	if not reduced and combo_tier >= 2:
@@ -386,7 +394,7 @@ func _shockwave_ring(at: Vector3, color: Color) -> void:
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	ring.material_override = mat
-	ring.global_position = at + Vector3(0, 0, 0.05)
+	ring.position = at + Vector3(0, 0, 0.05)
 	ring.rotation.x = PI / 2
 	add_child(ring)
 	var ring_tween := create_tween().set_parallel(true)
@@ -414,7 +422,7 @@ func _combo_energy_burst(at: Vector3, color: Color, tier: int) -> void:
 		mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		ring.material_override = mat
-		ring.global_position = at + Vector3(0, float(i) * 0.12, 0.04 + float(i) * 0.02)
+		ring.position = at + Vector3(0, float(i) * 0.12, 0.04 + float(i) * 0.02)
 		ring.rotation.x = PI / 2
 		add_child(ring)
 		var delay := float(i) * 0.06
@@ -514,3 +522,69 @@ func trail(from: Vector3, to: Vector3) -> void:
 	mesh.mesh = ribbon
 	mesh.material_override = mat
 	_register(mesh, particles, int(config["particle_cap"]), 0.14)
+
+
+func detached_limb(pieces: Array, joint: Vector3, direction: float) -> void:
+	if SettingsHooks.get_value("gore") == "off":
+		return
+	var body := RigidBody3D.new()
+	body.collision_layer = 2
+	body.collision_mask = 2
+	body.mass = 2.5
+	body.linear_damp = 0.7
+	body.angular_damp = 1.2
+	body.physics_material_override = PhysicsMaterial.new()
+	body.physics_material_override.bounce = 0.15
+	body.physics_material_override.friction = 0.85
+	var bounds := AABB()
+	var first := true
+	for source: MeshInstance3D in pieces:
+		if str(source.name).begins_with("SEAM_"):
+			continue
+		var posed := LimbFinish.posed_mesh(source)
+		var visual := MeshInstance3D.new()
+		visual.mesh = posed if posed != null else source.mesh
+		visual.transform = Transform3D(Basis.IDENTITY, -joint) * source.global_transform
+		body.add_child(visual)
+		for surface in visual.mesh.get_surface_count():
+			visual.set_surface_override_material(surface, source.get_active_material(surface))
+		var box := visual.transform * visual.mesh.get_aabb()
+		bounds = box if first else bounds.merge(box)
+		first = false
+	if first:
+		body.free()
+		return
+	var collision := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = bounds.size.max(Vector3.ONE * 0.04)
+	collision.shape = shape
+	collision.position = bounds.get_center()
+	body.add_child(collision)
+	_register(body, chunks, int(config["chunk_cap"]), 12.0)
+	body.global_position = joint
+	body.linear_velocity = Vector3(direction * 1.6, 2.4, 0.35)
+	body.angular_velocity = Vector3(1.8, 0.6, direction * 3.2)
+	# A short outward spray stays at the exposed joint while the limb falls.
+	var spray := CPUParticles3D.new()
+	spray.amount = 36
+	spray.one_shot = true
+	spray.explosiveness = 0.7
+	spray.lifetime = 0.65
+	spray.direction = Vector3(direction, 0.3, 0.1)
+	spray.spread = 18
+	spray.initial_velocity_min = 1.2
+	spray.initial_velocity_max = 2.5
+	spray.gravity = Vector3(0, -6, 0)
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.025, 0.065)
+	var mat := StandardMaterial3D.new()
+	mat.albedo_texture = load("res://assets/vfx/blood_drop.png")
+	mat.albedo_color = blood_color()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	quad.material = mat
+	spray.mesh = quad
+	_register(spray, particles, int(config["particle_cap"]), 0.9)
+	spray.global_position = joint
+	spray.emitting = true

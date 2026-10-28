@@ -329,15 +329,7 @@ func _consume(events: Array) -> void:
 			if gore != null:
 				gore.burst(_views[event.other].impact_point(zone), blocked, false, vfx_combo_tier)
 				# Wall-bounce VFX when fighter hits wall
-				var move_data: Dictionary = {}
-				for m in world.moves:
-					if str(m.get("id", "")) == move_name:
-						move_data = m
-						break
-				if (
-					move_data.get("wall_bounce", false)
-					and absf(_views[event.other].position.x) > 3.8
-				):
+				if bool(event.payload.get("wall_bounce", false)):
 					gore.wall_splat_burst(_views[event.other].impact_point(zone))
 			# Escalating camera impact based on combo
 			var base_impact := 0.04 + minf(0.08, float(event.amount) * 0.0025)

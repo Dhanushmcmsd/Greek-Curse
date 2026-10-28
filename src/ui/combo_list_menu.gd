@@ -83,41 +83,13 @@ func _build_ui() -> void:
 	chains_container.add_theme_constant_override("separation", 10)
 	content_box.add_child(chains_container)
 
-	# --- Titan Rush Chain ---
 	_add_combo_chain_entry(
-		"⚔ Titan Rush Chain",
-		"[Punch] + [Punch] + [Kick]  →  Titan Knee Rush  →  Olympian Thunder Elbow",
-		"Startup: 14 ticks | Cancel Window: 24–32 ticks | Wall Splat Finisher | Damage: ~86"
-	)
-	# --- Ghost Ambush Chain ---
-	_add_combo_chain_entry(
-		"👻 Ghost Ambush Chain",
-		"[Forward] + [Kick]  →  Ghost Sweep Chain  →  Phantom Flurry  →  Phantom Ambush",
-		"Startup: 8 ticks | Cancel Window: 14–20 ticks | High Stun Finisher | Damage: ~64"
-	)
-	# --- Spartan Blitz ---
-	_add_combo_chain_entry(
-		"🛡 Spartan Blitz",
-		"[Punch] + [Punch] + [Punch]  →  Spartan Flurry  →  Divine Uppercut  →  Thunder Elbow",
-		"Startup: 6 ticks | 3-stage escalation | Launcher + Wall Bounce | Damage: ~96"
-	)
-	# --- Lightning Assault ---
-	_add_combo_chain_entry(
-		"⚡ Lightning Assault",
-		"[Punch]×4 (Lightning Jab Chain)  →  Spartan Flurry  →  Muay Thai Flurry",
-		"Startup: 3 ticks | Ultra-fast 7-hit starter | Best cancel potential | Damage: ~72"
-	)
-	# --- Titan Combo Kick Loop ---
-	_add_combo_chain_entry(
-		"🦵 Titan Kick Loop",
-		"[Kick] + [Forward]  →  Titan Combo Kick  →  Muay Thai Flurry  →  Thunder Elbow",
-		"Startup: 12 ticks | Aerial juggle pressure | Leg-zone targeting | Damage: ~84"
-	)
-	# --- Divine Crusher ---
-	_add_combo_chain_entry(
-		"🌩 Divine Crusher (Super)",
-		"[Punch] (Heavy) + [Forward]  →  Divine Uppercut  →  Olympian Crusher",
-		"Startup: 10 ticks | Costs 25 meter | 2-Armor hits | Slowest but highest damage | Damage: ~72"
+		"Directional combat commands",
+		(
+			"Forward / Back follow your facing. Tap once per attack; "
+			+ "link after all hits during COMBO NOW."
+		),
+		"Left / Right Punch and Left / Right Kick use your configured limb keys. Costs use stamina."
 	)
 
 	# === INDIVIDUAL MOVES TABLE ===
@@ -151,12 +123,12 @@ func _build_ui() -> void:
 	content_box.add_child(amp_header)
 
 	_add_rule_entry(
-		"1 Amputation per match — triggered in round 2 when accumulated limb damage reaches 65+",
-		"• Leg loss: –25% movement speed  •  Arm loss: disables 2-handed cancel moves"
+		"ONE DETACHMENT — awarded to one fighter at the end of Round 2",
+		"Most damaged limb on the round loser. Other limbs stay attached and usable. No further severs."
 	)
 	_add_rule_entry(
 		"Rage Compensation — amputated fighter gains +15% damage on all remaining attacks",
-		"• Full meter top-up on sever  •  20-tick wakeup invulnerability window"
+		"• 30% meter gain on sever  •  20-tick wakeup invulnerability window"
 	)
 
 
@@ -239,6 +211,59 @@ func populate(move_rows: Array) -> void:
 			grid.remove_child(child)
 			child.queue_free()
 
+	for child in chains_container.get_children():
+		if child.get_meta("live_chain", false):
+			chains_container.remove_child(child)
+			child.queue_free()
+	var by_id := {}
+	for move in move_rows:
+		by_id[str(move["id"])] = move
+	var featured := {
+		"Titan Rush Chain": ["spartan_flurry", "muay_thai_flurry", "thunder_elbow_strike"],
+		"Ghost Ambush Chain": ["ghost_sweep_chain", "phantom_flurry", "phantom_ambush"],
+		"Lightning Assault": ["lightning_jab_chain", "spartan_flurry", "divine_uppercut"],
+		"Titan Kick Chain": ["titan_combo_kick", "muay_thai_flurry", "thunder_elbow_strike"]
+	}
+	var featured_index := 1
+	for title in featured:
+		var inputs: Array[String] = []
+		var timings: Array[String] = []
+		for id in featured[title]:
+			if by_id.has(id):
+				inputs.append(_format_input(by_id[id]))
+				timings.append("%s: %df" % [by_id[id]["display_name"], by_id[id]["startup_ticks"]])
+		if inputs.size() == 3:
+			_add_combo_chain_entry(title, " → ".join(inputs), " | ".join(timings))
+			var entry := chains_container.get_child(-1)
+			entry.set_meta("live_chain", true)
+			chains_container.move_child(entry, featured_index)
+			featured_index += 1
+	for move in move_rows:
+		if not bool(move.get("can_cancel", false)):
+			continue
+		for target_id in move.get("cancel_into", []):
+			if not by_id.has(target_id):
+				continue
+			var target: Dictionary = by_id[target_id]
+			_add_combo_chain_entry(
+				(
+					str(move.get("display_name", move["id"]))
+					+ " → "
+					+ str(target.get("display_name", target_id))
+				),
+				_format_input(move) + " → " + _format_input(target),
+				(
+					"Startup %d ticks | Cancel [%d, %d) | Follow-up cost %d stamina"
+					% [
+						int(move["startup_ticks"]),
+						int(move["cancel_start"]),
+						int(move["cancel_end"]),
+						int(target.get("cost", 0))
+					]
+				)
+			)
+			chains_container.get_child(-1).set_meta("live_chain", true)
+
 	for row in move_rows:
 		var name_lbl := Label.new()
 		name_lbl.text = str(row.get("display_name", row.get("id", "?")))
@@ -289,57 +314,28 @@ func populate(move_rows: Array) -> void:
 
 
 static func _format_input(row: Dictionary) -> String:
-	var cat: String = str(row.get("category", ""))
-	match row.get("id", ""):
-		"muay_thai_flurry":
-			return "[Kick] + [Forward]"
-		"thunder_elbow_strike":
-			return "[Punch] (Heavy)"
-		"phantom_flurry":
-			return "[Punch] + [Kick]"
-		"phantom_ambush":
-			return "[Forward] + [Punch]"
-		"spartan_flurry":
-			return "[Punch] × 3"
-		"divine_uppercut":
-			return "[Punch] (Heavy) ↑"
-		"ghost_sweep_chain":
-			return "[Forward] + [Kick] (Low)"
-		"olympian_crusher":
-			return "[Punch] + [Kick] (Super)"
-		"lightning_jab_chain":
-			return "[Punch] × 4 (Fast)"
-		"titan_combo_kick":
-			return "[Kick] + [Forward] ×3"
-		"jab_of_hermes":
-			return "[Punch] (Light)"
-		"spartan_cross":
-			return "[Punch] + [Forward]"
-		"cyclops_smash":
-			return "[Punch] (Heavy)"
-		"pegasus_kick":
-			return "[Kick] (Forward)"
-		"sweeping_hydra":
-			return "[Kick] (Sweep)"
-		"satyr_dropkick":
-			return "[Kick] (Down)"
-		"olympian_barrage":
-			return "[Punch] × 5"
+	var commands := {
+		"olympian_crusher": "Down + Right Kick",
+		"muay_thai_flurry": "Forward + Right Kick",
+		"thunder_elbow_strike": "Forward + Right Punch",
+		"phantom_flurry": "Back + Left Punch",
+		"phantom_ambush": "Back + Right Punch",
+		"spartan_flurry": "Down + Left Punch",
+		"divine_uppercut": "Down + Right Punch",
+		"ghost_sweep_chain": "Forward + Left Kick",
+		"lightning_jab_chain": "Forward + Left Punch",
+		"titan_combo_kick": "Back + Right Kick"
+	}
+	var id := str(row.get("id", ""))
+	if commands.has(id):
+		return commands[id]
+	match str(row.get("category", "")):
+		"superpower":
+			return "Equipped Super"
+		"ultimate":
+			return "Equipped Ultimate"
 		_:
-			match cat:
-				"light":
-					return "[Punch] (Light)"
-				"heavy":
-					return "[Punch] (Heavy)"
-				"kick":
-					return "[Kick]"
-				"special":
-					return "[Punch] + [Kick]"
-				"combo_special":
-					return "[Kick] + [Forward]"
-				"superpower":
-					return "[Super]"
-				"ultimate":
-					return "[Ultimate]"
-				_:
-					return "[Punch] / [Kick]"
+			return (
+				"Equip to "
+				+ ("Kick" if str(row.get("limb_side", "")).begins_with("leg") else "Punch")
+			)

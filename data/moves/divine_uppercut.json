@@ -9,7 +9,10 @@
   "on_block_pushback": 22,
   "hitstop_attacker": 4,
   "hitstop_defender": 5,
-  "cancel_into": ["thunder_elbow_strike"],
+  "cancel_into": [
+    "thunder_elbow_strike",
+    "olympian_crusher"
+  ],
   "cancel_start": 14,
   "cancel_end": 18,
   "armor_hits": 0,
@@ -24,7 +27,12 @@
   "hitstun_ticks": 22,
   "blockstun_ticks": 12,
   "knockback_mm": 320,
-  "hitbox": { "x": 100, "y": 700, "w": 520, "h": 640 },
+  "hitbox": {
+    "x": 100,
+    "y": 700,
+    "w": 520,
+    "h": 640
+  },
   "cost": 10,
   "can_cancel": true,
   "hop_mm_per_tick": 6,

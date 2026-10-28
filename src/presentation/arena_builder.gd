@@ -12,30 +12,33 @@ func _ready() -> void:
 		ModelLoader.load_model("res://assets/generated/models/arena_%s.glb" % arena_id).root
 	)
 	add_child(model)
+	if arena_id == "mount_olympus":
+		RuinsArt.install(model, self)
 	var key := DirectionalLight3D.new()
 	key.rotation_degrees = Vector3(-45, -28, 0)
-	key.light_color = Color(data["palette"][1])
-	key.light_energy = float(data["lighting"]["key_energy"])
+	key.light_color = Color("b6c9df")
+	key.light_energy = 1.15
 	key.shadow_enabled = true
 	add_child(key)
 	var fill := DirectionalLight3D.new()
 	fill.rotation_degrees = Vector3(-20, 140, 0)
 	fill.light_color = Color("7eacda")
-	fill.light_energy = float(data["lighting"]["fill_energy"])
+	fill.light_energy = 0.65
 	add_child(fill)
 	var environment := Environment.new()
 	environment.background_mode = Environment.BG_SKY
 	var sky := Sky.new()
-	var material := ProceduralSkyMaterial.new()
-	material.sky_top_color = Color(data["palette"][0])
-	material.sky_horizon_color = Color(data["palette"][0]).lightened(0.18)
-	material.ground_bottom_color = Color(data["palette"][0])
-	material.ground_horizon_color = material.sky_horizon_color
+	var material := PanoramaSkyMaterial.new()
+	material.panorama = load("res://assets/environment/ruins/storm_sky.hdr")
+	material.energy_multiplier = 0.4
 	sky.sky_material = material
 	environment.sky = sky
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	environment.ambient_light_color = Color("b6c5d4")
-	environment.ambient_light_energy = float(data["lighting"]["ambient"])
+	environment.ambient_light_energy = 0.5
+	environment.fog_enabled = true
+	environment.fog_light_color = Color("313f50")
+	environment.fog_density = 0.025
 	environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	var world_environment := WorldEnvironment.new()
 	world_environment.environment = environment

@@ -46,6 +46,7 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	)
 	LimbCatalog.install(world)
 	world.limb_rules["match_mode"] = true
+	world.combat["edge_attacks"] = true
 	_install_abilities(world, config, loader)
 	world.setup({"initial_limb_states": config.initial_limbs})
 	for index in mini(config.initial_limbs.size(), world.fighters.size()):
@@ -89,6 +90,16 @@ static func _install_abilities(world: SimWorld, config: MatchConfig, loader: Dat
 				world.moves.append(
 					loader.load_json("res://data/moves/%s.json" % row["move_id"]).value
 				)
+	# Directional combo commands are available regardless of equipped basic attacks.
+	for file in DirAccess.get_files_at("res://data/moves"):
+		if not file.ends_with(".json"):
+			continue
+		var row: Dictionary = loader.load_json("res://data/moves/" + file).value
+		var exists := false
+		for move in world.moves:
+			exists = exists or move["id"] == row["id"]
+		if not exists:
+			world.moves.append(row)
 	for index in world.fighters.size():
 		var fighter := world.fighters[index]
 		var selected: Dictionary = (

@@ -9,9 +9,14 @@
   "on_block_pushback": 8,
   "hitstop_attacker": 1,
   "hitstop_defender": 2,
-  "cancel_into": ["spartan_flurry", "divine_uppercut", "jab_of_hermes", "pegasus_kick"],
-  "cancel_start": 8,
-  "cancel_end": 12,
+  "cancel_into": [
+    "spartan_flurry",
+    "divine_uppercut",
+    "jab_of_hermes",
+    "pegasus_kick"
+  ],
+  "cancel_start": 13,
+  "cancel_end": 23,
   "armor_hits": 0,
   "unblockable": false,
   "is_grab": false,
@@ -24,7 +29,12 @@
   "hitstun_ticks": 8,
   "blockstun_ticks": 5,
   "knockback_mm": 80,
-  "hitbox": { "x": 100, "y": 900, "w": 380, "h": 350 },
+  "hitbox": {
+    "x": 100,
+    "y": 900,
+    "w": 380,
+    "h": 350
+  },
   "cost": 0,
   "can_cancel": true,
   "hop_mm_per_tick": 2,

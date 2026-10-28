@@ -19,6 +19,12 @@ static func hit(
 	var pending := limb != null and limb.zero_pending
 	amount = SimAbilities.incoming(fighter, world.tick, amount, true)
 	var applied := fighter.limbs.apply_limb_damage(zone, amount)
+	fighter.limbs.register_limb_hit(zone, amount, false)
+	# Match damage accumulates toward the one award; attached limbs remain functional.
+	if bool(rules.get("match_mode", false)) and limb != null and limb.state != "severed":
+		limb.integrity = maxi(limb.integrity, (limb.max_integrity * 26 + 99) / 100)
+		fighter.limbs.integrity[zone] = limb.integrity
+		limb.refresh(rules)
 	if count_hit:
 		fighter.chain.note(world.tick, int(rules["combo_gap_ticks"]), zone, applied, attacker)
 		_emit(
@@ -52,14 +58,14 @@ static func hit(
 			or (
 				world.round_index == amputation_round
 				and (
-					world.round_tick >= Fx.percent(world.round_ticks, 40)
-					or fighter.health <= int(world.max_health) / 2
+					world.round_tick >= Fx.percent(world.round_ticks, 80)
+					or fighter.health <= Fx.percent(world.max_health, 25)
 				)
 			)
 		)
 		in_amputation_window = round_almost_ends
 
-	if limb.integrity == 0:
+	if limb.integrity == 0 and not bool(rules.get("match_mode", false)):
 		if (live and previous != "healthy") or (pending and count_hit):
 			var cap: int = int(rules.get("limb_cap", 1))
 			if (
@@ -86,7 +92,7 @@ static func hit(
 				if best_damaged != "" and fighter.limbs.parts[best_damaged].state != "severed":
 					target_limb = best_damaged
 				var acc_damage: int = int(fighter.limbs.limb_damage_tracker.get(target_limb, 0))
-				if acc_damage >= int(rules.get("amputation_threshold", 65)) or target_limb == zone:
+				if acc_damage >= int(rules.get("amputation_threshold", 65)):
 					_sever(world, victim, attacker, target_limb, events)
 				else:
 					limb.zero_pending = true
@@ -106,9 +112,15 @@ static func hit(
 static func _sever(
 	world: SimWorld, victim: int, attacker: int, zone: String, events: Array
 ) -> void:
+	if bool(world.limb_rules.get("match_mode", false)):
+		if world.match_sever_awarded:
+			return
+		world.match_sever_awarded = true
 	var fighter := world.fighters[victim]
 	var limb: SimLimb = fighter.limbs.parts[zone]
 	limb.state = "severed"
+	limb.integrity = 0
+	fighter.limbs.integrity[zone] = 0
 	fighter.limbs.remove_modifier(zone)
 	limb.regrown_id = ""
 	limb.zero_pending = false
@@ -148,6 +160,9 @@ static func _sever(
 	)
 	fighter.modifiers.append(amputated_penalty)
 	SimModifier.fury(fighter, world.tick, world.limb_rules)
+	for modifier in fighter.modifiers:
+		if modifier.id == "desperate_fury":
+			modifier.damage_percent = 100
 
 	# Top off meter on sever — dramatic comeback fuel
 	fighter.meter = mini(
@@ -181,3 +196,16 @@ static func _emit(
 	event.payload = payload
 	event.payload["tick"] = world.tick
 	events.append(event)
+
+
+static func award_round_end(world: SimWorld, winner: int, events: Array) -> void:
+	if not bool(world.limb_rules.get("match_mode", false)):
+		return
+	if world.round_index != 2 or world.match_sever_awarded:
+		return
+	var victim := 1 - winner if winner >= 0 else 0
+	var fighter := world.fighters[victim]
+	var slot := fighter.limbs.highest_damaged_limb()
+	if slot == "":
+		return
+	_sever(world, victim, 1 - victim, slot, events)
