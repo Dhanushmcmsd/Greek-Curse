@@ -102,9 +102,11 @@ var attack_unblockable: bool = false
 var attack_is_grab: bool = false
 var attack_wall_bounce: bool = false
 var attack_can_cancel: bool = false
+var attack_is_ex: bool = false
 var cancel_start: int = 0
 var cancel_end: int = 0
 var cancel_into: Array[String] = []
+var ex_cancel_into: Array[String] = []
 var hit_x: int = 0
 var hit_y: int = 0
 var hit_w: int = 0
@@ -156,12 +158,20 @@ func begin_move(index: int, move: Dictionary, scaled_damage: int, scaled_limb: i
 	attack_is_grab = bool(move.get("is_grab", false))
 	attack_wall_bounce = bool(move.get("wall_bounce", false))
 	attack_can_cancel = bool(move.get("can_cancel", false))
+	attack_is_ex = bool(move.get("is_ex", false))
 	cancel_start = int(move.get("cancel_start", 0))
 	cancel_end = int(move.get("cancel_end", 0))
 	armor_hits = int(move.get("armor_hits", 0))
 	cancel_into = []
 	for entry in move.get("cancel_into", []):
 		cancel_into.append(str(entry))
+	ex_cancel_into = []
+	for entry in move.get("ex_cancel_into", []):
+		ex_cancel_into.append(str(entry))
+	if ex_cancel_into.is_empty():
+		for entry in cancel_into:
+			if str(entry).contains("shadow") or str(entry).contains("nut_punch") or str(entry).contains("rising") or str(entry).contains("sunglasses"):
+				ex_cancel_into.append(str(entry))
 	var box: Dictionary = move["hitbox"]
 	hit_x = int(box["x"])
 	hit_y = int(box["y"])
@@ -198,9 +208,11 @@ func clear_move() -> void:
 	attack_is_grab = false
 	attack_wall_bounce = false
 	attack_can_cancel = false
+	attack_is_ex = false
 	cancel_start = 0
 	cancel_end = 0
 	cancel_into = []
+	ex_cancel_into = []
 
 
 func hurtbox() -> Array:

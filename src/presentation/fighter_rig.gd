@@ -53,6 +53,14 @@ const ALLOWED_EXCLUDED_TRACKS: Array[String] = [
 	"R_C_skirt"
 ]
 
+
+static func _is_helper_bone(bone_name: String) -> bool:
+	for prefix in ALLOWED_EXCLUDED_TRACKS:
+		if bone_name.begins_with(prefix):
+			return true
+	return false
+
+
 static var _bone_map_cache: Dictionary = {}
 
 var model: Node3D
@@ -267,8 +275,14 @@ func get_socket_transform(slot: String) -> Transform3D:
 
 func apply_palette(id: String) -> void:
 	var tint: Color = (
-		{"default": Color.WHITE, "ivory": Color(1.0, 0.9, 0.75), "night": Color(0.6, 0.7, 0.95)}
-		. get(id, Color.WHITE)
+		{
+			"default": Color.WHITE,
+			"ivory": Color(1.0, 0.9, 0.75),
+			"night": Color(0.6, 0.7, 0.95),
+			"sunset_gold": Color(0.95, 0.78, 0.35),
+			"shadow_green": Color(0.35, 0.7, 0.45)
+		}
+		. get(id, Color.WHITE))
 	)
 	for mesh in model.find_children("*", "MeshInstance3D", true, false):
 		for index in mesh.mesh.get_surface_count():
@@ -727,6 +741,22 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 		if is_3d_transform and sub_part != "":
 			var clean_bone: String = sub_part.replace("mixamorig:", "")
 			var tgt_bone: String = clean_bone
+			# Helper joints (fingers, cloak, skirt) must not collapse onto parent bones;
+			# that overwrites hand/spine tracks and locks the hands together.
+			if _is_helper_bone(clean_bone) and skeleton.find_bone(clean_bone) == -1:
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": "",
+						"track_type": track_type,
+						"status": "EXCLUDED",
+						"reason": "Helper track '%s' kept off parent bones" % clean_bone
+					}
+				)
+				anim.remove_track(t)
+				t -= 1
+				continue
 			if skeleton.find_bone(clean_bone) == -1:
 				tgt_bone = bone_map.get(clean_bone, "")
 
