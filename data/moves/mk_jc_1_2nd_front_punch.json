@@ -1,0 +1,43 @@
+{
+  "display_name": "Fade To Black (1, 1)",
+  "startup_ticks": 8,
+  "active_ticks": 2,
+  "recovery_ticks": 14,
+  "damage": 25,
+  "limb_damage": 20,
+  "on_block_pushback": 80,
+  "hitstop_attacker": 4,
+  "hitstop_defender": 7,
+  "cancel_into": [
+    "mk_jc_1_1_3rd_back_kick",
+    "mk_jc_1_1_3rd_back_punch",
+    "mk_jc_nut_punch",
+    "mk_jc_shadow_kick"
+  ],
+  "cancel_start": 8,
+  "cancel_end": 15,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_r",
+  "zone_priority": 1,
+  "hitstun_ticks": 16,
+  "blockstun_ticks": 10,
+  "knockback_mm": 160,
+  "hitbox": {
+    "x": 200,
+    "y": 390,
+    "w": 400,
+    "h": 240
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "punch",
+  "anim_set": "punch_light",
+  "id": "mk_jc_1_2nd_front_punch"
+}

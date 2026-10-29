@@ -1,0 +1,40 @@
+{
+  "display_name": "Crouching Jab (D1)",
+  "startup_ticks": 6,
+  "active_ticks": 2,
+  "recovery_ticks": 10,
+  "damage": 15,
+  "limb_damage": 12,
+  "on_block_pushback": 50,
+  "hitstop_attacker": 3,
+  "hitstop_defender": 5,
+  "cancel_into": [
+    "mk_jc_nut_punch"
+  ],
+  "cancel_start": 6,
+  "cancel_end": 11,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_l",
+  "zone_priority": 1,
+  "hitstun_ticks": 12,
+  "blockstun_ticks": 8,
+  "knockback_mm": 100,
+  "hitbox": {
+    "x": 180,
+    "y": 180,
+    "w": 360,
+    "h": 200
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "punch",
+  "anim_set": "punch_light",
+  "id": "mk_jc_duck_front_punch_1"
+}

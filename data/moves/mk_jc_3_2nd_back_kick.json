@@ -1,0 +1,41 @@
+{
+  "display_name": "Spin Hook Check (3, 4)",
+  "startup_ticks": 12,
+  "active_ticks": 3,
+  "recovery_ticks": 19,
+  "damage": 48,
+  "limb_damage": 40,
+  "on_block_pushback": 120,
+  "hitstop_attacker": 6,
+  "hitstop_defender": 9,
+  "cancel_into": [
+    "mk_jc_nut_punch",
+    "mk_jc_rising_elbow"
+  ],
+  "cancel_start": 12,
+  "cancel_end": 18,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 60,
+  "wall_bounce": false,
+  "limb_side": "leg_r",
+  "zone_priority": 2,
+  "hitstun_ticks": 22,
+  "blockstun_ticks": 12,
+  "knockback_mm": 310,
+  "hitbox": {
+    "x": 230,
+    "y": 340,
+    "w": 470,
+    "h": 320
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 8,
+  "category": "kick",
+  "anim_set": "kick_mid",
+  "id": "mk_jc_3_2nd_back_kick"
+}

@@ -197,5 +197,50 @@
         "sibyl_rise"
       ]
     }
+  },
+  "johnny_cage": {
+    "name": "Hollywood A-Lister",
+    "aliases": {
+      "jab_of_hermes": "mk_jc_front_punch_1",
+      "gorgon_backfist": "mk_jc_back_punch_1",
+      "pegasus_kick": "mk_jc_front_kick_1",
+      "achilles_heel_snap": "mk_jc_back_kick_1",
+      "cyclops_smash": "mk_jc_2_1_4_4th_back_kick",
+      "minotaur_haymaker": "mk_jc_duck_back_punch_1",
+      "quick_fury": "mk_jc_front_punch_1",
+      "spartan_cross": "mk_jc_1_2nd_front_punch",
+      "spartan_flurry": "mk_jc_1_1_3rd_back_kick",
+      "lightning_jab_chain": "mk_jc_1_2nd_front_punch",
+      "phantom_flurry": "mk_jc_2_2nd_front_punch",
+      "ghost_sweep_chain": "mk_jc_4_2nd_front_kick",
+      "hoplite_sweep_chain": "mk_jc_duck_back_kick_1",
+      "olympian_heel_chain": "mk_jc_3_2nd_back_kick",
+      "muay_thai_flurry": "mk_jc_2_1_3rd_back_kick",
+      "titan_combo_kick": "mk_jc_shadow_kick",
+      "thunder_elbow_strike": "mk_jc_rising_elbow",
+      "phantom_ambush": "mk_jc_nut_punch"
+    },
+    "sources": {
+      "mk_jc_front_punch_1": "FrontPunch_1",
+      "mk_jc_back_punch_1": "BackPunch_1",
+      "mk_jc_front_kick_1": "FrontKick_1",
+      "mk_jc_back_kick_1": "BackKick_1",
+      "mk_jc_nut_punch": "Specialmove_NutPunch",
+      "mk_jc_shadow_kick": "Specialmove_ShadowKick",
+      "mk_jc_rising_elbow": "Specialmove_RisingElbow"
+    },
+    "chains": {
+      "mk_jc_string_1_1_4": [
+        "mk_jc_front_punch_1",
+        "mk_jc_1_2nd_front_punch",
+        "mk_jc_1_1_3rd_back_kick"
+      ],
+      "mk_jc_string_2_1_4_4": [
+        "mk_jc_back_punch_1",
+        "mk_jc_2_2nd_front_punch",
+        "mk_jc_2_1_3rd_back_kick",
+        "mk_jc_2_1_4_4th_back_kick"
+      ]
+    }
   }
 }

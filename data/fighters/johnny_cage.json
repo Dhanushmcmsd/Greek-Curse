@@ -1,0 +1,259 @@
+{
+  "id": "johnny_cage",
+  "model_id": "johnny_cage",
+  "display_name": "Johnny Cage",
+  "reach": 4,
+  "speed": 5,
+  "power": 4,
+  "limb_toughness": 4,
+  "target_size": 2,
+  "height_mm": 1820,
+  "body_width_mm": 510,
+  "hurtboxes": {
+    "standing": [
+      {
+        "name": "leg_l",
+        "x_pct": -40,
+        "y_pct": 0,
+        "w_pct": 40,
+        "h_pct": 48
+      },
+      {
+        "name": "leg_r",
+        "x_pct": 0,
+        "y_pct": 0,
+        "w_pct": 40,
+        "h_pct": 48
+      },
+      {
+        "name": "torso",
+        "x_pct": -45,
+        "y_pct": 36,
+        "w_pct": 90,
+        "h_pct": 44
+      },
+      {
+        "name": "arm_l",
+        "x_pct": -60,
+        "y_pct": 48,
+        "w_pct": 25,
+        "h_pct": 36
+      },
+      {
+        "name": "arm_r",
+        "x_pct": 35,
+        "y_pct": 48,
+        "w_pct": 25,
+        "h_pct": 36
+      },
+      {
+        "name": "head",
+        "x_pct": -18,
+        "y_pct": 90,
+        "w_pct": 36,
+        "h_pct": 10
+      }
+    ],
+    "crouch": [
+      {
+        "name": "leg_l",
+        "x_pct": -40,
+        "y_pct": 0,
+        "w_pct": 45,
+        "h_pct": 22
+      },
+      {
+        "name": "leg_r",
+        "x_pct": 0,
+        "y_pct": 0,
+        "w_pct": 45,
+        "h_pct": 22
+      },
+      {
+        "name": "torso",
+        "x_pct": -45,
+        "y_pct": 20,
+        "w_pct": 90,
+        "h_pct": 32
+      },
+      {
+        "name": "arm_l",
+        "x_pct": -48,
+        "y_pct": 45,
+        "w_pct": 95,
+        "h_pct": 12
+      },
+      {
+        "name": "arm_r",
+        "x_pct": 55,
+        "y_pct": 45,
+        "w_pct": 30,
+        "h_pct": 12
+      },
+      {
+        "name": "head",
+        "x_pct": -18,
+        "y_pct": 56,
+        "w_pct": 36,
+        "h_pct": 12
+      }
+    ],
+    "hop": [
+      {
+        "name": "leg_l",
+        "x_pct": -40,
+        "y_pct": 12,
+        "w_pct": 40,
+        "h_pct": 28
+      },
+      {
+        "name": "leg_r",
+        "x_pct": 0,
+        "y_pct": 12,
+        "w_pct": 40,
+        "h_pct": 28
+      },
+      {
+        "name": "torso",
+        "x_pct": -45,
+        "y_pct": 42,
+        "w_pct": 90,
+        "h_pct": 36
+      },
+      {
+        "name": "arm_l",
+        "x_pct": -48,
+        "y_pct": 78,
+        "w_pct": 95,
+        "h_pct": 10
+      },
+      {
+        "name": "arm_r",
+        "x_pct": 55,
+        "y_pct": 78,
+        "w_pct": 30,
+        "h_pct": 10
+      },
+      {
+        "name": "head",
+        "x_pct": -18,
+        "y_pct": 88,
+        "w_pct": 36,
+        "h_pct": 10
+      }
+    ],
+    "crawl": [
+      {
+        "name": "leg_l",
+        "x_pct": -40,
+        "y_pct": 0,
+        "w_pct": 40,
+        "h_pct": 10
+      },
+      {
+        "name": "leg_r",
+        "x_pct": 0,
+        "y_pct": 0,
+        "w_pct": 40,
+        "h_pct": 10
+      },
+      {
+        "name": "torso",
+        "x_pct": -45,
+        "y_pct": 0,
+        "w_pct": 90,
+        "h_pct": 16
+      },
+      {
+        "name": "arm_l",
+        "x_pct": -45,
+        "y_pct": 8,
+        "w_pct": 65,
+        "h_pct": 8
+      },
+      {
+        "name": "arm_r",
+        "x_pct": 20,
+        "y_pct": 8,
+        "w_pct": 30,
+        "h_pct": 8
+      },
+      {
+        "name": "head",
+        "x_pct": -15,
+        "y_pct": 14,
+        "w_pct": 30,
+        "h_pct": 10
+      }
+    ],
+    "torso": [
+      {
+        "name": "torso",
+        "x_pct": -40,
+        "y_pct": 0,
+        "w_pct": 80,
+        "h_pct": 36
+      },
+      {
+        "name": "head",
+        "x_pct": -16,
+        "y_pct": 36,
+        "w_pct": 32,
+        "h_pct": 16
+      }
+    ]
+  },
+  "body": {
+    "height_m": 1.82,
+    "weight_kg": 88,
+    "muscle": 85,
+    "shoulder_width": 0.62,
+    "skin_tone": [
+      0.82,
+      0.65,
+      0.52
+    ],
+    "cloth_color": [
+      0.15,
+      0.35,
+      0.85
+    ],
+    "costume": "hollywood_action_star",
+    "palette_ids": [
+      "default",
+      "sunset_gold",
+      "shadow_green"
+    ],
+    "cosmetics": [
+      "sunglasses",
+      "cage_belt"
+    ]
+  },
+  "ai_archetype": "rushdown",
+  "bio": "Hollywood superstar, martial arts legend, and master of the iconic Shadow Kick.",
+  "moves": [
+    "mk_jc_front_punch_1",
+    "mk_jc_1_2nd_front_punch",
+    "mk_jc_1_1_3rd_back_kick",
+    "mk_jc_1_1_3rd_back_punch",
+    "mk_jc_back_punch_1",
+    "mk_jc_2_2nd_front_punch",
+    "mk_jc_2_1_3rd_back_kick",
+    "mk_jc_2_1_4_4th_back_kick",
+    "mk_jc_front_kick_1",
+    "mk_jc_3_2nd_back_kick",
+    "mk_jc_back_kick_1",
+    "mk_jc_4_2nd_front_kick",
+    "mk_jc_duck_front_punch_1",
+    "mk_jc_duck_back_punch_1",
+    "mk_jc_duck_front_kick_1",
+    "mk_jc_duck_back_kick_1",
+    "mk_jc_jump_front_punch_1",
+    "mk_jc_jump_front_kick_1",
+    "mk_jc_nut_punch",
+    "mk_jc_shadow_kick",
+    "mk_jc_rising_elbow",
+    "mk_jc_sunglasses_toss",
+    "mk_jc_throw_forward"
+  ]
+}

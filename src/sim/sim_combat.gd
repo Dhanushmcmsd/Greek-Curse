@@ -142,6 +142,9 @@ static func _connect(
 	if defender.health <= 0:
 		defender.state = SimFighter.State.KO
 		defender.state_tick = 0
+		var brutality_triggered := SimSeverance.check_brutality_trigger(
+			world, attacker_index, 1 - attacker_index, attacker.move_name, main, events
+		)
 		events.append(
 			SimEvent.make(
 				SimEvent.Kind.KO,

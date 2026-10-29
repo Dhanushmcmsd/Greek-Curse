@@ -1,0 +1,7653 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_EOR_WinnerWalkaway_5",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5",
+    "Properties": {
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "FX",
+              "NS_CarpetVanish"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.AGameplayNiagaraActor_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": {
+              "ObjectName": "BlueprintGeneratedClass'AGameplayNiagaraActor_C'",
+              "ObjectPath": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.0"
+            },
+            "SpawnControl": "EEntitySpawnControl::RuntimeSpawned",
+            "HiddenInCinema": true,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "Primary",
+              "RedCarpet"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/game/Disk/Char/JohnnyCage/Prop/JohnnyCage_RedCarpet/Blueprint/BP_JohnnyCage_RedCarpet.BP_JohnnyCage_RedCarpet_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": true
+          }
+        }
+      ],
+      "EntitiesToHideInCinema": [
+        {
+          "PathElements": [
+            "FX",
+            "NS_CarpetVanish"
+          ]
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_495'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.76"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_EOR_WinnerWalkaway_5:TimelineDataTrackInt_220'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.112"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_EOR_WinnerWalkaway_5:TimelineDataTrackInt_221'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.113"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_EOR_WinnerWalkaway_5:TimelineDataTrackVector_220'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.130"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_EOR_WinnerWalkaway_5:TimelineDataTrackVector_223'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.133"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_EOR_WinnerWalkaway_5:TimelineDataTrackInt_222'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.114"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_EOR_WinnerWalkaway_5:TimelineDataTrackInt_223'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.115"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_EOR_WinnerWalkaway_5:TimelineDataTrackVector_221'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.131"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_EOR_WinnerWalkaway_5:TimelineDataTrackVector_222'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.132"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_496'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.77"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_497'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.78"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_770'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.116"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_771'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.117"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_935'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.59"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_936'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.60"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2549'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.13"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2550'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.14"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2551'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2552'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2553'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2554'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2555'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2556'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2557'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2558'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2559'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2560'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2561'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2562'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2563'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2564'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2565'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2566'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2567'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2568'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2569'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2570'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2571'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2572'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2573'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2574'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2575'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2576'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2577'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.41"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2578'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.42"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2579'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2580'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2581'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2582'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2583'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.47"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2584'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.48"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2585'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2586'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.50"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2587'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.51"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2588'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.52"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_772'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.118"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1094'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.85"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_773'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.119"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_774'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.120"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1095'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.86"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_775'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.121"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_776'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.122"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1096'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.87"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_777'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.123"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_778'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.124"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1097'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.88"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_779'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.125"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_937'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_938'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_939'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.63"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2589'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.53"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_447'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.104"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_448'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.105"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_449'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.106"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1098'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.89"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1099'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.90"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1100'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.91"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1101'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.92"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1102'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.93"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1103'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.94"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_450'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.107"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1104'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.95"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2590'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.54"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_451'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.108"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_452'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.109"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_453'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.110"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_940'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.64"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_941'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.65"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2591'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.55"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2593'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.57"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_780'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.126"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_781'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.127"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_498'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.79"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_499'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.80"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2592'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.56"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_942'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.66"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_943'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.67"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_944'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_945'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_782'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.128"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_500'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.81"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_501'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.82"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_946'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.70"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1105'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.96"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1106'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.97"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1107'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.98"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1108'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.99"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1109'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.100"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFString_454'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.111"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1110'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.101"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1111'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.102"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_947'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.71"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_EOR_WinnerWalkaway_5:TimelineCompressedTrack_Transform_2594'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_948'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.72"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_949'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.73"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_502'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.83"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFloat_503'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.84"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_EOR_WinnerWalkaway_5:TimelineDataTrackFName_1112'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.103"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_950'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.74"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_EOR_WinnerWalkaway_5:TimelineDataTrackBool_951'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.75"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_EOR_WinnerWalkaway_5:TimelineDataTrackUObject_783'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.129"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 249
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_216",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_217",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_218",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_219",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_220",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_221",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_222",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_223",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_224",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_225",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_226",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_227",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2549",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2550",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2551",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2552",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2553",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2554",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2555",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2556",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2557",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2558",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2559",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2560",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2561",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2562",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2563",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2564",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2565",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2566",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2567",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2568",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2569",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2570",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2571",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2572",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2573",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2574",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2575",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2576",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2577",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2578",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2579",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2580",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2581",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2582",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2583",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2584",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2585",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2586",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2587",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2588",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2589",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2590",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2591",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2592",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2593",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2594",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_935",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_936",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_937",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_938",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_939",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_940",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_941",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_942",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_943",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_944",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false,
+        true,
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_945",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_946",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_947",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_948",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_949",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_950",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_951",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_495",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        2.6742449,
+        2.8825512,
+        3.0150127,
+        3.2221231,
+        3.4890032,
+        3.7297258,
+        3.9372292,
+        4.1256533,
+        4.2844925,
+        4.4149714,
+        4.5325966,
+        4.6428566,
+        4.759489,
+        4.8931885,
+        5.0471,
+        5.283922,
+        5.7287235,
+        6.306679,
+        6.9186325,
+        7.437602,
+        7.7267914,
+        7.8971825,
+        8.005014,
+        8.12747,
+        8.269346,
+        8.436272,
+        8.633804,
+        8.863031,
+        8.1831255,
+        7.9019423,
+        7.580407,
+        7.4057016,
+        7.293234,
+        7.406852,
+        7.5887604,
+        7.779606,
+        7.9439163,
+        8.084637,
+        8.2977705,
+        8.608793,
+        8.862598,
+        8.970354,
+        8.498992,
+        8.071006,
+        7.7880554,
+        7.6593437,
+        7.376686,
+        7.230707,
+        7.111253,
+        6.2814455,
+        5.5939646,
+        4.8141327,
+        4.003193,
+        3.236515,
+        2.9698086,
+        2.772274,
+        2.7719164,
+        2.7719164
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_496",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        4.1666665
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_497",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        4.1666665
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_498",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        4.1666665
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_499",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        4.1666665
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_500",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        2.5333333,
+        2.5333333,
+        0.0,
+        1.3833333,
+        1.3833333
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_501",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "SampleContextParameterOverride": "TimeDilation"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_502",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_503",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        1.0,
+        1.0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1094",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1095",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1096",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1097",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1098",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1099",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "PrimaryMeshComponent:Reference"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1100",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1101",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1102",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1103",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1104",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1105",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1106",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "PrimaryMeshComponent:Carpet16"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1107",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1108",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1109",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1110",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1111",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1112",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "MaterialOverridePriorities::NewEnumerator11"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_447",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        ""
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_448",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        ""
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_449",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        ""
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_450",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_451",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "Dissolve Amount"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_452",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        ""
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_453",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        ""
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_454",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary.RedCarpet"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_220",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        250
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_221",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_222",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_223",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_770",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'EOR_WinnerWalkaway_5_Flip'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/EOR_WinnerWalkaway_5_Flip.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_771",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'EOR_WinnerWalkaway_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/EOR_WinnerWalkaway_5.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_772",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_223'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.8"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_224'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.9"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_225'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.10"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_226'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.11"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_227'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.12"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_773",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_774",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_775",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_776",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_219'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.4"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_220'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.5"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_221'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.6"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_222'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.7"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_777",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_778",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_216'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.1"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_217'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.2"
+        },
+        {
+          "ObjectName": "RtpcData'TL_EOR_WinnerWalkaway_5:RtpcData_218'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.3"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_779",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_780",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'EOR_WinnerWalkaway_5_Flip_JohnnyCage_RedCarpet'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/EOR_WinnerWalkaway_5_Flip_JohnnyCage_RedCarpet.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_781",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'EOR_WinnerWalkaway_5_JohnnyCage_RedCarpet'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/EOR_WinnerWalkaway_5_JohnnyCage_RedCarpet.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_782",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "NiagaraSystem'NS_EOR_CarpetVanish'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/FX/FX/NS_EOR_CarpetVanish.36"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_783",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        null
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_220",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.7776948,
+          "Y": 0.6286421,
+          "Z": 0.0
+        },
+        {
+          "X": 0.7696247,
+          "Y": 0.6384965,
+          "Z": 0.0
+        },
+        {
+          "X": 0.7609742,
+          "Y": 0.64878213,
+          "Z": 0.0
+        },
+        {
+          "X": 0.75156605,
+          "Y": 0.6596579,
+          "Z": 0.0
+        },
+        {
+          "X": 0.74131525,
+          "Y": 0.671157,
+          "Z": 0.0
+        },
+        {
+          "X": 0.73049355,
+          "Y": 0.6829197,
+          "Z": 0.0
+        },
+        {
+          "X": 0.7189832,
+          "Y": 0.6950275,
+          "Z": 0.0
+        },
+        {
+          "X": 0.699136,
+          "Y": 0.7149887,
+          "Z": 0.0
+        },
+        {
+          "X": 0.6762602,
+          "Y": 0.73666286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.64852643,
+          "Y": 0.76119214,
+          "Z": 0.0
+        },
+        {
+          "X": 0.6158684,
+          "Y": 0.7878491,
+          "Z": 0.0
+        },
+        {
+          "X": 0.576627,
+          "Y": 0.8170075,
+          "Z": 0.0
+        },
+        {
+          "X": 0.53220785,
+          "Y": 0.84661376,
+          "Z": 0.0
+        },
+        {
+          "X": 0.47802705,
+          "Y": 0.87834513,
+          "Z": 0.0
+        },
+        {
+          "X": 0.4183175,
+          "Y": 0.908301,
+          "Z": 0.0
+        },
+        {
+          "X": 0.35358936,
+          "Y": 0.9354008,
+          "Z": 0.0
+        },
+        {
+          "X": 0.28516537,
+          "Y": 0.9584784,
+          "Z": 0.0
+        },
+        {
+          "X": 0.20848864,
+          "Y": 0.9780248,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13086009,
+          "Y": 0.9914009,
+          "Z": 0.0
+        },
+        {
+          "X": 0.04631871,
+          "Y": 0.99892676,
+          "Z": 0.0
+        },
+        {
+          "X": -0.036532283,
+          "Y": 0.9993325,
+          "Z": 0.0
+        },
+        {
+          "X": -0.11687374,
+          "Y": 0.9931469,
+          "Z": 0.0
+        },
+        {
+          "X": -0.19222093,
+          "Y": 0.9813517,
+          "Z": 0.0
+        },
+        {
+          "X": -0.26567614,
+          "Y": 0.96406263,
+          "Z": 0.0
+        },
+        {
+          "X": -0.33097625,
+          "Y": 0.9436392,
+          "Z": 0.0
+        },
+        {
+          "X": -0.38960314,
+          "Y": 0.92098284,
+          "Z": 0.0
+        },
+        {
+          "X": -0.44329762,
+          "Y": 0.8963746,
+          "Z": 0.0
+        },
+        {
+          "X": -0.4935391,
+          "Y": 0.869724,
+          "Z": 0.0
+        },
+        {
+          "X": -0.54092956,
+          "Y": 0.84106797,
+          "Z": 0.0
+        },
+        {
+          "X": -0.58806205,
+          "Y": 0.80881584,
+          "Z": 0.0
+        },
+        {
+          "X": -0.630178,
+          "Y": 0.77645075,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6712352,
+          "Y": 0.74124444,
+          "Z": 0.0
+        },
+        {
+          "X": -0.70764303,
+          "Y": 0.7065702,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7401396,
+          "Y": 0.6724534,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76859176,
+          "Y": 0.63974,
+          "Z": 0.0
+        },
+        {
+          "X": -0.79587483,
+          "Y": 0.6054617,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8204731,
+          "Y": 0.57168514,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84301364,
+          "Y": 0.5378924,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8642106,
+          "Y": 0.5031302,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88345814,
+          "Y": 0.46851045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90084195,
+          "Y": 0.43414745,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9178028,
+          "Y": 0.39703664,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93270326,
+          "Y": 0.36064512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9471096,
+          "Y": 0.32091093,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95971715,
+          "Y": 0.28096798,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9709971,
+          "Y": 0.23909163,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9805198,
+          "Y": 0.1964218,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98878264,
+          "Y": 0.14936127,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9948163,
+          "Y": 0.10168868,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9985783,
+          "Y": 0.053303525,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999919,
+          "Y": 0.0040592626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9991187,
+          "Y": -0.04198,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99651563,
+          "Y": -0.08340631,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9921459,
+          "Y": -0.1250878,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9864706,
+          "Y": -0.16393885,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9794878,
+          "Y": -0.20150404,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9704931,
+          "Y": -0.24113019,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95942545,
+          "Y": -0.28196248,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94585776,
+          "Y": -0.3245816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93005157,
+          "Y": -0.36742964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91127753,
+          "Y": -0.41179344,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89092577,
+          "Y": -0.45414922,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8662559,
+          "Y": -0.49960095,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8367902,
+          "Y": -0.5475242,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8031421,
+          "Y": -0.5957878,
+          "Z": 0.0
+        },
+        {
+          "X": -0.766268,
+          "Y": -0.6425214,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7234502,
+          "Y": -0.6903769,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6793804,
+          "Y": -0.7337862,
+          "Z": 0.0
+        },
+        {
+          "X": -0.63151693,
+          "Y": -0.7753626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.58062017,
+          "Y": -0.81417507,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5305531,
+          "Y": -0.8476521,
+          "Z": 0.0
+        },
+        {
+          "X": -0.47634602,
+          "Y": -0.879258,
+          "Z": 0.0
+        },
+        {
+          "X": -0.42337215,
+          "Y": -0.9059559,
+          "Z": 0.0
+        },
+        {
+          "X": -0.3674848,
+          "Y": -0.93002963,
+          "Z": 0.0
+        },
+        {
+          "X": -0.31568563,
+          "Y": -0.9488639,
+          "Z": 0.0
+        },
+        {
+          "X": -0.26622772,
+          "Y": -0.96391034,
+          "Z": 0.0
+        },
+        {
+          "X": -0.21937096,
+          "Y": -0.9756416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.17606258,
+          "Y": -0.984379,
+          "Z": 0.0
+        },
+        {
+          "X": -0.13980019,
+          "Y": -0.9901798,
+          "Z": 0.0
+        },
+        {
+          "X": -0.105055094,
+          "Y": -0.99446636,
+          "Z": 0.0
+        },
+        {
+          "X": -0.07542026,
+          "Y": -0.9971519,
+          "Z": 0.0
+        },
+        {
+          "X": -0.051000953,
+          "Y": -0.9986987,
+          "Z": 0.0
+        },
+        {
+          "X": -0.028788447,
+          "Y": -0.99958545,
+          "Z": 0.0
+        },
+        {
+          "X": -0.009337664,
+          "Y": -0.9999564,
+          "Z": 0.0
+        },
+        {
+          "X": 0.010435224,
+          "Y": -0.9999456,
+          "Z": 0.0
+        },
+        {
+          "X": 0.029735446,
+          "Y": -0.99955785,
+          "Z": 0.0
+        },
+        {
+          "X": 0.050730467,
+          "Y": -0.9987124,
+          "Z": 0.0
+        },
+        {
+          "X": 0.07267821,
+          "Y": -0.99735546,
+          "Z": 0.0
+        },
+        {
+          "X": 0.09616059,
+          "Y": -0.9953659,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12283778,
+          "Y": -0.99242675,
+          "Z": 0.0
+        },
+        {
+          "X": 0.14926195,
+          "Y": -0.98879766,
+          "Z": 0.0
+        },
+        {
+          "X": 0.17321712,
+          "Y": -0.98488367,
+          "Z": 0.0
+        },
+        {
+          "X": 0.19669676,
+          "Y": -0.98046446,
+          "Z": 0.0
+        },
+        {
+          "X": 0.21861392,
+          "Y": -0.9758114,
+          "Z": 0.0
+        },
+        {
+          "X": 0.23836017,
+          "Y": -0.9711768,
+          "Z": 0.0
+        },
+        {
+          "X": 0.25645095,
+          "Y": -0.9665573,
+          "Z": 0.0
+        },
+        {
+          "X": 0.27370703,
+          "Y": -0.9618133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.28869122,
+          "Y": -0.95742226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.30092776,
+          "Y": -0.95364696,
+          "Z": 0.0
+        },
+        {
+          "X": 0.3093927,
+          "Y": -0.9509344,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31465477,
+          "Y": -0.9492062,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31736857,
+          "Y": -0.9483023,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31854546,
+          "Y": -0.9479076,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31880403,
+          "Y": -0.94782066,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31844234,
+          "Y": -0.94794226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31681883,
+          "Y": -0.94848615,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31533843,
+          "Y": -0.94897944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.3137763,
+          "Y": -0.9494969,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31175178,
+          "Y": -0.9501636,
+          "Z": 0.0
+        },
+        {
+          "X": 0.30755794,
+          "Y": -0.9515294,
+          "Z": 0.0
+        },
+        {
+          "X": 0.3008129,
+          "Y": -0.95368314,
+          "Z": 0.0
+        },
+        {
+          "X": 0.29256743,
+          "Y": -0.95624506,
+          "Z": 0.0
+        },
+        {
+          "X": 0.2811483,
+          "Y": -0.9596644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.26780933,
+          "Y": -0.96347195,
+          "Z": 0.0
+        },
+        {
+          "X": 0.25443488,
+          "Y": -0.96708995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.23974228,
+          "Y": -0.9708366,
+          "Z": 0.0
+        },
+        {
+          "X": 0.22341812,
+          "Y": -0.97472286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.20460856,
+          "Y": -0.97884387,
+          "Z": 0.0
+        },
+        {
+          "X": 0.18317503,
+          "Y": -0.9830803,
+          "Z": 0.0
+        },
+        {
+          "X": 0.15660638,
+          "Y": -0.9876612,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12654293,
+          "Y": -0.9919612,
+          "Z": 0.0
+        },
+        {
+          "X": 0.09206861,
+          "Y": -0.9957527,
+          "Z": 0.0
+        },
+        {
+          "X": 0.052838504,
+          "Y": -0.9986031,
+          "Z": 0.0
+        },
+        {
+          "X": 0.012789071,
+          "Y": -0.9999183,
+          "Z": 0.0
+        },
+        {
+          "X": -0.03156686,
+          "Y": -0.9995017,
+          "Z": 0.0
+        },
+        {
+          "X": -0.07621288,
+          "Y": -0.99709165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.12509513,
+          "Y": -0.99214476,
+          "Z": 0.0
+        },
+        {
+          "X": -0.17353845,
+          "Y": -0.9848271,
+          "Z": 0.0
+        },
+        {
+          "X": -0.2217071,
+          "Y": -0.9751134,
+          "Z": 0.0
+        },
+        {
+          "X": -0.270993,
+          "Y": -0.9625813,
+          "Z": 0.0
+        },
+        {
+          "X": -0.3196932,
+          "Y": -0.94752115,
+          "Z": 0.0
+        },
+        {
+          "X": -0.35600173,
+          "Y": -0.9344853,
+          "Z": 0.0
+        },
+        {
+          "X": -0.39280617,
+          "Y": -0.91962135,
+          "Z": 0.0
+        },
+        {
+          "X": -0.42836416,
+          "Y": -0.9036062,
+          "Z": 0.0
+        },
+        {
+          "X": -0.4614973,
+          "Y": -0.8871418,
+          "Z": 0.0
+        },
+        {
+          "X": -0.49169254,
+          "Y": -0.8707689,
+          "Z": 0.0
+        },
+        {
+          "X": -0.51803064,
+          "Y": -0.8553622,
+          "Z": 0.0
+        },
+        {
+          "X": -0.54272485,
+          "Y": -0.83991057,
+          "Z": 0.0
+        },
+        {
+          "X": -0.56665194,
+          "Y": -0.82395726,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5893285,
+          "Y": -0.8078937,
+          "Z": 0.0
+        },
+        {
+          "X": -0.61022425,
+          "Y": -0.79222906,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6292833,
+          "Y": -0.77717644,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64775896,
+          "Y": -0.7618455,
+          "Z": 0.0
+        },
+        {
+          "X": -0.66545963,
+          "Y": -0.7464338,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6823224,
+          "Y": -0.7310513,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6981243,
+          "Y": -0.71597666,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7126316,
+          "Y": -0.70153856,
+          "Z": 0.0
+        },
+        {
+          "X": -0.72569823,
+          "Y": -0.68801326,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7367873,
+          "Y": -0.67612463,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7460301,
+          "Y": -0.6659123,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7547972,
+          "Y": -0.6559584,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76409626,
+          "Y": -0.64510226,
+          "Z": 0.0
+        },
+        {
+          "X": -0.77555263,
+          "Y": -0.63128316,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7897191,
+          "Y": -0.613469,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8080032,
+          "Y": -0.5891781,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8291333,
+          "Y": -0.55905116,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85327005,
+          "Y": -0.5214698,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87740517,
+          "Y": -0.47975078,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8980981,
+          "Y": -0.43979582,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91496074,
+          "Y": -0.40354317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9279735,
+          "Y": -0.37264633,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93800795,
+          "Y": -0.34661436,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9474926,
+          "Y": -0.31977803,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9565505,
+          "Y": -0.29156795,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96500087,
+          "Y": -0.26224822,
+          "Z": 0.0
+        },
+        {
+          "X": -0.972052,
+          "Y": -0.23476563,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97745967,
+          "Y": -0.21112368,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9825103,
+          "Y": -0.18620999,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98812985,
+          "Y": -0.15362075,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9929447,
+          "Y": -0.11857919,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9964942,
+          "Y": -0.08366101,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99870896,
+          "Y": -0.050799478,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997773,
+          "Y": -0.021108145,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99997663,
+          "Y": 0.006880265,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9992608,
+          "Y": 0.038445882,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9974352,
+          "Y": 0.07157461,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9946821,
+          "Y": 0.10299574,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9914851,
+          "Y": 0.13022089,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9883386,
+          "Y": 0.15227328,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98486817,
+          "Y": 0.17330529,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98104787,
+          "Y": 0.19376768,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9771911,
+          "Y": 0.21236297,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9734322,
+          "Y": 0.22897613,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9699452,
+          "Y": 0.2433238,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96680486,
+          "Y": 0.2555171,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9633831,
+          "Y": 0.2681294,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95975983,
+          "Y": 0.28082222,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9561174,
+          "Y": 0.2929838,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9526495,
+          "Y": 0.30407128,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9495394,
+          "Y": 0.31364855,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9466722,
+          "Y": 0.32219952,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9435637,
+          "Y": 0.33119133,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9404068,
+          "Y": 0.3400515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93739545,
+          "Y": 0.34826747,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9345727,
+          "Y": 0.3557723,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93200636,
+          "Y": 0.3624428,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9296864,
+          "Y": 0.36835298,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92749643,
+          "Y": 0.37383312,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9252981,
+          "Y": 0.3792416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9230546,
+          "Y": 0.38466975,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9207071,
+          "Y": 0.3902553,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91819835,
+          "Y": 0.39612103,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91544855,
+          "Y": 0.40243602,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91279745,
+          "Y": 0.4084127,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9104626,
+          "Y": 0.4135919,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90833926,
+          "Y": 0.41823456,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9063101,
+          "Y": 0.42261386,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90427554,
+          "Y": 0.42695016,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9021535,
+          "Y": 0.4314155,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89990604,
+          "Y": 0.43608406,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8976401,
+          "Y": 0.4407295,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8954289,
+          "Y": 0.44520497,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8932153,
+          "Y": 0.44962925,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89090824,
+          "Y": 0.45418364,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88849306,
+          "Y": 0.45889044,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8862734,
+          "Y": 0.4631623,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8834765,
+          "Y": 0.4684757,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8809806,
+          "Y": 0.47315273,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87878656,
+          "Y": 0.47721508,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8767508,
+          "Y": 0.48094463,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87479794,
+          "Y": 0.4844886,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8728758,
+          "Y": 0.48794273,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87095,
+          "Y": 0.4913718,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86907434,
+          "Y": 0.49468145,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8675493,
+          "Y": 0.49735203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86633277,
+          "Y": 0.49946728,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8653444,
+          "Y": 0.501178,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8644999,
+          "Y": 0.502633,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8637496,
+          "Y": 0.50392133,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8631135,
+          "Y": 0.50500995,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8626728,
+          "Y": 0.5057626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8625208,
+          "Y": 0.50602216,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8625263,
+          "Y": 0.5060123,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8626082,
+          "Y": 0.505873,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86279845,
+          "Y": 0.5055488,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86318505,
+          "Y": 0.50488836,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8637967,
+          "Y": 0.5038407,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86472046,
+          "Y": 0.5022534,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8656571,
+          "Y": 0.5006378,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86663747,
+          "Y": 0.4989384,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86767805,
+          "Y": 0.49712673,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86882746,
+          "Y": 0.4951149,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8701626,
+          "Y": 0.49276525,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87174034,
+          "Y": 0.4899683,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8734485,
+          "Y": 0.486917,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8750031,
+          "Y": 0.4841172,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87644386,
+          "Y": 0.4815045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8778323,
+          "Y": 0.47896793,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87921774,
+          "Y": 0.4764208,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8806262,
+          "Y": 0.47381186,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8806262,
+          "Y": 0.47381186,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_221",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": 23.547234,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.468033,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.391716,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.313667,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.21202,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.103737,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.985558,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.74356,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.472832,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.108803,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 21.712387,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 21.25666,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.764091,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.135468,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 19.449883,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 18.676636,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 17.84488,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 16.962677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 16.086372,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 14.884117,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 13.597145,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 12.172165,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 10.76503,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 9.389816,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 8.204849,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 7.0221405,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.8175964,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.656868,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.6044617,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.561821,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6404724,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.72856903,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.11469269,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.93935394,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.7374191,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.5976334,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.4509506,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.3368454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.2896347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.2890472,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.31575,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.45163,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.614258,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -10.929001,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -12.309654,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -13.799171,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.36467,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.132927,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.958961,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.888596,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -22.954407,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -25.101234,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -27.319717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -29.775764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -32.17717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -34.397026,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -36.665436,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -38.91871,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -41.216156,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -43.461548,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -45.621635,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -47.50451,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -49.21019,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -50.880928,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -52.509773,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -54.07804,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -55.68473,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -57.200394,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -58.731834,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -60.26728,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -61.691437,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -63.120926,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -64.39932,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -65.664406,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -66.81741,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -67.97894,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -69.18051,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -70.4343,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -71.63429,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -72.92614,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -74.39589,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -75.79321,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -77.22132,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -78.69051,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -80.21467,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -81.79688,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -83.44642,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -85.124626,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -86.866745,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -88.7278,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -90.66653,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -92.700584,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -94.79481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -96.91074,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -99.03636,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -100.982414,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -103.15945,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -105.42166,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -107.667015,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -109.74093,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -111.78508,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -113.834206,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -116.088684,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -118.30624,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -120.39429,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -122.402405,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -124.42577,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -126.27396,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -128.15717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -129.96399,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -131.61026,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -133.18848,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -134.81406,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -136.48834,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -138.012,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -139.58575,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -141.17883,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -142.74937,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -144.21045,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -145.70248,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -147.0937,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -148.46677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -149.88239,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -151.23384,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -152.61938,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -153.83511,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -155.44293,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -157.07944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -158.74763,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -160.45209,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -162.19788,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -163.66653,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -165.40707,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -167.20767,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -169.06544,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -170.97711,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -172.93845,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -174.93518,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -176.97021,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -179.04773,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -181.17365,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -183.33356,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -185.51189,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -187.70331,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -189.9407,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -192.21823,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -194.51459,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -196.75143,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -198.96342,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -201.10068,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -203.42508,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -205.59158,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -207.80963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -209.96289,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -211.93898,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -213.66783,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -215.4627,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -217.3546,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -219.24174,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -221.026,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -222.62732,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -224.03421,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -225.52963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.08212,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.60965,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -230.03336,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -231.27676,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -232.37907,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -233.52347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -234.59079,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -235.35641,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -235.79797,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -236.01285,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -236.11887,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -236.11787,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -235.81767,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -235.42413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -234.97928,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -234.53387,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -234.03413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -233.44296,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -232.7695,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -232.07883,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -231.43413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -230.8671,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -230.2945,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.7781,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.33206,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.96906,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.66354,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.39148,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.11462,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.85977,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.6225,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.41345,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.23807,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.09549,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.98602,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.87741,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.77466,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.68105,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.59978,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.52786,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.47397,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.43616,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.40833,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.3872,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.37115,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.35934,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.35248,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.34915,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.34964,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.34549,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.34132,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.34445,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.36923,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.41241,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.4621,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.53415,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.6017,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.66481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.72952,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.81178,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.90839,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.00786,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.11888,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.228,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.33661,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.45073,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.57736,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.7124,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.83488,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.94783,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.05624,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.16553,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.2815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.40915,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.5417,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.66147,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.77188,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.87833,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.9859,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.09955,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.22293,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.34856,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.46222,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.56848,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.67175,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.7764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.88681,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.88681,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_222",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": 23.547234,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.46431,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.381668,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.303276,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.213356,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.092926,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.952599,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.806274,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.632812,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.390411,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.171555,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.060814,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.02523,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.080276,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.153664,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.145035,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.148628,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.241348,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.36818,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.522842,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.653473,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.692963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.71025,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.774284,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.819893,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.79557,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.718208,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.596252,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.404503,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.118126,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 21.745926,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 21.296196,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.748314,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.147697,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 19.435684,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 18.551537,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 17.460869,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 16.16188,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 14.703705,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 13.119789,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 11.442047,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 9.709679,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 8.008331,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.1875305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.5568542,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.6672745,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.6052551,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.5253372,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.7408981,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.039299,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.410217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -10.747749,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -13.087784,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.407417,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.703827,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.96347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -22.201317,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -24.422401,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -26.61821,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -28.783531,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -30.913887,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -33.00438,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -35.052124,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -37.053238,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -39.00586,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -40.713676,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -42.475327,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -44.09922,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -45.78199,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -47.462486,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -49.141426,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -50.814217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -52.5035,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -54.23295,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -55.986504,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -57.789032,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -59.60238,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -61.43136,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -63.281013,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -65.15649,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -67.06278,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -69.06262,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -71.1169,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -73.22582,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -75.42545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -77.73647,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -80.13972,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -82.616325,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -85.15159,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -87.614296,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -90.0723,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -92.523674,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -94.96369,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -97.38598,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -99.79293,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -102.18857,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -104.5609,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -106.89746,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -109.20456,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -111.48268,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -113.73689,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -115.97114,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -118.19038,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -120.29817,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -122.32924,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -124.29642,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -126.20086,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -128.0371,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -129.83353,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -131.61536,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -133.388,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -135.16794,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -136.9466,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -138.72337,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -140.48932,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -142.22755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -143.96194,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -145.71466,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -147.4758,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -149.25452,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -151.01666,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -152.70514,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -154.39732,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -156.15176,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -157.96738,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -159.86874,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -161.83768,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -163.86972,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -165.95111,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -168.07008,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -170.21445,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -172.34076,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -174.52759,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -176.86761,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -179.2761,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -181.68207,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -184.13545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -186.72873,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -189.27579,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -191.62723,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -193.76605,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -195.53436,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -197.20879,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -199.05757,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -200.94644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -202.83627,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -204.71295,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -206.54556,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -208.3377,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -210.13895,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -211.79533,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -213.47098,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -215.0816,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -216.61377,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -218.0777,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -219.43701,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -220.76007,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -222.09198,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -223.40533,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -224.25684,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -224.99838,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -225.6433,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.20276,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -226.68973,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.11534,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.492,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.83195,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.14703,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.44937,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.73369,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.98837,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.17926,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.31644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.4062,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.4625,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.49634,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.51872,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.54004,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.57034,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.61423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.66138,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.70415,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.74562,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.78717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.82574,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.86404,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.88924,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.90425,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.90656,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.89311,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.86124,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.81567,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.76657,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.71379,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.65686,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.59525,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.5304,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.46368,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.3953,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.32614,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.25598,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.18515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.11372,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.04193,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.96991,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.89777,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.82562,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.75354,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.68172,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.61034,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.53949,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.46964,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.40073,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.3343,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.26944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.20644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.14531,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.08635,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.02959,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.97354,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.92444,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.88672,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.85901,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.84116,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.83423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.83946,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.8558,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.88293,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.91997,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -227.96623,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.02116,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.08405,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.15424,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.23137,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.31439,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.4029,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.49628,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.59349,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.69495,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.80151,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -228.91095,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.0218,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.13342,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.2442,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.35463,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.46484,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.57455,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.68387,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.79257,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.90036,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -229.90036,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_223",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_EOR_WinnerWalkaway_5'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/EndOfRound/TL_EOR_WinnerWalkaway_5.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.7776948,
+          "Y": 0.6286421,
+          "Z": 0.0
+        },
+        {
+          "X": -0.77538824,
+          "Y": 0.6314848,
+          "Z": 0.0
+        },
+        {
+          "X": -0.77311254,
+          "Y": 0.6342688,
+          "Z": 0.0
+        },
+        {
+          "X": -0.77081096,
+          "Y": 0.6370645,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7688135,
+          "Y": 0.6394735,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76733196,
+          "Y": 0.64125025,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7666651,
+          "Y": 0.6420477,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76638925,
+          "Y": 0.6423767,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7688972,
+          "Y": 0.6393722,
+          "Z": 0.0
+        },
+        {
+          "X": -0.77715385,
+          "Y": 0.629311,
+          "Z": 0.0
+        },
+        {
+          "X": -0.788645,
+          "Y": 0.61484903,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8010814,
+          "Y": 0.5985553,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81677663,
+          "Y": 0.57695407,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8371153,
+          "Y": 0.5470271,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8607137,
+          "Y": 0.50908935,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8884431,
+          "Y": 0.45898718,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91352975,
+          "Y": 0.40677232,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93101573,
+          "Y": 0.36497945,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9452182,
+          "Y": 0.32643998,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95759606,
+          "Y": 0.28811535,
+          "Z": 0.0
+        },
+        {
+          "X": -0.968724,
+          "Y": 0.24814115,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9795474,
+          "Y": 0.2012152,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98811746,
+          "Y": 0.15370102,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9937333,
+          "Y": 0.11177733,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99744475,
+          "Y": 0.0714458,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99951744,
+          "Y": 0.031063637,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999447,
+          "Y": -0.010512596,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99848485,
+          "Y": -0.055031896,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9947475,
+          "Y": -0.10236192,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98820686,
+          "Y": -0.15312503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9784149,
+          "Y": -0.20665215,
+          "Z": 0.0
+        },
+        {
+          "X": -0.964877,
+          "Y": -0.26270276,
+          "Z": 0.0
+        },
+        {
+          "X": -0.947302,
+          "Y": -0.32034194,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9251882,
+          "Y": -0.37950957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8987348,
+          "Y": -0.43849263,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86812437,
+          "Y": -0.4963468,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83471954,
+          "Y": -0.5506755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8000356,
+          "Y": -0.59995294,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7651011,
+          "Y": -0.64391017,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7313758,
+          "Y": -0.68197495,
+          "Z": 0.0
+        },
+        {
+          "X": -0.69958115,
+          "Y": -0.7145537,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6698873,
+          "Y": -0.7424628,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6441673,
+          "Y": -0.7648848,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6241754,
+          "Y": -0.78128433,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6068808,
+          "Y": -0.7947929,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5942894,
+          "Y": -0.80425155,
+          "Z": 0.0
+        },
+        {
+          "X": -0.58462036,
+          "Y": -0.811307,
+          "Z": 0.0
+        },
+        {
+          "X": -0.57520306,
+          "Y": -0.81801105,
+          "Z": 0.0
+        },
+        {
+          "X": -0.56622267,
+          "Y": -0.82425255,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5574002,
+          "Y": -0.83024406,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5482271,
+          "Y": -0.83632964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.53862786,
+          "Y": -0.84254426,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5268874,
+          "Y": -0.8499351,
+          "Z": 0.0
+        },
+        {
+          "X": -0.51050735,
+          "Y": -0.85987365,
+          "Z": 0.0
+        },
+        {
+          "X": -0.49134743,
+          "Y": -0.8709635,
+          "Z": 0.0
+        },
+        {
+          "X": -0.47065282,
+          "Y": -0.8823186,
+          "Z": 0.0
+        },
+        {
+          "X": -0.44807482,
+          "Y": -0.89399624,
+          "Z": 0.0
+        },
+        {
+          "X": -0.4238732,
+          "Y": -0.90572184,
+          "Z": 0.0
+        },
+        {
+          "X": -0.39737988,
+          "Y": -0.91765434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.3677498,
+          "Y": -0.92992485,
+          "Z": 0.0
+        },
+        {
+          "X": -0.33568394,
+          "Y": -0.941975,
+          "Z": 0.0
+        },
+        {
+          "X": -0.3012619,
+          "Y": -0.9535416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.26565695,
+          "Y": -0.9640676,
+          "Z": 0.0
+        },
+        {
+          "X": -0.23014724,
+          "Y": -0.97315586,
+          "Z": 0.0
+        },
+        {
+          "X": -0.19477165,
+          "Y": -0.9808487,
+          "Z": 0.0
+        },
+        {
+          "X": -0.15987182,
+          "Y": -0.98713785,
+          "Z": 0.0
+        },
+        {
+          "X": -0.12606132,
+          "Y": -0.99202245,
+          "Z": 0.0
+        },
+        {
+          "X": -0.093713045,
+          "Y": -0.9955993,
+          "Z": 0.0
+        },
+        {
+          "X": -0.06310856,
+          "Y": -0.9980067,
+          "Z": 0.0
+        },
+        {
+          "X": -0.03463638,
+          "Y": -0.9994001,
+          "Z": 0.0
+        },
+        {
+          "X": -0.007438302,
+          "Y": -0.9999724,
+          "Z": 0.0
+        },
+        {
+          "X": 0.020142734,
+          "Y": -0.9997971,
+          "Z": 0.0
+        },
+        {
+          "X": 0.045189798,
+          "Y": -0.99897844,
+          "Z": 0.0
+        },
+        {
+          "X": 0.06502575,
+          "Y": -0.9978836,
+          "Z": 0.0
+        },
+        {
+          "X": 0.08099252,
+          "Y": -0.9967148,
+          "Z": 0.0
+        },
+        {
+          "X": 0.09039682,
+          "Y": -0.9959058,
+          "Z": 0.0
+        },
+        {
+          "X": 0.09714168,
+          "Y": -0.9952706,
+          "Z": 0.0
+        },
+        {
+          "X": 0.10177517,
+          "Y": -0.9948074,
+          "Z": 0.0
+        },
+        {
+          "X": 0.10499853,
+          "Y": -0.9944724,
+          "Z": 0.0
+        },
+        {
+          "X": 0.10726982,
+          "Y": -0.99423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.10986638,
+          "Y": -0.99394643,
+          "Z": 0.0
+        },
+        {
+          "X": 0.111653626,
+          "Y": -0.9937472,
+          "Z": 0.0
+        },
+        {
+          "X": 0.115074575,
+          "Y": -0.9933569,
+          "Z": 0.0
+        },
+        {
+          "X": 0.1196726,
+          "Y": -0.9928134,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12751669,
+          "Y": -0.9918365,
+          "Z": 0.0
+        },
+        {
+          "X": 0.14152682,
+          "Y": -0.9899346,
+          "Z": 0.0
+        },
+        {
+          "X": 0.15873402,
+          "Y": -0.9873214,
+          "Z": 0.0
+        },
+        {
+          "X": 0.17831188,
+          "Y": -0.9839741,
+          "Z": 0.0
+        },
+        {
+          "X": 0.1967951,
+          "Y": -0.9804446,
+          "Z": 0.0
+        },
+        {
+          "X": 0.21048254,
+          "Y": -0.9775976,
+          "Z": 0.0
+        },
+        {
+          "X": 0.21948445,
+          "Y": -0.97561604,
+          "Z": 0.0
+        },
+        {
+          "X": 0.22216547,
+          "Y": -0.975009,
+          "Z": 0.0
+        },
+        {
+          "X": 0.22002995,
+          "Y": -0.9754932,
+          "Z": 0.0
+        },
+        {
+          "X": 0.21310884,
+          "Y": -0.9770285,
+          "Z": 0.0
+        },
+        {
+          "X": 0.2040965,
+          "Y": -0.9789508,
+          "Z": 0.0
+        },
+        {
+          "X": 0.19605446,
+          "Y": -0.980593,
+          "Z": 0.0
+        },
+        {
+          "X": 0.18793696,
+          "Y": -0.98218125,
+          "Z": 0.0
+        },
+        {
+          "X": 0.1800102,
+          "Y": -0.98366475,
+          "Z": 0.0
+        },
+        {
+          "X": 0.171399,
+          "Y": -0.98520166,
+          "Z": 0.0
+        },
+        {
+          "X": 0.16149604,
+          "Y": -0.9868734,
+          "Z": 0.0
+        },
+        {
+          "X": 0.1497032,
+          "Y": -0.98873097,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13518459,
+          "Y": -0.99082047,
+          "Z": 0.0
+        },
+        {
+          "X": 0.11808014,
+          "Y": -0.9930041,
+          "Z": 0.0
+        },
+        {
+          "X": 0.099309504,
+          "Y": -0.9950566,
+          "Z": 0.0
+        },
+        {
+          "X": 0.07547021,
+          "Y": -0.9971481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.041920602,
+          "Y": -0.99912095,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0032963753,
+          "Y": -0.99999464,
+          "Z": 0.0
+        },
+        {
+          "X": -0.03739047,
+          "Y": -0.9993007,
+          "Z": 0.0
+        },
+        {
+          "X": -0.07962084,
+          "Y": -0.9968253,
+          "Z": 0.0
+        },
+        {
+          "X": -0.1212554,
+          "Y": -0.9926215,
+          "Z": 0.0
+        },
+        {
+          "X": -0.16399848,
+          "Y": -0.98646057,
+          "Z": 0.0
+        },
+        {
+          "X": -0.20950794,
+          "Y": -0.97780704,
+          "Z": 0.0
+        },
+        {
+          "X": -0.25560093,
+          "Y": -0.96678245,
+          "Z": 0.0
+        },
+        {
+          "X": -0.30079424,
+          "Y": -0.9536891,
+          "Z": 0.0
+        },
+        {
+          "X": -0.34488952,
+          "Y": -0.93864334,
+          "Z": 0.0
+        },
+        {
+          "X": -0.38735282,
+          "Y": -0.92193174,
+          "Z": 0.0
+        },
+        {
+          "X": -0.42795193,
+          "Y": -0.9038015,
+          "Z": 0.0
+        },
+        {
+          "X": -0.4662454,
+          "Y": -0.88465554,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5025917,
+          "Y": -0.8645242,
+          "Z": 0.0
+        },
+        {
+          "X": -0.53777516,
+          "Y": -0.8430887,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5700669,
+          "Y": -0.82159865,
+          "Z": 0.0
+        },
+        {
+          "X": -0.59761417,
+          "Y": -0.8017838,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6222589,
+          "Y": -0.7828116,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64393055,
+          "Y": -0.76508397,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6660439,
+          "Y": -0.745913,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6918651,
+          "Y": -0.7220267,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7201623,
+          "Y": -0.69380623,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7519933,
+          "Y": -0.65917075,
+          "Z": 0.0
+        },
+        {
+          "X": -0.78316295,
+          "Y": -0.62181664,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8105228,
+          "Y": -0.58570707,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83482754,
+          "Y": -0.5505119,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85534024,
+          "Y": -0.5180671,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8739077,
+          "Y": -0.48609248,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8920021,
+          "Y": -0.45203155,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90861034,
+          "Y": -0.41764536,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9227476,
+          "Y": -0.3854051,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9364157,
+          "Y": -0.3508928,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9510124,
+          "Y": -0.30915266,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96470976,
+          "Y": -0.26331562,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9766096,
+          "Y": -0.21502194,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9864168,
+          "Y": -0.16426101,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99389327,
+          "Y": -0.110347465,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9983636,
+          "Y": -0.057182983,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99995995,
+          "Y": -0.00895866,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9993696,
+          "Y": 0.03550375,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9970697,
+          "Y": 0.07649813,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9936229,
+          "Y": 0.11275462,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98970354,
+          "Y": 0.14313512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98585236,
+          "Y": 0.16761833,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9827268,
+          "Y": 0.18506202,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9799577,
+          "Y": 0.19920695,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97777283,
+          "Y": 0.20966814,
+          "Z": 0.0
+        },
+        {
+          "X": -0.975986,
+          "Y": 0.21783374,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9745767,
+          "Y": 0.22405393,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97375,
+          "Y": 0.22762178,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9734452,
+          "Y": 0.22892101,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9735944,
+          "Y": 0.22828613,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97420454,
+          "Y": 0.2256673,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97494316,
+          "Y": 0.22245516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9756808,
+          "Y": 0.2191958,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97623944,
+          "Y": 0.216695,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9766015,
+          "Y": 0.21505682,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97687364,
+          "Y": 0.21381828,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97693837,
+          "Y": 0.213523,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9767636,
+          "Y": 0.21431966,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97630215,
+          "Y": 0.216413,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9754865,
+          "Y": 0.22005941,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9742569,
+          "Y": 0.22544222,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9725338,
+          "Y": 0.23276316,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97048354,
+          "Y": 0.24116878,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96829844,
+          "Y": 0.24979639,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96603966,
+          "Y": 0.25839445,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9636855,
+          "Y": 0.2670403,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96082914,
+          "Y": 0.27714097,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95776653,
+          "Y": 0.2875475,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95456076,
+          "Y": 0.29801673,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95130503,
+          "Y": 0.3082512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9480772,
+          "Y": 0.3180415,
+          "Z": 0.0
+        },
+        {
+          "X": -0.944909,
+          "Y": 0.32733434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94175816,
+          "Y": 0.33629158,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93869317,
+          "Y": 0.34475434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9356257,
+          "Y": 0.3529945,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93254113,
+          "Y": 0.36106423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9295019,
+          "Y": 0.3688173,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92647195,
+          "Y": 0.3763637,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92365074,
+          "Y": 0.38323548,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92034733,
+          "Y": 0.39110234,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91711223,
+          "Y": 0.39863002,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9139031,
+          "Y": 0.40593314,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9107338,
+          "Y": 0.41299373,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90759003,
+          "Y": 0.41985756,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90437794,
+          "Y": 0.4267325,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9012073,
+          "Y": 0.43338862,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8979813,
+          "Y": 0.4400335,
+          "Z": 0.0
+        },
+        {
+          "X": -0.894631,
+          "Y": 0.44680598,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89130557,
+          "Y": 0.4534031,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88800013,
+          "Y": 0.45984355,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8846719,
+          "Y": 0.46621433,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88137853,
+          "Y": 0.472411,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8780874,
+          "Y": 0.47850046,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8751079,
+          "Y": 0.48392826,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8727708,
+          "Y": 0.48813042,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87040305,
+          "Y": 0.4923406,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8680818,
+          "Y": 0.49642158,
+          "Z": 0.0
+        },
+        {
+          "X": -0.865814,
+          "Y": 0.5003668,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86361015,
+          "Y": 0.50416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86149406,
+          "Y": 0.5077676,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8595135,
+          "Y": 0.5111132,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8577113,
+          "Y": 0.5141321,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85606253,
+          "Y": 0.5168727,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8545213,
+          "Y": 0.51941633,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8530637,
+          "Y": 0.52180755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8517661,
+          "Y": 0.52392274,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8512318,
+          "Y": 0.52479,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8509053,
+          "Y": 0.5253196,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85082173,
+          "Y": 0.525455,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85089016,
+          "Y": 0.52534366,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8510853,
+          "Y": 0.52502716,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85138166,
+          "Y": 0.5245473,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8517512,
+          "Y": 0.5239464,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8524269,
+          "Y": 0.52284664,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85270107,
+          "Y": 0.52239966,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8529854,
+          "Y": 0.521935,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8532436,
+          "Y": 0.5215126,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85368526,
+          "Y": 0.5207898,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8541726,
+          "Y": 0.5199899,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85508883,
+          "Y": 0.51848197,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8559785,
+          "Y": 0.517012,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8569155,
+          "Y": 0.5154572,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85787654,
+          "Y": 0.51385665,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8588792,
+          "Y": 0.5121785,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85992956,
+          "Y": 0.51041317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86102307,
+          "Y": 0.5085663,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86214757,
+          "Y": 0.5066576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86329436,
+          "Y": 0.5047014,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8644569,
+          "Y": 0.502707,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86562276,
+          "Y": 0.50069714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86679435,
+          "Y": 0.49866632,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86797273,
+          "Y": 0.4966125,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8691437,
+          "Y": 0.49455938,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8703108,
+          "Y": 0.4925035,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87146866,
+          "Y": 0.49045116,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87265885,
+          "Y": 0.48833078,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87382317,
+          "Y": 0.48624468,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8749671,
+          "Y": 0.48418283,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8761282,
+          "Y": 0.48207906,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8772564,
+          "Y": 0.4800225,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8784051,
+          "Y": 0.47791743,
+          "Z": 0.0
+        },
+        {
+          "X": -0.879637,
+          "Y": 0.4756463,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8808967,
+          "Y": 0.47330835,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8808967,
+          "Y": 0.47330835,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

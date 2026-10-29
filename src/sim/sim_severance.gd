@@ -209,3 +209,47 @@ static func award_round_end(world: SimWorld, winner: int, events: Array) -> void
 	if slot == "":
 		return
 	_sever(world, victim, 1 - victim, slot, events)
+
+
+static func check_brutality_trigger(
+	world: SimWorld,
+	attacker: int,
+	victim: int,
+	move_id: String,
+	final_hit_damage: int,
+	events: Array
+) -> bool:
+	if world.match_sever_awarded:
+		return false
+	var defender := world.fighters[victim]
+	if defender.health > 0:
+		return false
+	# Brutality triggers at match conclusion (round 2 or match-winning round)
+	if world.round_index < world.rounds_to_win and world.wins[attacker] + 1 < world.rounds_to_win:
+		return false
+
+	var target_limb := ""
+	var brutality_name := ""
+
+	if move_id in ["mk_jc_nut_punch", "Specialmove_NutPunch"]:
+		target_limb = "torso"
+		brutality_name = "BRUTALITY_NUT_PUNCH"
+	elif move_id in ["mk_jc_shadow_kick", "Specialmove_ShadowKick"]:
+		target_limb = "torso"
+		brutality_name = "BRUTALITY_TORSO_PUNCH_THROUGH"
+	elif move_id in ["mk_jc_rising_elbow", "Specialmove_RisingElbow", "divine_uppercut"]:
+		target_limb = "head"
+		brutality_name = "BRUTALITY_DECAPITATION"
+	elif move_id in ["mk_jc_sunglasses_toss", "Specialmove_SunglassesToss"]:
+		target_limb = "head"
+		brutality_name = "BRUTALITY_HEAD_EXPLODE"
+	else:
+		target_limb = defender.limbs.highest_damaged_limb()
+		if target_limb == "":
+			target_limb = "arm_l"
+		brutality_name = "BRUTALITY_LIMB_SNAP"
+
+	_sever(world, victim, attacker, target_limb, events)
+	events[events.size() - 1].payload["brutality"] = brutality_name
+	events[events.size() - 1].payload["slow_motion_ticks"] = 45
+	return true

@@ -1,0 +1,3782 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_Specialmove_Talisman_CallAssist_MapMode",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode",
+    "Properties": {
+      "TagContainer": [
+        "TL_Special"
+      ],
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Talisman"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/game/Disk/Shared/Prop/Shared_Talisman/Blueprint/BP_Shared_Talisman.BP_Shared_Talisman_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFloat_39'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.62"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_676'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.2"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_677'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.3"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_678'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.4"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_679'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.5"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_680'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.6"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_681'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.7"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_682'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.8"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_683'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.9"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_684'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.10"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_685'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.11"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_686'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.12"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_687'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.13"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_688'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.14"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_689'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_690'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_691'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_692'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_693'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_694'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_695'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_696'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_697'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_698'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.24"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackInt_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.77"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_699'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_700'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_701'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_702'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_703'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_704'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_705'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_706'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_707'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_708'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_709'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_710'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_711'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_764'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_765'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_766'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_767'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.41"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_130'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.79"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_104'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.54"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFloat_40'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.63"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackVector_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.89"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackInt_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.78"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackVector_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.90"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_131'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.80"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_143'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.65"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_132'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.81"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_133'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.82"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_144'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.66"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_134'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.83"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_135'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.84"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_145'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.67"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_136'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.85"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_137'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.86"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_146'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_138'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.87"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_105'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.55"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_106'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.56"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_107'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.57"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_768'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.42"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_147'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_148'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.70"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_149'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.71"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_150'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.72"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFString_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.76"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_151'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.73"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_152'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.74"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFName_153'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.75"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_108'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.58"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_769'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_776'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.50"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_770'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_771'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_772'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_773'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.47"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_774'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.48"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_775'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_777'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.51"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_778'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.52"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineCompressedTrack_Transform_779'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.53"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackUObject_139'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.88"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_109'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.59"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackFloat_41'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.64"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_110'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_Talisman_CallAssist_MapMode:TimelineDataTrackBool_111'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.61"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 170
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_676",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_677",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_678",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_679",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_680",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_681",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_682",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_683",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_684",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_685",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_686",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_687",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_688",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_689",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_690",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_691",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_692",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_693",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_694",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_695",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_696",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_697",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_698",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_699",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_700",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_701",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_702",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_703",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_704",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_705",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_706",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_707",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_708",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_709",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_710",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_711",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_764",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_765",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_766",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_767",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_768",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_769",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_770",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_771",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_772",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_773",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_774",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_775",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_776",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_777",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_778",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_779",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_104",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_105",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_106",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_107",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_108",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_109",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_110",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_111",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_39",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        2.8261833,
+        2.6716242,
+        2.4945354,
+        2.335864,
+        2.6051702,
+        2.8430529,
+        3.0326843,
+        3.1605139,
+        2.7593508,
+        2.546523,
+        2.6760073,
+        2.84478,
+        2.9796247,
+        2.8320656,
+        2.8261833,
+        2.8261833
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_40",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        2.8333333,
+        2.8333333
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_41",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        2.8333333,
+        2.8333333
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_143",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_144",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_145",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_146",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_147",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_148",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        "RightPalm_socket"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_149",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_150",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_151",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_152",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_153",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_130",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_Talisman_CallAssist_MapMode'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_Talisman_CallAssist_MapMode.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_131",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_Talisman_CallAssist_MapMode:RtpcData_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.1"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_132",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Unstoppable_Talisman_Magic'",
+          "ObjectPath": "/Game/WwiseAudio/Events/DLC/REL_SeasonOfHuntress/Audio/SeasonofHuntress/Audio/MapMode/Unstoppable_Talisman_Magic.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_133",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_134",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_135",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_136",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_137",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_138",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_139",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_Talisman_CallAssist_MapMode_Shared_Talisman'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_Talisman_CallAssist_MapMode_Shared_Talisman.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.1280899,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.29083252,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.5025711,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.73648834,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.9300003,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0864029,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.183075,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2743835,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4248123,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5803146,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.698967,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7823334,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8103409,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5394058,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0399551,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.31437683,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6003494,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.650177,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.7974014,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.0249863,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.332527,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.598755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.8295593,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.961166,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -10.054611,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -11.17791,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -12.347977,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -13.479477,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -14.506805,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.323914,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.9904785,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -16.604218,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.067207,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.29454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.39112,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.487595,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.757156,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.952515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.190636,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.875336,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.216492,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.217865,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.50795,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.742226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.851639,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.972641,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.158775,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.262115,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.219063,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.133324,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -20.006218,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.828712,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.636147,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.436714,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.259872,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -19.096977,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.92878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.755089,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.596779,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.44535,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.264793,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -18.043312,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.740288,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -17.380608,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -16.971848,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -16.467606,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.949661,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.521065,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -15.06517,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -14.566345,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -13.964867,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -13.276764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -12.535439,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -11.845749,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -11.357758,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -10.761436,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.885864,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.771973,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.5583878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.1880035,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.81411,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.4075089,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.9084244,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.2946396,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.1295624,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4529343,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.6016464,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.453453,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.101471,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5457916,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.8877563,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.100273,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.196762,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.1880035,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.112602,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.967598,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.7779236,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.556305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.274025,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.962288,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.6262283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.274826,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8593674,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.3983917,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.9114838,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3909454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.9001617,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3962402,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.89540863,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.41893005,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.024398804,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.44932556,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.81827545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1569672,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.4361725,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6799545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.8641434,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.0159302,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.1353989,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2189407,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2692108,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2862854,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2785034,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2501678,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2094421,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.1518707,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.0724564,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.9779434,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.8731003,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.7595444,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.632515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.4915237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.3325577,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1538467,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.96939087,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.7931366,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.60504913,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.40584564,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.19705963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.021331787,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.24176788,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.46022797,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.671669,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.87086487,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.050972,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2172699,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3639145,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4901733,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5962906,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6747665,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7271042,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7528534,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7536163,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7258682,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6757431,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6074905,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5277557,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4416122,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3443298,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2374649,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.1253815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0077591,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.8815384,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.75242615,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.620903,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.48726654,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.3572235,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.22238159,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.105545044,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.105545044,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.105545044,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_Talisman_CallAssist_MapMode'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_Talisman_CallAssist_MapMode.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8811767,
+          "Y": 0.47278723,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87544084,
+          "Y": 0.48332503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86268187,
+          "Y": 0.5057471,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84335184,
+          "Y": 0.5373616,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8147552,
+          "Y": 0.5798052,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7863593,
+          "Y": 0.6177695,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7662351,
+          "Y": 0.64256036,
+          "Z": 0.0
+        },
+        {
+          "X": -0.75819004,
+          "Y": 0.6520335,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7708372,
+          "Y": 0.6370322,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7941873,
+          "Y": 0.60767317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82188225,
+          "Y": 0.5696576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84982514,
+          "Y": 0.5270645,
+          "Z": 0.0
+        },
+        {
+          "X": -0.870983,
+          "Y": 0.49131295,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88598764,
+          "Y": 0.463709,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8954389,
+          "Y": 0.4451842,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90324044,
+          "Y": 0.42913502,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91182435,
+          "Y": 0.41058037,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92186403,
+          "Y": 0.3875132,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93140304,
+          "Y": 0.36398956,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9395981,
+          "Y": 0.34227955,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94453,
+          "Y": 0.3284253,
+          "Z": 0.0
+        },
+        {
+          "X": -0.944687,
+          "Y": 0.32797322,
+          "Z": 0.0
+        },
+        {
+          "X": -0.941165,
+          "Y": 0.3379473,
+          "Z": 0.0
+        },
+        {
+          "X": -0.936399,
+          "Y": 0.35093725,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9330894,
+          "Y": 0.35964432,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9313327,
+          "Y": 0.3641694,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9299567,
+          "Y": 0.36766925,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9283675,
+          "Y": 0.37166363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92768586,
+          "Y": 0.37336162,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93087375,
+          "Y": 0.36534083,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94059896,
+          "Y": 0.33951938,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9548415,
+          "Y": 0.29711497,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96978664,
+          "Y": 0.24395458,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98095775,
+          "Y": 0.19422168,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9898536,
+          "Y": 0.14209083,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9955298,
+          "Y": 0.09444723,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9977654,
+          "Y": 0.06681447,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99769735,
+          "Y": 0.067822434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9960828,
+          "Y": 0.08842501,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99349856,
+          "Y": 0.113843724,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9921068,
+          "Y": 0.12539537,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99308753,
+          "Y": 0.11737476,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9951552,
+          "Y": 0.09831714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9962326,
+          "Y": 0.08672272,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99612284,
+          "Y": 0.08797283,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9954603,
+          "Y": 0.09517747,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9950975,
+          "Y": 0.09889785,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9950702,
+          "Y": 0.09917171,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99511707,
+          "Y": 0.09870162,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99512446,
+          "Y": 0.09862641,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9949025,
+          "Y": 0.100841686,
+          "Z": 0.0
+        },
+        {
+          "X": -0.994537,
+          "Y": 0.10438322,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9942734,
+          "Y": 0.10686468,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9940938,
+          "Y": 0.10852552,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99399257,
+          "Y": 0.10944715,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9939935,
+          "Y": 0.109438516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9941913,
+          "Y": 0.10762551,
+          "Z": 0.0
+        },
+        {
+          "X": -0.994563,
+          "Y": 0.104136325,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99496233,
+          "Y": 0.10024944,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9974915,
+          "Y": 0.07078555,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9976287,
+          "Y": 0.068824135,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99782884,
+          "Y": 0.06586032,
+          "Z": 0.0
+        },
+        {
+          "X": -0.998227,
+          "Y": 0.059522294,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9988345,
+          "Y": 0.048269514,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99950004,
+          "Y": 0.031614687,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99995565,
+          "Y": 0.009398265,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999101,
+          "Y": -0.013398949,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9995012,
+          "Y": -0.031570807,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9988588,
+          "Y": -0.047762647,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9981886,
+          "Y": -0.06016254,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9976876,
+          "Y": -0.067966565,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99758816,
+          "Y": -0.06941117,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99784315,
+          "Y": -0.065641515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9984268,
+          "Y": -0.056070525,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99921167,
+          "Y": -0.039701164,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998982,
+          "Y": -0.014261261,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998956,
+          "Y": 0.014435047,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9990839,
+          "Y": 0.0427948,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9979739,
+          "Y": 0.06362418,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99767923,
+          "Y": 0.06809043,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9981344,
+          "Y": 0.061055772,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9980941,
+          "Y": 0.061710063,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9974526,
+          "Y": 0.07133099,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99617064,
+          "Y": 0.08742755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99437654,
+          "Y": 0.10590314,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9920955,
+          "Y": 0.12548538,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9894216,
+          "Y": 0.14506914,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98658,
+          "Y": 0.16327745,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98318434,
+          "Y": 0.18261634,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9791126,
+          "Y": 0.20331833,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97373986,
+          "Y": 0.22766371,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9669186,
+          "Y": 0.25508484,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9578258,
+          "Y": 0.28734958,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9475589,
+          "Y": 0.3195809,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9365225,
+          "Y": 0.3506078,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9243878,
+          "Y": 0.38145378,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9120195,
+          "Y": 0.41014677,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9001479,
+          "Y": 0.43558452,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8868557,
+          "Y": 0.46204644,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8728335,
+          "Y": 0.48801786,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8583003,
+          "Y": 0.5131478,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8447596,
+          "Y": 0.5351456,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83256936,
+          "Y": 0.5539211,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82311034,
+          "Y": 0.5678814,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81691206,
+          "Y": 0.5767621,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8134208,
+          "Y": 0.58167523,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8127601,
+          "Y": 0.58259827,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81398654,
+          "Y": 0.5808837,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81613314,
+          "Y": 0.577864,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8185601,
+          "Y": 0.57442105,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8213211,
+          "Y": 0.570466,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82482433,
+          "Y": 0.56538916,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82876956,
+          "Y": 0.5595902,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8333769,
+          "Y": 0.55270505,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83774006,
+          "Y": 0.5460688,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8419328,
+          "Y": 0.5395825,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8457805,
+          "Y": 0.53353095,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8501494,
+          "Y": 0.5265416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85532856,
+          "Y": 0.51808614,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86105084,
+          "Y": 0.5085185,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8674824,
+          "Y": 0.49746758,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87406576,
+          "Y": 0.48580772,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88042414,
+          "Y": 0.47418725,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88684094,
+          "Y": 0.46207476,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8927547,
+          "Y": 0.45054328,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89748895,
+          "Y": 0.44103682,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90123427,
+          "Y": 0.4333318,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90411854,
+          "Y": 0.42728168,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90616953,
+          "Y": 0.42291442,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90758145,
+          "Y": 0.41987595,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9085374,
+          "Y": 0.4178039,
+          "Z": 0.0
+        },
+        {
+          "X": -0.908955,
+          "Y": 0.41689447,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9090526,
+          "Y": 0.41668135,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9088081,
+          "Y": 0.41721478,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9083904,
+          "Y": 0.4181228,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90745413,
+          "Y": 0.42015117,
+          "Z": 0.0
+        },
+        {
+          "X": -0.906427,
+          "Y": 0.4223626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9053521,
+          "Y": 0.42466125,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9034407,
+          "Y": 0.4287133,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9014907,
+          "Y": 0.4327982,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89930403,
+          "Y": 0.43732363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8968724,
+          "Y": 0.44228935,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89462173,
+          "Y": 0.446824,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89161813,
+          "Y": 0.45278814,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8888339,
+          "Y": 0.45822957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88616455,
+          "Y": 0.4633704,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8833767,
+          "Y": 0.46866363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88053787,
+          "Y": 0.4739756,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8779124,
+          "Y": 0.47882116,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87564516,
+          "Y": 0.48295513,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87345695,
+          "Y": 0.48690107,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87147236,
+          "Y": 0.49044478,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8699447,
+          "Y": 0.4931488,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86880326,
+          "Y": 0.49515703,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8685832,
+          "Y": 0.49554357,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8689579,
+          "Y": 0.4948862,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8694526,
+          "Y": 0.4940161,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8700565,
+          "Y": 0.4929519,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8702103,
+          "Y": 0.49268052,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87085426,
+          "Y": 0.49154124,
+          "Z": 0.0
+        },
+        {
+          "X": -0.871426,
+          "Y": 0.49052662,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8721193,
+          "Y": 0.48929325,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87302434,
+          "Y": 0.48767656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87438977,
+          "Y": 0.48522443,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8750403,
+          "Y": 0.4840498,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8775995,
+          "Y": 0.4793947,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87925637,
+          "Y": 0.47634867,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8804953,
+          "Y": 0.47405484,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88132834,
+          "Y": 0.47250426,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88132834,
+          "Y": 0.47250426,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88132834,
+          "Y": 0.47250426,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

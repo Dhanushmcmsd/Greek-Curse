@@ -33,7 +33,10 @@ var _socket_rest: Dictionary = {}
 var _cape: Node3D
 var _last_creak: int = -1
 var _cape_angle: float = 0.0
+var _cape_velocity: float = 0.0
 var _cape_rest := Transform3D.IDENTITY
+var _last_fighter_x: float = 0.0
+var _last_fighter_facing: int = 1
 var _last_states: Dictionary = {}
 var _twitch: Dictionary = {}
 var _one_leg: OneLegMotion
@@ -265,11 +268,26 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 		rig.position.y += float(one_leg.lift)
 	_projectile(fighter)
 	if _cape != null and not stopped:
-		_cape_angle = lerpf(
-			_cape_angle,
-			sin(time * float(settings["quirk_rate"])) * float(settings["quirk_angle"]),
-			float(settings["cape_spring"])
-		)
+		# Velocity-reactive cloth: spring-damper driven by character motion + combat
+		var move_delta := float(fighter.x) / 1000.0 - _last_fighter_x
+		_last_fighter_x = float(fighter.x) / 1000.0
+		var facing_flip := 1.0 if fighter.facing == _last_fighter_facing else -1.0
+		_last_fighter_facing = fighter.facing
+		# External forces: movement drag + attack impulse + idle sway
+		var drag_force := -move_delta * 3.5 * float(fighter.facing)
+		var attack_impulse := 0.0
+		if fighter.state == SimFighter.State.ACTIVE:
+			attack_impulse = float(settings.get("cape_attack_impulse", 0.15)) * float(fighter.facing)
+		var idle_sway := sin(time * float(settings["quirk_rate"])) * float(settings["quirk_angle"]) * 0.3
+		# Spring-damper integration
+		var spring_k := float(settings.get("cape_spring_k", 8.0))
+		var damping := float(settings.get("cape_damping", 0.88))
+		var target := idle_sway + drag_force + attack_impulse
+		var force := (target - _cape_angle) * spring_k * (1.0 / 60.0)
+		_cape_velocity = (_cape_velocity + force) * damping
+		_cape_angle += _cape_velocity * (1.0 / 60.0)
+		_cape_angle = clampf(_cape_angle, -0.8, 0.8)
+		_cape_angle *= facing_flip
 		var pivot := Vector3(
 			0,
 			rig.fighter_height * float(settings["cape_pivot_height_percent"]) / 100.0,
@@ -298,6 +316,20 @@ func _select(fighter: SimFighter) -> String:
 		)
 	):
 		var set_id: String = moves.get(fighter.move_name, {}).get("anim_set", "punch_light")
+		if not data["sets"].has(set_id):
+			var lower := set_id.to_lower()
+			if lower.contains("nut"):
+				set_id = "special_nut_punch" if data["sets"].has("special_nut_punch") else "punch_light"
+			elif lower.contains("shadow") or (lower.contains("jump") and lower.contains("kick")):
+				set_id = "special_shadow_kick" if data["sets"].has("special_shadow_kick") else "kick_flying"
+			elif lower.contains("rising") or lower.contains("elbow"):
+				set_id = "special_rising_elbow" if data["sets"].has("special_rising_elbow") else "punch_heavy"
+			elif lower.contains("sunglasses"):
+				set_id = "special_sunglasses_toss" if data["sets"].has("special_sunglasses_toss") else "punch_light"
+			elif lower.contains("kick"):
+				set_id = "kick_low" if lower.contains("duck") else "kick_mid"
+			else:
+				set_id = "punch_heavy" if (lower.contains("back") or lower.contains("2")) else "punch_light"
 		var key := attack_phase(fighter.state_tick, fighter.startup_ticks, fighter.active_ticks)
 		return data["sets"][set_id][key]
 	var selected := "idle"
@@ -309,19 +341,31 @@ func _select(fighter: SimFighter) -> String:
 				selected = "knockdown"
 		SimFighter.State.HITSTUN:
 			# Dynamic Reactions:
-			# - Heavy hits (e.g. thunder_elbow_strike): Trigger reaction_gut_crumple or wall bounce
-			# - Light hits: Flinch blend with torso twist
+			# - Nut Punch / Groin hits: Trigger reaction_groin_crumple (extended groveling stun)
+			# - Launchers / Uppercuts / Rising Star: Trigger reaction_air_launcher (vertical popup)
+			# - Shadow Kick / Wall Bounce: Trigger reaction_wall_splat_bounce on wall impact
+			# - Heavy hits / Gut strikes: Trigger reaction_gut_crumple
+			# - Head hits: Trigger hit_head_snap
 			if (
-				last_attacker_move == "thunder_elbow_strike"
+				last_attacker_move == "mk_jc_nut_punch"
 				or last_attacker_move == "phantom_ambush"
+				or last_attacker_move == "achilles_heel_snap"
 			):
-				if (
-					moves.get(last_attacker_move, {}).get("wall_bounce", false)
-					and (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600)
-				):
+				selected = "reaction_groin_crumple"
+			elif (
+				last_attacker_move == "mk_jc_rising_elbow"
+				or last_attacker_move == "divine_uppercut"
+			):
+				selected = "reaction_air_launcher"
+			elif (
+				last_attacker_move == "mk_jc_shadow_kick"
+				or last_attacker_move == "thunder_elbow_strike"
+				or moves.get(last_attacker_move, {}).get("wall_bounce", false)
+			):
+				if (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600):
 					selected = "reaction_wall_splat_bounce"
 				else:
-					selected = "reaction_gut_crumple"
+					selected = "reaction_gut_crumple" if last_attacker_move == "thunder_elbow_strike" else "hit_heavy"
 			elif last_hit_zone == "head":
 				selected = "hit_head_snap"
 			elif last_hit_zone == "torso":
@@ -760,6 +804,9 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 					bone,
 					_attack_blend_from[bone].slerp(rig.skeleton.get_bone_pose_rotation(bone), blend)
 				)
+		# Separate hands during active attack frames to prevent interpenetration
+		if fighter.state == SimFighter.State.ACTIVE:
+			_separate_hands(fighter)
 	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
 			rig.anim_player.play(clip_name, 0.1)
@@ -904,7 +951,7 @@ func _solve_guard_arm(side: String, extension: float) -> void:
 	var second := elbow.distance_to(wrist)
 	var sign_x := signf(skel.get_bone_global_rest(upper).origin.x)
 	var goal := (
-		shoulder + Vector3(-sign_x * 0.06, -0.10, lerpf(0.20, (first + second) * 0.92, extension))
+		shoulder + Vector3(-sign_x * (0.06 + rig.fighter_width * 0.12), -0.10, lerpf(0.20, (first + second) * 0.92, extension))
 	)
 	var direction := (goal - shoulder).normalized()
 	var reach := minf(shoulder.distance_to(goal), (first + second) * 0.97)

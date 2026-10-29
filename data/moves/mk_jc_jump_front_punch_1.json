@@ -1,0 +1,40 @@
+{
+  "display_name": "Jump-In Punch (J1)",
+  "startup_ticks": 7,
+  "active_ticks": 4,
+  "recovery_ticks": 14,
+  "damage": 30,
+  "limb_damage": 20,
+  "on_block_pushback": 80,
+  "hitstop_attacker": 5,
+  "hitstop_defender": 8,
+  "cancel_into": [
+    "mk_jc_front_punch_1"
+  ],
+  "cancel_start": 8,
+  "cancel_end": 14,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_l",
+  "zone_priority": 1,
+  "hitstun_ticks": 18,
+  "blockstun_ticks": 12,
+  "knockback_mm": 150,
+  "hitbox": {
+    "x": 180,
+    "y": 250,
+    "w": 380,
+    "h": 250
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "aerial",
+  "anim_set": "punch_heavy",
+  "id": "mk_jc_jump_front_punch_1"
+}

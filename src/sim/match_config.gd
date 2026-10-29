@@ -16,7 +16,7 @@ func validate() -> String:
 	if fighter_ids.size() != 2 or controllers.size() != 2:
 		return "Exactly two fighters and controllers required"
 	for id in fighter_ids:
-		if id not in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		if id not in ["theron", "atalanta", "pyrrhus", "sibyl", "johnny_cage"]:
 			return "Unknown fighter " + id
 	for controller in controllers:
 		if (

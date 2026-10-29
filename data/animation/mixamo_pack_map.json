@@ -2573,6 +2573,297 @@
           ]
         }
       }
+    },
+    "johnny_cage": {
+      "archetype": "rushdown_superstar",
+      "style_notes": "Johnny Cage MK12 martial arts suite with Hollywood swagger, shadow dash, rising elbow, and nut punch.",
+      "actions": {
+        "idle": {
+          "clip": "idle_and_start_animation_action_idle_to_fight_idle",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "walk_fwd": {
+          "clip": "walking_front_strut_walking",
+          "loop": true,
+          "speed_scale": 1.05
+        },
+        "walk_back": {
+          "clip": "walking_back_walking_backwards",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "run": {
+          "clip": "walking_front_walking",
+          "derived": true,
+          "recipe": "walking_front_walking played faster",
+          "loop": true,
+          "speed_scale": 1.5,
+          "additive_lean_x": 12.0
+        },
+        "block": {
+          "clip": "block_standing_block_react_large",
+          "loop": false,
+          "speed_scale": 1.0
+        },
+        "dodge": {
+          "clip": "walking_back_backward_walking_turn",
+          "derived": true,
+          "recipe": "walking_back_backward_walking_turn evasive turn",
+          "loop": false,
+          "speed_scale": 1.8
+        },
+        "grab": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "stagger": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "loop": false
+        },
+        "knockdown": {
+          "clip": "death_fall_flat",
+          "loop": false
+        },
+        "get_up": {
+          "clip": "death_fall_flat",
+          "derived": true,
+          "recipe": "death_fall_flat played in reverse",
+          "loop": false,
+          "speed_scale": -1.0
+        },
+        "crawl": {
+          "clip": "no_legs_crawling",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "torso_scuttle": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "loop": true,
+          "speed_scale": 1.2
+        },
+        "torso_roll": {
+          "clip": "no_legs_crawling",
+          "derived": true,
+          "loop": true,
+          "speed_scale": 1.5
+        },
+        "win": {
+          "clip": "idle_and_start_animation_happy_idle",
+          "loop": true,
+          "speed_scale": 1.0
+        },
+        "lose": {
+          "clip": "death_standing_death_backward_01",
+          "loop": false,
+          "speed_scale": 0.95
+        },
+        "punch_jab": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.4
+        },
+        "move_mk_jc_front_punch_1": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.35,
+          "strike_side": "l",
+          "export_source": "FrontPunch_1"
+        },
+        "move_mk_jc_1_2nd_front_punch": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.35,
+          "start_seconds": 0.0,
+          "end_seconds": 0.42,
+          "strike_side": "r",
+          "export_source": "FrontPunch_1_2ndFrontPunch"
+        },
+        "move_mk_jc_1_1_3rd_back_kick": {
+          "clip": "kick_martelo_2",
+          "loop": false,
+          "contact_phase": 0.45,
+          "start_seconds": 0.0,
+          "end_seconds": 0.65,
+          "strike_side": "r",
+          "export_source": "FrontPunch_1_3rdBackKick"
+        },
+        "move_mk_jc_back_punch_1": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.45,
+          "strike_side": "r",
+          "export_source": "BackPunch_1"
+        },
+        "move_mk_jc_2_2nd_front_punch": {
+          "clip": "punch_boxing",
+          "loop": false,
+          "contact_phase": 0.38,
+          "start_seconds": 0.0,
+          "end_seconds": 0.48,
+          "strike_side": "l",
+          "export_source": "BackPunch_1_2ndFrontPunch"
+        },
+        "move_mk_jc_2_1_3rd_back_kick": {
+          "clip": "kick_kicking",
+          "loop": false,
+          "contact_phase": 0.42,
+          "start_seconds": 0.0,
+          "end_seconds": 0.58,
+          "strike_side": "r",
+          "export_source": "BackPunch_1_3rdBackKick"
+        },
+        "move_mk_jc_2_1_4_4th_back_kick": {
+          "clip": "kick_martelo_2",
+          "loop": false,
+          "contact_phase": 0.46,
+          "start_seconds": 0.0,
+          "end_seconds": 0.75,
+          "strike_side": "r",
+          "export_source": "BackPunch_1_4thBackKick"
+        },
+        "move_mk_jc_front_kick_1": {
+          "clip": "kick_kicking",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.52,
+          "strike_side": "l",
+          "export_source": "FrontKick_1"
+        },
+        "move_mk_jc_3_2nd_back_kick": {
+          "clip": "kick_martelo_2",
+          "loop": false,
+          "contact_phase": 0.44,
+          "start_seconds": 0.0,
+          "end_seconds": 0.6,
+          "strike_side": "r",
+          "export_source": "FrontKick_1_2ndBackKick"
+        },
+        "move_mk_jc_back_kick_1": {
+          "clip": "kick_drop_kick",
+          "loop": false,
+          "contact_phase": 0.42,
+          "start_seconds": 0.0,
+          "end_seconds": 0.6,
+          "strike_side": "r",
+          "export_source": "BackKick_1"
+        },
+        "move_mk_jc_4_2nd_front_kick": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.45,
+          "start_seconds": 0.0,
+          "end_seconds": 0.58,
+          "strike_side": "l",
+          "export_source": "BackKick_1_2ndFrontKick"
+        },
+        "move_mk_jc_duck_front_punch_1": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.35,
+          "start_seconds": 0.0,
+          "end_seconds": 0.35,
+          "strike_side": "l",
+          "export_source": "DuckFrontPunch_1"
+        },
+        "move_mk_jc_duck_back_punch_1": {
+          "clip": "punch_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.38,
+          "start_seconds": 0.0,
+          "end_seconds": 0.45,
+          "strike_side": "r",
+          "export_source": "DuckBackPunch_1"
+        },
+        "move_mk_jc_duck_front_kick_1": {
+          "clip": "kick_kick_to_the_groin",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.48,
+          "strike_side": "l",
+          "export_source": "DuckFrontKick_1"
+        },
+        "move_mk_jc_duck_back_kick_1": {
+          "clip": "kick_martelo_2",
+          "loop": false,
+          "contact_phase": 0.45,
+          "start_seconds": 0.0,
+          "end_seconds": 0.55,
+          "strike_side": "r",
+          "export_source": "DuckBackKick_1"
+        },
+        "move_mk_jc_jump_front_punch_1": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.45,
+          "strike_side": "r",
+          "export_source": "JumpFrontPunch_1"
+        },
+        "move_mk_jc_jump_front_kick_1": {
+          "clip": "kick_jump_attack",
+          "loop": false,
+          "contact_phase": 0.45,
+          "start_seconds": 0.0,
+          "end_seconds": 0.65,
+          "strike_side": "l",
+          "export_source": "JumpFrontKick_1"
+        },
+        "move_mk_jc_nut_punch": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.42,
+          "start_seconds": 0.0,
+          "end_seconds": 0.68,
+          "strike_side": "r",
+          "export_source": "Specialmove_NutPunch"
+        },
+        "move_mk_jc_shadow_kick": {
+          "clip": "kick_flying_knee_punch_combo",
+          "loop": false,
+          "contact_phase": 0.45,
+          "start_seconds": 0.0,
+          "end_seconds": 0.72,
+          "strike_side": "r",
+          "export_source": "Specialmove_ShadowKick"
+        },
+        "move_mk_jc_rising_elbow": {
+          "clip": "punch_illegal_elbow_punch",
+          "loop": false,
+          "contact_phase": 0.38,
+          "start_seconds": 0.0,
+          "end_seconds": 0.62,
+          "strike_side": "r",
+          "export_source": "Specialmove_RisingElbow"
+        },
+        "move_mk_jc_sunglasses_toss": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.38,
+          "start_seconds": 0.0,
+          "end_seconds": 0.55,
+          "strike_side": "r",
+          "export_source": "Specialmove_SunglassesToss"
+        },
+        "move_mk_jc_throw_forward": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.4,
+          "start_seconds": 0.0,
+          "end_seconds": 0.6,
+          "strike_side": "r",
+          "export_source": "Throw_Fwd_Hit_Into"
+        }
+      }
     }
   }
 }

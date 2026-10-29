@@ -25,6 +25,31 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 		return {}
 	if light and kick and fighter.limbs.usable("arm_r"):
 		return {"id": "grab", "slot": slot}
+	# Support MK 4-button characters (e.g. Johnny Cage)
+	if fighter.fighter_id == "johnny_cage":
+		var forward := bool(mask & (SimInput.RIGHT if fighter.facing > 0 else SimInput.LEFT))
+		var back := bool(mask & (SimInput.LEFT if fighter.facing > 0 else SimInput.RIGHT))
+		var down := bool(mask & SimInput.DOWN)
+		if down and back and light:
+			return {"id": "mk_jc_nut_punch", "slot": "torso"}
+		if back and forward and (kick or bool(mask & SimInput.KICK_RIGHT)):
+			return {"id": "mk_jc_shadow_kick", "slot": "leg_r"}
+		if down and back and kick:
+			return {"id": "mk_jc_rising_elbow", "slot": "arm_r"}
+		if down and forward and heavy:
+			return {"id": "mk_jc_sunglasses_toss", "slot": "head"}
+		if down:
+			if light: return {"id": "mk_jc_duck_front_punch_1", "slot": "arm_l"}
+			if heavy: return {"id": "mk_jc_duck_back_punch_1", "slot": "arm_r"}
+			if kick: return {"id": "mk_jc_duck_front_kick_1", "slot": "leg_l"}
+			if bool(mask & SimInput.KICK_RIGHT): return {"id": "mk_jc_duck_back_kick_1", "slot": "leg_r"}
+		if light and kick:
+			return {"id": "mk_jc_throw_forward", "slot": "torso"}
+		if light: return {"id": "mk_jc_front_punch_1", "slot": "arm_l"}
+		if heavy: return {"id": "mk_jc_back_punch_1", "slot": "arm_r"}
+		if kick: return {"id": "mk_jc_front_kick_1", "slot": "leg_l"}
+		if bool(mask & SimInput.KICK_RIGHT): return {"id": "mk_jc_back_kick_1", "slot": "leg_r"}
+
 	var command := command_move(fighter.facing, mask)
 	if command != "":
 		return {

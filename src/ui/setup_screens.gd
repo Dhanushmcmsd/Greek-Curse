@@ -36,7 +36,7 @@ static func build(host: MenuHost, state: String) -> void:
 	if state == "loadout":
 		_loadout(host)
 		return
-	var roster := ["theron", "atalanta", "pyrrhus", "sibyl"]
+	var roster := ["theron", "atalanta", "pyrrhus", "sibyl", "johnny_cage"]
 	var row := HBoxContainer.new()
 	host.body.add_child(row)
 	for index in 2:

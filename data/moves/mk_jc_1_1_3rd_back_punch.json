@@ -1,0 +1,41 @@
+{
+  "display_name": "Showtime Combo (1, 1, 2)",
+  "startup_ticks": 10,
+  "active_ticks": 2,
+  "recovery_ticks": 18,
+  "damage": 40,
+  "limb_damage": 35,
+  "on_block_pushback": 110,
+  "hitstop_attacker": 5,
+  "hitstop_defender": 8,
+  "cancel_into": [
+    "mk_jc_nut_punch",
+    "mk_jc_shadow_kick"
+  ],
+  "cancel_start": 10,
+  "cancel_end": 16,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 40,
+  "wall_bounce": false,
+  "limb_side": "arm_r",
+  "zone_priority": 1,
+  "hitstun_ticks": 20,
+  "blockstun_ticks": 11,
+  "knockback_mm": 260,
+  "hitbox": {
+    "x": 220,
+    "y": 410,
+    "w": 420,
+    "h": 260
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 6,
+  "category": "punch",
+  "anim_set": "punch_heavy",
+  "id": "mk_jc_1_1_3rd_back_punch"
+}

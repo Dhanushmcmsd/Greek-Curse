@@ -1,0 +1,42 @@
+{
+  "display_name": "Back Kick (4)",
+  "startup_ticks": 11,
+  "active_ticks": 3,
+  "recovery_ticks": 18,
+  "damage": 34,
+  "limb_damage": 35,
+  "on_block_pushback": 90,
+  "hitstop_attacker": 5,
+  "hitstop_defender": 8,
+  "cancel_into": [
+    "mk_jc_4_2nd_front_kick",
+    "mk_jc_shadow_kick",
+    "mk_jc_nut_punch"
+  ],
+  "cancel_start": 11,
+  "cancel_end": 17,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "leg_r",
+  "zone_priority": 2,
+  "hitstun_ticks": 18,
+  "blockstun_ticks": 10,
+  "knockback_mm": 210,
+  "hitbox": {
+    "x": 220,
+    "y": 320,
+    "w": 450,
+    "h": 300
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "kick",
+  "anim_set": "kick_mid",
+  "id": "mk_jc_back_kick_1"
+}

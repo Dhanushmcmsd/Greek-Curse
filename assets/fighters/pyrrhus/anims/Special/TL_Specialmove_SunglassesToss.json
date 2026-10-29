@@ -1,0 +1,4263 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_Specialmove_SunglassesToss",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss",
+    "Properties": {
+      "TagContainer": [
+        "TL_Special"
+      ],
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "Primary",
+              "Sunglasses"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Prop/JohnnyCage_Sunglasses/Blueprint/BP_JohnnyCage_Sunglasses.BP_JohnnyCage_Sunglasses_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": true
+          }
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_SunglassesToss:TimelineDataTrackFloat_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.70"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_50'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_51'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_52'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_53'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_54'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_55'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_56'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_57'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_58'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_59'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_60'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_61'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_62'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_63'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_64'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_65'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_66'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_67'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_68'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_69'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_70'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_71'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_72'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.40"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_SunglassesToss:TimelineDataTrackInt_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.85"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_73'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.41"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_74'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.42"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_75'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_76'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_77'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_78'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_79'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.47"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_80'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.48"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_81'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_82'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.50"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_83'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.51"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_84'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.52"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_85'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.53"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_86'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.54"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_87'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.55"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_88'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.56"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_89'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.57"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.87"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_SunglassesToss:TimelineDataTrackFloat_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.71"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_SunglassesToss:TimelineDataTrackVector_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.97"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_SunglassesToss:TimelineDataTrackInt_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.86"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_SunglassesToss:TimelineDataTrackVector_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.98"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.88"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.73"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.89"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.90"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.74"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.91"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.92"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.75"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.93"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.94"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.76"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.95"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.63"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_90'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.77"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.78"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.79"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.80"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_Specialmove_SunglassesToss:TimelineDataTrackFString_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.84"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.81"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.82"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_SunglassesToss:TimelineDataTrackFName_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.83"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.64"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_91'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.59"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_92'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_SunglassesToss:TimelineDataTrackUObject_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.96"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.65"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_SunglassesToss:TimelineDataTrackFloat_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.72"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_SunglassesToss:TimelineCompressedTrack_Transform_93'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.66"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_SunglassesToss:TimelineDataTrackBool_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.67"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 215
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_100",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_101",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_102",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_103",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_104",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_105",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_106",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_107",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_108",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_109",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_110",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_111",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_112",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_113",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_114",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_115",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_116",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_50",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_51",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_52",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_53",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_54",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_55",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_56",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_57",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_58",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_59",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_60",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_61",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_62",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_63",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_64",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_65",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_66",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_67",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_68",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_69",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_70",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_71",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_72",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_73",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_74",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_75",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_76",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_77",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_78",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_79",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_80",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_81",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_82",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_83",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_84",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_85",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_86",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_87",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_88",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_89",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_90",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_91",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_92",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_93",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        2.8263464,
+        2.6959915,
+        2.812539,
+        2.9204807,
+        3.02034,
+        2.898983,
+        2.9050388,
+        3.2689934,
+        3.123352,
+        2.9959526,
+        3.3338375,
+        3.5088253,
+        3.6387653,
+        3.7465324,
+        3.4066763,
+        3.0722322,
+        2.9561272,
+        3.1048336,
+        2.9614086,
+        2.8245716,
+        2.7063417,
+        2.824298,
+        2.824298
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        3.6
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        3.6
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        "SunglassesAttach_socket"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_SunglassesToss'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_SunglassesToss.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_108'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.9"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_109'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.10"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_110'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.11"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_111'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.12"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_112'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.13"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_113'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.14"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_114'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.15"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_115'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.16"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_116'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.17"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'sfx_JohnnyCage_SunglassesToss'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Char/JohnnyCage/SFX_JohnnyCage_Events/Gameplay/sfx_JohnnyCage_SunglassesToss.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'sfx_JohnnyCage_Kustomize_GlassesOn'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Char/JohnnyCage/SFX_JohnnyCage_Events/Gameplay/sfx_JohnnyCage_Kustomize_GlassesOn.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_101'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.2"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_102'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.3"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_103'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.4"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_104'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.5"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_105'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.6"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_106'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.7"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_107'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.8"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_SunglassesToss:RtpcData_100'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.1"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_SunglassesToss_JohnnyCage_Sunglasses'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_SunglassesToss_JohnnyCage_Sunglasses.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.074646,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5594101,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.3512802,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6162033,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.8656845,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.974106,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.587372,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.853363,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.634964,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.978554,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.031456,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8762207,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.5177155,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0715332,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3156738,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5295715,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.5596848,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.3435364,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.8511734,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.1741714,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.363777,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4600067,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.514389,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.557495,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.598549,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.6385727,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.679001,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.712616,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.738693,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.7700806,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.7832794,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.7202377,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.663872,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.63562,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.62352,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.604439,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5902176,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5800934,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.571022,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5631104,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5563583,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5505676,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5439453,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.5367126,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.52549,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.508896,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.475937,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.42334,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.359337,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2918396,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2294617,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.1794205,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.147461,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.1371994,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.1519012,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.181587,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.212723,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2400894,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2858047,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.3455124,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4115906,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.473236,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.495117,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.437958,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2853928,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.072357,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.855545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.6657715,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.500511,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.3461227,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.1990433,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.0628815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.945137,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8564987,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.808609,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.808113,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.849617,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9242706,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.005928,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.067871,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.1263657,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.199234,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.283531,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.379677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.492546,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.623291,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.775444,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.950676,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.1254044,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2602158,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.3137817,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.248085,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.046898,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.7276917,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.3617325,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9679031,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.5544968,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.1064835,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5883026,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0116806,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3920364,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.7036743,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.059822083,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.9066162,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.8470459,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8722153,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.9815216,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.162918,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.373108,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.4950485,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.432892,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.154846,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.663391,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.95237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.988892,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.776115,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -9.31517,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.63755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.8097687,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.8887253,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.92305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.939247,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.9445038,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.9327164,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.907402,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.88848877,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.113967896,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0961914,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0248032,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.872223,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.5997162,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.1677094,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.5789337,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.8599625,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.071312,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.252693,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.383995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4459457,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4213867,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2974625,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.0926056,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.8187256,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.4960938,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.164528,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.800171,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.3933945,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.9519958,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4893188,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0245438,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5688171,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.1294556,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.71687317,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.3416214,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0041885376,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.3290558,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6276016,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.880394,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.067131,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1782074,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2362595,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2655563,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.288765,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.3181534,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.3355865,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.3338242,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.3194962,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2936401,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2558975,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1997833,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1263657,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.0382538,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.92840576,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.80566406,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.67549133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.5298996,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.3792801,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.21813202,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.04624939,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.14069366,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.3327942,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.52941895,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.73576355,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.945755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.1583786,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3708191,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5785141,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7778702,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.9615631,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1236343,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.2602386,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3679504,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4498749,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5054321,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5338135,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.532753,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5028534,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4485703,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3703156,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.270111,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1501083,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0188828,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8819656,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7426834,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6047592,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4646225,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3231277,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.1830444,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.043457,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.9013519,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.7614517,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.6236191,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.48651886,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.35569,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.22124481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.105392456,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.105392456,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_SunglassesToss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_SunglassesToss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90758026,
+          "Y": 0.4198789,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9338877,
+          "Y": 0.35756567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9650793,
+          "Y": 0.26195788,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9868046,
+          "Y": 0.16191523,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9958694,
+          "Y": 0.0907978,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9992312,
+          "Y": 0.039202325,
+          "Z": 0.0
+        },
+        {
+          "X": -0.999547,
+          "Y": -0.030101776,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9928634,
+          "Y": -0.119258046,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97462034,
+          "Y": -0.22386335,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9429047,
+          "Y": -0.33306226,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89874995,
+          "Y": -0.43846145,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8464767,
+          "Y": -0.532426,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7974074,
+          "Y": -0.603441,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7624482,
+          "Y": -0.64704925,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7392225,
+          "Y": -0.67346114,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7194561,
+          "Y": -0.6945378,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7012193,
+          "Y": -0.71294546,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68873036,
+          "Y": -0.72501767,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68076634,
+          "Y": -0.73250055,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6762259,
+          "Y": -0.7366944,
+          "Z": 0.0
+        },
+        {
+          "X": -0.674999,
+          "Y": -0.7378186,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6762612,
+          "Y": -0.7366619,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6783689,
+          "Y": -0.73472154,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6800997,
+          "Y": -0.73311955,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6812216,
+          "Y": -0.7320774,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68251157,
+          "Y": -0.73087484,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6851356,
+          "Y": -0.72841567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6894063,
+          "Y": -0.72437495,
+          "Z": 0.0
+        },
+        {
+          "X": -0.69445455,
+          "Y": -0.7195364,
+          "Z": 0.0
+        },
+        {
+          "X": -0.70427763,
+          "Y": -0.70992464,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7264954,
+          "Y": -0.6871712,
+          "Z": 0.0
+        },
+        {
+          "X": -0.75326264,
+          "Y": -0.65771985,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76671433,
+          "Y": -0.6419884,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7681689,
+          "Y": -0.64024734,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7683135,
+          "Y": -0.6400736,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76897836,
+          "Y": -0.6392748,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7689153,
+          "Y": -0.6393506,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7687868,
+          "Y": -0.63950497,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76858354,
+          "Y": -0.63974935,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76844466,
+          "Y": -0.6399163,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76837003,
+          "Y": -0.64000595,
+          "Z": 0.0
+        },
+        {
+          "X": -0.76835775,
+          "Y": -0.64002043,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7684761,
+          "Y": -0.6398785,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7687911,
+          "Y": -0.6395001,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7693665,
+          "Y": -0.6388077,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7704706,
+          "Y": -0.63747543,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7728636,
+          "Y": -0.63457227,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7766365,
+          "Y": -0.62994885,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7815294,
+          "Y": -0.6238679,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7870505,
+          "Y": -0.61688834,
+          "Z": 0.0
+        },
+        {
+          "X": -0.79288435,
+          "Y": -0.609372,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7986052,
+          "Y": -0.60185516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.80389166,
+          "Y": -0.5947756,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8080927,
+          "Y": -0.5890552,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81153166,
+          "Y": -0.5843083,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8122765,
+          "Y": -0.58327246,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81012905,
+          "Y": -0.58625174,
+          "Z": 0.0
+        },
+        {
+          "X": -0.80479836,
+          "Y": -0.5935484,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7947117,
+          "Y": -0.6069872,
+          "Z": 0.0
+        },
+        {
+          "X": -0.78401554,
+          "Y": -0.620741,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7767558,
+          "Y": -0.62980163,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7754489,
+          "Y": -0.63141036,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7816037,
+          "Y": -0.6237755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.79651,
+          "Y": -0.6046255,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81956816,
+          "Y": -0.5729818,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8479167,
+          "Y": -0.5301295,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8782234,
+          "Y": -0.47825074,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90715635,
+          "Y": -0.42079374,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93200934,
+          "Y": -0.3624337,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9516305,
+          "Y": -0.3072446,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9662056,
+          "Y": -0.25777256,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97647166,
+          "Y": -0.215646,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98353994,
+          "Y": -0.18069108,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98830366,
+          "Y": -0.15249926,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99132645,
+          "Y": -0.13142157,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99305403,
+          "Y": -0.11765938,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99389803,
+          "Y": -0.1103017,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99425614,
+          "Y": -0.10702708,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99446726,
+          "Y": -0.10504771,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99470055,
+          "Y": -0.10281496,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9950118,
+          "Y": -0.09975779,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9954417,
+          "Y": -0.09537113,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99597275,
+          "Y": -0.08965763,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9966023,
+          "Y": -0.08236496,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9973372,
+          "Y": -0.072928734,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99815726,
+          "Y": -0.060679797,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99899614,
+          "Y": -0.044794645,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99967504,
+          "Y": -0.025494177,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999523,
+          "Y": -0.003081691,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997597,
+          "Y": 0.02192595,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99880075,
+          "Y": 0.04896043,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9969795,
+          "Y": 0.07766519,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9941759,
+          "Y": 0.10776888,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99022746,
+          "Y": 0.13946237,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98497796,
+          "Y": 0.17268032,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9785795,
+          "Y": 0.20586964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97124755,
+          "Y": 0.23807167,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9632685,
+          "Y": 0.26853937,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9554912,
+          "Y": 0.29501957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9484335,
+          "Y": 0.31697595,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9422163,
+          "Y": 0.3350054,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93659425,
+          "Y": 0.3504161,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9311888,
+          "Y": 0.36453655,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9254658,
+          "Y": 0.37883103,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91916025,
+          "Y": 0.39388394,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9123708,
+          "Y": 0.409365,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90533817,
+          "Y": 0.42469132,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8987801,
+          "Y": 0.43839988,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89385974,
+          "Y": 0.44834656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89202,
+          "Y": 0.45199552,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8944011,
+          "Y": 0.44726557,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89965093,
+          "Y": 0.4366098,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9061793,
+          "Y": 0.42289355,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91207385,
+          "Y": 0.41002557,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9156226,
+          "Y": 0.4020391,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91655767,
+          "Y": 0.39990264,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91618705,
+          "Y": 0.40075088,
+          "Z": 0.0
+        },
+        {
+          "X": -0.915292,
+          "Y": 0.402791,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9142102,
+          "Y": 0.40524012,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91314816,
+          "Y": 0.40762746,
+          "Z": 0.0
+        },
+        {
+          "X": -0.91180694,
+          "Y": 0.41061884,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90983796,
+          "Y": 0.41496387,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90732634,
+          "Y": 0.4204269,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9046329,
+          "Y": 0.4261915,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9020524,
+          "Y": 0.43162662,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8996402,
+          "Y": 0.43663225,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8972219,
+          "Y": 0.44158012,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8943405,
+          "Y": 0.44738695,
+          "Z": 0.0
+        },
+        {
+          "X": -0.89087415,
+          "Y": 0.45425013,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8865466,
+          "Y": 0.46263933,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88069177,
+          "Y": 0.47368985,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8728248,
+          "Y": 0.48803374,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8636844,
+          "Y": 0.50403273,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8550794,
+          "Y": 0.5184972,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84881914,
+          "Y": 0.52868336,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84444153,
+          "Y": 0.53564745,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84160376,
+          "Y": 0.5400952,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83992696,
+          "Y": 0.54269934,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83846855,
+          "Y": 0.54495,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8368434,
+          "Y": 0.5474423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83464324,
+          "Y": 0.550791,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8324821,
+          "Y": 0.55405194,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8304169,
+          "Y": 0.5571425,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8279227,
+          "Y": 0.5608419,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8259108,
+          "Y": 0.56380063,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82427394,
+          "Y": 0.5661911,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82285154,
+          "Y": 0.56825644,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82211804,
+          "Y": 0.5693171,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8219125,
+          "Y": 0.5696136,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8226253,
+          "Y": 0.5685837,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8241724,
+          "Y": 0.56633884,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8264948,
+          "Y": 0.56294435,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8300098,
+          "Y": 0.5577486,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8338343,
+          "Y": 0.55201477,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83777344,
+          "Y": 0.5460178,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84097767,
+          "Y": 0.54106957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84360135,
+          "Y": 0.5369699,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84583557,
+          "Y": 0.5334437,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84772086,
+          "Y": 0.5304428,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84957635,
+          "Y": 0.5274656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8509575,
+          "Y": 0.52523434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85168886,
+          "Y": 0.5240477,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8518013,
+          "Y": 0.5238649,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8509046,
+          "Y": 0.5253203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84989786,
+          "Y": 0.5269474,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84917533,
+          "Y": 0.52811116,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8485807,
+          "Y": 0.52906567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84795773,
+          "Y": 0.5300636,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84773064,
+          "Y": 0.5304268,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84782076,
+          "Y": 0.5302831,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8481736,
+          "Y": 0.52971816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8489821,
+          "Y": 0.5284216,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8495513,
+          "Y": 0.52750576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8503418,
+          "Y": 0.5262308,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85027003,
+          "Y": 0.5263467,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8506067,
+          "Y": 0.5258025,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85068345,
+          "Y": 0.5256784,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8513578,
+          "Y": 0.52458537,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8524045,
+          "Y": 0.5228828,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8534894,
+          "Y": 0.52111006,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8551607,
+          "Y": 0.5183626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8568748,
+          "Y": 0.51552445,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8586533,
+          "Y": 0.5125569,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8603729,
+          "Y": 0.5096651,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8605665,
+          "Y": 0.5093383,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86119235,
+          "Y": 0.50827914,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8614435,
+          "Y": 0.50785357,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8616425,
+          "Y": 0.5075157,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8615364,
+          "Y": 0.50769603,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86049294,
+          "Y": 0.5094626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8599268,
+          "Y": 0.51041716,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85933673,
+          "Y": 0.51140994,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85844254,
+          "Y": 0.51290965,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8576702,
+          "Y": 0.5141998,
+          "Z": 0.0
+        },
+        {
+          "X": -0.857147,
+          "Y": 0.51507163,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85681987,
+          "Y": 0.515616,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85662067,
+          "Y": 0.5159469,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8566258,
+          "Y": 0.5159384,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85719717,
+          "Y": 0.5149884,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8583306,
+          "Y": 0.51309687,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8601036,
+          "Y": 0.5101195,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86214924,
+          "Y": 0.506654,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86395764,
+          "Y": 0.5035645,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8657136,
+          "Y": 0.50053966,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8669367,
+          "Y": 0.49841818,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8684025,
+          "Y": 0.49586013,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8696909,
+          "Y": 0.49359676,
+          "Z": 0.0
+        },
+        {
+          "X": -0.871048,
+          "Y": 0.4911977,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8722955,
+          "Y": 0.48897892,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87402785,
+          "Y": 0.48587602,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87494564,
+          "Y": 0.4842211,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8775759,
+          "Y": 0.47943768,
+          "Z": 0.0
+        },
+        {
+          "X": -0.879233,
+          "Y": 0.47639185,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8804953,
+          "Y": 0.47405484,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813281,
+          "Y": 0.47250438,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813281,
+          "Y": 0.47250438,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

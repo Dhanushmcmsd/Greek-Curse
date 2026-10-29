@@ -1,0 +1,42 @@
+{
+  "display_name": "Front Kick (3)",
+  "startup_ticks": 9,
+  "active_ticks": 3,
+  "recovery_ticks": 15,
+  "damage": 28,
+  "limb_damage": 30,
+  "on_block_pushback": 75,
+  "hitstop_attacker": 4,
+  "hitstop_defender": 7,
+  "cancel_into": [
+    "mk_jc_3_2nd_back_kick",
+    "mk_jc_nut_punch",
+    "mk_jc_shadow_kick"
+  ],
+  "cancel_start": 9,
+  "cancel_end": 16,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "leg_l",
+  "zone_priority": 2,
+  "hitstun_ticks": 16,
+  "blockstun_ticks": 10,
+  "knockback_mm": 170,
+  "hitbox": {
+    "x": 210,
+    "y": 220,
+    "w": 430,
+    "h": 280
+  },
+  "cost": 0,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "kick",
+  "anim_set": "kick_mid",
+  "id": "mk_jc_front_kick_1"
+}

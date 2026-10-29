@@ -109,7 +109,7 @@ static func _install_abilities(world: SimWorld, config: MatchConfig, loader: Dat
 		var selected: Dictionary = (
 			config.loadouts[index]
 			if index < config.loadouts.size()
-			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl"].find(fighter.fighter_id))
+			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl", "johnny_cage"].find(fighter.fighter_id))
 		)
 		var error := Loadout.validate(selected, world.abilities.keys(), world.abilities)
 		if error != "":

@@ -1678,52 +1678,52 @@
     "hit_gut": {
       "bones": {
         "spine": [
-          30,
+          22,
           0,
           0
         ],
         "head": [
-          20,
+          28,
           0,
           0
         ],
         "upper_arm.l": [
-          15,
+          -15,
           0,
-          0
+          15
         ],
         "upper_arm.r": [
-          15,
+          -15,
           0,
-          0
+          -15
         ],
         "forearm.l": [
-          -40,
+          -45,
           0,
           0
         ],
         "forearm.r": [
-          -40,
+          -45,
           0,
           0
         ],
         "thigh.l": [
-          -20,
+          -15,
           0,
           0
         ],
         "shin.l": [
-          30,
+          25,
           0,
           0
         ],
         "thigh.r": [
-          -20,
+          -15,
           0,
           0
         ],
         "shin.r": [
-          30,
+          25,
           0,
           0
         ]
@@ -1732,32 +1732,32 @@
     "hit_head_snap": {
       "bones": {
         "spine": [
-          -8,
-          -15,
-          0
+          -18,
+          -12,
+          -8
         ],
         "head": [
-          -10,
-          -35,
+          -40,
+          -25,
           -15
         ],
         "upper_arm.l": [
-          30,
+          20,
           0,
           15
         ],
         "upper_arm.r": [
-          30,
+          20,
           0,
           -15
         ],
         "forearm.l": [
-          -10,
+          -15,
           0,
           0
         ],
         "forearm.r": [
-          -10,
+          -15,
           0,
           0
         ]
@@ -2109,69 +2109,447 @@
         ]
       }
     },
-    "hit_head_snap": {
+    "special_nut_punch_startup": {
       "bones": {
         "spine": [
-          -18,
-          -12,
-          -8
+          25,
+          0,
+          0
         ],
         "head": [
-          -40,
-          -25,
-          -15
-        ],
-        "upper_arm.l": [
-          20,
-          0,
-          15
-        ],
-        "upper_arm.r": [
-          20,
-          0,
-          -15
-        ],
-        "forearm.l": [
           -15,
           0,
           0
         ],
+        "thigh.l": [
+          -45,
+          0,
+          0
+        ],
+        "shin.l": [
+          80,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -45,
+          0,
+          0
+        ],
+        "shin.r": [
+          80,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -65,
+          0,
+          25
+        ],
         "forearm.r": [
-          -15,
+          -85,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -20,
+          0,
+          -20
+        ],
+        "forearm.l": [
+          -45,
           0,
           0
         ]
       }
     },
-    "hit_gut": {
+    "special_nut_punch_active": {
       "bones": {
         "spine": [
-          22,
+          -10,
           0,
           0
         ],
         "head": [
-          28,
+          15,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -90,
+          0,
+          -75
+        ],
+        "shin.l": [
+          5,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -90,
+          0,
+          75
+        ],
+        "shin.r": [
+          5,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          75,
+          0,
+          10
+        ],
+        "forearm.r": [
+          -15,
           0,
           0
         ],
         "upper_arm.l": [
-          -15,
+          -25,
+          0,
+          -45
+        ],
+        "forearm.l": [
+          -35,
+          0,
+          0
+        ]
+      }
+    },
+    "special_nut_punch_recovery": {
+      "bones": {
+        "spine": [
+          10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -25,
+          0,
+          -10
+        ],
+        "shin.l": [
+          35,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -25,
+          0,
+          10
+        ],
+        "shin.r": [
+          35,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -20,
           0,
           15
         ],
-        "upper_arm.r": [
-          -15,
+        "forearm.r": [
+          -50,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -25,
           0,
           -15
+        ],
+        "forearm.l": [
+          -50,
+          0,
+          0
+        ]
+      }
+    },
+    "special_shadow_kick_startup": {
+      "bones": {
+        "spine": [
+          30,
+          0,
+          0
+        ],
+        "head": [
+          -20,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -55,
+          0,
+          0
+        ],
+        "shin.l": [
+          95,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -35,
+          0,
+          0
+        ],
+        "shin.r": [
+          60,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -40,
+          0,
+          -20
+        ],
+        "forearm.l": [
+          -75,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -40,
+          0,
+          20
+        ],
+        "forearm.r": [
+          -75,
+          0,
+          0
+        ]
+      }
+    },
+    "special_shadow_kick_active": {
+      "bones": {
+        "spine": [
+          -35,
+          0,
+          0
+        ],
+        "head": [
+          20,
+          0,
+          0
+        ],
+        "thigh.l": [
+          70,
+          0,
+          0
+        ],
+        "shin.l": [
+          5,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -45,
+          0,
+          0
+        ],
+        "shin.r": [
+          105,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -60,
+          0,
+          -35
         ],
         "forearm.l": [
           -45,
           0,
           0
         ],
+        "upper_arm.r": [
+          35,
+          0,
+          25
+        ],
         "forearm.r": [
+          -30,
+          0,
+          0
+        ]
+      }
+    },
+    "special_shadow_kick_recovery": {
+      "bones": {
+        "spine": [
+          20,
+          0,
+          0
+        ],
+        "head": [
+          -10,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -15,
+          0,
+          0
+        ],
+        "shin.l": [
+          40,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -30,
+          0,
+          0
+        ],
+        "shin.r": [
+          50,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          -15
+        ],
+        "forearm.l": [
+          -55,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -35,
+          0,
+          15
+        ],
+        "forearm.r": [
+          -55,
+          0,
+          0
+        ]
+      }
+    },
+    "special_rising_elbow_startup": {
+      "bones": {
+        "spine": [
+          25,
+          0,
+          0
+        ],
+        "head": [
+          -15,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -40,
+          0,
+          0
+        ],
+        "shin.l": [
+          70,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -40,
+          0,
+          0
+        ],
+        "shin.r": [
+          70,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -75,
+          0,
+          10
+        ],
+        "forearm.r": [
+          -95,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -30,
+          0,
+          -20
+        ],
+        "forearm.l": [
+          -60,
+          0,
+          0
+        ]
+      }
+    },
+    "special_rising_elbow_active": {
+      "bones": {
+        "spine": [
+          -25,
+          0,
+          0
+        ],
+        "head": [
+          25,
+          0,
+          0
+        ],
+        "thigh.l": [
+          25,
+          0,
+          0
+        ],
+        "shin.l": [
+          35,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -10,
+          0,
+          0
+        ],
+        "shin.r": [
+          15,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          110,
+          0,
+          20
+        ],
+        "forearm.r": [
+          -115,
+          0,
+          0
+        ],
+        "upper_arm.l": [
           -45,
+          0,
+          -35
+        ],
+        "forearm.l": [
+          -40,
+          0,
+          0
+        ]
+      }
+    },
+    "special_rising_elbow_recovery": {
+      "bones": {
+        "spine": [
+          15,
+          0,
+          0
+        ],
+        "head": [
+          -5,
           0,
           0
         ],
@@ -2186,12 +2564,242 @@
           0
         ],
         "thigh.r": [
-          -15,
+          -20,
           0,
           0
         ],
         "shin.r": [
+          35,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -25,
+          0,
+          15
+        ],
+        "forearm.r": [
+          -60,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -30,
+          0,
+          -15
+        ],
+        "forearm.l": [
+          -55,
+          0,
+          0
+        ]
+      }
+    },
+    "special_sunglasses_toss_startup": {
+      "bones": {
+        "spine": [
+          5,
+          0,
+          0
+        ],
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -50,
+          0,
+          45
+        ],
+        "forearm.r": [
+          -110,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -30,
+          0,
+          -15
+        ],
+        "forearm.l": [
+          -60,
+          0,
+          0
+        ]
+      }
+    },
+    "special_sunglasses_toss_active": {
+      "bones": {
+        "spine": [
+          -10,
+          0,
+          0
+        ],
+        "head": [
+          5,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          35,
+          0,
+          25
+        ],
+        "forearm.r": [
+          -20,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -35,
+          0,
+          -20
+        ],
+        "forearm.l": [
+          -50,
+          0,
+          0
+        ]
+      }
+    },
+    "special_sunglasses_toss_recovery": {
+      "bones": {
+        "spine": [
+          0,
+          0,
+          0
+        ],
+        "head": [
+          0,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -25,
+          0,
+          15
+        ],
+        "forearm.r": [
+          -65,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -25,
+          0,
+          -15
+        ],
+        "forearm.l": [
+          -65,
+          0,
+          0
+        ]
+      }
+    },
+    "reaction_groin_crumple": {
+      "bones": {
+        "spine": [
+          48,
+          0,
+          0
+        ],
+        "head": [
           25,
+          0,
+          0
+        ],
+        "thigh.l": [
+          -35,
+          0,
+          -20
+        ],
+        "shin.l": [
+          65,
+          0,
+          0
+        ],
+        "thigh.r": [
+          -35,
+          0,
+          20
+        ],
+        "shin.r": [
+          65,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -25,
+          0,
+          30
+        ],
+        "forearm.l": [
+          -85,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -25,
+          0,
+          -30
+        ],
+        "forearm.r": [
+          -85,
+          0,
+          0
+        ]
+      }
+    },
+    "reaction_air_launcher": {
+      "bones": {
+        "spine": [
+          -42,
+          0,
+          0
+        ],
+        "head": [
+          -30,
+          0,
+          0
+        ],
+        "thigh.l": [
+          35,
+          0,
+          -15
+        ],
+        "shin.l": [
+          25,
+          0,
+          0
+        ],
+        "thigh.r": [
+          45,
+          0,
+          15
+        ],
+        "shin.r": [
+          40,
+          0,
+          0
+        ],
+        "upper_arm.l": [
+          -85,
+          0,
+          -45
+        ],
+        "forearm.l": [
+          -25,
+          0,
+          0
+        ],
+        "upper_arm.r": [
+          -85,
+          0,
+          45
+        ],
+        "forearm.r": [
+          -25,
           0,
           0
         ]
@@ -2284,6 +2892,26 @@
       "startup": "strike_downward_elbow_startup",
       "active": "strike_downward_elbow_active",
       "recovery": "strike_downward_elbow_recovery"
+    },
+    "special_nut_punch": {
+      "startup": "special_nut_punch_startup",
+      "active": "special_nut_punch_active",
+      "recovery": "special_nut_punch_recovery"
+    },
+    "special_shadow_kick": {
+      "startup": "special_shadow_kick_startup",
+      "active": "special_shadow_kick_active",
+      "recovery": "special_shadow_kick_recovery"
+    },
+    "special_rising_elbow": {
+      "startup": "special_rising_elbow_startup",
+      "active": "special_rising_elbow_active",
+      "recovery": "special_rising_elbow_recovery"
+    },
+    "special_sunglasses_toss": {
+      "startup": "special_sunglasses_toss_startup",
+      "active": "special_sunglasses_toss_active",
+      "recovery": "special_sunglasses_toss_recovery"
     }
   },
   "styles": {
