@@ -35,6 +35,9 @@ var _last_creak: int = -1
 var _cape_angle: float = 0.0
 var _cape_velocity: float = 0.0
 var _cape_rest := Transform3D.IDENTITY
+var _cloth_bones: Array[int] = []
+var _cloth_ang: Dictionary = {}
+var _cloth_vel: Dictionary = {}
 var _last_fighter_x: float = 0.0
 var _last_fighter_facing: int = 1
 var _last_states: Dictionary = {}
@@ -122,6 +125,23 @@ func setup(target: FighterRig) -> void:
 	_cape = rig.model.find_child("CAPE", true, false) as Node3D
 	if _cape != null:
 		_cape_rest = _cape.transform
+	_cloth_bones.clear()
+	_cloth_ang.clear()
+	_cloth_vel.clear()
+	for index in rig.skeleton.get_bone_count():
+		var clean := FighterRig._strip_armature_prefix(rig.skeleton.get_bone_name(index))
+		if (
+			FighterRig._is_helper_bone(clean)
+			and (
+				clean.begins_with("Cloak")
+				or clean.begins_with("Ribbon")
+				or clean.begins_with("Bow")
+				or clean.contains("skirt")
+			)
+		):
+			_cloth_bones.append(index)
+			_cloth_ang[index] = 0.0
+			_cloth_vel[index] = 0.0
 
 
 static func attack_phase(tick: int, startup: int, active: int) -> String:
@@ -295,6 +315,11 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 		)
 		var turn := Basis(Vector3.RIGHT, _cape_angle)
 		_cape.transform = Transform3D(turn, pivot - turn * pivot) * _cape_rest
+		var lag := _cape_angle
+		for child in _cape.find_children("*", "Node3D", false, false):
+			lag *= 0.68
+			(child as Node3D).rotation.x = lag
+	_simulate_cloth(fighter, stopped, settings)
 	tick_reactive(stopped)
 	if stopped:
 		var shake_amount := float(settings["hitstop_shake_m"]) + combo_shake
@@ -380,12 +405,12 @@ func _select(fighter: SimFighter) -> String:
 			selected = "torso_roll" if fighter.pose == "torso" else "dodge_roll"
 		SimFighter.State.GRAB:
 			selected = (
-				"grab_hold"
+				"grab_throw"
 				if fighter.state_tick > int(data["settings"]["throw_split_ticks"])
-				else "grab_throw"
+				else "grab_hold"
 			)
 		SimFighter.State.GRABBED:
-			selected = "hit_heavy"
+			selected = "grabbed" if data["poses"].has("grabbed") else "hit_heavy"
 		_:
 			if fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
 				# Block impact animation that transitions back to block
@@ -722,7 +747,13 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 	elif fighter.state == SimFighter.State.DODGE:
 		act_key = "dodge"
 	elif fighter.state == SimFighter.State.GRAB:
-		act_key = "grab"
+		act_key = "grab_throw"
+		if fighter.state_tick <= int(data["settings"].get("throw_split_ticks", 10)):
+			act_key = "grab_hold"
+		if not actions.has(act_key):
+			act_key = "grab"
+	elif fighter.state == SimFighter.State.GRABBED:
+		act_key = "grabbed" if actions.has("grabbed") else "stagger"
 
 	if act_key == "" or not actions.has(act_key):
 		current_action_name = ""
@@ -795,10 +826,24 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			and fighter.limbs.parts.has(fighter.attack_slot)
 		):
 			_mirror_attack_pose()
-		if actions[act_key].has("export_source"):
+		var exported := (
+			"res://assets/animations/exported/"
+			+ fighter.fighter_id
+			+ "/"
+			+ str(act_key).trim_prefix("move_")
+			+ ".res"
+		)
+		if (
+			actions[act_key].has("export_source")
+			and (ResourceLoader.exists(exported) or FileAccess.file_exists(exported))
+		):
 			_stabilize_exported_arms(fighter, actions[act_key])
-		if fighter.state_tick < 3 and _attack_blend_from.size() == rig.skeleton.get_bone_count():
-			var blend := float(fighter.state_tick + 1) / 3.0
+		var blend_frames := 5
+		if (
+			fighter.state_tick < blend_frames
+			and _attack_blend_from.size() == rig.skeleton.get_bone_count()
+		):
+			var blend := float(fighter.state_tick + 1) / float(blend_frames)
 			for bone in rig.skeleton.get_bone_count():
 				rig.skeleton.set_bone_pose_rotation(
 					bone,
@@ -860,8 +905,22 @@ static func _action_for_move(move_name: String, move_data: Dictionary) -> String
 			return "zeus_wrath"
 		"olympian_barrage":
 			return "olympian_barrage"
-		"grab":
+		"grab", "mk_jc_throw_forward":
 			return "grab"
+		"mk_jc_front_punch_1", "mk_jc_duck_front_punch_1", "mk_jc_jump_front_punch_1":
+			return "punch_jab"
+		"mk_jc_back_punch_1", "mk_jc_1_2nd_front_punch", "mk_jc_2_2nd_front_punch":
+			return "punch_cross"
+		"mk_jc_front_kick_1", "mk_jc_back_kick_1", "mk_jc_jump_front_kick_1":
+			return "kick_thrust"
+		"mk_jc_nut_punch":
+			return "punch_jab"
+		"mk_jc_shadow_kick":
+			return "kick_thrust"
+		"mk_jc_rising_elbow":
+			return "heavy_strike"
+		"mk_jc_sunglasses_toss":
+			return "punch_jab"
 		_:
 			var cat: String = str(move_data.get("category", ""))
 			if cat == "light":
@@ -949,9 +1008,18 @@ func _solve_guard_arm(side: String, extension: float) -> void:
 	var wrist := skel.get_bone_global_pose(hand).origin
 	var first := shoulder.distance_to(elbow)
 	var second := elbow.distance_to(wrist)
-	var sign_x := signf(skel.get_bone_global_rest(upper).origin.x)
+	var sign_x := -1.0 if side == "l" else 1.0
+	var rest_x := signf(skel.get_bone_global_rest(upper).origin.x)
+	if rest_x != 0.0:
+		sign_x = rest_x
+	var lateral := 0.12 + rig.fighter_width * 0.28
 	var goal := (
-		shoulder + Vector3(-sign_x * (0.06 + rig.fighter_width * 0.12), -0.10, lerpf(0.20, (first + second) * 0.92, extension))
+		shoulder
+		+ Vector3(
+			-sign_x * lateral,
+			-0.10,
+			lerpf(0.22, (first + second) * 0.88, extension)
+		)
 	)
 	var direction := (goal - shoulder).normalized()
 	var reach := minf(shoulder.distance_to(goal), (first + second) * 0.97)

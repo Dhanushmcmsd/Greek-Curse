@@ -54,9 +54,14 @@ const ALLOWED_EXCLUDED_TRACKS: Array[String] = [
 ]
 
 
+static func _strip_armature_prefix(bone_name: String) -> String:
+	return bone_name.replace("mixamorig:", "").replace("mixamorig_", "")
+
+
 static func _is_helper_bone(bone_name: String) -> bool:
+	var clean := _strip_armature_prefix(bone_name)
 	for prefix in ALLOWED_EXCLUDED_TRACKS:
-		if bone_name.begins_with(prefix):
+		if clean.begins_with(prefix):
 			return true
 	return false
 
@@ -739,11 +744,14 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 		)
 
 		if is_3d_transform and sub_part != "":
-			var clean_bone: String = sub_part.replace("mixamorig:", "")
+			var clean_bone: String = _strip_armature_prefix(sub_part)
 			var tgt_bone: String = clean_bone
+			var existing := skeleton.find_bone(sub_part)
+			if existing < 0:
+				existing = skeleton.find_bone(clean_bone)
 			# Helper joints (fingers, cloak, skirt) must not collapse onto parent bones;
 			# that overwrites hand/spine tracks and locks the hands together.
-			if _is_helper_bone(clean_bone) and skeleton.find_bone(clean_bone) == -1:
+			if existing < 0 and _is_helper_bone(clean_bone):
 				binding_audit_log.append(
 					{
 						"source_clip": source_clip,
@@ -757,8 +765,10 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 				anim.remove_track(t)
 				t -= 1
 				continue
-			if skeleton.find_bone(clean_bone) == -1:
-				tgt_bone = bone_map.get(clean_bone, "")
+			if existing >= 0:
+				tgt_bone = skeleton.get_bone_name(existing)
+			elif skeleton.find_bone(clean_bone) == -1:
+				tgt_bone = str(bone_map.get(clean_bone, ""))
 
 			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
 				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
@@ -809,10 +819,13 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 					)
 					anim.remove_track(t)
 		elif is_3d_transform and sub_part == "":
-			var clean_node := node_part.get_file().replace("mixamorig:", "")
+			var clean_node := _strip_armature_prefix(node_part.get_file())
 			var tgt_bone: String = clean_node
 			if skeleton.find_bone(clean_node) == -1:
-				tgt_bone = bone_map.get(clean_node, "")
+				if _is_helper_bone(clean_node):
+					tgt_bone = ""
+				else:
+					tgt_bone = str(bone_map.get(clean_node, ""))
 			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
 				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
 				anim.track_set_path(t, target_path)

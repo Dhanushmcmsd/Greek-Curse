@@ -31,11 +31,11 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 		var back := bool(mask & (SimInput.LEFT if fighter.facing > 0 else SimInput.RIGHT))
 		var down := bool(mask & SimInput.DOWN)
 		var chosen := {}
-		if light and kick and fighter.limbs.usable("arm_r"):
+		if light and kick and not down and fighter.limbs.usable("arm_r"):
 			chosen = {"id": "mk_jc_throw_forward", "slot": "torso"}
 		elif down and back and light:
 			chosen = {"id": "mk_jc_nut_punch", "slot": "torso"}
-		elif back and forward and (kick or bool(mask & SimInput.KICK_RIGHT)):
+		elif forward and not down and (kick or bool(mask & SimInput.KICK_RIGHT)):
 			chosen = {"id": "mk_jc_shadow_kick", "slot": "leg_r"}
 		elif down and back and kick:
 			chosen = {"id": "mk_jc_rising_elbow", "slot": "arm_r"}
@@ -82,9 +82,7 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 	return {"id": resolved, "slot": slot, "ex": _wants_ex(fighter, mask, resolved)}
 
 
-static func _wants_ex(_fighter: SimFighter, mask: int, move_id: String) -> bool:
-	if (mask & SimInput.SUPER) == 0:
-		return false
+static func is_ex_special(move_id: String) -> bool:
 	return (
 		move_id.begins_with("mk_jc_")
 		and (
@@ -94,6 +92,12 @@ static func _wants_ex(_fighter: SimFighter, mask: int, move_id: String) -> bool:
 			or move_id.contains("sunglasses")
 		)
 	)
+
+
+static func _wants_ex(_fighter: SimFighter, mask: int, move_id: String) -> bool:
+	if (mask & SimInput.SUPER) == 0:
+		return false
+	return is_ex_special(move_id)
 
 
 static func command_move(facing: int, mask: int) -> String:

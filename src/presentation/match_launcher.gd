@@ -116,9 +116,10 @@ static func _install_abilities(world: SimWorld, config: MatchConfig, loader: Dat
 			Log.error("loadout", error)
 			selected = Loadout.starter()
 		fighter.loadout = selected.duplicate(true)
-		if index >= config.loadouts.size():
+		if index >= config.loadouts.size() or fighter.fighter_id == "johnny_cage":
 			var styles: Dictionary = (
 				loader.load_json("res://data/animation/fighter_styles.json").value
 			)
-			fighter.moveset_aliases = styles[fighter.fighter_id].aliases.duplicate(true)
+			if styles.has(fighter.fighter_id):
+				fighter.moveset_aliases = styles[fighter.fighter_id].aliases.duplicate(true)
 		SimAbilities.passive(world, fighter)

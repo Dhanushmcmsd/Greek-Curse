@@ -207,8 +207,14 @@ static func _resolve_cancel(
 ) -> Dictionary:
 	var wants_ex := bool(mask & SimInput.SUPER) or bool(chosen.get("ex", false))
 	if wants_ex:
-		var special := _first_listed_special(world, fighter)
-		if special != "":
+		var special := str(chosen.get("id", ""))
+		if not SimMoveAvailability.is_ex_special(special):
+			special = _first_listed_special(world, fighter)
+		if special != "" and (
+			fighter.ex_cancel_into.has(special)
+			or fighter.cancel_into.has(special)
+			or SimMoveAvailability.is_ex_special(special)
+		):
 			var slot := str(chosen.get("slot", fighter.attack_slot))
 			var row := _move_row(world, special)
 			if not row.is_empty():
@@ -337,8 +343,11 @@ static func _begin_named(
 	var ex_cost := int(world.combat.get("mk_ex_meter_cost", 33))
 	var use_ex := (
 		as_ex
-		and str(move.get("category", "")) == "special"
 		and fighter.meter >= ex_cost
+		and (
+			str(move.get("category", "")) == "special"
+			or SimMoveAvailability.is_ex_special(move_id)
+		)
 	)
 	if use_ex:
 		fighter.meter -= ex_cost
