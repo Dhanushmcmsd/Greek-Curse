@@ -1,12 +1,12 @@
 # Complete MK12 Asset Breakdown & Godot Implementation Master Guide
 
-This document presents a comprehensive, zero-assumption breakdown of all extracted data from `D:\05cfbdd1648afe2928109b70ab63880a4bc8f7b4 (1)\Output\Exports\MK12` (Johnny Cage character suite: 15,984 JSON assets, 427 C++ reflection headers, skeleton, animation sequences, cuts, physics assets, Niagara VFX, materials, and game libraries) and concrete implementation specifications for the Godot 4.3 deterministic combat project (**Greek-Curse / Zeus Balls**).
+This document presents a comprehensive, zero-assumption breakdown of all extracted data from `D:\05cfbdd1648afe2928109b70ab63880a4bc8f7b4 (1)\Output\Exports\MK12` (Dorian — the Spotlight character suite: 15,984 JSON assets, 427 C++ reflection headers, skeleton, animation sequences, cuts, physics assets, Niagara VFX, materials, and game libraries) and concrete implementation specifications for the Godot 4.3 deterministic combat project (**Greek-Curse / Zeus Balls**).
 
 ---
 
 ## 1. Complete MK12 Asset Architecture Analysis
 
-The exported folder contains the complete Unreal Engine 4 / NetherRealm Studios (NRS) engine export for **Johnny Cage** (`Content/Disk/Char/JohnnyCage` and shared game libraries):
+The exported folder contains the complete Unreal Engine 4 / NetherRealm Studios (NRS) engine export for **Dorian — the Spotlight** (`Content/Disk/Char/JohnnyCage` and shared game libraries):
 
 ```
 MK12/
@@ -146,7 +146,7 @@ MK12 abandons simple single-button triggers in favor of NetherRealm's legendary 
 | `grab` | Throw (L1/LB) | Unblockable command grab / clinch |
 | `stance_switch` | Flip Stance (L2/LT) | Hype activation & visual reset |
 
-### 4.2 Move List & Frame Timing (Johnny Cage Specification)
+### 4.2 Move List & Frame Timing (Dorian — the Spotlight Specification)
 All frame data converted to 60 FPS deterministic ticks (1 frame = 1 tick = 16.66ms):
 
 #### 1. Normal Attacks & Combo Strings
@@ -161,7 +161,7 @@ All frame data converted to 60 FPS deterministic ticks (1 frame = 1 tick = 16.66
 - **Back Punch 2 (`BackPunch_1.json`)**:
   - Startup: 12 ticks | Active: 3 ticks | Recovery: 18 ticks | Damage: 45 | Target: Overhead
 
-#### 2. Johnny Cage Signature Specials & Powers
+#### 2. Dorian — the Spotlight Signature Specials & Powers
 - **Nut Punch (`Specialmove_NutPunch.json`)**:
   - Input: Down, Back, 1
   - Startup: 15 ticks | Active: 4 ticks | Recovery: 22 ticks
@@ -176,7 +176,7 @@ All frame data converted to 60 FPS deterministic ticks (1 frame = 1 tick = 16.66
   - Input: Down, Back, 3
   - Startup: 8 ticks | Properties: Anti-air vertical launcher.
 - **"Get Hype" System (`Specialmove_GetHype_1.json`)**:
-  - Taunt meter mechanic. Fills Johnny's Star Power bar. Once full, unlocks EX specials without meter cost and enables EX cancels out of basic strings.
+  - Taunt meter mechanic. Fills Dorian's Star Power bar. Once full, unlocks EX specials without meter cost and enables EX cancels out of basic strings.
 
 ### 4.3 Move Data JSON Definition for Godot
 Save as `e:\zeus balls\data\moves\mk_nut_punch.json`:
@@ -343,7 +343,7 @@ From `Content/Disk/Char/JohnnyCage/FX/FX`:
 MK12 implements Niagara systems built from `NiagaraEmitter`, `NiagaraSpriteRendererProperties`, and curve vectors.
 
 ### 6.1 Shadow Kick Trail (`NS_ShadowKick_Trails_Fstyle_Local`)
-- **Visuals**: Translucent emerald green motion echoes left behind Johnny's limbs as he flies across the stage.
+- **Visuals**: Translucent emerald green motion echoes left behind Dorian's limbs as he flies across the stage.
 - **Godot Implementation**: `GPUParticles3D` with mesh emission or animated ghost mesh instances sampled every 2 ticks with a fading green additive shader.
 
 ```glsl
@@ -384,10 +384,10 @@ flowchart TD
 
 1. **Asset Conversion**:
    - Extract raw skeletal meshes and textures using UE export tools into `.glb` format for Godot 4.3.
-   - Retarget Johnny Cage's 200-bone rig to match Greek-Curse humanoid standard bones, keeping the helper twist bones driven by the `MK12BoneMapper`.
+   - Retarget Dorian — the Spotlight's 200-bone rig to match Greek-Curse humanoid standard bones, keeping the helper twist bones driven by the `MK12BoneMapper`.
 2. **Move Table Ingestion**:
-   - Add Johnny Cage's moves (`mk_front_punch`, `mk_nut_punch`, `mk_shadow_kick`, `mk_rising_elbow`) into `data/moves/`.
-   - Update `data/fighters/johnny_cage.json` with the new move table, health (300), and speed stats.
+   - Add Dorian — the Spotlight's moves (`mk_front_punch`, `mk_nut_punch`, `mk_shadow_kick`, `mk_rising_elbow`) into `data/moves/`.
+   - Update `data/fighters/dorian.json` with the new move table, health (300), and speed stats.
 3. **Deterministic Combat Extension**:
    - Update `sim_input_buffer.gd` to allow multi-button dial queuing (`1 -> 1 -> 4`).
    - Enable special cancel windows (`cancel_start` to `cancel_end`) to break normal recovery directly into special moves.

@@ -16,6 +16,10 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 	var attacking := light or heavy or kick
 	# Super/ultimate only when no attack button is held so EX specials can use SUPER.
 	if not attacking:
+		if mask & SimInput.ULTIMATE:
+			return {"id": SimAbilities.ultimate_id(fighter), "slot": "body"}
+		if mask & SimInput.SUPER and not mask & SimInput.ULTIMATE:
+			return {"id": SimAbilities.super_id(fighter), "slot": "body"}
 		for option in [[SimInput.ULTIMATE, "ultimate"], [SimInput.SUPER, "superpower"]]:
 			if mask & int(option[0]) and not fighter.loadout.get(option[1], []).is_empty():
 				return {"id": fighter.loadout[option[1]][0], "slot": "body"}
@@ -25,39 +29,47 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 	var slot := ("leg_" if category == "kick" else "arm_") + ("r" if right else "l")
 	if not fighter.limbs.usable(slot):
 		return {}
-	# Support MK 4-button characters (e.g. Johnny Cage)
-	if fighter.fighter_id == "johnny_cage":
+	var toward := bool(mask & (SimInput.RIGHT if fighter.facing > 0 else SimInput.LEFT))
+	var away := bool(mask & (SimInput.LEFT if fighter.facing > 0 else SimInput.RIGHT))
+	if mask & SimInput.DOWN and toward and light and not kick:
+		return {"id": fighter.fighter_id + "_counter", "slot": "arm_l"}
+	if mask & SimInput.DOWN and away and heavy and not light:
+		return {"id": fighter.fighter_id + "_breaker", "slot": "leg_r" if fighter.fighter_id in ["pyrrhus", "sibyl", "dorian"] else "arm_r"}
+	# Support MK 4-button characters (e.g. Dorian — the Spotlight)
+	if fighter.fighter_id == "dorian":
 		var forward := bool(mask & (SimInput.RIGHT if fighter.facing > 0 else SimInput.LEFT))
 		var back := bool(mask & (SimInput.LEFT if fighter.facing > 0 else SimInput.RIGHT))
 		var down := bool(mask & SimInput.DOWN)
 		var chosen := {}
-		if light and kick and not down and fighter.limbs.usable("arm_r"):
-			chosen = {"id": "mk_jc_throw_forward", "slot": "torso"}
+		if down and forward and bool(mask & SimInput.KICK_RIGHT):
+			chosen = {"id": "dorian_signature", "slot": "arm_r"}
+		elif light and kick and not down and fighter.limbs.usable("arm_r"):
+			chosen = {"id": "dorian_throw_forward", "slot": "torso"}
 		elif down and back and light:
-			chosen = {"id": "mk_jc_nut_punch", "slot": "torso"}
+			chosen = {"id": "dorian_nut_punch", "slot": "torso"}
 		elif forward and not down and (kick or bool(mask & SimInput.KICK_RIGHT)):
-			chosen = {"id": "mk_jc_shadow_kick", "slot": "leg_r"}
+			chosen = {"id": "dorian_shadow_kick", "slot": "leg_r"}
 		elif down and back and kick:
-			chosen = {"id": "mk_jc_rising_elbow", "slot": "arm_r"}
+			chosen = {"id": "dorian_rising_elbow", "slot": "arm_r"}
 		elif down and forward and heavy:
-			chosen = {"id": "mk_jc_sunglasses_toss", "slot": "head"}
+			chosen = {"id": "dorian_sunglasses_toss", "slot": "head"}
 		elif down:
 			if light:
-				chosen = {"id": "mk_jc_duck_front_punch_1", "slot": "arm_l"}
+				chosen = {"id": "dorian_duck_front_punch_1", "slot": "arm_l"}
 			elif heavy:
-				chosen = {"id": "mk_jc_duck_back_punch_1", "slot": "arm_r"}
-			elif kick:
-				chosen = {"id": "mk_jc_duck_front_kick_1", "slot": "leg_l"}
+				chosen = {"id": "dorian_duck_back_punch_1", "slot": "arm_r"}
+			elif bool(mask & SimInput.KICK):
+				chosen = {"id": "dorian_duck_front_kick_1", "slot": "leg_l"}
 			elif bool(mask & SimInput.KICK_RIGHT):
-				chosen = {"id": "mk_jc_duck_back_kick_1", "slot": "leg_r"}
+				chosen = {"id": "dorian_duck_back_kick_1", "slot": "leg_r"}
 		elif light:
-			chosen = {"id": "mk_jc_front_punch_1", "slot": "arm_l"}
+			chosen = {"id": "dorian_front_punch_1", "slot": "arm_l"}
 		elif heavy:
-			chosen = {"id": "mk_jc_back_punch_1", "slot": "arm_r"}
-		elif kick:
-			chosen = {"id": "mk_jc_front_kick_1", "slot": "leg_l"}
+			chosen = {"id": "dorian_back_punch_1", "slot": "arm_r"}
+		elif bool(mask & SimInput.KICK):
+			chosen = {"id": "dorian_front_kick_1", "slot": "leg_l"}
 		elif bool(mask & SimInput.KICK_RIGHT):
-			chosen = {"id": "mk_jc_back_kick_1", "slot": "leg_r"}
+			chosen = {"id": "dorian_back_kick_1", "slot": "leg_r"}
 		if not chosen.is_empty():
 			chosen["ex"] = _wants_ex(fighter, mask, str(chosen["id"]))
 			return chosen
@@ -84,7 +96,7 @@ static func select(fighter: SimFighter, mask: int, rules: Dictionary) -> Diction
 
 static func is_ex_special(move_id: String) -> bool:
 	return (
-		move_id.begins_with("mk_jc_")
+		move_id.begins_with("dorian_")
 		and (
 			move_id.contains("nut_punch")
 			or move_id.contains("shadow_kick")

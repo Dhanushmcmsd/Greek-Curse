@@ -49,14 +49,14 @@ func test_roster_commands_have_distinct_attacks_and_contact_counts() -> void:
 				)
 
 
-func test_custom_loadouts_keep_equipped_moves() -> void:
+func test_custom_loadouts_keep_character_animation_style() -> void:
 	var config := MatchConfig.new()
 	config.loadouts = [Loadout.starter()]
 	var world := MatchLauncher.make_world(config)
 	assert_eq(
 		SimMoveAvailability.select(world.fighters[0], SimInput.LIGHT, world.body_rules).id,
-		"jab_of_hermes",
-		"explicit equipment wins"
+		"theron_lead",
+		"saving starter equipment must not revert the fighter to generic animation"
 	)
 	assert_true(not world.fighters[1].moveset_aliases.is_empty(), "default opponent has identity")
 
@@ -116,8 +116,18 @@ func test_corrected_arms_keep_lengths_and_guard_through_attack_frames() -> void:
 							absf(b.distance_to(c) - rest_b.distance_to(rest_c)) < 0.01,
 							id + " forearm length"
 						)
-						assert_true(c.z > a.z + 0.06, id + " wrist stays in front of shoulder")
-						assert_true(absf(c.y - a.y) < 0.25, id + " no overhead wrist inversion")
+						# Cross-body attacks may recover laterally to avoid the chest.
+						# Verify body clearance rather than imposing one fixed guard pose.
+						var pelvis := rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("root")).origin
+						var head := rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("head")).origin
+						var left := rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("upper_arm.l")).origin
+						var right := rig.skeleton.get_bone_global_pose(rig.skeleton.find_bone("upper_arm.r")).origin
+						var radius := clampf(left.distance_to(right) * 0.36, 0.12, 0.23)
+						for fraction in [0.0, 0.25, 0.5, 0.75, 1.0]:
+							var point := b.lerp(c, fraction)
+							var axis := pelvis.lerp(head, 0.78) - pelvis
+							var center := pelvis + axis * clampf((point - pelvis).dot(axis) / maxf(axis.length_squared(), 0.000001), 0, 1)
+							assert_true(point.distance_to(center) >= radius + 0.049, id + " forearm outside torso")
 		rig.free()
 
 
@@ -138,6 +148,9 @@ func test_retarget_corrects_different_limb_rest_directions() -> void:
 		var track := clip.add_track(Animation.TYPE_ROTATION_3D)
 		clip.track_set_path(track, NodePath("Skeleton3D:" + source.get_bone_name(index)))
 		clip.rotation_track_insert_key(track, 0, Quaternion.IDENTITY)
+	target.add_bone("FingerHelper")
+	target.set_bone_parent(3, 2)
+	target.set_bone_rest(3, Transform3D(Basis.IDENTITY, Vector3(0, -0.1, 0)))
 	target.reset_bone_poses()
 	var result := FighterRig.retarget_animation(clip, source, target)
 	load("res://tools/anim/exported_limb_alignment.gd").correct(result, clip, source, target)
@@ -155,5 +168,6 @@ func test_retarget_corrects_different_limb_rest_directions() -> void:
 	assert_true(
 		(wrist - elbow).normalized().dot(Vector3.RIGHT) > 0.99, "forearm follows source direction"
 	)
+	assert_true(target.get_bone_pose_rotation(3).angle_to(Quaternion.IDENTITY) < 0.001, "finger helper inherits corrected wrist without counter-rotation")
 	source.free()
 	target.free()

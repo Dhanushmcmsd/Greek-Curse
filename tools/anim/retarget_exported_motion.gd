@@ -10,6 +10,7 @@ func run() -> void:
 	var mapping: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/animation/mixamo_pack_map.json")
 	)
+	var original_mapping := mapping.duplicate(true)
 	var shared := {
 		"jab_of_hermes": "FrontPunch_1",
 		"achilles_heel_snap": "DuckFrontKick_1",
@@ -30,7 +31,16 @@ func run() -> void:
 		"titan_combo_kick": "BackKick_3_3rdFrontKick",
 		"muay_thai_flurry": "FrontKick_2_2ndFrontPunch"
 	}
-	for id in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+	var johnny := "johnny" in OS.get_cmdline_user_args()
+	var theron := "theron_boxer" in OS.get_cmdline_user_args()
+	var cinematic := "cinematic" in OS.get_cmdline_user_args()
+	var states := "states" in OS.get_cmdline_user_args() or cinematic or theron
+	var repair := "repair" in OS.get_cmdline_user_args()
+	var combos := "combos" in OS.get_cmdline_user_args() or repair
+	var state_map: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/animation/" + ("theron_boxer_sources.json" if theron else "cinematic_sources.json" if cinematic else "repair_sources.json" if repair else "combo_sources.json" if combos else "exported_states.json"))) if states or combos else {}
+	for id in (state_map.keys() if states or combos else (["dorian"] if johnny else ["theron", "atalanta", "pyrrhus", "sibyl"])):
+		if id == "theron" and not theron and FileAccess.file_exists("res://data/animation/theron_boxer_manifest.json"):
+			continue # Theron's replacement set is rebuilt only by theron_boxer.
 		var selected: Dictionary = shared.duplicate()
 		if id == "theron":
 			selected["jab_of_hermes"] = "FrontPunch_1_2ndBackPunch"
@@ -39,6 +49,13 @@ func run() -> void:
 		)
 		if "styles" in OS.get_cmdline_user_args():
 			selected = styles[id].sources
+		if johnny:
+			selected.clear()
+			for action in mapping.fighters[id].actions:
+				if str(action).begins_with("move_"):
+					selected[str(action).trim_prefix("move_")] = mapping.fighters[id].actions[action].export_source
+		if states or combos:
+			selected = state_map[id]
 		var rig = rig_script.new()
 		root.add_child(rig)
 		rig.load_fighter(id)
@@ -47,12 +64,15 @@ func run() -> void:
 			if (
 				not OS.get_cmdline_user_args().is_empty()
 				and "styles" not in OS.get_cmdline_user_args()
+				and not johnny
+				and not states
+				and not combos
 				and move not in OS.get_cmdline_user_args()
 			):
 				continue
 			var data: Dictionary = JSON.parse_string(
 				FileAccess.get_file_as_string(
-					"res://build/exported_motion/" + selected[move] + ".json"
+					"res://build/exported_motion/" + ("dorian/" if johnny else "") + selected[move] + ".json"
 				)
 			)
 			var source := Skeleton3D.new()
@@ -69,7 +89,9 @@ func run() -> void:
 					index,
 					Transform3D(
 						Basis(Quaternion(q[0], q[1], q[2], q[3]).normalized().inverse()),
-						Vector3(p[0], p[1], p[2]) * 0.01
+						# BONENAMES bind translations have reflected Y relative to
+						# ANIMKEYS in these ActorX exports (including clavicles/hips).
+						Vector3(p[0], -p[1], p[2]) * 0.01
 					)
 				)
 			var clip := Animation.new()
@@ -93,18 +115,43 @@ func run() -> void:
 				result, clip, source, rig.skeleton
 			)
 			rig._bind_animation_to_skeleton(result, selected[move])
-			var path: String = "res://assets/animations/exported/" + id + "/" + move + ".res"
+			if theron:
+				load("res://tools/anim/theron_motion_limits.gd").apply(result, rig.skeleton, move)
+			if states:
+				result.loop_mode = Animation.LOOP_LINEAR if move in ["idle", "block", "walk_fwd", "walk_back", "run"] else Animation.LOOP_NONE
+			var path: String = "res://assets/animations/exported/" + id + "/" + ("action_" if states else "") + move + ".res"
+			if theron and str(move).begins_with("move_"):
+				path = "res://assets/animations/exported/theron/" + str(move).trim_prefix("move_") + ".res"
 			assert(ResourceSaver.save(result, path) == OK)
 			print("RETARGET_OK ", id, " ", move, " tracks=", result.get_track_count())
 			source.free()
+			if states:
+				var fallback: Dictionary = mapping.fighters[id].actions.get(move, mapping.fighters[id].actions.block)
+				mapping.fighters[id].actions[move] = {"clip": fallback.clip, "export_source": selected[move], "loop": move in ["idle", "block", "walk_fwd", "walk_back", "run"]}
+				if theron:
+					mapping.fighters[id].actions[move].merge({"clip": "", "motion_set": "theron_boxer_v2", "start_seconds": 0.0, "end_seconds": result.length, "contact_phase": 0.4, "strike_side": "r" if "power" in move or "cross" in move or "finisher" in move else "l", "guard_constraint": false}, true)
+				if cinematic:
+					mapping.fighters[id].actions[move]["guard_constraint"] = false
+					if move in ["zeus_wrath", "olympian_barrage"]:
+						mapping.fighters[id].actions[move]["contact_phase"] = 0.5
+				continue
 			var action: Dictionary = mapping.fighters[id].actions["move_" + move]
+			if repair:
+				continue
 			action["start_seconds"] = 0.0
 			action["end_seconds"] = result.length
 			action["contact_phase"] = 0.35
 			action["export_source"] = selected[move]
 			action.erase("contact_phases")
 		rig.free()
-	FileAccess.open("res://data/animation/mixamo_pack_map.json", FileAccess.WRITE).store_string(
-		JSON.stringify(mapping, "  ", false) + "\n"
-	)
+	if mapping == original_mapping:
+		quit()
+		return
+	var output := FileAccess.open("res://data/animation/mixamo_pack_map.json", FileAccess.WRITE)
+	if output == null:
+		push_error("Cannot save animation map: " + str(FileAccess.get_open_error()))
+		quit(1)
+		return
+	output.store_string(JSON.stringify(mapping, "  ", false) + "\n")
+	output.close()
 	quit()

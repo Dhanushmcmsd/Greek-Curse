@@ -2,10 +2,10 @@ class_name SimHazards
 extends RefCounted
 
 
-static func configure(world: SimWorld, data: Dictionary, enabled: bool, seed: int) -> void:
+static func configure(world: SimWorld, data: Dictionary, enabled: bool, seed_value: int) -> void:
 	world.arena_rules = data
 	world.hazards_enabled = enabled and data["hazard"]["type"] != "none"
-	var schedule := SimRng.new(seed + 901)
+	var schedule := SimRng.new(seed_value + 901)
 	world.hazard_offset = schedule.range_i(1, int(data["hazard"]["period"]))
 	world.hazard_zone = schedule.range_i(0, 2)
 
@@ -16,6 +16,7 @@ static func step(world: SimWorld, events: Array) -> void:
 	var rule: Dictionary = world.arena_rules["hazard"]
 	var period := int(rule["period"])
 	var age := (world.tick - world.hazard_offset) % period
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var cycle := (world.tick - world.hazard_offset) / period
 	var zone: Array = rule["zones"][(cycle + world.hazard_zone) % rule["zones"].size()]
 	if cycle != world.hazard_cycle:

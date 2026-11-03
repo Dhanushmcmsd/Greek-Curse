@@ -11,6 +11,7 @@ const BITS := {
 	"kick": SimInput.KICK,
 	"kick_right": SimInput.KICK_RIGHT,
 	"body": SimInput.BODY,
+	"grab": SimInput.LIGHT | SimInput.KICK,
 	"block": SimInput.BLOCK,
 	"dodge": SimInput.DODGE,
 	"super": SimInput.SUPER,

@@ -36,6 +36,7 @@ static func mul_div(a: int, b: int, c: int) -> int:
 		negative = not negative
 	var numerator := abs_i(a) * abs_i(b)
 	var denominator := abs_i(c)
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var rounded := (numerator + (denominator >> 1)) / denominator
 	return -rounded if negative else rounded
 
@@ -58,6 +59,7 @@ static func isqrt(value: int) -> int:
 	var y := (x + 1) >> 1
 	while y < x:
 		x = y
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		y = (x + int(value / x)) >> 1
 	return x
 

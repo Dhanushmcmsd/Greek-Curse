@@ -9,7 +9,7 @@ var _body: MeshInstance3D
 var _rest_color: Color = Color(0.8, 0.8, 0.8)
 var _flash_ticks: int = 0
 var _last_states: Dictionary = {}
-var _pose_time: float = 0.0
+
 var _prev_x: int = -999999
 var _has_prev_x: bool = false
 var _recoil: float = 0.0
@@ -17,6 +17,11 @@ var _bleed_tick: int = 0
 var _trail_point := Vector3.ZERO
 var _trailing := false
 var _impact_frames: int = 0
+var _throw_start := Vector3.ZERO
+var _throw_duration: int = 0
+var _throw_victim: bool = false
+var _power_ticks: int = 0
+var _power_ring: MeshInstance3D
 
 
 func setup(
@@ -56,6 +61,14 @@ func show_fighter(fighter: SimFighter, frozen: bool = false) -> void:
 	position.z = 0.0
 	if rig != null:
 		_update_model(fighter, frozen)
+		if _throw_duration > 0 and fighter.state in [SimFighter.State.GRAB, SimFighter.State.GRABBED]:
+			var progress := clampf(1.0 - float(fighter.state_tick) / float(_throw_duration), 0.0, 1.0)
+			position = _throw_start.lerp(Vector3(target_x, float(fighter.y) / 1000.0, 0), smoothstep(0.2, 0.85, progress))
+			if _throw_victim:
+				position.y += sin(progress * PI) * 0.65
+				position.z -= sin(progress * PI) * 0.28
+		else:
+			_throw_duration = 0
 		return
 	if _flash_ticks > 0:
 		_flash_ticks -= 1
@@ -106,6 +119,12 @@ func _apply_color(body_color: Color) -> void:
 
 
 func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
+	if _power_ring != null:
+		_power_ring.visible = _power_ticks > 0
+		if _power_ticks > 0 and not frozen and visual_stop == 0:
+			_power_ticks -= 1
+			_power_ring.rotation.z += 0.025
+			_power_ring.material_override.set_shader_parameter("opacity", minf(0.6, float(_power_ticks) / 60.0))
 	for slot in SimLimbs.LIMB_NAMES:
 		var state: String = fighter.limbs.parts[slot].state
 		if state == "severed" and _last_states.get(slot, "healthy") != "severed":
@@ -138,7 +157,7 @@ func _update_model(fighter: SimFighter, frozen: bool = false) -> void:
 		if active and _trailing:
 			var manager := get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			if manager != null:
-				manager.trail(_trail_point, point)
+				manager.trail(_trail_point, point, fighter.fighter_id)
 		_trail_point = point
 		_trailing = active
 	if visual_stop > 0:
@@ -165,7 +184,7 @@ func _sever_effect(slot: String) -> void:
 	manager.burst(rig.sockets[slot].global_position, false, true)
 	# Notify pose driver for sever reaction
 	if driver != null:
-		driver.on_sever()
+		driver.on_sever(slot)
 
 
 func recoil(direction: float, blocked: bool) -> void:
@@ -180,9 +199,9 @@ func impact_point(zone: String) -> Vector3:
 	if zone == "head":
 		joint = "head"
 	elif zone.begins_with("arm"):
-		joint = "forearm." + zone.right(1)
+		joint = "hand." + zone.right(1)
 	elif zone.begins_with("leg"):
-		joint = "shin." + zone.right(1)
+		joint = "foot." + zone.right(1)
 	var bone := FighterRig.resolve_bone(rig.skeleton, joint)
 	if bone < 0:
 		return global_position + Vector3(0, 1.2, 0)
@@ -190,3 +209,28 @@ func impact_point(zone: String) -> Vector3:
 		rig.skeleton.global_transform * rig.skeleton.get_bone_global_pose(bone).origin
 		+ Vector3(0, 0, 0.25)
 	)
+
+
+func begin_throw(fighter: SimFighter, victim: bool) -> void:
+	_throw_start = position
+	_throw_duration = maxi(1, fighter.state_tick)
+	_throw_victim = victim
+
+
+func show_power(fighter_id: String) -> void:
+	_power_ticks = 90
+	if _power_ring == null:
+		_power_ring = MeshInstance3D.new()
+		var quad := QuadMesh.new()
+		quad.size = Vector2(1.6, 1.6)
+		_power_ring.mesh = quad
+		_power_ring.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var material := ShaderMaterial.new()
+		material.shader = load("res://assets/shaders/combat_art.gdshader")
+		material.set_shader_parameter("artwork", load("res://assets/vfx/exported/impact_ring.png"))
+		material.set_shader_parameter("layer", 1)
+		_power_ring.material_override = material
+		add_child(_power_ring)
+		_power_ring.position.y = 0.04
+		_power_ring.rotation.x = -PI / 2.0
+	_power_ring.material_override.set_shader_parameter("tint", GoreManager.palette(fighter_id))

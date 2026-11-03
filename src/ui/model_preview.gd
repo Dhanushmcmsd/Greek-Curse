@@ -2,9 +2,16 @@ class_name ModelPreview
 extends TextureRect
 var view: FighterView
 var fighter: SimFighter
+var _pose_accumulator: float = 0.0
 
 
 func setup(id: String, palette: String = "default", npc: bool = false, arena: bool = false) -> void:
+	# Re-selection replaces the old viewport instead of leaving invisible rigs rendering.
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
+	view = null
+	fighter = null
 	custom_minimum_size = Vector2(220, 250)
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -34,7 +41,7 @@ func setup(id: String, palette: String = "default", npc: bool = false, arena: bo
 	var camera := Camera3D.new()
 	viewport.add_child(camera)
 	camera.position = Vector3(3, 1.5, 4)
-	camera.look_at(Vector3(0, .8 if npc else 1, 0))
+	camera.look_at(Vector3(0, 0.8 if npc else 1.0, 0))
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 	camera.size = 1.8 if npc else 2.6
 	if arena:
@@ -52,6 +59,8 @@ func setup(id: String, palette: String = "default", npc: bool = false, arena: bo
 	texture = viewport.get_texture()
 
 
-func _process(_delta: float) -> void:
-	if view != null:
+func _process(delta: float) -> void:
+	_pose_accumulator = minf(_pose_accumulator + delta, 4.0 / 60.0)
+	while view != null and _pose_accumulator >= 1.0 / 60.0:
 		view.show_fighter(fighter)
+		_pose_accumulator -= 1.0 / 60.0

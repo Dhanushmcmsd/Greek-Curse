@@ -10,7 +10,7 @@ func test_directional_commands_mirror_with_facing() -> void:
 		var back := SimInput.LEFT if facing == 1 else SimInput.RIGHT
 		for pair in [
 			[forward | SimInput.KICK_RIGHT, "theron_pursuit"],
-			[forward | SimInput.HEAVY, "theron_power"],
+			[forward | SimInput.HEAVY, "theron_signature"],
 			[back | SimInput.LIGHT, "theron_retreat"],
 			[back | SimInput.HEAVY, "theron_lead"]
 		]:

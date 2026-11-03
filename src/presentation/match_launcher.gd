@@ -68,13 +68,13 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	return world
 
 
-static func make_ai(difficulty: String, seed: int, archetype: String = "balanced") -> FighterAI:
+static func make_ai(difficulty: String, seed_value: int, archetype: String = "balanced") -> FighterAI:
 	var loader := DataLoader.new()
 	var controller := FighterAI.new()
 	controller.setup(
 		loader.load_json("res://data/ai/difficulty.json").value[difficulty],
 		loader.load_json("res://data/ai/archetypes.json").value[archetype],
-		seed
+		seed_value
 	)
 	return controller
 
@@ -109,17 +109,17 @@ static func _install_abilities(world: SimWorld, config: MatchConfig, loader: Dat
 		var selected: Dictionary = (
 			config.loadouts[index]
 			if index < config.loadouts.size()
-			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl", "johnny_cage"].find(fighter.fighter_id))
+			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl", "dorian"].find(fighter.fighter_id))
 		)
 		var error := Loadout.validate(selected, world.abilities.keys(), world.abilities)
 		if error != "":
 			Log.error("loadout", error)
 			selected = Loadout.starter()
 		fighter.loadout = selected.duplicate(true)
-		if index >= config.loadouts.size() or fighter.fighter_id == "johnny_cage":
-			var styles: Dictionary = (
-				loader.load_json("res://data/animation/fighter_styles.json").value
-			)
-			if styles.has(fighter.fighter_id):
-				fighter.moveset_aliases = styles[fighter.fighter_id].aliases.duplicate(true)
+		# Fighter-specific motions also apply to career loadouts.
+		var styles: Dictionary = (
+			loader.load_json("res://data/animation/fighter_styles.json").value
+		)
+		if styles.has(fighter.fighter_id):
+			fighter.moveset_aliases = styles[fighter.fighter_id].aliases.duplicate(true)
 		SimAbilities.passive(world, fighter)

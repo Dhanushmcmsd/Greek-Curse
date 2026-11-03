@@ -747,7 +747,7 @@ FinalDamage = BaseDamage × ComboScaling × ArmorMultiplier × DebuffMultiplier 
 | Peacemaker | Eagly meter | `PeacemakerEaglyMeterModifier` |
 | Peacemaker | Gun damage boost | `PeacemakerGunDamageModifier` |
 | T-1000 | Meter death trigger | `T1000MeterDeathModifier` |
-| Johnny Cage | Hype modifier | `JohnnyHypeModifier` |
+| Dorian — the Spotlight | Hype modifier | `JohnnyHypeModifier` |
 | Sindel | Inspire modifier | `SindelInspireModifier` |
 | Shang Tsung | Morph modifier | `ShangTsungMorphModifier` |
 | QuanChi | Zone duration modifier | `QuanChiZoneDurationModifier` |

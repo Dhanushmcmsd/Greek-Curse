@@ -13,11 +13,11 @@ func _ready() -> void:
 	position = Vector3(0, float(settings["height"]), 7)
 
 
-static func framing(left: float, right: float, settings: Dictionary) -> Vector2:
+static func framing(left: float, right: float, settings_value: Dictionary) -> Vector2:
 	var distance := clampf(
 		abs(right - left) * 0.72 + 4.8,
-		float(settings["minimum_distance"]),
-		float(settings["maximum_distance"])
+		float(settings_value["minimum_distance"]),
+		float(settings_value["maximum_distance"])
 	)
 	return Vector2(clampf((left + right) * 0.5, -2.5, 2.5), distance)
 

@@ -38,6 +38,7 @@ var _players: Array[PlayerInput] = [PlayerInput.new(), PlayerInput.new()]
 var _recorder := InputRecorder.new()
 var _captions: CaptionSystem
 var _model_override := ""
+var _keyboard_edges: Array[int] = [0, 0]
 
 
 func _ready() -> void:
@@ -48,7 +49,7 @@ func _ready() -> void:
 	_build_stage()
 	world = _make_world()
 	_match_tools.catalog = world.fighters[0].limbs.catalog
-	_match_tools.populate_combos(_player_move_rows())
+	_match_tools.populate_combos(world.moves, world.fighters[0].fighter_id)
 	_sync(true)
 	if "--results-demo" in OS.get_cmdline_user_args():
 		for tick in 5000:
@@ -75,6 +76,8 @@ func _physics_process(_delta: float) -> void:
 	if InputMap.has_action("proto_debug") and Input.is_action_just_pressed("proto_debug"):
 		_debug.set_enabled(not _debug.visible_boxes)
 	var running := flow.advance()
+	if not running:
+		_keyboard_edges.assign([0, 0])
 	if world.phase == SimWorld.PHASE_FIGHTING and running:
 		var masks := _read_inputs()
 		if _record_path != "":
@@ -142,9 +145,9 @@ func _load_match() -> void:
 		_require(loader, "res://data/moves/satyr_dropkick.json"),
 	]
 	_combat = _require(loader, "res://data/balance/combat.json")
-	for name in DirAccess.get_files_at("res://data/moves"):
-		if name.begins_with("body_") and name.ends_with(".json"):
-			_move_rows.append(_require(loader, "res://data/moves/" + name))
+	for item_name in DirAccess.get_files_at("res://data/moves"):
+		if item_name.begins_with("body_") and item_name.ends_with(".json"):
+			_move_rows.append(_require(loader, "res://data/moves/" + item_name))
 
 
 func _require(loader: DataLoader, path: String) -> Dictionary:
@@ -251,9 +254,21 @@ func _read_inputs() -> Array:
 		else:
 			var device := 0 if controller.ends_with("kb1") or controller.ends_with("pad0") else 1
 			masks.append(
-				_players[index].sample(device, "pad" if controller.contains("pad") else "keyboard")
+				_players[index].sample(device, "pad" if controller.contains("pad") else "keyboard") | (_keyboard_edges[device] if controller.contains("kb") else 0)
 			)
+	_keyboard_edges.assign([0, 0])
 	return masks
+
+
+func _input(event: InputEvent) -> void:
+	# Preserve taps that begin and end between physics polls, including ultimate presses.
+	if not event is InputEventKey or not event.pressed or event.echo or flow.paused:
+		return
+	for player in 2:
+		for action in PlayerInput.BITS:
+			var action_name := "p%d_%s" % [player + 1, action]
+			if InputMap.has_action(action_name) and event.is_action_pressed(action_name):
+				_keyboard_edges[player] |= int(PlayerInput.BITS[action])
 
 
 func _setup_controllers() -> void:
@@ -281,7 +296,18 @@ func _setup_controllers() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
+	if event.keycode == KEY_F2:
+		if _match_tools._combo_panel.visible:
+			_match_tools.close_panel()
+		else:
+			_match_tools.open_combos()
+		get_viewport().set_input_as_handled()
+		return
 	if event.keycode == KEY_ESCAPE:
+		if _match_tools._combo_panel.visible or _match_tools.chooser.visible:
+			_match_tools.close_panel()
+			get_viewport().set_input_as_handled()
+			return
 		flow.paused = not flow.paused
 		_pause_menu.show_menu(flow.paused)
 	if not managed and event.keycode in [KEY_1, KEY_2, KEY_3]:
@@ -306,6 +332,14 @@ func _consume(events: Array) -> void:
 	flow.consume(events)
 	(_hud as CombatHud).consume(events, world)
 	for event in events:
+		if event.kind == SimEvent.Kind.GRAB:
+			for index in [event.actor, event.other]:
+				_views[index].begin_throw(world.fighters[index], index == event.other)
+				_views[index].notify_hit("torso", false, 1, "grab")
+			var grab_fx := get_tree().get_first_node_in_group("gore_manager") as GoreManager
+			if grab_fx != null:
+				grab_fx.impact(_views[event.other].impact_point("torso"), false)
+			(_camera as FightCamera).impact(0.09)
 		if event.kind == SimEvent.Kind.HIT or event.kind == SimEvent.Kind.BLOCK:
 			var zone: String = str(event.payload.get("zone", "body"))
 			var blocked: bool = event.kind == SimEvent.Kind.BLOCK
@@ -325,11 +359,16 @@ func _consume(events: Array) -> void:
 			)
 			# Forward reactive hit info to defender's view for zone-specific reactions
 			var move_name: String = str(event.payload.get("attacker_move", ""))
+			if move_name == "zeus_bolt" or (world.abilities.has(move_name) and world.abilities[move_name].type == "ultimate"):
+				var attacker := world.fighters[event.actor]
+				if move_name in ["zeus_bolt", "zeus_wrath"] or attacker.hits_done >= attacker.attack_hit_count:
+					_ultimate_effect(event.actor, event.other, false, blocked)
 			_views[event.other].notify_hit(zone, blocked, combo_hits, move_name)
 			var gore: GoreManager = (
 				get_tree().get_first_node_in_group("gore_manager") as GoreManager
 			)
 			if gore != null:
+				gore.fighter_tint = GoreManager.palette(world.fighters[event.actor].fighter_id)
 				gore.burst(_views[event.other].impact_point(zone), blocked, false, vfx_combo_tier)
 				# Wall-bounce VFX when fighter hits wall
 				if bool(event.payload.get("wall_bounce", false)):
@@ -356,7 +395,10 @@ func _consume(events: Array) -> void:
 				combo_shake += minf(0.09, float(combo_hits) * 0.016)
 			_shake = SettingsHooks.scale_amount(combo_shake, "shake_percent")
 		elif event.kind == SimEvent.Kind.ABILITY:
+			if event.payload["type"] == "ultimate":
+				_ultimate_effect(event.actor, 1 - event.actor, true)
 			if event.payload["type"] in ["superpower", "ultimate"]:
+				_views[event.actor].show_power(world.fighters[event.actor].fighter_id)
 				var gore_node: GoreManager = (
 					get_tree().get_first_node_in_group("gore_manager") as GoreManager
 				)
@@ -367,7 +409,7 @@ func _consume(events: Array) -> void:
 			# Dramatic sever: big camera impact + slowmo for all views
 			(_camera as FightCamera).impact(0.18, true)
 			for view in _views:
-				view.visual_stop = maxi(view.visual_stop, 30)
+				view.visual_stop = maxi(view.visual_stop, 8)
 			_shake = SettingsHooks.scale_amount(0.15, "shake_percent")
 		elif event.kind == SimEvent.Kind.KO:
 			_banner = "KO"
@@ -379,6 +421,15 @@ func _consume(events: Array) -> void:
 			longest_combos[event.actor] = maxi(
 				longest_combos[event.actor], int(event.payload["chain_hits"])
 			)
+
+
+func _ultimate_effect(actor: int, target: int, charging: bool, blocked: bool = false) -> void:
+	if not charging:
+		Audio.play_sound("lightning")
+	var effect := preload("res://src/presentation/ultimate_vfx.gd").new()
+	add_child(effect)
+	effect.global_position = Vector3(float(world.fighters[target].x) / 1000.0, 0, 0)
+	effect.configure(world.fighters[actor].fighter_id, charging, blocked)
 
 
 func _sync(_first: bool) -> void:
@@ -398,6 +449,8 @@ func _sync(_first: bool) -> void:
 		_views[index].show_fighter(
 			world.fighters[index], flow.paused or world.hitstop_remaining > 0
 		)
+	_separate_visual_torsos()
+	_align_throw_grip()
 	for view in _views:
 		if view.driver != null and view.driver.caption != "":
 			(_hud as CombatHud).credit_text = view.driver.caption
@@ -409,7 +462,33 @@ func _sync(_first: bool) -> void:
 	_debug.refresh(world)
 
 
+func _align_throw_grip() -> void:
+	for index in 2:
+		var fighter := world.fighters[index]
+		if fighter.state != SimFighter.State.GRAB or fighter.state_tick < 18:
+			continue
+		var view: FighterView = _views[index]
+		var victim: FighterView = _views[1 - index]
+		if view.rig == null or victim.rig == null:
+			continue
+		var skeleton := view.rig.skeleton
+		var target_skeleton := victim.rig.skeleton
+		var pelvis := target_skeleton.find_bone("root")
+		var contact := target_skeleton.global_transform * target_skeleton.get_bone_global_pose(pelvis).origin
+		for side in ["l", "r"]:
+			if not fighter.limbs.usable("arm_" + side):
+				continue
+			var upper := skeleton.find_bone("upper_arm." + side)
+			var elbow := skeleton.find_bone("forearm." + side)
+			var hand := skeleton.find_bone("hand." + side)
+			var goal := skeleton.global_transform.affine_inverse() * (contact + Vector3(0, 0.12, -0.1 if side == "l" else 0.1))
+			var pole := skeleton.get_bone_global_pose(elbow).origin
+			preload("res://src/presentation/combat_pose_constraints.gd").solve(skeleton, upper, elbow, hand, goal, pole)
+		view.driver._limit_wrist_flexion(fighter)
+
+
 func _menu_changed(shown: bool) -> void:
+	_keyboard_edges.assign([0, 0])
 	flow.paused = shown
 	_results.visible = false
 	_hud.visible = not shown and flow.phase != "results"
@@ -484,6 +563,31 @@ func result_summary() -> Dictionary:
 		"amputations": world.amputations.duplicate(true),
 		"date": Time.get_datetime_string_from_system()
 	}
+
+
+func _separate_visual_torsos() -> void:
+	if _views.size() != 2 or _views[0].rig == null or _views[1].rig == null:
+		return
+	if world.fighters[0].state in [SimFighter.State.GRAB, SimFighter.State.GRABBED] or world.fighters[1].state in [SimFighter.State.GRAB, SimFighter.State.GRABBED]:
+		return
+	var left := _views[0] if world.fighters[0].x <= world.fighters[1].x else _views[1]
+	var right := _views[1] if left == _views[0] else _views[0]
+	var left_edge := -INF
+	var right_edge := INF
+	for pair in [[left, true], [right, false]]:
+		var view: FighterView = pair[0]
+		var radius := clampf(view.rig.fighter_width * 0.3, 0.13, 0.21)
+		for bone_name in ["root", "spine", "upper_arm.l", "upper_arm.r", "head"]:
+			var bone := view.rig.skeleton.find_bone(bone_name)
+			var point := view.rig.skeleton.global_transform * view.rig.skeleton.get_bone_global_pose(bone).origin
+			var extent := 0.11 if bone_name == "head" else radius
+			if pair[1]:
+				left_edge = maxf(left_edge, point.x + extent)
+			else:
+				right_edge = minf(right_edge, point.x - extent)
+	var correction := clampf((left_edge - right_edge + 0.025) * 0.5, 0.0, 0.22)
+	left.rig.position.x -= correction
+	right.rig.position.x += correction
 
 
 func _player_move_rows() -> Array:

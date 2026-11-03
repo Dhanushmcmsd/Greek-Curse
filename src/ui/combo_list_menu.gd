@@ -7,6 +7,10 @@ var title_label: Label
 var close_btn: Button
 var grid: GridContainer
 var chains_container: VBoxContainer
+var fighter_selector: OptionButton
+var _all_moves: Array = []
+var selected_fighter: String = ""
+const ROSTER = ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]
 
 
 func _init() -> void:
@@ -60,6 +64,12 @@ func _build_ui() -> void:
 	close_btn.custom_minimum_size = Vector2(120, 36)
 	close_btn.pressed.connect(func(): closed.emit())
 	header.add_child(close_btn)
+	fighter_selector = OptionButton.new()
+	for id in ROSTER:
+		var row: Dictionary = DataLoader.new().load_json("res://data/fighters/" + id + ".json").value
+		fighter_selector.add_item(str(row.display_name))
+	fighter_selector.item_selected.connect(func(index: int): populate(_all_moves, ROSTER[index]))
+	root.add_child(fighter_selector)
 
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -83,14 +93,7 @@ func _build_ui() -> void:
 	chains_container.add_theme_constant_override("separation", 10)
 	content_box.add_child(chains_container)
 
-	_add_combo_chain_entry(
-		"Directional combat commands",
-		(
-			"Forward / Back follow your facing. Tap once per attack; "
-			+ "link after all hits during COMBO NOW."
-		),
-		"Left / Right Punch and Left / Right Kick use your configured limb keys. Costs use stamina."
-	)
+	_add_combo_chain_entry("PLAYER 1 KEYS: facing right / facing left", _key_command("Forward · Back · Down"), _key_command("Left Punch · Right Punch · Left Kick · Right Kick · Grab · Equipped Super · Equipped Ultimate"))
 
 	# === INDIVIDUAL MOVES TABLE ===
 	var moves_header := Label.new()
@@ -100,14 +103,14 @@ func _build_ui() -> void:
 	content_box.add_child(moves_header)
 
 	grid = GridContainer.new()
-	grid.columns = 6
+	grid.columns = 4
 	grid.add_theme_constant_override("h_separation", 20)
 	grid.add_theme_constant_override("v_separation", 8)
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content_box.add_child(grid)
 
 	for hdr in [
-		"Move Name", "Input Command", "Startup (Ticks)", "Cancel Window", "Damage", "Cancels Into"
+		"Move", "Command", "Damage / hit", "Link window (frames)"
 	]:
 		var h := Label.new()
 		h.text = hdr
@@ -115,21 +118,6 @@ func _build_ui() -> void:
 		h.add_theme_font_size_override("font_size", 14)
 		grid.add_child(h)
 
-	# === AMPUTATION RULES ===
-	var amp_header := Label.new()
-	amp_header.text = "AMPUTATION SYSTEM"
-	amp_header.add_theme_font_size_override("font_size", 18)
-	amp_header.add_theme_color_override("font_color", Color("ff7744"))
-	content_box.add_child(amp_header)
-
-	_add_rule_entry(
-		"ONE DETACHMENT — awarded to one fighter at the end of Round 2",
-		"Most damaged limb on the round loser. Other limbs stay attached and usable. No further severs."
-	)
-	_add_rule_entry(
-		"Rage Compensation — amputated fighter gains +15% damage on all remaining attacks",
-		"• 30% meter gain on sever  •  20-tick wakeup invulnerability window"
-	)
 
 
 func _add_combo_chain_entry(title: String, sequence: String, details: String) -> void:
@@ -205,7 +193,16 @@ func _add_rule_entry(rule: String, sub: String) -> void:
 	chains_container.add_child(entry_panel)
 
 
-func populate(move_rows: Array) -> void:
+func populate(move_rows: Array, fighter_id: String = "") -> void:
+	_all_moves = move_rows
+	selected_fighter = fighter_id
+	if fighter_id != "":
+		fighter_selector.select(ROSTER.find(fighter_id))
+		var filtered: Array = []
+		for move in move_rows:
+			if str(move.id) == "grab" or str(move.get("owner", "")) == fighter_id or (fighter_id == "dorian" and str(move.id).begins_with("dorian_")):
+				filtered.append(move)
+		move_rows = filtered
 	for child in grid.get_children():
 		if child.get_meta("data_row", false):
 			grid.remove_child(child)
@@ -218,26 +215,14 @@ func populate(move_rows: Array) -> void:
 	var by_id := {}
 	for move in move_rows:
 		by_id[str(move["id"])] = move
-	var featured := {
-		"Titan Rush Chain": ["spartan_flurry", "muay_thai_flurry", "thunder_elbow_strike"],
-		"Ghost Ambush Chain": ["ghost_sweep_chain", "phantom_flurry", "phantom_ambush"],
-		"Lightning Assault": ["lightning_jab_chain", "spartan_flurry", "divine_uppercut"],
-		"Titan Kick Chain": ["titan_combo_kick", "muay_thai_flurry", "thunder_elbow_strike"]
-	}
+	var catalog: Dictionary = DataLoader.new().load_json("res://data/animation/combo_catalog.json").value
 	var featured_index := 1
-	for title in featured:
-		var inputs: Array[String] = []
-		var timings: Array[String] = []
-		for id in featured[title]:
-			if by_id.has(id):
-				inputs.append(_format_input(by_id[id]))
-				timings.append("%s: %df" % [by_id[id]["display_name"], by_id[id]["startup_ticks"]])
-		if inputs.size() == 3:
-			_add_combo_chain_entry(title, " → ".join(inputs), " | ".join(timings))
-			var entry := chains_container.get_child(-1)
-			entry.set_meta("live_chain", true)
-			chains_container.move_child(entry, featured_index)
-			featured_index += 1
+	for combo in catalog.get(fighter_id, []):
+		_add_combo_chain_entry(combo.name, " → ".join(combo.inputs.map(func(command): return _key_command(str(command)))), combo.description)
+		var entry := chains_container.get_child(-1)
+		entry.set_meta("live_chain", true)
+		chains_container.move_child(entry, featured_index)
+		featured_index += 1
 	for move in move_rows:
 		if not bool(move.get("can_cancel", false)):
 			continue
@@ -309,11 +294,24 @@ func populate(move_rows: Array) -> void:
 		cancel_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		cancel_lbl.custom_minimum_size.x = 200
 
-		for lbl in [name_lbl, input_lbl, startup_lbl, cancel_window_lbl, dmg_lbl, cancel_lbl]:
+		startup_lbl.free()
+		cancel_lbl.free()
+		for lbl in [name_lbl, input_lbl, dmg_lbl, cancel_window_lbl]:
+			lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			lbl.custom_minimum_size.x = 240 if lbl == name_lbl or lbl == input_lbl else 130
 			grid.add_child(lbl)
 
 
 static func _format_input(row: Dictionary) -> String:
+	var text := _semantic_input(row)
+	if text == "Combo follow-up":
+		text = "Right Punch" if str(row.get("owner", "")) in ["theron", "pyrrhus"] else "Right Kick"
+	return _key_command(text)
+
+
+static func _semantic_input(row: Dictionary) -> String:
+	if str(row.get("id", "")) in ["grab", "dorian_throw_forward"]:
+		return "Grab"
 	if row.has("input_label"):
 		return str(row.input_label)
 	var commands := {
@@ -340,6 +338,24 @@ static func _format_input(row: Dictionary) -> String:
 			return "Equipped Ultimate"
 		_:
 			return (
-				"Equip to "
-				+ ("Kick" if str(row.get("limb_side", "")).begins_with("leg") else "Punch")
+				("Right Kick" if str(row.get("limb_side", "")).ends_with("r") else "Left Kick") if str(row.get("limb_side", "")).begins_with("leg") else ("Right Punch" if str(row.get("limb_side", "")).ends_with("r") else "Left Punch")
 			)
+
+
+static func bound_key(action: String, player: int = 0) -> String:
+	var id := "p%d_%s" % [player + 1, action]
+	if InputMap.has_action(id):
+		for event in InputMap.action_get_events(id):
+			if event is InputEventKey:
+				return OS.get_keycode_string(event.physical_keycode)
+	var defaults: Dictionary = DataLoader.new().load_json("res://data/ui/default_bindings.json").value
+	return str(defaults.get(id, {}).get("key", "—"))
+
+
+static func _key_command(command: String) -> String:
+	var actions := {"Left Punch": "light", "Right Punch": "heavy", "Left Kick": "kick", "Right Kick": "kick_right", "Equipped Super": "super", "Equipped Ultimate": "ultimate", "Down": "down", "Grab": "grab"}
+	for word in actions:
+		command = command.replace(word, "[" + bound_key(actions[word]) + "]")
+	command = command.replace("Forward", "[" + bound_key("right") + "/" + bound_key("left") + "]")
+	command = command.replace("Back", "[" + bound_key("left") + "/" + bound_key("right") + "]")
+	return command.replace("Kick", "[" + bound_key("kick") + "/" + bound_key("kick_right") + "]").replace(" (string follow-up)", "")

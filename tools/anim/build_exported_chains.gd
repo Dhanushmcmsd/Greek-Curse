@@ -23,7 +23,13 @@ func run() -> void:
 		"olympian_heel_chain": ["pegasus_kick", "satyr_dropkick"]
 	}
 	for id in mapping.fighters:
+		if id == "theron" and FileAccess.file_exists("res://data/animation/theron_boxer_manifest.json"):
+			continue
+		if id == "dorian" and "combos" not in OS.get_cmdline_user_args():
+			continue
 		var sequences: Dictionary = shared.duplicate()
+		if "combos" in OS.get_cmdline_user_args():
+			sequences = JSON.parse_string(FileAccess.get_file_as_string("res://data/animation/combo_chains.json"))[id]
 		if "styles" in OS.get_cmdline_user_args():
 			var styles: Dictionary = JSON.parse_string(
 				FileAccess.get_file_as_string("res://data/animation/fighter_styles.json")
@@ -40,6 +46,7 @@ func run() -> void:
 			if (
 				not OS.get_cmdline_user_args().is_empty()
 				and "styles" not in OS.get_cmdline_user_args()
+				and "combos" not in OS.get_cmdline_user_args()
 				and move not in OS.get_cmdline_user_args()
 			):
 				continue

@@ -15,9 +15,9 @@ var catalog: Dictionary
 var bar: HBoxContainer
 var cards: HBoxContainer
 var _combo_panel: PanelContainer
-var _tab_bar: HBoxContainer
-var _limb_tab: Button
-var _combo_tab: Button
+
+
+
 
 
 func _ready() -> void:
@@ -76,8 +76,8 @@ func _build_limb_panel() -> void:
 	player.custom_minimum_size.x = 200
 	row.add_child(player)
 	slot = OptionButton.new()
-	for name in ["Left arm", "Right arm", "Left leg", "Right leg"]:
-		slot.add_item(name)
+	for item_name in ["Left arm", "Right arm", "Left leg", "Right leg"]:
+		slot.add_item(item_name)
 	slot.custom_minimum_size.x = 250
 	row.add_child(slot)
 	limb = OptionButton.new()
@@ -119,8 +119,8 @@ func _build_combo_panel() -> void:
 	_combo_panel.hide()
 
 
-func populate_combos(move_rows: Array) -> void:
-	(_combo_panel as ComboListMenu).populate(move_rows)
+func populate_combos(move_rows: Array, fighter_id: String = "") -> void:
+	(_combo_panel as ComboListMenu).populate(move_rows, fighter_id)
 
 
 func open() -> void:

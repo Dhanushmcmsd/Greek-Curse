@@ -121,7 +121,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	anim_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	model.add_child(anim_player)
 	anim_player.root_node = NodePath("..")
-	if ResourceLoader.exists(anim_path):
+	var replacement_theron := id == "theron" and mid == id and FileAccess.file_exists("res://data/animation/theron_boxer_manifest.json")
+	if replacement_theron:
+		anim_player.add_animation_library("", AnimationLibrary.new())
+	if ResourceLoader.exists(anim_path) and not replacement_theron:
 		var anim_scene := (load(anim_path) as PackedScene).instantiate()
 		var source_ap := anim_scene.find_child("AnimationPlayer", true, false) as AnimationPlayer
 		if source_ap != null:
@@ -139,6 +142,8 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		var actions: Dictionary = f_map.get("actions", {})
 		var retarget_cache: Dictionary = {}
 		for act_key in actions:
+			if replacement_theron:
+				continue # Every live binding is supplied by the replacement set.
 			var baked := (
 				"res://assets/animations/exported/"
 				+ id
@@ -198,7 +203,7 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		var library := anim_player.get_animation_library("")
 		for file in DirAccess.get_files_at(exported_dir):
 			if file.ends_with(".res"):
-				var clip_name := id + "_move_" + file.get_basename()
+				var clip_name := id + "_" + (file.get_basename().trim_prefix("action_") if file.begins_with("action_") else "move_" + file.get_basename())
 				var imported := load(exported_dir + "/" + file) as Animation
 				if imported != null:
 					if library.has_animation(clip_name):
@@ -287,7 +292,7 @@ func apply_palette(id: String) -> void:
 			"sunset_gold": Color(0.95, 0.78, 0.35),
 			"shadow_green": Color(0.35, 0.7, 0.45)
 		}
-		. get(id, Color.WHITE))
+		. get(id, Color.WHITE)
 	)
 	for mesh in model.find_children("*", "MeshInstance3D", true, false):
 		for index in mesh.mesh.get_surface_count():
@@ -473,13 +478,13 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	var original := mesh.skin
 	var bind_names: Array[String] = []
 	for bind in original.get_bind_count():
-		var name := str(original.get_bind_name(bind))
-		if name.is_empty():
+		var name_value := str(original.get_bind_name(bind))
+		if name_value.is_empty():
 			var index := original.get_bind_bone(bind)
 			if index < 0 or index >= source.get_bone_count():
 				return false
-			name = source.get_bone_name(index)
-		bind_names.append(name)
+			name_value = source.get_bone_name(index)
+		bind_names.append(name_value)
 	for surface in mesh.mesh.get_surface_count():
 		var arrays := mesh.mesh.surface_get_arrays(surface)
 		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
@@ -492,9 +497,9 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	# centimetre bones, whereas normalized match assets use metres. Convert the
 	# entire bind transform, including its origin, before assigning the new rig.
 	var ratios: Array[float] = []
-	for name in ["forearm.l", "forearm.r", "shin.l", "shin.r"]:
-		var src := resolve_bone(source, name)
-		var dst := resolve_bone(target_skel, name)
+	for name_value in ["forearm.l", "forearm.r", "shin.l", "shin.r"]:
+		var src := resolve_bone(source, name_value)
+		var dst := resolve_bone(target_skel, name_value)
 		if src >= 0 and dst >= 0:
 			var length := source.get_bone_rest(src).origin.length()
 			if length > 0.00001:
@@ -502,14 +507,15 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	if ratios.is_empty():
 		return false
 	ratios.sort()
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var unit_scale := ratios[ratios.size() / 2]
 	var conversion := Transform3D(Basis.IDENTITY.scaled(Vector3.ONE * unit_scale), Vector3.ZERO)
 	for bind in original.get_bind_count():
-		var name := bind_names[bind]
-		var target := resolve_bone(target_skel, name)
+		var name_value := bind_names[bind]
+		var target := resolve_bone(target_skel, name_value)
 		if target < 0:
 			# Exporter sentinel is unweighted, but still needs a valid bind entry.
-			if name != "neutral_bone":
+			if name_value != "neutral_bone":
 				return false
 			target = resolve_bone(target_skel, "root")
 		if target < 0:
@@ -548,12 +554,12 @@ static func retarget_animation(
 			* target.get_bone_global_rest(bone).basis.orthonormalized().get_rotation_quaternion()
 		)
 	for bone in target.get_bone_count():
-		var name := target.get_bone_name(bone)
+		var name_value := target.get_bone_name(bone)
 		var rotation_track := result.add_track(Animation.TYPE_ROTATION_3D)
-		result.track_set_path(rotation_track, NodePath("Skeleton3D:" + name))
+		result.track_set_path(rotation_track, NodePath("Skeleton3D:" + name_value))
 		tracks[bone] = rotation_track
 		var position_track := result.add_track(Animation.TYPE_POSITION_3D)
-		result.track_set_path(position_track, NodePath("Skeleton3D:" + name))
+		result.track_set_path(position_track, NodePath("Skeleton3D:" + name_value))
 		result.position_track_insert_key(position_track, 0.0, target.get_bone_rest(bone).origin)
 	var frame_count := maxi(1, ceili(clip.length * 30.0))
 	for frame in range(frame_count + 1):
@@ -564,8 +570,8 @@ static func retarget_animation(
 				source.get_bone_rest(bone).basis.orthonormalized().get_rotation_quaternion()
 			)
 		for track in clip.get_track_count():
-			var name := clip.track_get_path(track).get_concatenated_subnames()
-			var bone := source.find_bone(name)
+			var name_value := clip.track_get_path(track).get_concatenated_subnames()
+			var bone := source.find_bone(name_value)
 			if bone >= 0 and clip.track_get_type(track) == Animation.TYPE_ROTATION_3D:
 				local_rotations[bone] = clip.rotation_track_interpolate(track, sample_time)
 		var source_globals: Dictionary = {}
@@ -636,12 +642,12 @@ static func _retarget_bone(
 
 
 static func _asset_basis(skel: Skeleton3D) -> Quaternion:
-	var transform := Transform3D.IDENTITY
+	var transform_value := Transform3D.IDENTITY
 	var node: Node = skel
 	while node is Node3D and not node is FighterRig:
-		transform = (node as Node3D).transform * transform
+		transform_value = (node as Node3D).transform * transform_value
 		node = node.get_parent()
-	return transform.basis.orthonormalized().get_rotation_quaternion()
+	return transform_value.basis.orthonormalized().get_rotation_quaternion()
 
 
 static func _source_rotation(
@@ -650,11 +656,11 @@ static func _source_rotation(
 	if global.has(bone):
 		return
 	var parent := source.get_bone_parent(bone)
-	var rotation: Quaternion = local[bone]
+	var rotation_value: Quaternion = local[bone]
 	if parent >= 0:
 		_source_rotation(parent, source, local, global)
-		rotation = global[parent] * rotation
-	global[bone] = rotation
+		rotation_value = global[parent] * rotation_value
+	global[bone] = rotation_value
 
 
 func _tint(node: Node, color: Color) -> void:

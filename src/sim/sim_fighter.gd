@@ -65,6 +65,9 @@ var health: int = 300
 var stamina: int = 0
 var stamina_max: int = 100
 var meter: int = 0
+var super_charge: int = 0
+var confirmed_hits: int = 0
+var last_confirmed_tick: int = -1
 var modifiers: Array[SimModifier] = []
 var attack_slot: String = "arm_l"
 var attack_category: String = ""
@@ -116,6 +119,7 @@ var buffer: SimInputBuffer = SimInputBuffer.new()
 
 
 func half_width() -> int:
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	return body_width_mm / 2
 
 

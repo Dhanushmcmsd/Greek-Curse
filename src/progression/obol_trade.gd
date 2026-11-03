@@ -3,7 +3,7 @@ extends RefCounted
 
 
 static func options(
-	fighter: Dictionary, slot: String, ability: String, catalog: Dictionary, seed: int
+	fighter: Dictionary, slot: String, ability: String, catalog: Dictionary, seed_value: int
 ) -> Array:
 	if (
 		not fighter["limbs"].has(slot)
@@ -17,7 +17,7 @@ static func options(
 		if slot.begins_with(str(catalog[id]["slot"])):
 			pool.append(id)
 	pool.sort()
-	var rng := SimRng.new(seed)
+	var rng := SimRng.new(seed_value)
 	var result: Array = []
 	while not pool.is_empty() and result.size() < 3:
 		var index := rng.range_i(0, pool.size())
@@ -33,9 +33,9 @@ static func accept(
 	limb_id: String,
 	catalog: Dictionary,
 	normal_integrity: int,
-	seed: int
+	seed_value: int
 ) -> bool:
-	if limb_id not in options(fighter, slot, ability, catalog, seed):
+	if limb_id not in options(fighter, slot, ability, catalog, seed_value):
 		return false
 	fighter["unlocked_abilities"].erase(ability)
 	if ability not in fighter["traded_abilities"]:

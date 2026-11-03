@@ -21,8 +21,8 @@ func _ready() -> void:
 	panel.custom_minimum_size.x = 310
 	_hud.add_child(panel)
 	var roster := OptionButton.new()
-	for name in ["Theron", "Atalanta", "Pyrrhus", "Sibyl"]:
-		roster.add_item(name)
+	for item_name in ["Theron", "Atalanta", "Pyrrhus", "Sibyl"]:
+		roster.add_item(item_name)
 	panel.add_child(roster)
 	roster.item_selected.connect(_pick_fighter)
 	_model_picker = OptionButton.new()

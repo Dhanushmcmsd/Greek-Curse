@@ -22,6 +22,7 @@ static func hit(
 	fighter.limbs.register_limb_hit(zone, amount, false)
 	# Match damage accumulates toward the one award; attached limbs remain functional.
 	if bool(rules.get("match_mode", false)) and limb != null and limb.state != "severed":
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		limb.integrity = maxi(limb.integrity, (limb.max_integrity * 26 + 99) / 100)
 		fighter.limbs.integrity[zone] = limb.integrity
 		limb.refresh(rules)
@@ -216,7 +217,7 @@ static func check_brutality_trigger(
 	attacker: int,
 	victim: int,
 	move_id: String,
-	final_hit_damage: int,
+	_final_hit_damage: int,
 	events: Array
 ) -> bool:
 	if world.match_sever_awarded:
@@ -231,16 +232,16 @@ static func check_brutality_trigger(
 	var target_limb := ""
 	var brutality_name := ""
 
-	if move_id in ["mk_jc_nut_punch", "Specialmove_NutPunch"]:
+	if move_id in ["dorian_nut_punch", "Specialmove_NutPunch"]:
 		target_limb = "torso"
 		brutality_name = "BRUTALITY_NUT_PUNCH"
-	elif move_id in ["mk_jc_shadow_kick", "Specialmove_ShadowKick"]:
+	elif move_id in ["dorian_shadow_kick", "Specialmove_ShadowKick"]:
 		target_limb = "torso"
 		brutality_name = "BRUTALITY_TORSO_PUNCH_THROUGH"
-	elif move_id in ["mk_jc_rising_elbow", "Specialmove_RisingElbow", "divine_uppercut"]:
+	elif move_id in ["dorian_rising_elbow", "Specialmove_RisingElbow", "divine_uppercut"]:
 		target_limb = "head"
 		brutality_name = "BRUTALITY_DECAPITATION"
-	elif move_id in ["mk_jc_sunglasses_toss", "Specialmove_SunglassesToss"]:
+	elif move_id in ["dorian_sunglasses_toss", "Specialmove_SunglassesToss"]:
 		target_limb = "head"
 		brutality_name = "BRUTALITY_HEAD_EXPLODE"
 	else:

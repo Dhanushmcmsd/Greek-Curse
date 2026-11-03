@@ -170,6 +170,9 @@ func snapshot_hash() -> int:
 					fighter.stamina,
 					1 if fighter.blocking else 0,
 					fighter.meter,
+					fighter.super_charge,
+					fighter.confirmed_hits,
+					fighter.last_confirmed_tick,
 					fighter.pose_id(),
 					fighter.cooldown_ticks,
 					fighter.attack_rearm_ticks,
@@ -244,6 +247,7 @@ func reset_for_match(mode: String) -> void:
 				rows[zone] = {"integrity": fighter.limbs.max_integrity}
 		fighter.limbs.restore_state(rows)
 		fighter.meter = 0
+		fighter.super_charge = 0
 	_reset_bodies()
 
 
@@ -293,6 +297,7 @@ func _push_apart() -> void:
 	if gap >= min_dist:
 		return
 	var overlap := min_dist - gap
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var share := overlap / 2
 	left.x -= share
 	right.x += overlap - share
@@ -379,6 +384,8 @@ func _reset_bodies() -> void:
 		fighter.cooldown_ticks = 0
 		fighter.attack_rearm_ticks = 0
 		fighter.chain = ChainRecord.new()
+		fighter.confirmed_hits = 0
+		fighter.last_confirmed_tick = -1
 		fighter.buffer = SimInputBuffer.new()
 		fighter.state = SimFighter.State.IDLE
 		fighter.state_tick = 0

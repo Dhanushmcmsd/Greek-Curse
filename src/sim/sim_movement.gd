@@ -142,7 +142,7 @@ static func _try_start(world: SimWorld, fighter: SimFighter, mask: int) -> void:
 			fighter.state_tick = 0
 			_dodge_motion(world, fighter, mask)
 		return
-	if mask & (SimInput.SUPER | SimInput.ULTIMATE):
+	if (_edge(world, fighter, SimInput.SUPER) or _edge(world, fighter, SimInput.ULTIMATE)) and not _attack_level(mask):
 		var ability := SimMoveAvailability.select(fighter, mask, world.body_rules)
 		if not ability.is_empty():
 			_begin_named(world, fighter, ability["id"], ability["slot"])
@@ -325,6 +325,9 @@ static func _begin_named(
 	if found < 0:
 		return false
 	var move: Dictionary = world.moves[found]
+	for required in move.get("required_limbs", []):
+		if not fighter.limbs.usable(str(required)):
+			return false
 	if not SimAbilities.ready(world, fighter, move_id):
 		return false
 	if fighter.limbs.parts.has(slot) and not fighter.limbs.usable(slot):
@@ -360,6 +363,7 @@ static func _begin_named(
 		fighter.startup_ticks = maxi(1, Fx.percent(fighter.startup_ticks, 70))
 		fighter.armor_hits = maxi(fighter.armor_hits, 1)
 	if fighter.frenzy_maximum > 100 and move.get("category", "") != "ultimate":
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		fighter.startup_ticks = maxi(
 			1, fighter.startup_ticks * 100 / SimAbilities.speed(fighter, world.max_health)
 		)
@@ -373,7 +377,7 @@ static func _begin_named(
 
 static func _consume_edges(fighter: SimFighter, _move_id: String) -> void:
 	# Consume the command that started any equipped move, not just default IDs.
-	for bit in SimInput.ATTACK_BITS:
+	for bit in SimInput.ATTACK_BITS + [SimInput.SUPER, SimInput.ULTIMATE]:
 		fighter.buffer.consume(bit)
 
 

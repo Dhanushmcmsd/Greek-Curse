@@ -94,14 +94,15 @@ func sync(world: SimWorld) -> void:
 		return
 	var rule: Dictionary = data["hazard"]
 	var age := (world.tick - world.hazard_offset) % int(rule["period"])
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var cycle := (world.tick - world.hazard_offset) / int(rule["period"])
 	var marker := markers[(cycle + world.hazard_zone) % markers.size()]
-	var is_visible: bool = age < int(rule["telegraph_ticks"]) + int(rule["active_ticks"])
-	marker.visible = is_visible
+	var is_visible_value: bool = age < int(rule["telegraph_ticks"]) + int(rule["active_ticks"])
+	marker.visible = is_visible_value
 	marker.scale.y = 1.0
 
 	var column: MeshInstance3D = marker.get_meta("active_column", null) as MeshInstance3D
-	var is_active: bool = age >= int(rule["telegraph_ticks"]) and is_visible
+	var is_active: bool = age >= int(rule["telegraph_ticks"]) and is_visible_value
 	if column != null:
 		column.visible = is_active
 		if is_active:

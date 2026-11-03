@@ -46,26 +46,34 @@ static func install(model: Node3D, stage: Node3D) -> void:
 	backdrop.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	stage.add_child(backdrop)
 	backdrop.position = Vector3(0, 3.4, -10)
+	var pillar_material := ShaderMaterial.new()
+	pillar_material.shader = load("res://assets/shaders/pillar_stone.gdshader")
+	pillar_material.set_shader_parameter("backdrop", load("res://assets/environment/ruins/pillar_stone.png"))
 	# Architectural silhouettes ground the arena in front of the distant matte.
 	for side in [-1.0, 1.0]:
 		for depth in [-3.0, -6.5]:
 			var column := Node3D.new()
 			stage.add_child(column)
+			column.name = "TempleColumn"
+			column.scale = Vector3(1.65, 2.05, 1.65)
 			column.position = Vector3(side * (5.1 if depth == -3.0 else 6.3), 0, depth)
-			_stone_part(column, stone, Vector3(0, 0.12, 0), Vector3(0.95, 0.24, 0.95))
-			_stone_part(column, stone, Vector3(0, 2.75, 0), Vector3(0.9, 0.22, 0.9))
+			_stone_part(column, pillar_material, Vector3(0, 0.12, 0), Vector3(0.95, 0.24, 0.95))
+			_stone_part(column, pillar_material, Vector3(0, 2.75, 0), Vector3(0.9, 0.22, 0.9))
 			var shaft := MeshInstance3D.new()
 			var cylinder := CylinderMesh.new()
 			cylinder.top_radius = 0.26
 			cylinder.bottom_radius = 0.33
 			cylinder.height = 2.45
-			cylinder.radial_segments = 20
+			cylinder.radial_segments = 160
+			cylinder.rings = 12
 			shaft.mesh = cylinder
-			shaft.material_override = stone
+			var fluted_material := pillar_material.duplicate() as ShaderMaterial
+			fluted_material.set_shader_parameter("fluted", true)
+			shaft.material_override = fluted_material
 			column.add_child(shaft)
 			shaft.position.y = 1.45
 			for ring_height in [0.3, 0.42, 2.53, 2.64]:
-				_stone_part(column, stone, Vector3(0, ring_height, 0), Vector3(0.73, 0.09, 0.73))
+				_stone_part(column, pillar_material, Vector3(0, ring_height, 0), Vector3(0.73, 0.09, 0.73))
 	_install_pillar_mist(stage)
 	for x in [-4.3, 4.3]:
 		_stone_part(stage, stone, Vector3(x, 0.35, -0.15), Vector3(0.36, 0.7, 0.36))

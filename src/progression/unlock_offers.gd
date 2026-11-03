@@ -2,10 +2,10 @@ class_name UnlockOffers
 extends RefCounted
 
 
-static func choose(catalog: Dictionary, unlocked: Array, win: int, seed: int) -> Array:
+static func choose(catalog: Dictionary, unlocked: Array, win: int, seed_value: int) -> Array:
 	var pool: Array = []
 	var result: Array = []
-	var rng := SimRng.new(seed)
+	var rng := SimRng.new(seed_value)
 	for id in catalog:
 		if id not in unlocked and id not in Loadout.STARTER:
 			pool.append(id)

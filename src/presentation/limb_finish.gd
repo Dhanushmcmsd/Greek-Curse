@@ -115,6 +115,7 @@ static func posed_mesh(original: MeshInstance3D) -> ArrayMesh:
 		var normals: PackedVector3Array = arrays[Mesh.ARRAY_NORMAL]
 		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
 		var bones: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		var count := weights.size() / vertices.size()
 		for index in vertices.size():
 			var point := Vector3.ZERO

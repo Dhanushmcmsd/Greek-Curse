@@ -59,7 +59,7 @@ func consume(events: Array) -> void:
 			)
 			id = ("heavy_" if event.amount >= 25 else "light_") + material
 		if key == "ABILITY" and str(event.payload.get("id", "")).begins_with("zeus"):
-			id = "lightning"
+			id = "whoosh" if event.payload.get("id") == "zeus_wrath" else "lightning"
 		if key == "HAZARD":
 			id = "lava" if event.payload.get("type", "") == "lava" else "lightning"
 		play_sound(id)

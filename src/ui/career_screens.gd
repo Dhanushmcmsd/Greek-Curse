@@ -122,14 +122,26 @@ static func build(host: MenuHost, state: String) -> void:
 
 static func _create(host: MenuHost) -> void:
 	var selection := {"id": "theron", "palette": "default"}
-	var roster := ["theron", "atalanta", "pyrrhus", "sibyl"]
-	host.choice(roster, 0, func(index: int): selection["id"] = roster[index])
+	var roster := ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]
+	var preview := ModelPreview.new()
+	var names: Array = []
+	for id in roster:
+		names.append(DataLoader.new().load_json("res://data/fighters/%s.json" % id).value.display_name)
+	host.choice(names, 0, func(index: int):
+		selection["id"] = roster[index]
+		preview.setup(selection["id"], selection["palette"])
+	)
+	host.body.add_child(preview)
+	preview.setup(selection["id"])
 	var name := LineEdit.new()
 	name.placeholder_text = "Name your fighter (2–24 characters)"
 	name.max_length = 24
 	host.body.add_child(name)
 	var palettes := ["default", "ivory", "night"]
-	host.choice(palettes, 0, func(index: int): selection["palette"] = palettes[index])
+	host.choice(palettes, 0, func(index: int):
+		selection["palette"] = palettes[index]
+		preview.setup(selection["id"], selection["palette"])
+	)
 	host.button(
 		"Create Career",
 		func():

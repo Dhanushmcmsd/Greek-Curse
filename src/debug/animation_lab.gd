@@ -31,8 +31,8 @@ func _ready() -> void:
 	]
 	for move in world.moves:
 		choices.append(move["id"])
-	for name in choices:
-		selector.add_item(name)
+	for item_name in choices:
+		selector.add_item(item_name)
 	selector.item_selected.connect(func(index: int): chosen = choices[index])
 	box.add_child(selector)
 	var ticks := HSlider.new()

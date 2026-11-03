@@ -6,280 +6,447 @@
   "fighters": {
     "theron": {
       "archetype": "heavy_brawler",
-      "style_notes": "heavy_brawler motion profile using Mixamo animations.",
+      "style_notes": "Iron Guard: complete JohnnyCage and Shared replacement set; grounded torso rotation, calibrated contacts, no legacy fallback.",
       "actions": {
         "idle": {
-          "clip": "idle_and_start_animation_idle",
+          "clip": "",
+          "export_source": "TheronBoxerV2_idle",
           "loop": true,
-          "speed_scale": 0.9
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 7.88336831342415,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "walk_fwd": {
-          "clip": "walking_front_walking",
+          "clip": "",
+          "export_source": "TheronBoxerV2_walk_fwd",
           "loop": true,
-          "speed_scale": 0.9
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933620692725414,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "walk_back": {
-          "clip": "walking_back_walking_backwards",
+          "clip": "",
+          "export_source": "TheronBoxerV2_walk_back",
           "loop": true,
-          "speed_scale": 0.9
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.983606557377049,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "run": {
-          "clip": "walking_front_walking",
-          "derived": true,
-          "recipe": "walking_front_walking played faster",
+          "clip": "",
+          "export_source": "TheronBoxerV2_run",
           "loop": true,
-          "speed_scale": 1.44,
-          "additive_lean_x": 10.0
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.767013932574589,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "block": {
-          "clip": "block_center_block",
-          "loop": false,
-          "speed_scale": 1.0
+          "clip": "",
+          "export_source": "TheronBoxerV2_block",
+          "loop": true,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 3.316749417547,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "dodge": {
-          "clip": "walking_back_injured_walk_backwards",
-          "derived": true,
-          "recipe": "walking_back_injured_walk_backwards sped up 2.0x with backward lean and lateral evasive offset",
+          "clip": "",
+          "export_source": "TheronBoxerV2_dodge",
           "loop": false,
-          "speed_scale": 2.0,
-          "additive_lean_x": -15.0
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.1169081796277,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "grab": {
-          "clip": "punch_punching",
-          "derived": true,
-          "recipe": "punch_punching upper-body clamped at full reach frame with neutral stance hold",
+          "clip": "",
+          "export_source": "TheronBoxerV2_grab",
           "loop": false,
-          "contact_phase": 0.4
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.68343564562267,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "stagger": {
-          "clip": "damage_taken_medium_hit_to_head",
-          "loop": false
+          "clip": "",
+          "export_source": "TheronBoxerV2_stagger",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.06691926386318,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "knockdown": {
-          "clip": "death_fall_flat",
-          "loop": false
+          "clip": "",
+          "export_source": "TheronBoxerV2_knockdown",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.65010351966874,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "get_up": {
-          "clip": "death_fall_flat",
-          "derived": true,
-          "recipe": "death_fall_flat played in reverse (speed_scale -1.0) with recovery blend",
+          "clip": "",
+          "export_source": "TheronBoxerV2_get_up",
           "loop": false,
-          "speed_scale": -1.0
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.65016495417611,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "crawl": {
-          "clip": "no_legs_crawling",
-          "loop": true,
-          "speed_scale": 1.0
+          "clip": "",
+          "export_source": "TheronBoxerV2_crawl",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 6.40004301976969,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "torso_scuttle": {
-          "clip": "no_legs_crawling",
-          "derived": true,
-          "recipe": "no_legs_crawling upper torso loop with legs detached",
-          "loop": true,
-          "speed_scale": 1.2
+          "clip": "",
+          "export_source": "TheronBoxerV2_torso_scuttle",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 6.50004280586822,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "torso_roll": {
-          "clip": "no_legs_crawling",
-          "derived": true,
-          "recipe": "no_legs_crawling with continuous roll rotation",
-          "loop": true,
-          "speed_scale": 1.5
+          "clip": "",
+          "export_source": "TheronBoxerV2_torso_roll",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 5.40005106155554,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "win": {
-          "clip": "idle_and_start_animation_mutant_flexing_muscles",
-          "loop": true,
-          "speed_scale": 1.0
+          "clip": "",
+          "export_source": "TheronBoxerV2_win",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.81676402782552,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "lose": {
-          "clip": "death_standing_death_backward_01",
+          "clip": "",
+          "export_source": "TheronBoxerV2_lose",
           "loop": false,
-          "speed_scale": 0.9
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.65010351966874,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "punch_jab": {
-          "clip": "punch_punching",
+          "clip": "",
+          "export_source": "TheronBoxerV2_punch_jab",
           "loop": false,
-          "contact_phase": 0.3
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.700378758530206,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "punch_cross": {
-          "clip": "punch_jab_cross",
+          "clip": "",
+          "export_source": "TheronBoxerV2_punch_cross",
           "loop": false,
-          "contact_phase": 0.35
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.58350515463918,
+          "contact_phase": 0.4,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "hook": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "TheronBoxerV2_hook",
           "loop": false,
-          "contact_phase": 0.35
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.75015569668472,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "overhead_slam": {
-          "clip": "punch_standing_2h_magic_attack_01",
+          "clip": "",
+          "export_source": "TheronBoxerV2_overhead_slam",
           "loop": false,
-          "contact_phase": 0.45
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.983606557377049,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "heavy_strike": {
-          "clip": "punch_elbow_punch",
+          "clip": "",
+          "export_source": "TheronBoxerV2_heavy_strike",
           "loop": false,
-          "contact_phase": 0.4
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.58350515463918,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "kick_low": {
-          "clip": "kick_kick_to_the_groin",
+          "clip": "",
+          "export_source": "TheronBoxerV2_kick_low",
           "loop": false,
-          "contact_phase": 0.35
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.83348219593797,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "kick_sweep": {
-          "clip": "kick_drop_kick",
+          "clip": "",
+          "export_source": "TheronBoxerV2_kick_sweep",
           "loop": false,
-          "contact_phase": 0.4
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.56684034003842,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "kick_stomp": {
-          "clip": "kick_flying_knee_punch_combo",
+          "clip": "",
+          "export_source": "TheronBoxerV2_kick_stomp",
           "loop": false,
-          "contact_phase": 0.4
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.10013014991716,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "kick_thrust": {
-          "clip": "kick_kicking",
+          "clip": "",
+          "export_source": "TheronBoxerV2_kick_thrust",
           "loop": false,
-          "contact_phase": 0.35
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.10013014991716,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "zeus_bolt": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "derived": true,
-          "recipe": "punch_standing_2h_magic_attack_01 upper body cast + idle lower body stance",
+          "clip": "",
+          "export_source": "TheronBoxerV2_zeus_bolt",
           "loop": false,
-          "contact_phase": 0.4
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.983606557377049,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "hermes_dash": {
-          "clip": "walking_front_walking",
-          "derived": true,
-          "recipe": "walking_front_walking burst at 2.5x speed with deep forward lean",
+          "clip": "",
+          "export_source": "TheronBoxerV2_hermes_dash",
           "loop": false,
-          "speed_scale": 2.5
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.68349518304092,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "ares_rage": {
-          "clip": "idle_and_start_animation_mutant_flexing_muscles",
-          "derived": true,
-          "recipe": "idle_and_start_animation_mutant_flexing_muscles flex roar with red rage pulse",
+          "clip": "",
+          "export_source": "TheronBoxerV2_ares_rage",
           "loop": false,
-          "speed_scale": 1.2
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.81676402782552,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "forge_shield": {
-          "clip": "block_center_block",
-          "derived": true,
-          "recipe": "block_center_block anchored defensive posture with barrier cue",
-          "loop": false
+          "clip": "",
+          "export_source": "TheronBoxerV2_forge_shield",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.250980407175126,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "zeus_wrath": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "derived": true,
-          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "clip": "",
+          "export_source": "TheronBoxerV2_zeus_wrath",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.517171749056221,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "olympian_barrage": {
-          "clip": "kick_flying_knee_punch_combo",
-          "derived": true,
-          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "clip": "",
+          "export_source": "TheronBoxerV2_olympian_barrage",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 2.86676263227615,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "move_achilles_heel_snap": {
-          "clip": "kick_kick_to_the_groin",
-          "contact_phase": 0.449799186447298,
-          "end_seconds": 0.900297634379596,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_achilles_heel_snap",
           "loop": false,
-          "move_id": "achilles_heel_snap",
-          "start_seconds": 0.233333333333333,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.7,
+          "contact_phase": 0.285714285714286,
           "strike_side": "l",
-          "export_source": "DuckFrontKick_1"
+          "guard_constraint": false
         },
         "move_bronze_knuckle": {
-          "clip": "punch_elbow_punch",
-          "contact_phase": 0.222222222222222,
-          "end_seconds": 0.45,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_bronze_knuckle",
           "loop": false,
-          "move_id": "bronze_knuckle",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
           "strike_side": "l",
-          "export_source": "BackPunch_1"
+          "guard_constraint": false
         },
         "move_cyclops_smash": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "contact_phase": 0.275862068965517,
-          "end_seconds": 0.483333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_cyclops_smash",
           "loop": false,
-          "move_id": "cyclops_smash",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "BackPunch_3"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_gorgon_backfist": {
-          "clip": "punch_illegal_elbow_punch",
-          "contact_phase": 0.275862068965517,
-          "end_seconds": 0.483333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_gorgon_backfist",
           "loop": false,
-          "move_id": "gorgon_backfist",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "BackPunch_3"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_jab_of_hermes": {
-          "clip": "punch_lead_jab",
-          "contact_phase": 0.0,
-          "end_seconds": 0.35,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_jab_of_hermes",
           "loop": false,
-          "move_id": "jab_of_hermes",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
           "strike_side": "l",
-          "export_source": "FrontPunch_1_2ndBackPunch"
+          "guard_constraint": false
         },
         "move_minotaur_haymaker": {
-          "clip": "punch_boxing",
-          "contact_phase": 0.16,
-          "end_seconds": 0.416666666666667,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_minotaur_haymaker",
           "loop": false,
-          "move_id": "minotaur_haymaker",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "BackPunch_2"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_pegasus_kick": {
-          "clip": "kick_kicking",
-          "contact_phase": 0.375,
-          "end_seconds": 0.966666666666667,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_pegasus_kick",
           "loop": false,
-          "move_id": "pegasus_kick",
-          "start_seconds": 0.166666666666667,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.7,
+          "contact_phase": 0.285714285714286,
           "strike_side": "l",
-          "export_source": "FrontKick_1"
+          "guard_constraint": false
         },
         "move_satyr_dropkick": {
-          "clip": "kick_drop_kick",
-          "contact_phase": 0.318181818181818,
-          "end_seconds": 0.733333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_satyr_dropkick",
           "loop": false,
-          "move_id": "satyr_dropkick",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "r",
-          "export_source": "BackKick_1"
+          "end_seconds": 0.7,
+          "contact_phase": 0.285714285714286,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "move_spartan_cross": {
-          "clip": "punch_jab_cross",
-          "contact_phase": 0.275862068965517,
-          "end_seconds": 0.483333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_spartan_cross",
           "loop": false,
-          "move_id": "spartan_cross",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.416666666666667,
+          "contact_phase": 0.16,
           "strike_side": "r",
-          "export_source": "BackPunch_1"
+          "guard_constraint": false
         },
         "move_sweeping_hydra": {
-          "clip": "idle_and_start_animation_chapa-giratoria",
-          "contact_phase": 0.449799186447298,
-          "end_seconds": 0.96,
+          "clip": "",
+          "export_source": "theron_low > theron_rise > theron_low",
           "loop": false,
-          "move_id": "sweeping_hydra",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.96,
+          "contact_phase": 0.4,
           "strike_side": "l",
-          "export_source": "sweeping_hydra > satyr_dropkick > pegasus_kick",
+          "guard_constraint": false,
           "contact_phases": [
             0.166666666666667,
             0.5,
@@ -292,49 +459,54 @@
           ]
         },
         "move_muay_thai_flurry": {
-          "clip": "kick_flying_knee_punch_combo",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher > theron_lead",
           "loop": false,
-          "contact_phase": 0.461538461538462,
-          "strike_side": "l",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "end_seconds": 1.12,
-          "export_source": "pegasus_kick > thunder_elbow_strike > satyr_dropkick > phantom_ambush",
+          "end_seconds": 1.25333333333333,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.142857142857143,
-            0.285714285714286,
-            0.571428571428572,
-            0.857142857142857
+            0.127659574468085,
+            0.382978723404255,
+            0.617021276595745,
+            0.872340425531915
           ],
           "contact_slots": [
-            "leg_l",
             "arm_l",
-            "leg_r",
-            "arm_r"
+            "arm_r",
+            "arm_r",
+            "arm_l"
           ]
         },
         "move_thunder_elbow_strike": {
-          "clip": "punch_illegal_elbow_punch",
-          "contact_phase": 0.0,
-          "end_seconds": 0.35,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_thunder_elbow_strike",
           "loop": false,
-          "move_id": "thunder_elbow_strike",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "FrontPunch_1_2ndBackPunch"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_phantom_flurry": {
-          "clip": "punch_jab_cross",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.0,
-            0.379310344827586,
-            0.793103448275862
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.773333333333333,
-          "export_source": "jab_of_hermes > spartan_cross > phantom_ambush",
           "contact_slots": [
             "arm_l",
             "arm_r",
@@ -342,306 +514,514 @@
           ]
         },
         "move_phantom_ambush": {
-          "clip": "punch_elbow_punch",
-          "contact_phase": 0.4,
-          "end_seconds": 0.583333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_phantom_ambush",
           "loop": false,
-          "move_id": "phantom_ambush",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "r",
-          "export_source": "FrontPunch_1_3rdBackPunch"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "move_spartan_flurry": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.0,
-            0.25,
-            0.75
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.64,
-          "export_source": "jab_of_hermes > thunder_elbow_strike > phantom_ambush",
           "contact_slots": [
             "arm_l",
-            "arm_l",
+            "arm_r",
             "arm_r"
           ]
         },
         "move_divine_uppercut": {
-          "clip": "punch_punching",
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_divine_uppercut",
           "loop": false,
-          "contact_phase": 0.588235294117647,
-          "strike_side": "l",
-          "start_seconds": 0.366666666666667,
-          "end_seconds": 1.21666666666667,
-          "export_source": "DuckBackPunch_1"
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_lightning_jab_chain": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher > theron_lead",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.25333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.0,
-            0.2,
-            0.4,
-            0.8
+            0.127659574468085,
+            0.382978723404255,
+            0.617021276595745,
+            0.872340425531915
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.8,
-          "export_source": "jab_of_hermes > jab_of_hermes > thunder_elbow_strike > phantom_ambush",
           "contact_slots": [
             "arm_l",
-            "arm_l",
-            "arm_l",
-            "arm_r"
+            "arm_r",
+            "arm_r",
+            "arm_l"
           ]
         },
         "move_ghost_sweep_chain": {
-          "clip": "kick_martelo_2",
+          "clip": "",
+          "export_source": "theron_low > theron_rise",
           "loop": false,
-          "contact_phase": 0.449799186447298,
-          "strike_side": "l",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
           "end_seconds": 0.64,
-          "export_source": "ghost_sweep_chain > pegasus_kick",
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
             0.25,
             0.75
           ],
           "contact_slots": [
             "leg_l",
-            "leg_l"
+            "leg_r"
           ]
         },
         "move_titan_combo_kick": {
-          "clip": "kick_jump_attack",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
-          "contact_phase": 0.461538461538462,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
+          "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
+          "contact_phases": [
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
+          ],
+          "contact_slots": [
+            "arm_l",
+            "arm_r",
+            "arm_r"
+          ]
+        },
+        "move_olympian_crusher": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_olympian_crusher",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "reaction_gut_crumple": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_reaction_gut_crumple",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.58350515463918,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "reaction_wall_splat_bounce": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_reaction_wall_splat_bounce",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.31687242798354,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "hit_head_snap": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_hit_head_snap",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.60017006076035,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "hit_light": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_hit_light",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.66682997185283,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "move_hoplite_sweep_chain": {
+          "clip": "",
+          "export_source": "theron_low > theron_rise > theron_low",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
           "end_seconds": 0.96,
-          "export_source": "satyr_dropkick > pegasus_kick > titan_combo_kick",
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
             0.166666666666667,
             0.5,
             0.833333333333333
           ],
           "contact_slots": [
+            "leg_l",
             "leg_r",
-            "leg_l",
-            "arm_r"
-          ]
-        },
-        "move_olympian_crusher": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "contact_phase": 0.461538461538462,
-          "end_seconds": 0.716666666666667,
-          "loop": false,
-          "move_id": "olympian_crusher",
-          "start_seconds": 0.0666666666666667,
-          "strike_side": "r",
-          "export_source": "BackKick_3_2ndBackPunch"
-        },
-        "reaction_gut_crumple": {
-          "clip": "damage_taken_big_kidney_hit",
-          "loop": false,
-          "speed_scale": 1.0
-        },
-        "reaction_wall_splat_bounce": {
-          "clip": "damage_taken_medium_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
-        },
-        "hit_head_snap": {
-          "clip": "damage_taken_head_hit",
-          "loop": false,
-          "speed_scale": 1.0
-        },
-        "hit_light": {
-          "clip": "damage_taken_light_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
-        },
-        "move_hoplite_sweep_chain": {
-          "clip": "kick_martelo_2",
-          "loop": false,
-          "contact_phase": 0.4,
-          "strike_side": "l",
-          "contact_phases": [
-            0.171428571428571,
-            0.485714285714286,
-            0.828571428571428
-          ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.933333333333333,
-          "export_source": "ghost_sweep_chain > spartan_cross > pegasus_kick",
-          "contact_slots": [
-            "leg_l",
-            "arm_r",
             "leg_l"
           ]
         },
         "move_olympian_heel_chain": {
-          "clip": "kick_martelo_2",
+          "clip": "",
+          "export_source": "theron_low > theron_rise",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.64,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
             0.25,
             0.75
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.64,
-          "export_source": "pegasus_kick > satyr_dropkick",
           "contact_slots": [
             "leg_l",
             "leg_r"
           ]
         },
         "move_hammer_of_hephaestus": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "contact_phase": 0.275862068965517,
-          "end_seconds": 0.483333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_hammer_of_hephaestus",
           "loop": false,
-          "move_id": "cyclops_smash",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "BackPunch_2"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_quick_fury": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.0,
-            0.25,
-            0.75
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.64,
-          "export_source": "jab_of_hermes > thunder_elbow_strike > phantom_ambush",
           "contact_slots": [
             "arm_l",
-            "arm_l",
+            "arm_r",
             "arm_r"
           ]
         },
         "move_theron_lead": {
-          "clip": "punch_lead_jab",
-          "contact_phase": 0.0,
-          "end_seconds": 0.35,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_lead",
           "loop": false,
-          "move_id": "jab_of_hermes",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
           "strike_side": "l",
-          "export_source": "FrontPunch_1_2ndBackPunch"
+          "guard_constraint": false
         },
         "move_theron_power": {
-          "clip": "punch_standing_2h_magic_attack_01",
-          "contact_phase": 0.432432432432432,
-          "end_seconds": 0.616666666666667,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_power",
           "loop": false,
-          "move_id": "cyclops_smash",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "l",
-          "export_source": "BackPunch_3_2ndBackPunch"
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "r",
+          "guard_constraint": false
         },
         "move_theron_rise": {
-          "clip": "kick_kicking",
-          "contact_phase": 0.318181818181818,
-          "end_seconds": 0.733333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_rise",
           "loop": false,
-          "move_id": "pegasus_kick",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
+          "end_seconds": 0.733333333333333,
+          "contact_phase": 0.318181818181818,
           "strike_side": "r",
-          "export_source": "BackKick_1"
+          "guard_constraint": false
         },
         "move_theron_low": {
-          "clip": "kick_kick_to_the_groin",
-          "contact_phase": 0.210526315789474,
-          "end_seconds": 0.633333333333333,
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_low",
           "loop": false,
-          "move_id": "achilles_heel_snap",
+          "motion_set": "theron_boxer_v2",
           "start_seconds": 0.0,
-          "strike_side": "r",
-          "export_source": "DuckBackKick_1"
+          "end_seconds": 0.7,
+          "contact_phase": 0.285714285714286,
+          "strike_side": "l",
+          "guard_constraint": false
         },
         "move_theron_pressure": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.64,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.0,
-            0.666666666666667
+            0.25,
+            0.75
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.48,
-          "export_source": "theron_lead > theron_power",
           "contact_slots": [
             "arm_l",
-            "arm_l"
+            "arm_r"
           ]
         },
         "move_theron_pursuit": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.2,
-            0.4,
-            0.8
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.8,
-          "export_source": "theron_power > theron_lead > theron_power",
           "contact_slots": [
             "arm_l",
-            "arm_l",
-            "arm_l"
+            "arm_r",
+            "arm_r"
           ]
         },
         "move_theron_retreat": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.172413793103448,
-            0.379310344827586,
-            0.793103448275862
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.773333333333333,
-          "export_source": "theron_low > theron_lead > theron_rise",
           "contact_slots": [
-            "leg_r",
             "arm_l",
-            "leg_r"
+            "arm_r",
+            "arm_r"
           ]
         },
         "move_theron_sweep": {
-          "clip": "punch_boxing",
+          "clip": "",
+          "export_source": "theron_low > theron_rise",
           "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.64,
           "contact_phase": 0.4,
           "strike_side": "l",
+          "guard_constraint": false,
           "contact_phases": [
-            0.217391304347826,
-            0.739130434782609
+            0.25,
+            0.75
           ],
-          "start_seconds": 0.0,
-          "end_seconds": 0.613333333333334,
-          "export_source": "theron_low > theron_rise",
           "contact_slots": [
-            "leg_r",
+            "leg_l",
             "leg_r"
           ]
+        },
+        "block_impact": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_block_impact",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.66706350721019,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "hit_low": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_hit_low",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 1.1169081796277,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "move_theron_finisher": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_finisher",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.483333333333333,
+          "contact_phase": 0.275862068965517,
+          "strike_side": "r",
+          "guard_constraint": false
+        },
+        "move_theron_signature": {
+          "clip": "",
+          "export_source": "theron_lead > theron_power > theron_finisher",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.933333333333333,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false,
+          "contact_phases": [
+            0.171428571428571,
+            0.514285714285714,
+            0.828571428571429
+          ],
+          "contact_slots": [
+            "arm_l",
+            "arm_r",
+            "arm_r"
+          ]
+        },
+        "move_theron_counter": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_counter",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.1,
+          "end_seconds": 0.75,
+          "contact_phase": 0.461538461538462,
+          "strike_side": "r",
+          "guard_constraint": false
+        },
+        "move_theron_breaker": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_move_theron_breaker",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "contact_phase": 0.32258064516129,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "grab_hold": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_grab_hold",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 3.73340709540024,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "grab_throw": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_grab_throw",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 3.73340709540024,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "grabbed": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_grabbed",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 3.73340709540024,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "hit_electric": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_hit_electric",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 5.13338733997396,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "sever_arm": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_sever_arm",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 11.2333577662995,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "sever_leg_l": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_sever_leg_l",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 6.13337839418715,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
+        },
+        "sever_leg_r": {
+          "clip": "",
+          "export_source": "TheronBoxerV2_sever_leg_r",
+          "loop": false,
+          "motion_set": "theron_boxer_v2",
+          "start_seconds": 0.0,
+          "end_seconds": 7.23337146470256,
+          "contact_phase": 0.4,
+          "strike_side": "l",
+          "guard_constraint": false
         }
       }
     },
@@ -651,18 +1031,18 @@
       "actions": {
         "idle": {
           "clip": "idle_and_start_animation_idle",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_Stance_Active",
+          "loop": true
         },
         "walk_fwd": {
           "clip": "walking_front_walking",
-          "loop": true,
-          "speed_scale": 1.15
+          "export_source": "JohnnyCage_StepWalk_WalkFwd_Loop",
+          "loop": true
         },
         "walk_back": {
           "clip": "walking_back_walking_backwards",
-          "loop": true,
-          "speed_scale": 1.15
+          "export_source": "JohnnyCage_StepWalk_WalkBwd_Loop",
+          "loop": true
         },
         "run": {
           "clip": "walking_front_walking",
@@ -674,16 +1054,13 @@
         },
         "block": {
           "clip": "block_left_block",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_Block_Loop",
+          "loop": true
         },
         "dodge": {
           "clip": "walking_back_walking_backwards",
-          "derived": true,
-          "recipe": "walking_back_walking_backwards sped up 2.0x with backward lean and lateral evasive offset",
-          "loop": false,
-          "speed_scale": 2.0,
-          "additive_lean_x": -15.0
+          "export_source": "Expansion_JohnnyCage_Dash_Fwd",
+          "loop": false
         },
         "grab": {
           "clip": "punch_boxing",
@@ -694,11 +1071,14 @@
         },
         "stagger": {
           "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_High_F_Stumble_Back_1",
           "loop": false
         },
         "knockdown": {
           "clip": "death_standing_death_left_01",
-          "loop": false
+          "export_source": "Cinematic_atalanta_knockdown",
+          "loop": false,
+          "guard_constraint": false
         },
         "get_up": {
           "clip": "death_fall_flat",
@@ -810,17 +1190,17 @@
         },
         "zeus_wrath": {
           "clip": "punch_standing_2h_magic_attack_01",
-          "derived": true,
-          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "export_source": "Cinematic_atalanta_zeus_wrath",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
-          "derived": true,
-          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "export_source": "Cinematic_atalanta_olympian_barrage",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -1074,7 +1454,7 @@
           "contact_slots": [
             "leg_r",
             "leg_l",
-            "arm_r"
+            "arm_l"
           ]
         },
         "move_olympian_crusher": {
@@ -1089,23 +1469,23 @@
         },
         "reaction_gut_crumple": {
           "clip": "damage_taken_big_kidney_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_2",
+          "loop": false
         },
         "reaction_wall_splat_bounce": {
           "clip": "damage_taken_medium_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_Stumble_Back_1",
+          "loop": false
         },
         "hit_head_snap": {
           "clip": "damage_taken_head_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_InPlace_Face_Back_2",
+          "loop": false
         },
         "hit_light": {
           "clip": "damage_taken_light_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_2",
+          "loop": false
         },
         "move_hoplite_sweep_chain": {
           "clip": "kick_martelo_2",
@@ -1115,7 +1495,7 @@
           "contact_phases": [
             0.171428571428571,
             0.485714285714286,
-            0.828571428571428
+            0.828571428571429
           ],
           "start_seconds": 0.0,
           "end_seconds": 0.933333333333333,
@@ -1285,6 +1665,104 @@
             "leg_l",
             "leg_r"
           ]
+        },
+        "block_impact": {
+          "clip": "block_left_block",
+          "export_source": "JohnnyCage_Block_HitMid_1",
+          "loop": false
+        },
+        "hit_low": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_Low_F_InPlace_FrontLeg_Low_1",
+          "loop": false
+        },
+        "move_atalanta_finisher": {
+          "clip": "punch_boxing",
+          "export_source": "Combo_FrontPunch_2_3rdBackKick",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.266666666666667,
+          "end_seconds": 1.06666666666667,
+          "contact_phase": 0.375,
+          "strike_side": "r"
+        },
+        "move_atalanta_signature": {
+          "clip": "punch_boxing",
+          "export_source": "atalanta_lead > atalanta_finisher > atalanta_rise",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.96,
+          "contact_phases": [
+            0.166666666666667,
+            0.5,
+            0.833333333333333
+          ],
+          "contact_slots": [
+            "arm_l",
+            "leg_r",
+            "leg_r"
+          ],
+          "strike_side": "l"
+        },
+        "move_atalanta_counter": {
+          "clip": "punch_boxing",
+          "export_source": "Expansion_JohnnyCage_FrontPunch_2_2ndBackPunch",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 1.90014365212474,
+          "contact_phase": 0.4,
+          "strike_side": "l"
+        },
+        "move_atalanta_breaker": {
+          "clip": "punch_boxing",
+          "export_source": "Expansion_JohnnyCage_FrontKick_2_3rdFrontPunch",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 1.88347820463992,
+          "contact_phase": 0.4,
+          "strike_side": "l"
+        },
+        "grab_hold": {
+          "clip": "block_left_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into",
+          "loop": false
+        },
+        "grab_throw": {
+          "clip": "block_left_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Out",
+          "loop": false
+        },
+        "grabbed": {
+          "clip": "block_left_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into_Victim",
+          "loop": false
+        },
+        "hit_electric": {
+          "clip": "block_left_block",
+          "export_source": "Cinematic_atalanta_hit_electric",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_arm": {
+          "clip": "block_left_block",
+          "export_source": "Cinematic_atalanta_sever_arm",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_l": {
+          "clip": "block_left_block",
+          "export_source": "Cinematic_atalanta_sever_leg_l",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_r": {
+          "clip": "block_left_block",
+          "export_source": "Cinematic_atalanta_sever_leg_r",
+          "loop": false,
+          "guard_constraint": false
         }
       }
     },
@@ -1294,18 +1772,18 @@
       "actions": {
         "idle": {
           "clip": "idle_and_start_animation_idle",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "Baraka_Stance_Active",
+          "loop": true
         },
         "walk_fwd": {
           "clip": "walking_front_walking",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "Baraka_StepWalk_WalkFwd_Loop",
+          "loop": true
         },
         "walk_back": {
           "clip": "walking_back_walking_backwards",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "Baraka_StepWalk_WalkBwd_Loop",
+          "loop": true
         },
         "run": {
           "clip": "walking_front_walking",
@@ -1317,16 +1795,13 @@
         },
         "block": {
           "clip": "block_sword_and_shield_block",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Baraka_Block_Loop",
+          "loop": true
         },
         "dodge": {
           "clip": "walking_back_backward_walking_turn",
-          "derived": true,
-          "recipe": "walking_back_backward_walking_turn sped up 2.0x with backward lean and lateral evasive offset",
-          "loop": false,
-          "speed_scale": 2.0,
-          "additive_lean_x": -15.0
+          "export_source": "Expansion_Baraka_Dash_Fwd",
+          "loop": false
         },
         "grab": {
           "clip": "punch_elbow_punch",
@@ -1337,11 +1812,14 @@
         },
         "stagger": {
           "clip": "damage_taken_big_kidney_hit",
+          "export_source": "Shared_High_F_Stumble_Back_1",
           "loop": false
         },
         "knockdown": {
           "clip": "death_standing_death_left_01",
-          "loop": false
+          "export_source": "Cinematic_pyrrhus_knockdown",
+          "loop": false,
+          "guard_constraint": false
         },
         "get_up": {
           "clip": "death_fall_flat",
@@ -1453,17 +1931,17 @@
         },
         "zeus_wrath": {
           "clip": "punch_standing_2h_magic_attack_01",
-          "derived": true,
-          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "export_source": "Cinematic_pyrrhus_zeus_wrath",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
-          "derived": true,
-          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "export_source": "Cinematic_pyrrhus_olympian_barrage",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -1717,7 +2195,7 @@
           "contact_slots": [
             "leg_r",
             "leg_l",
-            "arm_r"
+            "arm_l"
           ]
         },
         "move_olympian_crusher": {
@@ -1732,23 +2210,23 @@
         },
         "reaction_gut_crumple": {
           "clip": "damage_taken_big_kidney_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_3",
+          "loop": false
         },
         "reaction_wall_splat_bounce": {
           "clip": "damage_taken_medium_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_Stumble_Back_1",
+          "loop": false
         },
         "hit_head_snap": {
           "clip": "damage_taken_head_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_InPlace_Face_Back_3",
+          "loop": false
         },
         "hit_light": {
           "clip": "damage_taken_light_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_3",
+          "loop": false
         },
         "move_hoplite_sweep_chain": {
           "clip": "kick_martelo_2",
@@ -1758,7 +2236,7 @@
           "contact_phases": [
             0.171428571428571,
             0.485714285714286,
-            0.828571428571428
+            0.828571428571429
           ],
           "start_seconds": 0.0,
           "end_seconds": 0.933333333333333,
@@ -1928,6 +2406,104 @@
             "leg_l",
             "leg_r"
           ]
+        },
+        "block_impact": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Baraka_Block_HitMid_1",
+          "loop": false
+        },
+        "hit_low": {
+          "clip": "damage_taken_big_kidney_hit",
+          "export_source": "Shared_Low_F_InPlace_FrontLeg_Low_1",
+          "loop": false
+        },
+        "move_pyrrhus_finisher": {
+          "clip": "punch_elbow_punch",
+          "export_source": "Combo_FrontKick_2_2ndBackPunch",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.55,
+          "contact_phase": 0.363636363636364,
+          "strike_side": "l"
+        },
+        "move_pyrrhus_signature": {
+          "clip": "punch_elbow_punch",
+          "export_source": "pyrrhus_lead > pyrrhus_finisher > pyrrhus_rise",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.96,
+          "contact_phases": [
+            0.166666666666667,
+            0.5,
+            0.833333333333333
+          ],
+          "contact_slots": [
+            "arm_r",
+            "arm_l",
+            "leg_r"
+          ],
+          "strike_side": "l"
+        },
+        "move_pyrrhus_counter": {
+          "clip": "punch_elbow_punch",
+          "export_source": "Expansion_Geras_BackPunch_3",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 2.16679305974841,
+          "contact_phase": 0.4,
+          "strike_side": "l"
+        },
+        "move_pyrrhus_breaker": {
+          "clip": "punch_elbow_punch",
+          "export_source": "Expansion_Geras_BackKick_2",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 2.30011900165865,
+          "contact_phase": 0.4,
+          "strike_side": "r"
+        },
+        "grab_hold": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into",
+          "loop": false
+        },
+        "grab_throw": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Out",
+          "loop": false
+        },
+        "grabbed": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into_Victim",
+          "loop": false
+        },
+        "hit_electric": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Cinematic_pyrrhus_hit_electric",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_arm": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Cinematic_pyrrhus_sever_arm",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_l": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Cinematic_pyrrhus_sever_leg_l",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_r": {
+          "clip": "block_sword_and_shield_block",
+          "export_source": "Cinematic_pyrrhus_sever_leg_r",
+          "loop": false,
+          "guard_constraint": false
         }
       }
     },
@@ -1937,18 +2513,18 @@
       "actions": {
         "idle": {
           "clip": "idle_and_start_animation_idle",
-          "loop": true,
-          "speed_scale": 0.95
+          "export_source": "JohnnyCage_Stance_Calm",
+          "loop": true
         },
         "walk_fwd": {
           "clip": "walking_front_walking",
-          "loop": true,
-          "speed_scale": 0.95
+          "export_source": "Expansion_Havik_StepWalk_WalkFwd_Loop",
+          "loop": true
         },
         "walk_back": {
           "clip": "walking_back_walking_backwards",
-          "loop": true,
-          "speed_scale": 0.95
+          "export_source": "Expansion_Havik_StepWalk_WalkBwd_Loop",
+          "loop": true
         },
         "run": {
           "clip": "walking_front_walking",
@@ -1960,16 +2536,13 @@
         },
         "block": {
           "clip": "block_body_block",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_Block_Loop",
+          "loop": true
         },
         "dodge": {
           "clip": "walking_back_backward_walking_turn",
-          "derived": true,
-          "recipe": "walking_back_backward_walking_turn sped up 2.0x with backward lean and lateral evasive offset",
-          "loop": false,
-          "speed_scale": 2.0,
-          "additive_lean_x": -15.0
+          "export_source": "Expansion_Havik_Dash_Fwd",
+          "loop": false
         },
         "grab": {
           "clip": "punch_standing_2h_magic_attack_01",
@@ -1980,11 +2553,14 @@
         },
         "stagger": {
           "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_High_F_Stumble_Back_1",
           "loop": false
         },
         "knockdown": {
           "clip": "death_fall_flat",
-          "loop": false
+          "export_source": "Cinematic_sibyl_knockdown",
+          "loop": false,
+          "guard_constraint": false
         },
         "get_up": {
           "clip": "death_fall_flat",
@@ -2096,17 +2672,17 @@
         },
         "zeus_wrath": {
           "clip": "punch_standing_2h_magic_attack_01",
-          "derived": true,
-          "recipe": "punch_standing_2h_magic_attack_01 42-tick pre-cast channel into lightning ground smash",
+          "export_source": "Cinematic_sibyl_zeus_wrath",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "olympian_barrage": {
           "clip": "kick_flying_knee_punch_combo",
-          "derived": true,
-          "recipe": "kick_flying_knee_punch_combo rapid strike sequence into final heavy elbow smash",
+          "export_source": "Cinematic_sibyl_olympian_barrage",
           "loop": false,
-          "telegraph_ticks": 42.0
+          "guard_constraint": false,
+          "contact_phase": 0.5
         },
         "move_achilles_heel_snap": {
           "clip": "kick_kick_to_the_groin",
@@ -2360,7 +2936,7 @@
           "contact_slots": [
             "leg_r",
             "leg_l",
-            "arm_r"
+            "arm_l"
           ]
         },
         "move_olympian_crusher": {
@@ -2375,23 +2951,23 @@
         },
         "reaction_gut_crumple": {
           "clip": "damage_taken_big_kidney_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_4",
+          "loop": false
         },
         "reaction_wall_splat_bounce": {
           "clip": "damage_taken_medium_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_Stumble_Back_1",
+          "loop": false
         },
         "hit_head_snap": {
           "clip": "damage_taken_head_hit",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_High_F_InPlace_Face_Back_4",
+          "loop": false
         },
         "hit_light": {
           "clip": "damage_taken_light_hit_to_head",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "Shared_Middle_F_InPlace_4",
+          "loop": false
         },
         "move_hoplite_sweep_chain": {
           "clip": "kick_martelo_2",
@@ -2401,7 +2977,7 @@
           "contact_phases": [
             0.171428571428571,
             0.485714285714286,
-            0.828571428571428
+            0.828571428571429
           ],
           "start_seconds": 0.0,
           "end_seconds": 0.933333333333333,
@@ -2571,27 +3147,125 @@
             "leg_l",
             "leg_l"
           ]
+        },
+        "block_impact": {
+          "clip": "block_body_block",
+          "export_source": "JohnnyCage_Block_HitMid_1",
+          "loop": false
+        },
+        "hit_low": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_Low_F_InPlace_FrontLeg_Low_1",
+          "loop": false
+        },
+        "move_sibyl_finisher": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "export_source": "Combo_FrontPunch_2_3rdFrontKick",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.8,
+          "contact_phase": 0.375,
+          "strike_side": "l"
+        },
+        "move_sibyl_signature": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "export_source": "sibyl_lead > sibyl_finisher > sibyl_rise",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.96,
+          "contact_phases": [
+            0.166666666666667,
+            0.5,
+            0.833333333333333
+          ],
+          "contact_slots": [
+            "arm_r",
+            "leg_l",
+            "leg_l"
+          ],
+          "strike_side": "l"
+        },
+        "move_sibyl_counter": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "export_source": "Expansion_Havik_FrontPunch_1",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 2.13346159793527,
+          "contact_phase": 0.4,
+          "strike_side": "l"
+        },
+        "move_sibyl_breaker": {
+          "clip": "punch_standing_2h_magic_attack_01",
+          "export_source": "Expansion_Havik_BackKick_1",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 1.31687242798354,
+          "contact_phase": 0.4,
+          "strike_side": "r"
+        },
+        "grab_hold": {
+          "clip": "block_body_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into",
+          "loop": false
+        },
+        "grab_throw": {
+          "clip": "block_body_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Out",
+          "loop": false
+        },
+        "grabbed": {
+          "clip": "block_body_block",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into_Victim",
+          "loop": false
+        },
+        "hit_electric": {
+          "clip": "block_body_block",
+          "export_source": "Cinematic_sibyl_hit_electric",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_arm": {
+          "clip": "block_body_block",
+          "export_source": "Cinematic_sibyl_sever_arm",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_l": {
+          "clip": "block_body_block",
+          "export_source": "Cinematic_sibyl_sever_leg_l",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_r": {
+          "clip": "block_body_block",
+          "export_source": "Cinematic_sibyl_sever_leg_r",
+          "loop": false,
+          "guard_constraint": false
         }
       }
     },
-    "johnny_cage": {
+    "dorian": {
       "archetype": "rushdown_superstar",
-      "style_notes": "Johnny Cage MK12 martial arts suite with Hollywood swagger, shadow dash, rising elbow, and nut punch.",
+      "style_notes": "Dorian \u00e2\u20ac\u201d the Spotlight MK12 martial arts suite with Hollywood swagger, shadow dash, rising elbow, and nut punch.",
       "actions": {
         "idle": {
           "clip": "idle_and_start_animation_action_idle_to_fight_idle",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_Stance_Base",
+          "loop": true
         },
         "walk_fwd": {
           "clip": "walking_front_strut_walking",
-          "loop": true,
-          "speed_scale": 1.05
+          "export_source": "JohnnyCage_StepWalk_WalkFwd_Loop",
+          "loop": true
         },
         "walk_back": {
           "clip": "walking_back_walking_backwards",
-          "loop": true,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_StepWalk_WalkBwd_Loop",
+          "loop": true
         },
         "run": {
           "clip": "walking_front_walking",
@@ -2603,15 +3277,13 @@
         },
         "block": {
           "clip": "block_standing_block_react_large",
-          "loop": false,
-          "speed_scale": 1.0
+          "export_source": "JohnnyCage_Block_Loop",
+          "loop": true
         },
         "dodge": {
           "clip": "walking_back_backward_walking_turn",
-          "derived": true,
-          "recipe": "walking_back_backward_walking_turn evasive turn",
-          "loop": false,
-          "speed_scale": 1.8
+          "export_source": "Expansion_JohnnyCage_Dash_Fwd",
+          "loop": false
         },
         "grab": {
           "clip": "punch_punching",
@@ -2620,11 +3292,14 @@
         },
         "stagger": {
           "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_High_F_Stumble_Back_1",
           "loop": false
         },
         "knockdown": {
           "clip": "death_fall_flat",
-          "loop": false
+          "export_source": "Cinematic_dorian_knockdown",
+          "loop": false,
+          "guard_constraint": false
         },
         "get_up": {
           "clip": "death_fall_flat",
@@ -2665,203 +3340,367 @@
           "loop": false,
           "contact_phase": 0.4
         },
-        "move_mk_jc_front_punch_1": {
+        "move_dorian_front_punch_1": {
           "clip": "punch_lead_jab",
           "loop": false,
-          "contact_phase": 0.4,
+          "contact_phase": 0.32258064516129,
+          "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "strike_side": "l",
+          "export_source": "FrontPunch_1",
+          "guard_constraint": false
+        },
+        "move_dorian_1_2nd_front_punch": {
+          "clip": "punch_punching",
+          "loop": false,
+          "contact_phase": 0.0,
           "start_seconds": 0.0,
           "end_seconds": 0.35,
           "strike_side": "l",
-          "export_source": "FrontPunch_1"
+          "export_source": "FrontPunch_1_2ndFrontPunch",
+          "guard_constraint": false
         },
-        "move_mk_jc_1_2nd_front_punch": {
-          "clip": "punch_punching",
-          "loop": false,
-          "contact_phase": 0.35,
-          "start_seconds": 0.0,
-          "end_seconds": 0.42,
-          "strike_side": "r",
-          "export_source": "FrontPunch_1_2ndFrontPunch"
-        },
-        "move_mk_jc_1_1_3rd_back_kick": {
+        "move_dorian_1_1_3rd_back_kick": {
           "clip": "kick_martelo_2",
           "loop": false,
-          "contact_phase": 0.45,
-          "start_seconds": 0.0,
-          "end_seconds": 0.65,
-          "strike_side": "r",
-          "export_source": "FrontPunch_1_3rdBackKick"
+          "contact_phase": 0.375,
+          "start_seconds": 0.266666666666667,
+          "end_seconds": 1.06666666666667,
+          "strike_side": "l",
+          "export_source": "FrontPunch_1_3rdBackKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_back_punch_1": {
+        "move_dorian_back_punch_1": {
           "clip": "punch_jab_cross",
           "loop": false,
-          "contact_phase": 0.4,
+          "contact_phase": 0.363636363636364,
           "start_seconds": 0.0,
-          "end_seconds": 0.45,
+          "end_seconds": 0.55,
           "strike_side": "r",
-          "export_source": "BackPunch_1"
+          "export_source": "BackPunch_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_2_2nd_front_punch": {
+        "move_dorian_2_2nd_front_punch": {
           "clip": "punch_boxing",
           "loop": false,
-          "contact_phase": 0.38,
+          "contact_phase": 0.363636363636364,
           "start_seconds": 0.0,
-          "end_seconds": 0.48,
+          "end_seconds": 0.55,
           "strike_side": "l",
-          "export_source": "BackPunch_1_2ndFrontPunch"
+          "export_source": "BackPunch_1_2ndFrontPunch",
+          "guard_constraint": false
         },
-        "move_mk_jc_2_1_3rd_back_kick": {
+        "move_dorian_2_1_3rd_back_kick": {
           "clip": "kick_kicking",
           "loop": false,
-          "contact_phase": 0.42,
-          "start_seconds": 0.0,
-          "end_seconds": 0.58,
+          "contact_phase": 0.375,
+          "start_seconds": 0.133333333333333,
+          "end_seconds": 0.933333333333333,
           "strike_side": "r",
-          "export_source": "BackPunch_1_3rdBackKick"
+          "export_source": "BackPunch_1_3rdBackKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_2_1_4_4th_back_kick": {
+        "move_dorian_2_1_4_4th_back_kick": {
           "clip": "kick_martelo_2",
           "loop": false,
-          "contact_phase": 0.46,
-          "start_seconds": 0.0,
-          "end_seconds": 0.75,
-          "strike_side": "r",
-          "export_source": "BackPunch_1_4thBackKick"
+          "contact_phase": 0.375,
+          "start_seconds": 0.233333333333333,
+          "end_seconds": 1.03333333333333,
+          "strike_side": "l",
+          "export_source": "BackPunch_1_4thBackKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_front_kick_1": {
+        "move_dorian_front_kick_1": {
           "clip": "kick_kicking",
           "loop": false,
-          "contact_phase": 0.4,
-          "start_seconds": 0.0,
-          "end_seconds": 0.52,
+          "contact_phase": 0.375,
+          "start_seconds": 0.133333333333333,
+          "end_seconds": 0.933333333333333,
           "strike_side": "l",
-          "export_source": "FrontKick_1"
+          "export_source": "FrontKick_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_3_2nd_back_kick": {
+        "move_dorian_3_2nd_back_kick": {
           "clip": "kick_martelo_2",
           "loop": false,
-          "contact_phase": 0.44,
-          "start_seconds": 0.0,
-          "end_seconds": 0.6,
-          "strike_side": "r",
-          "export_source": "FrontKick_1_2ndBackKick"
+          "contact_phase": 0.375,
+          "start_seconds": 0.0666666666666667,
+          "end_seconds": 0.866666666666667,
+          "strike_side": "l",
+          "export_source": "FrontKick_1_2ndBackKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_back_kick_1": {
+        "move_dorian_back_kick_1": {
           "clip": "kick_drop_kick",
           "loop": false,
-          "contact_phase": 0.42,
+          "contact_phase": 0.318181818181818,
           "start_seconds": 0.0,
-          "end_seconds": 0.6,
+          "end_seconds": 0.733333333333333,
           "strike_side": "r",
-          "export_source": "BackKick_1"
+          "export_source": "BackKick_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_4_2nd_front_kick": {
+        "move_dorian_4_2nd_front_kick": {
           "clip": "kick_kick_to_the_groin",
           "loop": false,
-          "contact_phase": 0.45,
-          "start_seconds": 0.0,
-          "end_seconds": 0.58,
-          "strike_side": "l",
-          "export_source": "BackKick_1_2ndFrontKick"
+          "contact_phase": 0.375,
+          "start_seconds": 0.466666666666667,
+          "end_seconds": 1.26666666666667,
+          "strike_side": "r",
+          "export_source": "BackKick_1_2ndFrontKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_duck_front_punch_1": {
+        "move_dorian_duck_front_punch_1": {
           "clip": "punch_lead_jab",
           "loop": false,
-          "contact_phase": 0.35,
+          "contact_phase": 0.275862068965517,
           "start_seconds": 0.0,
-          "end_seconds": 0.35,
+          "end_seconds": 0.483333333333333,
           "strike_side": "l",
-          "export_source": "DuckFrontPunch_1"
+          "export_source": "DuckFrontPunch_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_duck_back_punch_1": {
+        "move_dorian_duck_back_punch_1": {
           "clip": "punch_elbow_punch",
           "loop": false,
-          "contact_phase": 0.38,
+          "contact_phase": 0.222222222222222,
           "start_seconds": 0.0,
           "end_seconds": 0.45,
-          "strike_side": "r",
-          "export_source": "DuckBackPunch_1"
+          "strike_side": "l",
+          "export_source": "DuckBackPunch_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_duck_front_kick_1": {
+        "move_dorian_duck_front_kick_1": {
           "clip": "kick_kick_to_the_groin",
           "loop": false,
-          "contact_phase": 0.4,
-          "start_seconds": 0.0,
-          "end_seconds": 0.48,
+          "contact_phase": 0.375,
+          "start_seconds": 0.0666666666666667,
+          "end_seconds": 0.866666666666667,
           "strike_side": "l",
-          "export_source": "DuckFrontKick_1"
+          "export_source": "DuckFrontKick_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_duck_back_kick_1": {
+        "move_dorian_duck_back_kick_1": {
           "clip": "kick_martelo_2",
           "loop": false,
-          "contact_phase": 0.45,
+          "contact_phase": 0.285714285714286,
           "start_seconds": 0.0,
-          "end_seconds": 0.55,
+          "end_seconds": 0.7,
           "strike_side": "r",
-          "export_source": "DuckBackKick_1"
+          "export_source": "DuckBackKick_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_jump_front_punch_1": {
+        "move_dorian_jump_front_punch_1": {
           "clip": "punch_punching",
           "loop": false,
-          "contact_phase": 0.4,
+          "contact_phase": 0.32258064516129,
           "start_seconds": 0.0,
-          "end_seconds": 0.45,
-          "strike_side": "r",
-          "export_source": "JumpFrontPunch_1"
+          "end_seconds": 0.516666666666667,
+          "strike_side": "l",
+          "export_source": "JumpFrontPunch_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_jump_front_kick_1": {
+        "move_dorian_jump_front_kick_1": {
           "clip": "kick_jump_attack",
           "loop": false,
-          "contact_phase": 0.45,
+          "contact_phase": 0.25,
           "start_seconds": 0.0,
-          "end_seconds": 0.65,
+          "end_seconds": 0.666666666666667,
           "strike_side": "l",
-          "export_source": "JumpFrontKick_1"
+          "export_source": "JumpFrontKick_1",
+          "guard_constraint": false
         },
-        "move_mk_jc_nut_punch": {
+        "move_dorian_nut_punch": {
           "clip": "punch_lead_jab",
           "loop": false,
-          "contact_phase": 0.42,
-          "start_seconds": 0.0,
-          "end_seconds": 0.68,
-          "strike_side": "r",
-          "export_source": "Specialmove_NutPunch"
+          "contact_phase": 0.461538461538462,
+          "start_seconds": 0.566666666666667,
+          "end_seconds": 1.21666666666667,
+          "strike_side": "l",
+          "export_source": "Specialmove_NutPunch",
+          "guard_constraint": false
         },
-        "move_mk_jc_shadow_kick": {
+        "move_dorian_shadow_kick": {
           "clip": "kick_flying_knee_punch_combo",
           "loop": false,
-          "contact_phase": 0.45,
+          "contact_phase": 0.25,
           "start_seconds": 0.0,
-          "end_seconds": 0.72,
-          "strike_side": "r",
-          "export_source": "Specialmove_ShadowKick"
+          "end_seconds": 0.666666666666667,
+          "strike_side": "l",
+          "export_source": "Specialmove_ShadowKick",
+          "guard_constraint": false
         },
-        "move_mk_jc_rising_elbow": {
+        "move_dorian_rising_elbow": {
           "clip": "punch_illegal_elbow_punch",
           "loop": false,
-          "contact_phase": 0.38,
-          "start_seconds": 0.0,
-          "end_seconds": 0.62,
-          "strike_side": "r",
-          "export_source": "Specialmove_RisingElbow"
-        },
-        "move_mk_jc_sunglasses_toss": {
-          "clip": "punch_lead_jab",
-          "loop": false,
-          "contact_phase": 0.38,
+          "contact_phase": 0.363636363636364,
           "start_seconds": 0.0,
           "end_seconds": 0.55,
-          "strike_side": "r",
-          "export_source": "Specialmove_SunglassesToss"
+          "strike_side": "l",
+          "export_source": "Specialmove_RisingElbow",
+          "guard_constraint": false
         },
-        "move_mk_jc_throw_forward": {
+        "move_dorian_sunglasses_toss": {
+          "clip": "punch_lead_jab",
+          "loop": false,
+          "contact_phase": 0.461538461538462,
+          "start_seconds": 1.6,
+          "end_seconds": 2.25,
+          "strike_side": "l",
+          "export_source": "Specialmove_SunglassesToss",
+          "guard_constraint": false
+        },
+        "move_dorian_throw_forward": {
           "clip": "punch_punching",
           "loop": false,
-          "contact_phase": 0.4,
+          "contact_phase": 0.16,
           "start_seconds": 0.0,
-          "end_seconds": 0.6,
-          "strike_side": "r",
-          "export_source": "Throw_Fwd_Hit_Into"
+          "end_seconds": 0.416666666666667,
+          "strike_side": "l",
+          "export_source": "Throw_Fwd_Hit_Into",
+          "guard_constraint": false
+        },
+        "move_dorian_1_1_3rd_back_punch": {
+          "clip": "punch_jab_cross",
+          "loop": false,
+          "contact_phase": 0.32258064516129,
+          "start_seconds": 0.0,
+          "end_seconds": 0.516666666666667,
+          "strike_side": "l",
+          "export_source": "FrontPunch_1_3rdBackPunch",
+          "guard_constraint": false
+        },
+        "hit_light": {
+          "clip": "damage_taken_light_hit_to_head",
+          "export_source": "Shared_Middle_F_InPlace_6",
+          "loop": false
+        },
+        "hit_head_snap": {
+          "clip": "damage_taken_head_hit",
+          "export_source": "Shared_High_F_InPlace_Face_Back_6",
+          "loop": false
+        },
+        "reaction_gut_crumple": {
+          "clip": "damage_taken_big_kidney_hit",
+          "export_source": "Shared_Middle_F_InPlace_6",
+          "loop": false
+        },
+        "reaction_wall_splat_bounce": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_High_F_Stumble_Back_1",
+          "loop": false
+        },
+        "grab_hold": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into",
+          "loop": false
+        },
+        "grab_throw": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Out",
+          "loop": false
+        },
+        "grabbed": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Expansion_Geras_Throw_Fwd_Hit_Into_Victim",
+          "loop": false
+        },
+        "block_impact": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "JohnnyCage_Block_HitMid_1",
+          "loop": false
+        },
+        "hit_low": {
+          "clip": "damage_taken_medium_hit_to_head",
+          "export_source": "Shared_Low_F_InPlace_FrontLeg_Low_1",
+          "loop": false
+        },
+        "move_dorian_finisher": {
+          "clip": "punch_lead_jab",
+          "export_source": "Combo_BackKick_1_2ndFrontKick",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.466666666666667,
+          "end_seconds": 1.26666666666667,
+          "contact_phase": 0.375,
+          "strike_side": "r"
+        },
+        "move_dorian_signature": {
+          "clip": "punch_lead_jab",
+          "export_source": "dorian_front_punch_1 > dorian_finisher > dorian_front_kick_1",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 0.96,
+          "contact_phases": [
+            0.166666666666667,
+            0.5,
+            0.833333333333333
+          ],
+          "contact_slots": [
+            "arm_l",
+            "leg_r",
+            "leg_l"
+          ],
+          "strike_side": "l"
+        },
+        "move_dorian_counter": {
+          "clip": "punch_lead_jab",
+          "export_source": "Expansion_JohnnyCage_FrontPunch_2_2ndBackPunch",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 1.90014365212474,
+          "contact_phase": 0.4,
+          "strike_side": "l"
+        },
+        "move_dorian_breaker": {
+          "clip": "punch_lead_jab",
+          "export_source": "Expansion_JohnnyCage_BackKick_2",
+          "guard_constraint": false,
+          "loop": false,
+          "start_seconds": 0.0,
+          "end_seconds": 1.5335105573953,
+          "contact_phase": 0.4,
+          "strike_side": "r"
+        },
+        "zeus_wrath": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_zeus_wrath",
+          "loop": false,
+          "guard_constraint": false,
+          "contact_phase": 0.5
+        },
+        "olympian_barrage": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_olympian_barrage",
+          "loop": false,
+          "guard_constraint": false,
+          "contact_phase": 0.5
+        },
+        "hit_electric": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_hit_electric",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_arm": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_sever_arm",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_l": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_sever_leg_l",
+          "loop": false,
+          "guard_constraint": false
+        },
+        "sever_leg_r": {
+          "clip": "block_standing_block_react_large",
+          "export_source": "Cinematic_dorian_sever_leg_r",
+          "loop": false,
+          "guard_constraint": false
         }
       }
     }
