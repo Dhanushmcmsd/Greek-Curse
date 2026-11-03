@@ -1,6 +1,16 @@
 class_name SimAbilities
 extends RefCounted
 
+static func ultimate_id(fighter: SimFighter) -> String:
+	var equipped: Array = fighter.loadout.get("ultimate", [])
+	return str(equipped[0]) if not equipped.is_empty() else "zeus_wrath"
+
+static func super_id(fighter: SimFighter) -> String:
+	var equipped: Array = fighter.loadout.get("superpower", [])
+	if not equipped.is_empty():
+		return str(equipped[0])
+	return {"theron": "hephaestus_forge_shield", "atalanta": "hermes_dash", "pyrrhus": "ares_rage", "sibyl": "zeus_bolt", "dorian": "zeus_bolt"}.get(fighter.fighter_id, "zeus_bolt")
+
 
 static func ready(world: SimWorld, fighter: SimFighter, id: String) -> bool:
 	if not world.abilities.has(id):
@@ -9,6 +19,8 @@ static func ready(world: SimWorld, fighter: SimFighter, id: String) -> bool:
 	return (
 		world.tick >= int(fighter.ability_cooldowns.get(id, 0))
 		and fighter.meter >= int(ability["meter_cost"])
+		and fighter.stamina >= int(ability.get("stamina_cost", 0))
+		and (ability["type"] != "superpower" or fighter.super_charge >= 100)
 	)
 
 
@@ -22,6 +34,8 @@ static func begin(world: SimWorld, fighter: SimFighter, id: String) -> void:
 	event.payload = {"id": id, "type": ability["type"]}
 	world.pending_events.append(event)
 	fighter.meter -= int(ability["meter_cost"])
+	if ability["type"] == "superpower":
+		fighter.super_charge = 0
 	fighter.ability_cooldowns[id] = world.tick + int(ability["cooldown_ticks"])
 	fighter.ability_uses[id] = int(fighter.ability_uses.get(id, 0)) + 1
 	for effect in ability["effects"]:
@@ -104,6 +118,7 @@ static func passive(world: SimWorld, fighter: SimFighter) -> void:
 
 
 static func speed(fighter: SimFighter, maximum_health: int) -> int:
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var frenzy := (
 		100
 		+ (

@@ -1,0 +1,825 @@
+[
+  {
+    "Type": "AnimNotify_AkEvent_C",
+    "Name": "AnimNotify_AkEvent_C_0",
+    "Flags": "RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "BlueprintGeneratedClass'/Wwise/AnimNotify_AkEvent.AnimNotify_AkEvent_C'",
+    "Outer": {
+      "ObjectName": "AnimSequence'Kustomize_Char_Inspect_Into_JCVD'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.2"
+    },
+    "Template": {
+      "ObjectName": "AnimNotify_AkEvent_C'Default__AnimNotify_AkEvent_C'",
+      "ObjectPath": "/Wwise/AnimNotify_AkEvent.2"
+    },
+    "Properties": {
+      "Attach Name": "Head",
+      "Event": {
+        "ObjectName": "AkAudioEvent'Exert_Very_Short_CIN'",
+        "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/GRUNT_Events/Grunt_Core_Events/Exert_Very_Short_CIN.0"
+      }
+    }
+  },
+  {
+    "Type": "AnimNotify_MKAudio",
+    "Name": "AnimNotify_MKAudio_0",
+    "Flags": "RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'AnimNotify_MKAudio'",
+    "Outer": {
+      "ObjectName": "AnimSequence'Kustomize_Char_Inspect_Into_JCVD'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.2"
+    },
+    "Properties": {
+      "Event": {
+        "ObjectName": "AkAudioEvent'Gear_Inspect_Whoosh_In_Short'",
+        "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SHELL_Events/SHELL_SFX_Events/Gear_Inspect_Whoosh_In_Short.0"
+      },
+      "GameObject": "BaseAudio"
+    }
+  },
+  {
+    "Type": "AnimSequence",
+    "Name": "Kustomize_Char_Inspect_Into_JCVD",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'AnimSequence'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD",
+    "Properties": {
+      "NumFrames": 31,
+      "TrackToSkeletonMapTable": [
+        {
+          "BoneTreeIndex": 0
+        },
+        {
+          "BoneTreeIndex": 1
+        },
+        {
+          "BoneTreeIndex": 2
+        },
+        {
+          "BoneTreeIndex": 3
+        },
+        {
+          "BoneTreeIndex": 4
+        },
+        {
+          "BoneTreeIndex": 5
+        },
+        {
+          "BoneTreeIndex": 6
+        },
+        {
+          "BoneTreeIndex": 7
+        },
+        {
+          "BoneTreeIndex": 8
+        },
+        {
+          "BoneTreeIndex": 9
+        },
+        {
+          "BoneTreeIndex": 10
+        },
+        {
+          "BoneTreeIndex": 11
+        },
+        {
+          "BoneTreeIndex": 12
+        },
+        {
+          "BoneTreeIndex": 13
+        },
+        {
+          "BoneTreeIndex": 14
+        },
+        {
+          "BoneTreeIndex": 15
+        },
+        {
+          "BoneTreeIndex": 16
+        },
+        {
+          "BoneTreeIndex": 17
+        },
+        {
+          "BoneTreeIndex": 18
+        },
+        {
+          "BoneTreeIndex": 19
+        },
+        {
+          "BoneTreeIndex": 20
+        },
+        {
+          "BoneTreeIndex": 21
+        },
+        {
+          "BoneTreeIndex": 22
+        },
+        {
+          "BoneTreeIndex": 23
+        },
+        {
+          "BoneTreeIndex": 24
+        },
+        {
+          "BoneTreeIndex": 25
+        },
+        {
+          "BoneTreeIndex": 26
+        },
+        {
+          "BoneTreeIndex": 27
+        },
+        {
+          "BoneTreeIndex": 28
+        },
+        {
+          "BoneTreeIndex": 29
+        },
+        {
+          "BoneTreeIndex": 30
+        },
+        {
+          "BoneTreeIndex": 31
+        },
+        {
+          "BoneTreeIndex": 32
+        },
+        {
+          "BoneTreeIndex": 33
+        },
+        {
+          "BoneTreeIndex": 34
+        },
+        {
+          "BoneTreeIndex": 35
+        },
+        {
+          "BoneTreeIndex": 36
+        },
+        {
+          "BoneTreeIndex": 37
+        },
+        {
+          "BoneTreeIndex": 63
+        },
+        {
+          "BoneTreeIndex": 64
+        },
+        {
+          "BoneTreeIndex": 65
+        },
+        {
+          "BoneTreeIndex": 66
+        },
+        {
+          "BoneTreeIndex": 67
+        },
+        {
+          "BoneTreeIndex": 68
+        },
+        {
+          "BoneTreeIndex": 69
+        },
+        {
+          "BoneTreeIndex": 70
+        },
+        {
+          "BoneTreeIndex": 71
+        },
+        {
+          "BoneTreeIndex": 72
+        },
+        {
+          "BoneTreeIndex": 73
+        },
+        {
+          "BoneTreeIndex": 74
+        },
+        {
+          "BoneTreeIndex": 75
+        },
+        {
+          "BoneTreeIndex": 76
+        },
+        {
+          "BoneTreeIndex": 77
+        },
+        {
+          "BoneTreeIndex": 78
+        },
+        {
+          "BoneTreeIndex": 79
+        },
+        {
+          "BoneTreeIndex": 80
+        },
+        {
+          "BoneTreeIndex": 81
+        },
+        {
+          "BoneTreeIndex": 82
+        },
+        {
+          "BoneTreeIndex": 83
+        },
+        {
+          "BoneTreeIndex": 84
+        },
+        {
+          "BoneTreeIndex": 85
+        },
+        {
+          "BoneTreeIndex": 86
+        },
+        {
+          "BoneTreeIndex": 87
+        },
+        {
+          "BoneTreeIndex": 88
+        },
+        {
+          "BoneTreeIndex": 89
+        },
+        {
+          "BoneTreeIndex": 90
+        },
+        {
+          "BoneTreeIndex": 91
+        },
+        {
+          "BoneTreeIndex": 145
+        },
+        {
+          "BoneTreeIndex": 146
+        },
+        {
+          "BoneTreeIndex": 147
+        },
+        {
+          "BoneTreeIndex": 148
+        },
+        {
+          "BoneTreeIndex": 161
+        },
+        {
+          "BoneTreeIndex": 162
+        },
+        {
+          "BoneTreeIndex": 163
+        },
+        {
+          "BoneTreeIndex": 164
+        },
+        {
+          "BoneTreeIndex": 177
+        }
+      ],
+      "BoneCompressionSettings": {
+        "ObjectName": "AnimBoneCompressionSettings'ACLAnimBoneCompressionSettings'",
+        "ObjectPath": "/Engine/Animation/ACL/ACLAnimBoneCompressionSettings.2"
+      },
+      "CurveCompressionSettings": {
+        "ObjectName": "AnimCurveCompressionSettings'ACLAnimCurveCompressionSettings'",
+        "ObjectPath": "/Engine/Animation/ACL/ACLAnimCurveCompressionSettings.2"
+      },
+      "Notifies": [
+        {
+          "TriggerTimeOffset": 0.0,
+          "EndTriggerTimeOffset": 0.0,
+          "TriggerWeightThreshold": 1E-05,
+          "NotifyName": "MKAudio",
+          "Notify": {
+            "ObjectName": "AnimNotify_MKAudio'Kustomize_Char_Inspect_Into_JCVD:AnimNotify_MKAudio_0'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.1"
+          },
+          "NotifyStateClass": null,
+          "Duration": 0.0,
+          "EndLink": {
+            "LinkedMontage": null,
+            "SlotIndex": 0,
+            "SegmentIndex": -1,
+            "LinkMethod": "EAnimLinkMethod::Absolute",
+            "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+            "SegmentBeginTime": 0.0,
+            "SegmentLength": 0.0,
+            "LinkValue": 0.06649496,
+            "LinkedSequence": null
+          },
+          "bConvertedFromBranchingPoint": false,
+          "MontageTickType": "EMontageNotifyTickType::Queued",
+          "NotifyTriggerChance": 1.0,
+          "NotifyFilterType": "ENotifyFilterType::NoFiltering",
+          "NotifyFilterLOD": 0,
+          "bTriggerOnDedicatedServer": true,
+          "bTriggerOnFollower": false,
+          "TrackIndex": 0,
+          "LinkedMontage": null,
+          "SlotIndex": 0,
+          "SegmentIndex": 0,
+          "LinkMethod": "EAnimLinkMethod::Absolute",
+          "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+          "SegmentBeginTime": 0.0,
+          "SegmentLength": 0.5,
+          "LinkValue": 0.06649496,
+          "LinkedSequence": {
+            "ObjectName": "AnimSequence'Kustomize_Char_Inspect_Into_JCVD'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.2"
+          }
+        },
+        {
+          "TriggerTimeOffset": 0.0,
+          "EndTriggerTimeOffset": 0.0,
+          "TriggerWeightThreshold": 1E-05,
+          "NotifyName": "AkEvent_C",
+          "Notify": {
+            "ObjectName": "AnimNotify_AkEvent_C'Kustomize_Char_Inspect_Into_JCVD:AnimNotify_AkEvent_C_0'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.0"
+          },
+          "NotifyStateClass": null,
+          "Duration": 0.0,
+          "EndLink": {
+            "LinkedMontage": null,
+            "SlotIndex": 0,
+            "SegmentIndex": -1,
+            "LinkMethod": "EAnimLinkMethod::Absolute",
+            "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+            "SegmentBeginTime": 0.0,
+            "SegmentLength": 0.0,
+            "LinkValue": 0.3050193,
+            "LinkedSequence": null
+          },
+          "bConvertedFromBranchingPoint": false,
+          "MontageTickType": "EMontageNotifyTickType::Queued",
+          "NotifyTriggerChance": 1.0,
+          "NotifyFilterType": "ENotifyFilterType::NoFiltering",
+          "NotifyFilterLOD": 0,
+          "bTriggerOnDedicatedServer": true,
+          "bTriggerOnFollower": false,
+          "TrackIndex": 2,
+          "LinkedMontage": null,
+          "SlotIndex": 0,
+          "SegmentIndex": 0,
+          "LinkMethod": "EAnimLinkMethod::Absolute",
+          "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+          "SegmentBeginTime": 0.0,
+          "SegmentLength": 0.5,
+          "LinkValue": 0.3050193,
+          "LinkedSequence": {
+            "ObjectName": "AnimSequence'Kustomize_Char_Inspect_Into_JCVD'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Kustomize/Kustomize_Char_Inspect_Into_JCVD.2"
+          }
+        }
+      ],
+      "SequenceLength": 0.5,
+      "Skeleton": {
+        "ObjectName": "Skeleton'SK_JohnnyCage_Template_Skeleton'",
+        "ObjectPath": "/Game/Disk/Char/JohnnyCage/Template/Mesh/SK_JohnnyCage_Template_Skeleton.0"
+      }
+    },
+    "SkeletonGuid": "01751DBF-4B0626CB-84AA56AF-C5C055C0",
+    "CompressedTrackToSkeletonMapTable": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      145,
+      146,
+      147,
+      148,
+      161,
+      162,
+      163,
+      164,
+      177
+    ],
+    "CompressedCurveNames": [
+      {
+        "DisplayName": "TimeDilation"
+      }
+    ],
+    "CompressedCurveData": {
+      "FloatCurves": [
+        {
+          "FloatCurve": {
+            "Keys": [
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.0,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.016666668,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.033333335,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.05,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.06666667,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.083333336,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.1,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.11666667,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.13333334,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.15,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.16666667,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.18333334,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.2,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.21666667,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.23333333,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.25,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.26666668,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.28333333,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.3,
+                "Value": 1.0,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.31666666,
+                "Value": 0.9808219,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.33333334,
+                "Value": 0.92712325,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.35,
+                "Value": 0.8465753,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.36666667,
+                "Value": 0.7468493,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.38333333,
+                "Value": 0.6317808,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.4,
+                "Value": 0.50904113,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.41666666,
+                "Value": 0.3882192,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.43333334,
+                "Value": 0.2731507,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.45,
+                "Value": 0.17342466,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.46666667,
+                "Value": 0.09287672,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.48333332,
+                "Value": 0.03917808,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              },
+              {
+                "InterpMode": "RCIM_Linear",
+                "TangentMode": "RCTM_Auto",
+                "TangentWeightMode": "RCTWM_WeightedNone",
+                "Time": 0.5,
+                "Value": 0.02,
+                "ArriveTangent": 0.0,
+                "ArriveTangentWeight": 0.0,
+                "LeaveTangent": 0.0,
+                "LeaveTangentWeight": 0.0
+              }
+            ],
+            "DefaultValue": 3.4028235E+38,
+            "PreInfinityExtrap": "RCCE_Constant",
+            "PostInfinityExtrap": "RCCE_Constant"
+          },
+          "CurveName": "TimeDilation",
+          "CurveTypeFlags": 0
+        }
+      ]
+    },
+    "CompressedDataStructure": {
+      "CompressedNumberOfFrames": 31
+    },
+    "CompressedRawDataSize": 69156
+  }
+]

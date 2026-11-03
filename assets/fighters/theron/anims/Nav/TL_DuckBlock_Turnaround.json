@@ -1,0 +1,1863 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_DuckBlock_Turnaround",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround",
+    "Properties": {
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_DuckBlock_Turnaround:TimelineDataTrackFloat_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.1"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.2"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.13"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.41"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.3"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.4"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.5"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.6"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.7"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.8"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.9"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.10"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.11"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.12"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.14"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_28'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_29'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_30'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_31'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_32'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_33'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_34'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_35'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_36'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_37'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_38'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_39'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.34"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_DuckBlock_Turnaround:TimelineDataTrackVector_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_DuckBlock_Turnaround:TimelineDataTrackInt_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.52"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_DuckBlock_Turnaround:TimelineDataTrackVector_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.63"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.53"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_DuckBlock_Turnaround:TimelineDataTrackBool_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.42"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_DuckBlock_Turnaround:TimelineDataTrackFloat_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.47"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.54"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_DuckBlock_Turnaround:TimelineDataTrackFName_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.48"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.55"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.56"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_DuckBlock_Turnaround:TimelineDataTrackFName_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.49"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.57"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_DuckBlock_Turnaround:TimelineDataTrackFName_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.50"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.59"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_DuckBlock_Turnaround:TimelineDataTrackFName_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.51"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_DuckBlock_Turnaround:TimelineDataTrackUObject_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_DuckBlock_Turnaround:TimelineDataTrackBool_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.43"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_DuckBlock_Turnaround:TimelineDataTrackBool_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.44"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_DuckBlock_Turnaround:TimelineDataTrackBool_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_DuckBlock_Turnaround:TimelineCompressedTrack_Transform_40'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.36"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 66
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_28",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_29",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_30",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_31",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_32",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_33",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_34",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_35",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_36",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_37",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_38",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_39",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_40",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        2.5088863,
+        2.5007906,
+        2.5007906
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        1.1,
+        1.1
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'DuckBlock_Turnaround'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/DuckBlock_Turnaround.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": 8.120991,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 7.5275497,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.66045,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.811638,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.2912216,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.748272,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.074318,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.3130264,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.535633,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.7846184,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0627861,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.12771225,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.7046013,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.5182343,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.2472649,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.887249,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.5215683,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.12088,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.6826096,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.213093,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.714676,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.1872597,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.5531197,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.833843,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.0537987,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.2292747,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.3749046,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.4993324,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.6063194,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.698929,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.778309,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.8449326,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.8997498,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.943413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.977112,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.002533,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.02084,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.033237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.041206,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.045662,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.047195,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.046478,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.044029,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.04023,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.035442,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.030014,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.024315,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.01865,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.013367,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.008518,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.003677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.000423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.998623,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.9995193,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.003113,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.008629,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.016003,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.025433,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.03738,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.051369,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.067795,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.086758,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.108261,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.121365,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.12096,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.1209755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.12101,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -8.12101,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_DuckBlock_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/TL_DuckBlock_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -1.0,
+          "Y": -0.00027793992,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999738,
+          "Y": -0.0072316555,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999938,
+          "Y": 0.003470976,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9994812,
+          "Y": 0.032205615,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99834883,
+          "Y": 0.057444245,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9977602,
+          "Y": 0.066894025,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9981046,
+          "Y": 0.061539095,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99875855,
+          "Y": 0.04981233,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9992105,
+          "Y": 0.039730065,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9993119,
+          "Y": 0.03709039,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9993105,
+          "Y": 0.037122026,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9996743,
+          "Y": 0.025516447,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999633,
+          "Y": 0.00856051,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999685,
+          "Y": -0.007947869,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99974537,
+          "Y": -0.022566387,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99945736,
+          "Y": -0.03293363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99900734,
+          "Y": -0.044547796,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99859643,
+          "Y": -0.052963052,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9983226,
+          "Y": -0.057891186,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99820244,
+          "Y": -0.05992977,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9982096,
+          "Y": -0.059811387,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9983202,
+          "Y": -0.057940006,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99850917,
+          "Y": -0.054583248,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99873805,
+          "Y": -0.050222296,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99896896,
+          "Y": -0.04539656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.999174,
+          "Y": -0.04063767,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99934053,
+          "Y": -0.036305003,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9994712,
+          "Y": -0.032519974,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9995723,
+          "Y": -0.029245036,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9996476,
+          "Y": -0.026546612,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99969983,
+          "Y": -0.024499837,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997406,
+          "Y": -0.022779124,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99977016,
+          "Y": -0.021439893,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997926,
+          "Y": -0.020365082,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998102,
+          "Y": -0.01948008,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998274,
+          "Y": -0.018578632,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998431,
+          "Y": -0.017717827,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998579,
+          "Y": -0.016857723,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998727,
+          "Y": -0.015963987,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998872,
+          "Y": -0.015014236,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999001,
+          "Y": -0.014140203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999118,
+          "Y": -0.013267387,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999242,
+          "Y": -0.012321714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99993587,
+          "Y": -0.011324162,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999447,
+          "Y": -0.010511576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99995303,
+          "Y": -0.009682504,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999609,
+          "Y": -0.008836197,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999676,
+          "Y": -0.008046925,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999738,
+          "Y": -0.0072410563,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99997854,
+          "Y": -0.0065449816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999838,
+          "Y": -0.0057021235,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99998736,
+          "Y": -0.0050079073,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999046,
+          "Y": -0.0043675406,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999285,
+          "Y": -0.0037303455,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999945,
+          "Y": -0.0032967492,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999962,
+          "Y": -0.0027336043,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999714,
+          "Y": -0.0023563055,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999833,
+          "Y": -0.0018116839,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999905,
+          "Y": -0.0014528757,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999995,
+          "Y": -0.00094836473,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": -0.00040632123,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": 9.757678E-05,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999976,
+          "Y": 0.0008026935,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999976,
+          "Y": 0.0006704881,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999976,
+          "Y": 0.00057860155,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": 0.0004489654,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": 0.0004489654,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": 0.0004489654,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

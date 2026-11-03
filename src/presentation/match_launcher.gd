@@ -17,7 +17,11 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	rules["match_mode"] = true
 	var fighters: Array = []
 	for id in config.fighter_ids:
-		fighters.append(loader.load_json("res://data/fighters/%s.json" % id).value)
+		var row: Dictionary = loader.load_json("res://data/fighters/%s.json" % id).value.duplicate(
+			true
+		)
+		row["height_mm"] = 1800
+		fighters.append(row)
 	var moves: Array = []
 	for id in ["jab_of_hermes", "cyclops_smash", "pegasus_kick", "grab"]:
 		moves.append(loader.load_json("res://data/moves/%s.json" % id).value)
@@ -46,6 +50,7 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	)
 	LimbCatalog.install(world)
 	world.limb_rules["match_mode"] = true
+	world.combat["edge_attacks"] = true
 	_install_abilities(world, config, loader)
 	world.setup({"initial_limb_states": config.initial_limbs})
 	for index in mini(config.initial_limbs.size(), world.fighters.size()):
@@ -63,13 +68,13 @@ static func make_world(config: MatchConfig) -> SimWorld:
 	return world
 
 
-static func make_ai(difficulty: String, seed: int, archetype: String = "balanced") -> FighterAI:
+static func make_ai(difficulty: String, seed_value: int, archetype: String = "balanced") -> FighterAI:
 	var loader := DataLoader.new()
 	var controller := FighterAI.new()
 	controller.setup(
 		loader.load_json("res://data/ai/difficulty.json").value[difficulty],
 		loader.load_json("res://data/ai/archetypes.json").value[archetype],
-		seed
+		seed_value
 	)
 	return controller
 
@@ -89,16 +94,32 @@ static func _install_abilities(world: SimWorld, config: MatchConfig, loader: Dat
 				world.moves.append(
 					loader.load_json("res://data/moves/%s.json" % row["move_id"]).value
 				)
+	# Directional combo commands are available regardless of equipped basic attacks.
+	for file in DirAccess.get_files_at("res://data/moves"):
+		if not file.ends_with(".json"):
+			continue
+		var row: Dictionary = loader.load_json("res://data/moves/" + file).value
+		var exists := false
+		for move in world.moves:
+			exists = exists or move["id"] == row["id"]
+		if not exists:
+			world.moves.append(row)
 	for index in world.fighters.size():
 		var fighter := world.fighters[index]
 		var selected: Dictionary = (
 			config.loadouts[index]
 			if index < config.loadouts.size()
-			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl"].find(fighter.fighter_id))
+			else Loadout.full(["theron", "atalanta", "pyrrhus", "sibyl", "dorian"].find(fighter.fighter_id))
 		)
 		var error := Loadout.validate(selected, world.abilities.keys(), world.abilities)
 		if error != "":
 			Log.error("loadout", error)
 			selected = Loadout.starter()
 		fighter.loadout = selected.duplicate(true)
+		# Fighter-specific motions also apply to career loadouts.
+		var styles: Dictionary = (
+			loader.load_json("res://data/animation/fighter_styles.json").value
+		)
+		if styles.has(fighter.fighter_id):
+			fighter.moveset_aliases = styles[fighter.fighter_id].aliases.duplicate(true)
 		SimAbilities.passive(world, fighter)

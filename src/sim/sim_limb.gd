@@ -16,6 +16,7 @@ func refresh(rules: Dictionary) -> void:
 		integrity = 0
 		return
 	integrity = clampi(integrity, 0, max_integrity)
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var percent := integrity * 100 / maxi(1, max_integrity)
 	if percent > int(rules.get("healthy_above", 50)):
 		state = "healthy"

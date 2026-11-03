@@ -1,0 +1,164 @@
+[
+  {
+    "Type": "BlendSpace1D",
+    "Name": "ActiveStance_1D_BS",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'BlendSpace1D'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Nav/ActiveStance_1D_BS",
+    "Properties": {
+      "SampleData": [
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Base'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Base.0"
+          },
+          "SampleValue": {
+            "X": 50.0,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Hurt'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Hurt.0"
+          },
+          "SampleValue": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Active'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Active.0"
+          },
+          "SampleValue": {
+            "X": 100.0,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Mid_Hurt'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Mid_Hurt.0"
+          },
+          "SampleValue": {
+            "X": 16.666666,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Mid_Active'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Mid_Active.0"
+          },
+          "SampleValue": {
+            "X": 83.33333,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Calm'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Calm.0"
+          },
+          "SampleValue": {
+            "X": 33.333332,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        },
+        {
+          "Animation": {
+            "ObjectName": "AnimSequence'Stance_Calm'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Nav/Stance_Calm.0"
+          },
+          "SampleValue": {
+            "X": 66.666664,
+            "Y": 0.0,
+            "Z": 0.0
+          },
+          "RateScale": 1.0
+        }
+      ],
+      "GridSamples": [
+        {
+          "Indices": 3,
+          "Indices[1]": 1,
+          "Indices[2]": -1,
+          "Weights": 0.0,
+          "Weights[1]": 1.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 3,
+          "Indices[1]": 1,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 5,
+          "Indices[1]": 3,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 0,
+          "Indices[1]": 5,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 6,
+          "Indices[1]": 0,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 4,
+          "Indices[1]": 6,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        },
+        {
+          "Indices": 2,
+          "Indices[1]": 4,
+          "Indices[2]": -1,
+          "Weights": 1.0,
+          "Weights[1]": 0.0,
+          "Weights[2]": 0.0
+        }
+      ],
+      "BlendParameters": {
+        "DisplayName": "ActiveStance",
+        "GridNum": 6
+      },
+      "Skeleton": {
+        "ObjectName": "Skeleton'SK_JohnnyCage_Template_Skeleton'",
+        "ObjectPath": "/Game/Disk/Char/JohnnyCage/Template/Mesh/SK_JohnnyCage_Template_Skeleton.0"
+      }
+    },
+    "SkeletonGuid": "01751DBF-4B0626CB-84AA56AF-C5C055C0"
+  }
+]

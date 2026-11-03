@@ -24,6 +24,18 @@ var sever_reaction_tick: int = 0
 var sever_slowmo_tick: int = 0
 var combo_count: int = 0
 var combo_shake: float = 0.0
+var _transition_from: Array[Quaternion] = []
+var _previous_pose: Array[Quaternion] = []
+var _transition_key: String = ""
+var _transition_age: int = 8
+var _transition_frames: int = 6
+var _transition_restart: bool = false
+var sever_slot: String = ""
+var _last_attack_age: int = -1
+var _reaction_state: int = -1
+var _reaction_age: int = 0
+var _reaction_remaining: int = 0
+var _reaction_restart: bool = false
 var _rest: Array[Quaternion] = []
 var _bounds: Array = []
 var _skin_vertices: Dictionary = {}
@@ -31,7 +43,13 @@ var _socket_rest: Dictionary = {}
 var _cape: Node3D
 var _last_creak: int = -1
 var _cape_angle: float = 0.0
+var _cape_velocity: float = 0.0
 var _cape_rest := Transform3D.IDENTITY
+var _cloth_bones: Array[int] = []
+var _cloth_ang: Dictionary = {}
+var _cloth_vel: Dictionary = {}
+var _last_fighter_x: float = 0.0
+var _last_fighter_facing: int = 1
 var _last_states: Dictionary = {}
 var _twitch: Dictionary = {}
 var _one_leg: OneLegMotion
@@ -113,10 +131,32 @@ func setup(target: FighterRig) -> void:
 		var vertices := PackedVector3Array()
 		for surface in mesh.mesh.get_surface_count():
 			vertices.append_array(mesh.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX])
-		_bounds.append([mesh, target_bone_idx, vertices])
+		var contacts := PackedVector3Array()
+		for vertex in _contact_indices(vertices):
+			contacts.append(vertices[vertex])
+		_bounds.append([mesh, target_bone_idx, contacts])
+		if mesh.skin != null:
+			_cache_skin(mesh) # Build caches during loading, before nodes enter the tree.
 	_cape = rig.model.find_child("CAPE", true, false) as Node3D
 	if _cape != null:
 		_cape_rest = _cape.transform
+	_cloth_bones.clear()
+	_cloth_ang.clear()
+	_cloth_vel.clear()
+	for index in rig.skeleton.get_bone_count():
+		var clean := FighterRig._strip_armature_prefix(rig.skeleton.get_bone_name(index))
+		if (
+			FighterRig._is_helper_bone(clean)
+			and (
+				clean.begins_with("Cloak")
+				or clean.begins_with("Ribbon")
+				or clean.begins_with("Bow")
+				or clean.contains("skirt")
+			)
+		):
+			_cloth_bones.append(index)
+			_cloth_ang[index] = 0.0
+			_cloth_vel[index] = 0.0
 
 
 static func attack_phase(tick: int, startup: int, active: int) -> String:
@@ -133,6 +173,9 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 	if not stopped:
 		time += 1.0 / 60.0
 	rig.sync(fighter)
+	# A held impact/pause reuses its solved pose; do not skin and solve IK again.
+	if stopped and preview_pose == "" and not _previous_pose.is_empty() and not _reaction_restart and not _transition_restart:
+		return
 	rig.rotation = Vector3(0, deg_to_rad(float(settings["facing_degrees"])) * fighter.facing, 0)
 	rig.position = Vector3.ZERO
 	var pose_name := _select(fighter)
@@ -209,6 +252,7 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 						)
 					elif limb.regrown_id == "marble_statue_leg":
 						angles.x += float(settings["marble_pose_degrees"])
+						@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 						var period := int(time * 60.0) / int(settings["creak_interval_ticks"])
 						if period != _last_creak:
 							caption = "STONE CREAK"
@@ -252,22 +296,54 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 							)
 						)
 	# Visibility belongs to limb state, even if a legacy clip writes mesh properties.
+	_blend_pose(fighter, stopped, clip_active)
 	rig.sync(fighter)
 	var one_leg := _one_leg.apply(rig, fighter, time)
 	_root_pose(fighter, settings, clip_active)
 	if one_leg.active:
 		rig.rotation.x += float(one_leg.pitch)
+	var guard_active := fighter.pose == "standing" and (fighter.state == SimFighter.State.IDLE or fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN) and not current_action_name.begins_with("sever_") and fighter.fighter_id != "theron"
+	if guard_active:
+		for side in ["l", "r"]:
+			if fighter.limbs.usable("arm_" + side):
+				_solve_guard_arm(side, 0.0, true)
+	preload("res://src/presentation/combat_pose_constraints.gd").apply(rig, fighter)
+	# A collision fallback must not replace a ready guard with an overhead reach.
+	# The face-relative wrist targets are the final constraint in idle/menu/block.
+	if guard_active:
+		for side in ["l", "r"]:
+			if fighter.limbs.usable("arm_" + side):
+				_solve_guard_arm(side, 0.0, true)
+	_limit_wrist_flexion(fighter)
+	_previous_pose.clear()
+	for bone in rig.skeleton.get_bone_count():
+		_previous_pose.append(rig.skeleton.get_bone_pose_rotation(bone))
 	_attachments(fighter, stopped)
 	_ground(fighter, settings)
 	if one_leg.active:
 		rig.position.y += float(one_leg.lift)
 	_projectile(fighter)
 	if _cape != null and not stopped:
-		_cape_angle = lerpf(
-			_cape_angle,
-			sin(time * float(settings["quirk_rate"])) * float(settings["quirk_angle"]),
-			float(settings["cape_spring"])
-		)
+		# Velocity-reactive cloth: spring-damper driven by character motion + combat
+		var move_delta := float(fighter.x) / 1000.0 - _last_fighter_x
+		_last_fighter_x = float(fighter.x) / 1000.0
+		var facing_flip := 1.0 if fighter.facing == _last_fighter_facing else -1.0
+		_last_fighter_facing = fighter.facing
+		# External forces: movement drag + attack impulse + idle sway
+		var drag_force := -move_delta * 3.5 * float(fighter.facing)
+		var attack_impulse := 0.0
+		if fighter.state == SimFighter.State.ACTIVE:
+			attack_impulse = float(settings.get("cape_attack_impulse", 0.15)) * float(fighter.facing)
+		var idle_sway := sin(time * float(settings["quirk_rate"])) * float(settings["quirk_angle"]) * 0.3
+		# Spring-damper integration
+		var spring_k := float(settings.get("cape_spring_k", 8.0))
+		var damping := float(settings.get("cape_damping", 0.88))
+		var target := idle_sway + drag_force + attack_impulse
+		var force := (target - _cape_angle) * spring_k * (1.0 / 60.0)
+		_cape_velocity = (_cape_velocity + force) * damping
+		_cape_angle += _cape_velocity * (1.0 / 60.0)
+		_cape_angle = clampf(_cape_angle, -0.8, 0.8)
+		_cape_angle *= facing_flip
 		var pivot := Vector3(
 			0,
 			rig.fighter_height * float(settings["cape_pivot_height_percent"]) / 100.0,
@@ -275,11 +351,35 @@ func update(fighter: SimFighter, stopped: bool = false) -> void:
 		)
 		var turn := Basis(Vector3.RIGHT, _cape_angle)
 		_cape.transform = Transform3D(turn, pivot - turn * pivot) * _cape_rest
+		var lag := _cape_angle
+		for child in _cape.find_children("*", "Node3D", false, false):
+			lag *= 0.68
+			(child as Node3D).rotation.x = lag
+	_simulate_cloth(fighter, stopped, settings)
 	tick_reactive(stopped)
 	if stopped:
 		var shake_amount := float(settings["hitstop_shake_m"]) + combo_shake
 		rig.position.x += sin(time * 60.0) * shake_amount
 		rig.position.z += cos(time * 45.0) * shake_amount * 0.5
+
+
+func _simulate_cloth(fighter: SimFighter, stopped: bool, settings: Dictionary) -> void:
+	for bone in _cloth_bones:
+		var angle: float = _cloth_ang[bone]
+		if not stopped:
+			var parent := rig.skeleton.get_bone_parent(bone)
+			var target := float(_cloth_ang.get(parent, 0.0)) * 0.65
+			target += sin(time * 2.0 + bone * 0.4) * 0.025
+			if fighter.state == SimFighter.State.WALK:
+				target += 0.12
+			if fighter.state in [SimFighter.State.ACTIVE, SimFighter.State.HITSTUN]:
+				target += 0.18
+			var velocity: float = _cloth_vel[bone]
+			velocity += ((target - angle) * float(settings.get("cape_spring_k", 8.0)) - velocity * 4.0) / 60.0
+			angle = clampf(angle + velocity / 60.0, -0.35, 0.35)
+			_cloth_ang[bone] = angle
+			_cloth_vel[bone] = velocity
+		rig.skeleton.set_bone_pose_rotation(bone, _rest[bone] * Quaternion(Vector3.RIGHT, angle))
 
 
 func _select(fighter: SimFighter) -> String:
@@ -296,6 +396,20 @@ func _select(fighter: SimFighter) -> String:
 		)
 	):
 		var set_id: String = moves.get(fighter.move_name, {}).get("anim_set", "punch_light")
+		if not data["sets"].has(set_id):
+			var lower := set_id.to_lower()
+			if lower.contains("nut"):
+				set_id = "special_nut_punch" if data["sets"].has("special_nut_punch") else "punch_light"
+			elif lower.contains("shadow") or (lower.contains("jump") and lower.contains("kick")):
+				set_id = "special_shadow_kick" if data["sets"].has("special_shadow_kick") else "kick_flying"
+			elif lower.contains("rising") or lower.contains("elbow"):
+				set_id = "special_rising_elbow" if data["sets"].has("special_rising_elbow") else "punch_heavy"
+			elif lower.contains("sunglasses"):
+				set_id = "special_sunglasses_toss" if data["sets"].has("special_sunglasses_toss") else "punch_light"
+			elif lower.contains("kick"):
+				set_id = "kick_low" if lower.contains("duck") else "kick_mid"
+			else:
+				set_id = "punch_heavy" if (lower.contains("back") or lower.contains("2")) else "punch_light"
 		var key := attack_phase(fighter.state_tick, fighter.startup_ticks, fighter.active_ticks)
 		return data["sets"][set_id][key]
 	var selected := "idle"
@@ -307,19 +421,31 @@ func _select(fighter: SimFighter) -> String:
 				selected = "knockdown"
 		SimFighter.State.HITSTUN:
 			# Dynamic Reactions:
-			# - Heavy hits (e.g. thunder_elbow_strike): Trigger reaction_gut_crumple or wall bounce
-			# - Light hits: Flinch blend with torso twist
+			# - Nut Punch / Groin hits: Trigger reaction_groin_crumple (extended groveling stun)
+			# - Launchers / Uppercuts / Rising Star: Trigger reaction_air_launcher (vertical popup)
+			# - Shadow Kick / Wall Bounce: Trigger reaction_wall_splat_bounce on wall impact
+			# - Heavy hits / Gut strikes: Trigger reaction_gut_crumple
+			# - Head hits: Trigger hit_head_snap
 			if (
-				last_attacker_move == "thunder_elbow_strike"
+				last_attacker_move == "dorian_nut_punch"
 				or last_attacker_move == "phantom_ambush"
+				or last_attacker_move == "achilles_heel_snap"
 			):
-				if (
-					moves.get(last_attacker_move, {}).get("wall_bounce", false)
-					and (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600)
-				):
+				selected = "reaction_groin_crumple"
+			elif (
+				last_attacker_move == "dorian_rising_elbow"
+				or last_attacker_move == "divine_uppercut"
+			):
+				selected = "reaction_air_launcher"
+			elif (
+				last_attacker_move == "dorian_shadow_kick"
+				or last_attacker_move == "thunder_elbow_strike"
+				or moves.get(last_attacker_move, {}).get("wall_bounce", false)
+			):
+				if (fighter.x <= -3800 or fighter.x >= 3800 or absi(fighter.x) > 3600):
 					selected = "reaction_wall_splat_bounce"
 				else:
-					selected = "reaction_gut_crumple"
+					selected = "reaction_gut_crumple" if last_attacker_move == "thunder_elbow_strike" else "hit_heavy"
 			elif last_hit_zone == "head":
 				selected = "hit_head_snap"
 			elif last_hit_zone == "torso":
@@ -334,12 +460,12 @@ func _select(fighter: SimFighter) -> String:
 			selected = "torso_roll" if fighter.pose == "torso" else "dodge_roll"
 		SimFighter.State.GRAB:
 			selected = (
-				"grab_hold"
+				"grab_throw"
 				if fighter.state_tick > int(data["settings"]["throw_split_ticks"])
-				else "grab_throw"
+				else "grab_hold"
 			)
 		SimFighter.State.GRABBED:
-			selected = "hit_heavy"
+			selected = "grabbed" if data["poses"].has("grabbed") else "hit_heavy"
 		_:
 			if fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
 				# Block impact animation that transitions back to block
@@ -356,6 +482,10 @@ func _select(fighter: SimFighter) -> String:
 
 ## Called by fighter_view when a hit/block event arrives
 func on_hit(zone: String, blocked: bool, combo_hits: int, move_name: String = "") -> void:
+	_reaction_restart = true
+	_transition_restart = true
+	if rig != null and rig.anim_player != null:
+		rig.anim_player.stop()
 	last_hit_zone = zone
 	last_attacker_move = move_name
 	if blocked:
@@ -373,7 +503,10 @@ func on_hit(zone: String, blocked: bool, combo_hits: int, move_name: String = ""
 
 
 ## Called by fighter_view when a limb is severed
-func on_sever() -> void:
+func on_sever(slot: String = "arm_l") -> void:
+	sever_slot = slot
+	_transition_restart = true
+	_reaction_restart = true
 	var settings: Dictionary = data["settings"]
 	sever_reaction_tick = int(settings.get("sever_reaction_ticks", 45))
 	sever_slowmo_tick = int(settings.get("sever_slowmo_ticks", 30))
@@ -535,21 +668,33 @@ func _ground(fighter: SimFighter, _settings: Dictionary) -> void:
 			if not fighter.limbs.parts.has(slot):
 				tip_name = "head"
 			var tip := rig.skeleton.find_bone(tip_name)
-			var position := rig.transform * rig.skeleton.get_bone_global_pose(tip).origin
+			var position := (
+				(
+					rig.transform
+					* rig.global_transform.affine_inverse()
+					* rig.skeleton.global_transform
+				)
+				* rig.skeleton.get_bone_global_pose(tip).origin
+			)
 			reach_mismatch_mm = absi(
 				int(abs(position.x) * 1000.0) - (fighter.hit_x + fighter.hit_w)
 			)
 
 
-func _skinned_floor(mesh: MeshInstance3D) -> float:
-	# Use the same weighted skin deformation as the renderer. A whole leg is
-	# not rigidly attached to its foot; that approximation caused vertical snaps.
+func _cache_skin(mesh: MeshInstance3D) -> void:
 	var key := mesh.mesh.get_instance_id()
 	if not _skin_vertices.has(key):
 		var surfaces: Array = []
 		for surface in mesh.mesh.get_surface_count():
-			surfaces.append(mesh.mesh.surface_get_arrays(surface))
+			var arrays := mesh.mesh.surface_get_arrays(surface)
+			surfaces.append([arrays, _contact_indices(arrays[Mesh.ARRAY_VERTEX])])
 		_skin_vertices[key] = surfaces
+
+
+func _skinned_floor(mesh: MeshInstance3D) -> float:
+	# Contact samples retain the renderer's weighted deformation.
+	_cache_skin(mesh)
+	var key := mesh.mesh.get_instance_id()
 	var poses: Array[Transform3D] = []
 	for bind in mesh.skin.get_bind_count():
 		var bone := rig.skeleton.find_bone(mesh.skin.get_bind_name(bind))
@@ -559,12 +704,14 @@ func _skinned_floor(mesh: MeshInstance3D) -> float:
 	var relative := rig.global_transform.affine_inverse() * rig.skeleton.global_transform
 	var transform := Transform3D(rig.basis, Vector3.ZERO) * relative
 	var minimum := INF
-	for arrays in _skin_vertices[key]:
+	for entry in _skin_vertices[key]:
+		var arrays: Array = entry[0]
 		var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
 		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
 		var weights: PackedFloat32Array = arrays[Mesh.ARRAY_WEIGHTS]
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		var influences := joints.size() / maxi(1, vertices.size())
-		for vertex in vertices.size():
+		for vertex in entry[1]:
 			var deformed := Vector3.ZERO
 			for influence in influences:
 				var offset: int = vertex * influences + influence
@@ -572,6 +719,54 @@ func _skinned_floor(mesh: MeshInstance3D) -> float:
 					deformed += (poses[joints[offset]] * vertices[vertex]) * weights[offset]
 			minimum = minf(minimum, (transform * deformed).y)
 	return minimum
+
+
+static func _contact_indices(vertices: PackedVector3Array) -> PackedInt32Array:
+	# Preserve six extrema in each spatial cell, with original skin weights.
+	# At most 384 contact samples per surface instead of CPU-skinning every vertex.
+	if vertices.size() <= 384:
+		return PackedInt32Array(range(vertices.size()))
+	var box := AABB(vertices[0], Vector3.ZERO)
+	for point in vertices:
+		box = box.expand(point)
+	var span := box.size.max(Vector3.ONE * 0.0001)
+	var cells: Dictionary = {}
+	for i in vertices.size():
+		var unit := (vertices[i] - box.position) / span
+		var cell := Vector3i(mini(3, int(unit.x * 4)), mini(3, int(unit.y * 4)), mini(3, int(unit.z * 4)))
+		if not cells.has(cell):
+			cells[cell] = [i, i, i, i, i, i]
+		var extremes: Array = cells[cell]
+		for axis in 3:
+			if vertices[i][axis] < vertices[extremes[axis * 2]][axis]:
+				extremes[axis * 2] = i
+			if vertices[i][axis] > vertices[extremes[axis * 2 + 1]][axis]:
+				extremes[axis * 2 + 1] = i
+	var unique: Dictionary = {}
+	for extremes in cells.values():
+		for index in extremes:
+			unique[index] = true
+	return PackedInt32Array(unique.keys())
+
+
+func _blend_pose(fighter: SimFighter, stopped: bool, clip_active: bool) -> void:
+	var key := current_action_name if clip_active else phase
+	if key != _transition_key or _transition_restart:
+		_transition_from = _previous_pose.duplicate()
+		_transition_key = key
+		_transition_age = 0
+		_transition_frames = 3 if fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.BLOCKSTUN] else 6
+		if fighter.move_id > 0:
+			_transition_frames = clampi(fighter.startup_ticks, 1, 5)
+		_transition_restart = false
+	if _transition_from.size() != rig.skeleton.get_bone_count():
+		return
+	var weight := smoothstep(0.0, float(_transition_frames), float(_transition_age))
+	if weight < 1.0:
+		for bone in rig.skeleton.get_bone_count():
+			rig.skeleton.set_bone_pose_rotation(bone, _transition_from[bone].slerp(rig.skeleton.get_bone_pose_rotation(bone), weight))
+	if not stopped:
+		_transition_age += 1
 
 
 static func _slot_for(bone: String) -> String:
@@ -583,12 +778,13 @@ static func _slot_for(bone: String) -> String:
 
 
 func _projectile(fighter: SimFighter) -> void:
-	_beam.visible = fighter.state == SimFighter.State.ACTIVE and fighter.hit_w > 2000
+	_beam.visible = fighter.state == SimFighter.State.ACTIVE and fighter.hit_w > 2000 and fighter.move_name not in ["zeus_wrath", "zeus_bolt"]
 	if not _beam.visible:
 		return
 	var origin := rig.global_position - rig.position
 	var length := float(fighter.hit_w) / 1000.0
 	(_beam.mesh as BoxMesh).size = Vector3(length, 0.06, 0.06)
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	_beam.global_position = (
 		origin
 		+ Vector3(
@@ -604,11 +800,24 @@ func _projectile(fighter: SimFighter) -> void:
 
 
 func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
+	var reacting := fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.STAGGER, SimFighter.State.BLOCKSTUN, SimFighter.State.GRAB, SimFighter.State.GRABBED, SimFighter.State.KO]
+	if reacting:
+		if _reaction_restart or _reaction_state != fighter.state or fighter.state_tick > _reaction_remaining:
+			_reaction_age = 0
+		elif not stopped:
+			_reaction_age += 1 if fighter.state == SimFighter.State.KO else maxi(0, _reaction_remaining - fighter.state_tick)
+		_reaction_remaining = fighter.state_tick
+		_reaction_state = fighter.state
+		_reaction_restart = false
+	else:
+		_reaction_state = -1
 	if rig.anim_player == null or not pack_map.has("fighters"):
 		return false
 	if not pack_map["fighters"].has(fighter.fighter_id):
 		return false
-	if fighter.pose == "torso" or preview_pose != "":
+	if ((fighter.pose == "torso" and sever_reaction_tick <= 0) or preview_pose != "") and fighter.fighter_id != "theron":
+		current_action_name = ""
+		current_clip_id = ""
 		return false
 
 	var f_map: Dictionary = pack_map["fighters"][fighter.fighter_id]
@@ -634,19 +843,24 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 	elif fighter.pose == "hop" and fighter.state in [SimFighter.State.IDLE, SimFighter.State.WALK]:
 		act_key = "idle"
 	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
-		act_key = "block"
+		act_key = "block_impact" if fighter.state == SimFighter.State.BLOCKSTUN and actions.has("block_impact") else "block"
 	elif fighter.state == SimFighter.State.WALK:
-		var speed_val: int = fighter.walk_speed if "walk_speed" in fighter else 20
 		if walk_direction != 0 and walk_direction != fighter.facing and actions.has("walk_back"):
 			act_key = "walk_back"
-		elif speed_val > 30 and actions.has("run"):
-			act_key = "run"
 		else:
 			act_key = "walk_fwd"
 	elif fighter.state == SimFighter.State.IDLE:
 		act_key = "idle"
 	elif fighter.state in [SimFighter.State.HITSTUN, SimFighter.State.STAGGER]:
 		act_key = "stagger"
+		if fighter.state == SimFighter.State.HITSTUN:
+			act_key = "hit_head_snap" if last_hit_zone == "head" else "hit_light"
+			if last_hit_zone.begins_with("leg") and actions.has("hit_low"):
+				act_key = "hit_low"
+			elif last_hit_zone in ["torso", "body"]:
+				act_key = "reaction_gut_crumple"
+			if fighter.wall_bounced:
+				act_key = "reaction_wall_splat_bounce"
 	elif fighter.state == SimFighter.State.KO:
 		act_key = "knockdown"
 	elif fighter.blocking or fighter.state == SimFighter.State.BLOCKSTUN:
@@ -654,7 +868,22 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 	elif fighter.state == SimFighter.State.DODGE:
 		act_key = "dodge"
 	elif fighter.state == SimFighter.State.GRAB:
-		act_key = "grab"
+		act_key = "grab_throw"
+		if _reaction_age <= int(data["settings"].get("throw_split_ticks", 10)):
+			act_key = "grab_hold"
+		if not actions.has(act_key):
+			act_key = "grab"
+	elif fighter.state == SimFighter.State.GRABBED:
+		act_key = "grabbed" if actions.has("grabbed") else "stagger"
+	if fighter.fighter_id == "theron":
+		if preview_pose != "":
+			act_key = "win" if preview_pose == "victory" else "lose"
+		elif fighter.pose == "torso":
+			act_key = "torso_roll" if fighter.move_id > 0 else "torso_scuttle"
+	if sever_reaction_tick > 0 and fighter.state in [SimFighter.State.IDLE, SimFighter.State.HITSTUN, SimFighter.State.STAGGER, SimFighter.State.KO]:
+		act_key = "sever_" + (sever_slot if sever_slot.begins_with("leg") else "arm")
+	elif fighter.state == SimFighter.State.HITSTUN and last_attacker_move == "zeus_wrath":
+		act_key = "hit_electric"
 
 	if act_key == "" or not actions.has(act_key):
 		current_action_name = ""
@@ -667,6 +896,9 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 		current_clip_id = ""
 		return false
 
+	if is_attack and (current_action_name != act_key or fighter.state_tick < _last_attack_age):
+		_transition_restart = true
+	_last_attack_age = fighter.state_tick if is_attack else -1
 	current_action_name = act_key
 	current_clip_id = str(actions[act_key].get("clip", ""))
 
@@ -685,6 +917,31 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			warp_t = (
 				contact_phase + ((current_ratio - startup_ratio) / span) * (1.0 - contact_phase)
 			)
+		# Multi-strike clips use explicit contact anchors rather than one stretched hit.
+		var anchors: Array = actions[act_key].get("contact_phases", [])
+		if anchors.size() == fighter.attack_hit_count and anchors.size() > 1:
+			var age := float(fighter.state_tick)
+			var previous_tick := 0.0
+			var previous_phase := 0.0
+			for hit_index in anchors.size() + 1:
+				var next_tick := float(total_ticks)
+				var next_phase := 1.0
+				if hit_index < anchors.size():
+					next_tick = float(
+						fighter.startup_ticks + hit_index * fighter.attack_hit_interval
+					)
+					next_phase = float(anchors[hit_index])
+				if age <= next_tick:
+					warp_t = lerpf(
+						previous_phase,
+						next_phase,
+						clampf(
+							(age - previous_tick) / maxf(1.0, next_tick - previous_tick), 0.0, 1.0
+						)
+					)
+					break
+				previous_tick = next_tick
+				previous_phase = next_phase
 		var anim_len := rig.anim_player.get_animation(clip_name).length
 		rig.anim_player.speed_scale = 1.0
 		rig.anim_player.play(clip_name)
@@ -697,18 +954,45 @@ func _drive_clip(fighter: SimFighter, stopped: bool) -> bool:
 			and fighter.limbs.parts.has(fighter.attack_slot)
 		):
 			_mirror_attack_pose()
+		var exported := (
+			"res://assets/animations/exported/"
+			+ fighter.fighter_id
+			+ "/"
+			+ str(act_key).trim_prefix("move_")
+			+ ".res"
+		)
+		# Separate hands during active attack frames to prevent interpenetration
+		if actions[act_key].has("export_source") and bool(actions[act_key].get("guard_constraint", true)) and ResourceLoader.exists(exported):
+			_stabilize_exported_arms(fighter, actions[act_key])
+		if fighter.state == SimFighter.State.ACTIVE:
+			_separate_hands(fighter)
 	elif act_key in ["walk_fwd", "walk_back", "run"]:
 		if rig.anim_player.current_animation != clip_name:
-			rig.anim_player.play(clip_name, 0.1)
+			rig.anim_player.play(clip_name, 0.0)
 		var configured_scale: float = float(actions[act_key].get("speed_scale", 1.0))
 		rig.anim_player.speed_scale = (
-			configured_scale * float(fighter.walk_speed if "walk_speed" in fighter else 20) / 20.0
+			configured_scale * clampf(float(fighter.walk_speed) / 30.0, 0.85, 1.25)
 		)
 		if not stopped:
 			rig.anim_player.advance(1.0 / 60.0)
+	elif reacting:
+		# Stun/throw state_tick counts DOWN; use elapsed reaction time, not that counter.
+		rig.anim_player.play(clip_name)
+		rig.anim_player.speed_scale = 1.0
+		var duration := rig.anim_player.get_animation(clip_name).length
+		var sample_time := minf(float(_reaction_age) / 60.0, duration)
+		if fighter.state in [SimFighter.State.GRAB, SimFighter.State.GRABBED]:
+			var elapsed := float(_reaction_age)
+			var total := maxf(1.0, elapsed + fighter.state_tick)
+			var split := float(data["settings"].get("throw_split_ticks", 10))
+			var progress := elapsed / total
+			if fighter.state == SimFighter.State.GRAB:
+				progress = elapsed / split if act_key == "grab_hold" else (elapsed - split) / maxf(1.0, total - split)
+			sample_time = clampf(progress, 0, 1) * duration
+		rig.anim_player.seek(sample_time, true)
 	else:
 		if rig.anim_player.current_animation != clip_name:
-			rig.anim_player.play(clip_name, 0.1)
+			rig.anim_player.play(clip_name, 0.0)
 		rig.anim_player.speed_scale = float(actions[act_key].get("speed_scale", 1.0))
 		if not stopped and (act_key != "crawl" or fighter.state == SimFighter.State.WALK):
 			rig.anim_player.advance(1.0 / 60.0)
@@ -750,8 +1034,22 @@ static func _action_for_move(move_name: String, move_data: Dictionary) -> String
 			return "zeus_wrath"
 		"olympian_barrage":
 			return "olympian_barrage"
-		"grab":
+		"grab", "dorian_throw_forward":
 			return "grab"
+		"dorian_front_punch_1", "dorian_duck_front_punch_1", "dorian_jump_front_punch_1":
+			return "punch_jab"
+		"dorian_back_punch_1", "dorian_1_2nd_front_punch", "dorian_2_2nd_front_punch":
+			return "punch_cross"
+		"dorian_front_kick_1", "dorian_back_kick_1", "dorian_jump_front_kick_1":
+			return "kick_thrust"
+		"dorian_nut_punch":
+			return "punch_jab"
+		"dorian_shadow_kick":
+			return "kick_thrust"
+		"dorian_rising_elbow":
+			return "heavy_strike"
+		"dorian_sunglasses_toss":
+			return "punch_jab"
 		_:
 			var cat: String = str(move_data.get("category", ""))
 			if cat == "light":
@@ -797,3 +1095,134 @@ func _mirror_attack_pose() -> void:
 		var parent := skeleton.get_bone_parent(bone)
 		var local := goals[bone] if parent < 0 else goals[parent].inverse() * goals[bone]
 		skeleton.set_bone_pose_rotation(bone, local.get_rotation_quaternion())
+
+
+func _stabilize_exported_arms(fighter: SimFighter, action: Dictionary) -> void:
+	# Keep the supporting hand in guard without replacing the authored strike.
+	# Solve shoulder/elbow/wrist together; never move a detached or unusable arm.
+	var nearest := 0
+	var distance := INF
+	for hit in fighter.attack_hit_count:
+		var gap := absf(
+			float(fighter.state_tick - fighter.startup_ticks - hit * fighter.attack_hit_interval)
+		)
+		if gap < distance:
+			distance = gap
+			nearest = hit
+	var slots: Array = action.get("contact_slots", [])
+	var active_slot: String = fighter.attack_slot
+	if nearest < slots.size():
+		active_slot = str(slots[nearest])
+		if fighter.attack_slot.ends_with("r"):
+			active_slot = (
+				active_slot.left(active_slot.length() - 1)
+				+ ("l" if active_slot.ends_with("r") else "r")
+			)
+	for side in ["l", "r"]:
+		if fighter.limbs.usable("arm_" + side) and active_slot != "arm_" + side:
+			_solve_guard_arm(side, 0.0, true)
+
+
+func _limit_wrist_flexion(fighter: SimFighter) -> void:
+	# Source weapon grips can rotate a human wrist through 180 degrees. Keep the
+	# fist relative to its forearm, including after collision and mirrored poses.
+	for side in ["l", "r"]:
+		if not fighter.limbs.usable("arm_" + side):
+			continue
+		var hand := rig.skeleton.find_bone("hand." + side)
+		if hand < 0:
+			continue
+		var rest := rig.skeleton.get_bone_rest(hand).basis.get_rotation_quaternion()
+		var pose := rig.skeleton.get_bone_pose_rotation(hand).normalized()
+		var angle := rest.angle_to(pose)
+		if angle > 0.45:
+			rig.skeleton.set_bone_pose_rotation(hand, rest.slerp(pose, 0.45 / angle))
+
+
+func _solve_guard_arm(side: String, extension: float, raised_guard: bool = false) -> void:
+	var skel := rig.skeleton
+	var upper := skel.find_bone("upper_arm." + side)
+	var lower := skel.find_bone("forearm." + side)
+	var hand := skel.find_bone("hand." + side)
+	if upper < 0 or lower < 0 or hand < 0:
+		return
+	skel.force_update_all_bone_transforms()
+	var shoulder := skel.get_bone_global_pose(upper).origin
+	var elbow := skel.get_bone_global_pose(lower).origin
+	var wrist := skel.get_bone_global_pose(hand).origin
+	var first := shoulder.distance_to(elbow)
+	var second := elbow.distance_to(wrist)
+	var sign_x := -1.0 if side == "l" else 1.0
+	var rest_x := signf(skel.get_bone_global_rest(upper).origin.x)
+	if rest_x != 0.0:
+		sign_x = rest_x
+	# Keep each wrist on its own side of the chest, including broad shoulders.
+	var clearance := maxf(0.09, rig.fighter_width * 0.18)
+	var lateral := maxf(0.0, absf(shoulder.x) - clearance)
+	var goal := (
+		shoulder
+		+ Vector3(
+			-sign_x * lateral,
+			-0.10,
+			lerpf(0.22, (first + second) * 0.88, extension)
+		)
+	)
+	if raised_guard:
+		var head := skel.get_bone_global_pose(skel.find_bone("head")).origin
+		var pelvis := skel.get_bone_global_pose(skel.find_bone("root")).origin
+		# Fists bracket the face rather than crossing the chest or reaching the waist.
+		goal = Vector3(pelvis.x + sign_x * maxf(0.12, rig.fighter_width * 0.22), head.y - 0.17, maxf(head.z, shoulder.z) + 0.24)
+	var direction := (goal - shoulder).normalized()
+	var reach := minf(shoulder.distance_to(goal), (first + second) * 0.97)
+	goal = shoulder + direction * reach
+	var along := (first * first - second * second + reach * reach) / (2.0 * reach)
+	var bend := Vector3(sign_x, -0.8, -0.2)
+	bend = (bend - direction * bend.dot(direction)).normalized()
+	var elbow_goal := (
+		shoulder + direction * along + bend * sqrt(maxf(0.0, first * first - along * along))
+	)
+	_aim_joint(upper, elbow - shoulder, elbow_goal - shoulder)
+	skel.force_update_all_bone_transforms()
+	elbow = skel.get_bone_global_pose(lower).origin
+	wrist = skel.get_bone_global_pose(hand).origin
+	_aim_joint(lower, wrist - elbow, goal - elbow)
+	skel.force_update_all_bone_transforms()
+	var rest_relative := (
+		skel.get_bone_global_rest(lower).basis.inverse() * skel.get_bone_global_rest(hand).basis
+	)
+	var hand_global := skel.get_bone_global_pose(lower).basis * rest_relative
+	var parent := skel.get_bone_parent(hand)
+	var hand_local := skel.get_bone_global_pose(parent).basis.inverse() * hand_global
+	skel.set_bone_pose_rotation(hand, hand_local.orthonormalized().get_rotation_quaternion())
+
+
+func _separate_hands(fighter: SimFighter) -> void:
+	if not fighter.limbs.usable("arm_l") or not fighter.limbs.usable("arm_r"):
+		return
+	var left := rig.skeleton.find_bone("hand.l")
+	var right := rig.skeleton.find_bone("hand.r")
+	if left < 0 or right < 0:
+		return
+	rig.skeleton.force_update_all_bone_transforms()
+	var gap := rig.skeleton.get_bone_global_pose(left).origin.distance_to(
+		rig.skeleton.get_bone_global_pose(right).origin
+	)
+	if gap < maxf(0.12, rig.fighter_width * 0.22):
+		# Preserve the striking hand and solve the supporting arm as a chain.
+		# Translating wrist bones would stretch the skin and detach the hand.
+		_solve_guard_arm("l" if fighter.attack_slot == "arm_r" else "r", 0.0)
+
+
+func _aim_joint(bone: int, from: Vector3, to: Vector3) -> void:
+	if from.length_squared() < 0.000001 or to.length_squared() < 0.000001:
+		return
+	var skel := rig.skeleton
+	var global_rotation := (
+		skel.get_bone_global_pose(bone).basis.orthonormalized().get_rotation_quaternion()
+	)
+	var desired := Quaternion(from.normalized(), to.normalized()) * global_rotation
+	var parent := skel.get_bone_parent(bone)
+	var parent_rotation := (
+		skel.get_bone_global_pose(parent).basis.orthonormalized().get_rotation_quaternion()
+	)
+	skel.set_bone_pose_rotation(bone, parent_rotation.inverse() * desired)

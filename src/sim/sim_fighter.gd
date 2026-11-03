@@ -34,6 +34,7 @@ const STATE_NAMES: Array[String] = [
 const POSE_IDS := {"standing": 0, "crouch": 1, "hop": 2, "crawl": 3, "torso": 4}
 
 var loadout: Dictionary = {}
+var moveset_aliases: Dictionary = {}
 var ability_cooldowns: Dictionary = {}
 var ability_uses: Dictionary = {}
 var invulnerable_until: int = 0
@@ -46,6 +47,11 @@ var fighter_id: String = ""
 var display_name: String = ""
 var x: int = 0
 var y: int = 0
+var launched: bool = false
+var launch_velocity: int = 0
+var knockback_velocity: int = 0
+var juggle_hits: int = 0
+var wall_bounced: bool = false
 var facing: int = 1
 var walk_speed: int = 0
 var power_percent: int = 100
@@ -59,6 +65,9 @@ var health: int = 300
 var stamina: int = 0
 var stamina_max: int = 100
 var meter: int = 0
+var super_charge: int = 0
+var confirmed_hits: int = 0
+var last_confirmed_tick: int = -1
 var modifiers: Array[SimModifier] = []
 var attack_slot: String = "arm_l"
 var attack_category: String = ""
@@ -75,6 +84,7 @@ var next_hit_age: int = 0
 var blocking: bool = false
 var armor_hits: int = 0
 var cooldown_ticks: int = 0
+var attack_rearm_ticks: int = 0
 var chain: ChainRecord = ChainRecord.new()
 var startup_ticks: int = 0
 var active_ticks: int = 0
@@ -95,9 +105,11 @@ var attack_unblockable: bool = false
 var attack_is_grab: bool = false
 var attack_wall_bounce: bool = false
 var attack_can_cancel: bool = false
+var attack_is_ex: bool = false
 var cancel_start: int = 0
 var cancel_end: int = 0
 var cancel_into: Array[String] = []
+var ex_cancel_into: Array[String] = []
 var hit_x: int = 0
 var hit_y: int = 0
 var hit_w: int = 0
@@ -107,6 +119,7 @@ var buffer: SimInputBuffer = SimInputBuffer.new()
 
 
 func half_width() -> int:
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	return body_width_mm / 2
 
 
@@ -149,12 +162,20 @@ func begin_move(index: int, move: Dictionary, scaled_damage: int, scaled_limb: i
 	attack_is_grab = bool(move.get("is_grab", false))
 	attack_wall_bounce = bool(move.get("wall_bounce", false))
 	attack_can_cancel = bool(move.get("can_cancel", false))
+	attack_is_ex = bool(move.get("is_ex", false))
 	cancel_start = int(move.get("cancel_start", 0))
 	cancel_end = int(move.get("cancel_end", 0))
 	armor_hits = int(move.get("armor_hits", 0))
 	cancel_into = []
 	for entry in move.get("cancel_into", []):
 		cancel_into.append(str(entry))
+	ex_cancel_into = []
+	for entry in move.get("ex_cancel_into", []):
+		ex_cancel_into.append(str(entry))
+	if ex_cancel_into.is_empty():
+		for entry in cancel_into:
+			if str(entry).contains("shadow") or str(entry).contains("nut_punch") or str(entry).contains("rising") or str(entry).contains("sunglasses"):
+				ex_cancel_into.append(str(entry))
 	var box: Dictionary = move["hitbox"]
 	hit_x = int(box["x"])
 	hit_y = int(box["y"])
@@ -191,9 +212,11 @@ func clear_move() -> void:
 	attack_is_grab = false
 	attack_wall_bounce = false
 	attack_can_cancel = false
+	attack_is_ex = false
 	cancel_start = 0
 	cancel_end = 0
 	cancel_into = []
+	ex_cancel_into = []
 
 
 func hurtbox() -> Array:

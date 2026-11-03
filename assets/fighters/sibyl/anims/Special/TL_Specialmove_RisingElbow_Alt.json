@@ -1,0 +1,4125 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_Specialmove_RisingElbow_Alt",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt",
+    "Properties": {
+      "TagContainer": [
+        "TL_Special"
+      ],
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "FX",
+              "Sunglass_Flash_2"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.AGameplayNiagaraActor_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": {
+              "ObjectName": "BlueprintGeneratedClass'AGameplayNiagaraActor_C'",
+              "ObjectPath": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.0"
+            },
+            "SpawnControl": "EEntitySpawnControl::RuntimeSpawned",
+            "HiddenInCinema": true,
+            "bIsSubEntity": false
+          }
+        },
+        {
+          "Key": {
+            "PathElements": [
+              "FX",
+              "Sunglass_Flash_1"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.AGameplayNiagaraActor_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": {
+              "ObjectName": "BlueprintGeneratedClass'AGameplayNiagaraActor_C'",
+              "ObjectPath": "/Game/Disk/Shared/Game/Blueprints/AGameplayNiagaraActor.0"
+            },
+            "SpawnControl": "EEntitySpawnControl::RuntimeSpawned",
+            "HiddenInCinema": true,
+            "bIsSubEntity": false
+          }
+        }
+      ],
+      "EntitiesToHideInCinema": [
+        {
+          "PathElements": [
+            "FX",
+            "Sunglass_Flash_2"
+          ]
+        },
+        {
+          "PathElements": [
+            "FX",
+            "Sunglass_Flash_1"
+          ]
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackInt_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.93"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackInt_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.94"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_43'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.11"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_44'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.12"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_45'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.13"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_46'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.14"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_47'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_48'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_49'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_50'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_51'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_52'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_53'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_54'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_55'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_56'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_57'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_58'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_59'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_60'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_61'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_62'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_63'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_64'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_65'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_66'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_67'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_68'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_69'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_70'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_71'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_72'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_73'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.41"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_74'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.42"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_75'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_76'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_77'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_78'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_79'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.47"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_80'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.48"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_81'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_82'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.50"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackInt_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.95"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.97"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.54"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.70"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackVector_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.108"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackInt_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.96"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackVector_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.109"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.98"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.73"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.99"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.100"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.74"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.101"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.102"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.75"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.103"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.104"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.76"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.105"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.55"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.56"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_83'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.51"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.57"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.106"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.71"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.72"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.59"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.77"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.78"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.79"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.80"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFString_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.91"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.81"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.82"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.83"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_84'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.52"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.63"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackUObject_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.107"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.67"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFloat_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.64"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.84"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.85"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.86"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_28'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.87"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFString'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFString_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.92"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_29'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.88"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_30'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.89"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackFName_31'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.90"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_RisingElbow_Alt:TimelineCompressedTrack_Transform_85'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.53"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.65"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_RisingElbow_Alt:TimelineDataTrackBool_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.66"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 180
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1870",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1871",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1872",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1873",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1874",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1875",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1876",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1877",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1878",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_1879",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_43",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_44",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_45",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_46",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_47",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_48",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_49",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_50",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_51",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_52",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_53",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_54",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_55",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_56",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_57",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_58",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_59",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_60",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_61",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_62",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_63",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_64",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_65",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_66",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_67",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_68",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_69",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_70",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_71",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_72",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_73",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_74",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_75",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_76",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_77",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_78",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_79",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_80",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_81",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_82",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_83",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_84",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_85",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false,
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false,
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        0.9166667,
+        0.9166667,
+        0.0,
+        2.0833333,
+        2.0833333
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "SampleContextParameterOverride": "TimeDilation"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        5.441271,
+        2.495967,
+        2.812006,
+        4.028867,
+        2.6884642,
+        2.815607,
+        2.6762419,
+        2.8387442,
+        2.6983576,
+        2.8938313,
+        2.9796133,
+        2.8714695,
+        2.8336773,
+        2.8336773
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        3.0,
+        3.0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        0.36666667,
+        0.36666667,
+        0.0,
+        2.6333334,
+        2.6333334
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "SampleContextParameterOverride": "TimeDilation"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        "PrimaryMeshComponent:SunglassesAttach_socket"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        "PrimaryMeshComponent:SunglassesAttach_socket"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_28",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_29",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_30",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_31",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFString",
+    "Name": "TimelineDataTrackFString_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFString'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        "Primary"
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        180
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        122
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_RisingElbow_Alt'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_RisingElbow_Alt.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1876'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.7"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1877'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.8"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1878'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.9"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1879'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.10"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1873'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.4"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1874'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.5"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1875'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.6"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1870'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.1"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1871'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.2"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_RisingElbow_Alt:RtpcData_1872'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.3"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "NiagaraSystem'NS_Sunglass_Glint'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/FX/FX/NS_Sunglass_Glint.82"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "NiagaraSystem'NS_Sunglass_Glint'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/FX/FX/NS_Sunglass_Glint.82"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": 82.68996,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 84.21213,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 86.00238,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 87.65323,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 89.46423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 91.290085,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 93.29226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 95.39998,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 97.68743,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 100.302055,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 103.28552,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 106.339905,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.544876,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.21092,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.96572,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.84428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.84402,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 123.89151,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 127.354065,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 129.93402,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 131.51236,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.4028,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.96799,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.09119,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.20424,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.3219,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.411,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.46136,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.43452,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.33545,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.19974,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 133.04822,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.88193,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.6803,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 132.40591,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 131.95004,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 131.32254,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 130.52136,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 129.53053,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 128.37878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 127.12574,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 125.85342,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 124.49617,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 123.19123,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 121.94712,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.72822,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.60221,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.58328,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.643936,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.86509,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.21995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 115.68131,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 115.20827,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.77179,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.3927,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.09433,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.88477,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.701065,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.52453,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.37736,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.28703,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.24292,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.23176,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.22217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.22217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.27025,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.35018,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.471794,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.61757,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.73844,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.843,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.909454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.87768,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.738815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.50785,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.175125,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.74495,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.23133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.69658,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.205,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.804985,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.57648,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.55302,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.686295,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.917725,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.27569,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.772644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.432915,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.28123,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.23414,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 115.22866,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.16757,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.915794,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.41909,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.90175,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.398636,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.879395,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.318504,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.65284,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.876495,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.012764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.115746,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.160355,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.155,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 120.09827,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.98391,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.802795,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.542114,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 119.238495,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.87199,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.478714,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 118.05666,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.61385,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 117.15877,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.685196,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 116.20079,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 115.71167,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 115.19829,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.69347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 114.18682,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.68855,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 113.22862,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.783295,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.35368,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.93963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.54729,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.176994,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.83689,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.52743,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.2591,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.050026,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.883575,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.7502,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.64763,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.57428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.54131,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.52987,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.5447,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.59196,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.65972,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.75632,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 109.880806,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.03703,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.213776,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.406784,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.61932,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.84217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.06984,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.2983,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.52209,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.738174,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.940315,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.12024,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.27629,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.39964,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.49649,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.565895,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.60934,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.62531,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.60945,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.56704,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.50057,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.41125,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.29576,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.1654,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 112.02429,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.879135,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.736824,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.590576,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.441864,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.29559,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.14957,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 111.00059,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.85444,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.71072,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.56881,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.43375,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.29631,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.17856,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.0666,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 110.0666,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_RisingElbow_Alt'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_RisingElbow_Alt.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.99473774,
+          "Y": 0.10245381,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98957086,
+          "Y": 0.14404626,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9830929,
+          "Y": 0.18310703,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97699356,
+          "Y": 0.21326849,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97272575,
+          "Y": 0.23195757,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9704635,
+          "Y": 0.24124733,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9712734,
+          "Y": 0.23796597,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97372496,
+          "Y": 0.22772706,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9768827,
+          "Y": 0.21377578,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98289275,
+          "Y": 0.18417837,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9886124,
+          "Y": 0.15048398,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99404395,
+          "Y": 0.10897945,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9979732,
+          "Y": 0.06363419,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99965787,
+          "Y": 0.026160687,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99993753,
+          "Y": -0.011152941,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9986496,
+          "Y": -0.051950905,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9956877,
+          "Y": -0.09276864,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9923667,
+          "Y": -0.12332139,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9906497,
+          "Y": -0.13642964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9900862,
+          "Y": -0.1404606,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9895153,
+          "Y": -0.14442849,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9895481,
+          "Y": -0.14420258,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9902544,
+          "Y": -0.13926986,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9913666,
+          "Y": -0.13111748,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99294186,
+          "Y": -0.11860198,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9948597,
+          "Y": -0.101263225,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99693537,
+          "Y": -0.078230694,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9986968,
+          "Y": -0.051038515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99971247,
+          "Y": -0.023978416,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999857,
+          "Y": -0.0016398113,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999194,
+          "Y": 0.01270073,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998107,
+          "Y": 0.01944882,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99976087,
+          "Y": 0.021872394,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9998038,
+          "Y": 0.019809315,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99990034,
+          "Y": 0.014099104,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99999285,
+          "Y": 0.0037323402,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9999528,
+          "Y": -0.009693712,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997225,
+          "Y": -0.023561731,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99937344,
+          "Y": -0.03539494,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99913013,
+          "Y": -0.041696377,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99920213,
+          "Y": -0.039937157,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9995246,
+          "Y": -0.030825144,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9997771,
+          "Y": -0.021110957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99986744,
+          "Y": -0.016280277,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99979043,
+          "Y": -0.020466542,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99947643,
+          "Y": -0.03234833,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9989592,
+          "Y": -0.04561176,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99831593,
+          "Y": -0.05800809,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9975147,
+          "Y": -0.0704574,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9963956,
+          "Y": -0.084827706,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99495375,
+          "Y": -0.10033467,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9932846,
+          "Y": -0.11569649,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9915482,
+          "Y": -0.12973957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.990057,
+          "Y": -0.14066656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9889672,
+          "Y": -0.14813408,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98825276,
+          "Y": -0.15282775,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98788,
+          "Y": -0.15522026,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9873954,
+          "Y": -0.15827353,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9863455,
+          "Y": -0.16468942,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9855566,
+          "Y": -0.16934702,
+          "Z": 0.0
+        },
+        {
+          "X": -0.985291,
+          "Y": -0.17088467,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9853389,
+          "Y": -0.17060868,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98548007,
+          "Y": -0.16979125,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9858264,
+          "Y": -0.16776825,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9864204,
+          "Y": -0.1642405,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98709404,
+          "Y": -0.16014217,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9876559,
+          "Y": -0.15663978,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9879366,
+          "Y": -0.15485825,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98735285,
+          "Y": -0.15853749,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9858725,
+          "Y": -0.1674969,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98409986,
+          "Y": -0.177617,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9824197,
+          "Y": -0.18668495,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9810684,
+          "Y": -0.19366175,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98070765,
+          "Y": -0.19547993,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98195565,
+          "Y": -0.1891108,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9846736,
+          "Y": -0.174407,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98828554,
+          "Y": -0.1526158,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9922209,
+          "Y": -0.12449056,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9960331,
+          "Y": -0.0889833,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9988955,
+          "Y": -0.04698482,
+          "Z": 0.0
+        },
+        {
+          "X": -1.0,
+          "Y": 0.00033553515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99863076,
+          "Y": 0.05231155,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9951683,
+          "Y": 0.09818415,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9910674,
+          "Y": 0.13336222,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9871775,
+          "Y": 0.1596266,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9837618,
+          "Y": 0.17947856,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9804975,
+          "Y": 0.19653167,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9766643,
+          "Y": 0.21477172,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9718008,
+          "Y": 0.23580301,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9669136,
+          "Y": 0.25510374,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96300983,
+          "Y": 0.2694667,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9599503,
+          "Y": 0.28016984,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95621824,
+          "Y": 0.29265434,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95087314,
+          "Y": 0.30958045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9451653,
+          "Y": 0.32659265,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9403918,
+          "Y": 0.34009236,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9379653,
+          "Y": 0.34672943,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9371655,
+          "Y": 0.34888524,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93702245,
+          "Y": 0.34926867,
+          "Z": 0.0
+        },
+        {
+          "X": -0.936795,
+          "Y": 0.34987888,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9363688,
+          "Y": 0.3510181,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9360075,
+          "Y": 0.35197985,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9356214,
+          "Y": 0.35300556,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9352734,
+          "Y": 0.35392636,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9356097,
+          "Y": 0.3530362,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9360331,
+          "Y": 0.35191178,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93640673,
+          "Y": 0.35091656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9360999,
+          "Y": 0.351734,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93404996,
+          "Y": 0.3571422,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93041956,
+          "Y": 0.36649603,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92513466,
+          "Y": 0.37963885,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9184736,
+          "Y": 0.39548212,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9108455,
+          "Y": 0.41274747,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9026967,
+          "Y": 0.4302773,
+          "Z": 0.0
+        },
+        {
+          "X": -0.894673,
+          "Y": 0.44672155,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88743126,
+          "Y": 0.4609403,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8811228,
+          "Y": 0.47288722,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87603235,
+          "Y": 0.48225242,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8716239,
+          "Y": 0.49017516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8681854,
+          "Y": 0.49624017,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86620545,
+          "Y": 0.49968833,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86521983,
+          "Y": 0.50139254,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8651916,
+          "Y": 0.5014414,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8659878,
+          "Y": 0.500065,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8668057,
+          "Y": 0.49864587,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86746526,
+          "Y": 0.4974979,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8681562,
+          "Y": 0.4962909,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8677869,
+          "Y": 0.49693662,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8676723,
+          "Y": 0.49713627,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8673159,
+          "Y": 0.49775797,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86694014,
+          "Y": 0.49841237,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86629343,
+          "Y": 0.4995355,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86532116,
+          "Y": 0.5012177,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8644022,
+          "Y": 0.5028007,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86327946,
+          "Y": 0.50472605,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8620839,
+          "Y": 0.50676554,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86104965,
+          "Y": 0.5085207,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85952175,
+          "Y": 0.51109934,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85831,
+          "Y": 0.5131317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8563019,
+          "Y": 0.5164756,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85493934,
+          "Y": 0.51872784,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85357296,
+          "Y": 0.5209732,
+          "Z": 0.0
+        },
+        {
+          "X": -0.853029,
+          "Y": 0.52186334,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8531927,
+          "Y": 0.5215957,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8535534,
+          "Y": 0.52100515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85486424,
+          "Y": 0.51885146,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8564266,
+          "Y": 0.51626897,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85812914,
+          "Y": 0.5134342,
+          "Z": 0.0
+        },
+        {
+          "X": -0.860384,
+          "Y": 0.5096463,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86062837,
+          "Y": 0.5092334,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86127734,
+          "Y": 0.50813514,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8615782,
+          "Y": 0.5076248,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86157525,
+          "Y": 0.50762963,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86202526,
+          "Y": 0.50686544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.860857,
+          "Y": 0.50884646,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86011124,
+          "Y": 0.5101065,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8596473,
+          "Y": 0.51088804,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8588792,
+          "Y": 0.51217777,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8579576,
+          "Y": 0.51372045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8572862,
+          "Y": 0.5148396,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85696113,
+          "Y": 0.51538074,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8566853,
+          "Y": 0.5158392,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8564328,
+          "Y": 0.5162585,
+          "Z": 0.0
+        },
+        {
+          "X": -0.856722,
+          "Y": 0.5157783,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8573394,
+          "Y": 0.5147516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85901415,
+          "Y": 0.51195174,
+          "Z": 0.0
+        },
+        {
+          "X": -0.861115,
+          "Y": 0.50841045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8632271,
+          "Y": 0.50481594,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86513877,
+          "Y": 0.50153255,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8663881,
+          "Y": 0.49937105,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86800456,
+          "Y": 0.49655607,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8693454,
+          "Y": 0.49420497,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8706553,
+          "Y": 0.4918937,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8720515,
+          "Y": 0.48941368,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87378514,
+          "Y": 0.48631203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87470233,
+          "Y": 0.48466074,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8774557,
+          "Y": 0.47965714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8791847,
+          "Y": 0.47648096,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88047194,
+          "Y": 0.4740981,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88132834,
+          "Y": 0.47250426,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

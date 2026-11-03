@@ -9,6 +9,7 @@ var body: VBoxContainer
 var battle: MatchController
 
 var message: Label
+var _backdrop: Control
 
 
 func _ready() -> void:
@@ -32,6 +33,9 @@ func _ready() -> void:
 
 
 func _show(state: String) -> void:
+	if is_instance_valid(_backdrop):
+		remove_child(_backdrop)
+		_backdrop.queue_free()
 	if panel != null:
 		remove_child(panel)
 
@@ -50,12 +54,14 @@ func _show(state: String) -> void:
 		battle.queue_free()
 
 		battle = null
+	_make_backdrop(state)
 
 	panel = PanelContainer.new()
 
 	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
 	panel.theme = GameTheme.build()
+	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
 
 	add_child(panel)
 
@@ -63,6 +69,10 @@ func _show(state: String) -> void:
 
 	for side in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + side, 36)
+	if state == "main_menu":
+		margin.add_theme_constant_override("margin_left", 72)
+		margin.add_theme_constant_override("margin_right", 728)
+		margin.add_theme_constant_override("margin_top", 44)
 
 	panel.add_child(margin)
 
@@ -74,15 +84,17 @@ func _show(state: String) -> void:
 
 	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-	body.add_theme_constant_override("separation", 14)
+	body.add_theme_constant_override("separation", 10 if state == "main_menu" else 14)
 
 	scroll.add_child(body)
 
-	var header := label("SEVERED  /  " + state.replace("_", " ").to_upper(), 28)
+	var header := label("SEVERED" if state == "main_menu" else state.replace("_", " ").to_upper(), 58 if state == "main_menu" else 30)
+	header.add_theme_font_override("font", GameTheme.heading_font())
 
-	header.add_theme_color_override("font_color", Color("f1cb7b"))
+	header.add_theme_color_override("font_color", GameTheme.IVORY)
 
 	message = label("", 18)
+	message.visible = state != "main_menu"
 
 	match state:
 		"age_gate":
@@ -123,7 +135,14 @@ func _show(state: String) -> void:
 		"main_menu":
 			Audio.switch_music("menu")
 
-			label("TRIALS OF OLYMPUS — local fighting game", 24)
+			label("T R I A L S   O F   O L Y M P U S", 16)
+			var divider := TextureRect.new()
+			divider.texture = load("res://assets/ui/kenney_fantasy/PNG/Double/Divider/divider-003.png")
+			divider.custom_minimum_size = Vector2(0, 26)
+			divider.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			divider.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			divider.modulate = GameTheme.GOLD
+			body.add_child(divider)
 
 			if Router.career.save.recovery != "":
 				label(Router.career.save.recovery)
@@ -219,7 +238,7 @@ func _show(state: String) -> void:
 	_focus_first.call_deferred()
 
 
-func label(text: String, size: int = 20, parent: Node = null) -> Label:
+func label(text: String, size_value: int = 20, parent: Node = null) -> Label:
 	var item := Label.new()
 
 	item.text = text
@@ -227,7 +246,7 @@ func label(text: String, size: int = 20, parent: Node = null) -> Label:
 	item.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 	item.add_theme_font_size_override(
-		"font_size", int(SettingsHooks.scale_amount(size, "ui_scale_percent"))
+		"font_size", int(SettingsHooks.scale_amount(size_value, "ui_scale_percent"))
 	)
 
 	(parent if parent != null else body).add_child(item)
@@ -282,6 +301,47 @@ func _focus_first() -> void:
 func _settings_changed(key: String, _value: Variant) -> void:
 	if key in ["ui_scale_percent", "high_contrast"] and panel != null:
 		_show.call_deferred(Router.state)
+
+
+func _make_backdrop(state: String) -> void:
+	_backdrop = Control.new()
+	_backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	add_child(_backdrop)
+	var art := TextureRect.new()
+	art.texture = load("res://assets/environment/ruins/olympus_backdrop.png")
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_backdrop.add_child(art)
+	var gradient := Gradient.new()
+	gradient.set_color(0, Color(0.015, 0.022, 0.027, 0.98))
+	gradient.set_color(1, Color(0.015, 0.022, 0.027, 0.30 if state == "main_menu" else 0.95))
+	var texture := GradientTexture2D.new()
+	texture.gradient = gradient
+	texture.fill_from = Vector2.ZERO
+	texture.fill_to = Vector2.RIGHT
+	var shade := TextureRect.new()
+	shade.texture = texture
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_backdrop.add_child(shade)
+	if state == "main_menu":
+		var preview := ModelPreview.new()
+		preview.position = Vector2(710, 95)
+		preview.size = Vector2(440, 550)
+		preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_backdrop.add_child(preview)
+		preview.setup("theron")
+		preview.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		preview.get_child(0).size = Vector2i(600, 680)
+		var caption := Label.new()
+		caption.text = "THERON  /  THE BULWARK"
+		caption.position = Vector2(780, 640)
+		caption.add_theme_font_size_override("font_size", 16)
+		caption.modulate = GameTheme.GOLD
+		_backdrop.add_child(caption)
 
 
 func _launch_match() -> void:

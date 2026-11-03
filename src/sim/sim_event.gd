@@ -31,13 +31,13 @@ var payload: Dictionary = {}
 
 
 static func make(
-	kind: int, actor: int, other: int, amount: int, round_index: int, winner: int
+	kind_value: int, actor_value: int, other_value: int, amount_value: int, round_index_value: int, winner_value: int
 ) -> SimEvent:
 	var event := SimEvent.new()
-	event.kind = kind
-	event.actor = actor
-	event.other = other
-	event.amount = amount
-	event.round_index = round_index
-	event.winner = winner
+	event.kind = kind_value
+	event.actor = actor_value
+	event.other = other_value
+	event.amount = amount_value
+	event.round_index = round_index_value
+	event.winner = winner_value
 	return event

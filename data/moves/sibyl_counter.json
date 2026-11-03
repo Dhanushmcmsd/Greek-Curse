@@ -1,0 +1,48 @@
+{
+  "id": "sibyl_counter",
+  "display_name": "Omen Strike",
+  "startup_ticks": 12,
+  "active_ticks": 4,
+  "recovery_ticks": 24,
+  "damage": 14,
+  "limb_damage": 10,
+  "on_block_pushback": 90,
+  "hitstop_attacker": 3,
+  "hitstop_defender": 3,
+  "cancel_into": [
+    "sibyl_finisher"
+  ],
+  "cancel_start": 19,
+  "cancel_end": 29,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 1,
+  "hit_interval": 0,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_l",
+  "zone_priority": 1,
+  "hitstun_ticks": 26,
+  "blockstun_ticks": 12,
+  "knockback_mm": 120,
+  "hitbox": {
+    "x": 190,
+    "y": 1000,
+    "w": 560,
+    "h": 420
+  },
+  "cost": 12,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "light",
+  "anim_set": "kick_mid",
+  "owner": "sibyl",
+  "input_label": "Down + Forward + Left Punch",
+  "required_limbs": [
+    "arm_l",
+    "arm_r",
+    "leg_l",
+    "leg_r"
+  ]
+}

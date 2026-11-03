@@ -53,6 +53,19 @@ const ALLOWED_EXCLUDED_TRACKS: Array[String] = [
 	"R_C_skirt"
 ]
 
+
+static func _strip_armature_prefix(bone_name: String) -> String:
+	return bone_name.replace("mixamorig:", "").replace("mixamorig_", "")
+
+
+static func _is_helper_bone(bone_name: String) -> bool:
+	var clean := _strip_armature_prefix(bone_name)
+	for prefix in ALLOWED_EXCLUDED_TRACKS:
+		if clean.begins_with(prefix):
+			return true
+	return false
+
+
 static var _bone_map_cache: Dictionary = {}
 
 var model: Node3D
@@ -108,7 +121,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	anim_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	model.add_child(anim_player)
 	anim_player.root_node = NodePath("..")
-	if ResourceLoader.exists(anim_path):
+	var replacement_theron := id == "theron" and mid == id and FileAccess.file_exists("res://data/animation/theron_boxer_manifest.json")
+	if replacement_theron:
+		anim_player.add_animation_library("", AnimationLibrary.new())
+	if ResourceLoader.exists(anim_path) and not replacement_theron:
 		var anim_scene := (load(anim_path) as PackedScene).instantiate()
 		var source_ap := anim_scene.find_child("AnimationPlayer", true, false) as AnimationPlayer
 		if source_ap != null:
@@ -124,7 +140,19 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 	if pm_res.ok and pm_res.value is Dictionary and pm_res.value.has("fighters"):
 		var f_map: Dictionary = pm_res.value["fighters"].get(id, {})
 		var actions: Dictionary = f_map.get("actions", {})
+		var retarget_cache: Dictionary = {}
 		for act_key in actions:
+			if replacement_theron:
+				continue # Every live binding is supplied by the replacement set.
+			var baked := (
+				"res://assets/animations/exported/"
+				+ id
+				+ "/"
+				+ str(act_key).trim_prefix("move_")
+				+ ".res"
+			)
+			if mid == id and str(act_key).begins_with("move_") and ResourceLoader.exists(baked):
+				continue
 			var clip_info: Dictionary = actions[act_key]
 			var clip_file: String = clip_info.get("clip", "")
 			if clip_file == "":
@@ -155,9 +183,12 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 						var source_skeleton := (
 							loaded_glb.find_child("Skeleton3D", true, false) as Skeleton3D
 						)
-						var dup_anim: Animation = retarget_animation(
-							anim, source_skeleton, skeleton
-						)
+						var cache_key: String = anim_glb_path + ":" + str(anim_name)
+						if not retarget_cache.has(cache_key):
+							retarget_cache[cache_key] = retarget_animation(
+								anim, source_skeleton, skeleton
+							)
+						var dup_anim: Animation = retarget_cache[cache_key].duplicate(true)
 						_bind_animation_to_skeleton(dup_anim, clip_file)
 						if act_key in ["idle", "walk_fwd", "walk_back", "run"]:
 							dup_anim.loop_mode = Animation.LOOP_LINEAR
@@ -167,6 +198,17 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 							default_lib.remove_animation(target_name)
 						default_lib.add_animation(target_name, dup_anim)
 				loaded_glb.queue_free()
+	var exported_dir := "res://assets/animations/exported/" + id
+	if mid == id and DirAccess.dir_exists_absolute(exported_dir):
+		var library := anim_player.get_animation_library("")
+		for file in DirAccess.get_files_at(exported_dir):
+			if file.ends_with(".res"):
+				var clip_name := id + "_" + (file.get_basename().trim_prefix("action_") if file.begins_with("action_") else "move_" + file.get_basename())
+				var imported := load(exported_dir + "/" + file) as Animation
+				if imported != null:
+					if library.has_animation(clip_name):
+						library.remove_animation(clip_name)
+					library.add_animation(clip_name, imported)
 	fighter_height = float(row["height_mm"]) / 1000.0
 	fighter_width = float(row["body"]["shoulder_width"])
 	var dimensions_path := "res://assets/fighters_mixamo/model_dimensions.json"
@@ -177,6 +219,10 @@ func load_fighter(id: String, model_override: String = "") -> bool:
 		var model_dimensions: Dictionary = dimensions.get(mid, {})
 		fighter_height = float(model_dimensions.get("target_height_m", fighter_height))
 		fighter_width = float(model_dimensions.get("target_width_m", fighter_width))
+	# Imported meshes are already baked to their recorded height. Normalize the entire rig.
+	model.scale *= 1.8 / fighter_height
+	fighter_width *= 1.8 / fighter_height
+	fighter_height = 1.8
 	for slot in SimLimbs.LIMB_NAMES:
 		var suffix := slot.to_upper()
 		groups[slot] = model.find_child("LIMB_" + suffix, true, false)
@@ -239,7 +285,13 @@ func get_socket_transform(slot: String) -> Transform3D:
 
 func apply_palette(id: String) -> void:
 	var tint: Color = (
-		{"default": Color.WHITE, "ivory": Color(1.0, 0.9, 0.75), "night": Color(0.6, 0.7, 0.95)}
+		{
+			"default": Color.WHITE,
+			"ivory": Color(1.0, 0.9, 0.75),
+			"night": Color(0.6, 0.7, 0.95),
+			"sunset_gold": Color(0.95, 0.78, 0.35),
+			"shadow_green": Color(0.35, 0.7, 0.45)
+		}
 		. get(id, Color.WHITE)
 	)
 	for mesh in model.find_children("*", "MeshInstance3D", true, false):
@@ -426,13 +478,13 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	var original := mesh.skin
 	var bind_names: Array[String] = []
 	for bind in original.get_bind_count():
-		var name := str(original.get_bind_name(bind))
-		if name.is_empty():
+		var name_value := str(original.get_bind_name(bind))
+		if name_value.is_empty():
 			var index := original.get_bind_bone(bind)
 			if index < 0 or index >= source.get_bone_count():
 				return false
-			name = source.get_bone_name(index)
-		bind_names.append(name)
+			name_value = source.get_bone_name(index)
+		bind_names.append(name_value)
 	for surface in mesh.mesh.get_surface_count():
 		var arrays := mesh.mesh.surface_get_arrays(surface)
 		var joints: PackedInt32Array = arrays[Mesh.ARRAY_BONES]
@@ -445,9 +497,9 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	# centimetre bones, whereas normalized match assets use metres. Convert the
 	# entire bind transform, including its origin, before assigning the new rig.
 	var ratios: Array[float] = []
-	for name in ["forearm.l", "forearm.r", "shin.l", "shin.r"]:
-		var src := resolve_bone(source, name)
-		var dst := resolve_bone(target_skel, name)
+	for name_value in ["forearm.l", "forearm.r", "shin.l", "shin.r"]:
+		var src := resolve_bone(source, name_value)
+		var dst := resolve_bone(target_skel, name_value)
 		if src >= 0 and dst >= 0:
 			var length := source.get_bone_rest(src).origin.length()
 			if length > 0.00001:
@@ -455,14 +507,15 @@ static func adapt_mesh_skin_to_skeleton(mesh: MeshInstance3D, target_skel: Skele
 	if ratios.is_empty():
 		return false
 	ratios.sort()
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var unit_scale := ratios[ratios.size() / 2]
 	var conversion := Transform3D(Basis.IDENTITY.scaled(Vector3.ONE * unit_scale), Vector3.ZERO)
 	for bind in original.get_bind_count():
-		var name := bind_names[bind]
-		var target := resolve_bone(target_skel, name)
+		var name_value := bind_names[bind]
+		var target := resolve_bone(target_skel, name_value)
 		if target < 0:
 			# Exporter sentinel is unweighted, but still needs a valid bind entry.
-			if name != "neutral_bone":
+			if name_value != "neutral_bone":
 				return false
 			target = resolve_bone(target_skel, "root")
 		if target < 0:
@@ -501,12 +554,12 @@ static func retarget_animation(
 			* target.get_bone_global_rest(bone).basis.orthonormalized().get_rotation_quaternion()
 		)
 	for bone in target.get_bone_count():
-		var name := target.get_bone_name(bone)
+		var name_value := target.get_bone_name(bone)
 		var rotation_track := result.add_track(Animation.TYPE_ROTATION_3D)
-		result.track_set_path(rotation_track, NodePath("Skeleton3D:" + name))
+		result.track_set_path(rotation_track, NodePath("Skeleton3D:" + name_value))
 		tracks[bone] = rotation_track
 		var position_track := result.add_track(Animation.TYPE_POSITION_3D)
-		result.track_set_path(position_track, NodePath("Skeleton3D:" + name))
+		result.track_set_path(position_track, NodePath("Skeleton3D:" + name_value))
 		result.position_track_insert_key(position_track, 0.0, target.get_bone_rest(bone).origin)
 	var frame_count := maxi(1, ceili(clip.length * 30.0))
 	for frame in range(frame_count + 1):
@@ -517,8 +570,8 @@ static func retarget_animation(
 				source.get_bone_rest(bone).basis.orthonormalized().get_rotation_quaternion()
 			)
 		for track in clip.get_track_count():
-			var name := clip.track_get_path(track).get_concatenated_subnames()
-			var bone := source.find_bone(name)
+			var name_value := clip.track_get_path(track).get_concatenated_subnames()
+			var bone := source.find_bone(name_value)
 			if bone >= 0 and clip.track_get_type(track) == Animation.TYPE_ROTATION_3D:
 				local_rotations[bone] = clip.rotation_track_interpolate(track, sample_time)
 		var source_globals: Dictionary = {}
@@ -589,12 +642,12 @@ static func _retarget_bone(
 
 
 static func _asset_basis(skel: Skeleton3D) -> Quaternion:
-	var transform := Transform3D.IDENTITY
+	var transform_value := Transform3D.IDENTITY
 	var node: Node = skel
 	while node is Node3D and not node is FighterRig:
-		transform = (node as Node3D).transform * transform
+		transform_value = (node as Node3D).transform * transform_value
 		node = node.get_parent()
-	return transform.basis.orthonormalized().get_rotation_quaternion()
+	return transform_value.basis.orthonormalized().get_rotation_quaternion()
 
 
 static func _source_rotation(
@@ -603,11 +656,11 @@ static func _source_rotation(
 	if global.has(bone):
 		return
 	var parent := source.get_bone_parent(bone)
-	var rotation: Quaternion = local[bone]
+	var rotation_value: Quaternion = local[bone]
 	if parent >= 0:
 		_source_rotation(parent, source, local, global)
-		rotation = global[parent] * rotation
-	global[bone] = rotation
+		rotation_value = global[parent] * rotation_value
+	global[bone] = rotation_value
 
 
 func _tint(node: Node, color: Color) -> void:
@@ -697,10 +750,31 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 		)
 
 		if is_3d_transform and sub_part != "":
-			var clean_bone: String = sub_part.replace("mixamorig:", "")
+			var clean_bone: String = _strip_armature_prefix(sub_part)
 			var tgt_bone: String = clean_bone
-			if skeleton.find_bone(clean_bone) == -1:
-				tgt_bone = bone_map.get(clean_bone, "")
+			var existing := skeleton.find_bone(sub_part)
+			if existing < 0:
+				existing = skeleton.find_bone(clean_bone)
+			# Helper joints (fingers, cloak, skirt) must not collapse onto parent bones;
+			# that overwrites hand/spine tracks and locks the hands together.
+			if existing < 0 and _is_helper_bone(clean_bone):
+				binding_audit_log.append(
+					{
+						"source_clip": source_clip,
+						"original_path": str(orig_path),
+						"target_path": "",
+						"track_type": track_type,
+						"status": "EXCLUDED",
+						"reason": "Helper track '%s' kept off parent bones" % clean_bone
+					}
+				)
+				anim.remove_track(t)
+				t -= 1
+				continue
+			if existing >= 0:
+				tgt_bone = skeleton.get_bone_name(existing)
+			elif skeleton.find_bone(clean_bone) == -1:
+				tgt_bone = str(bone_map.get(clean_bone, ""))
 
 			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
 				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
@@ -751,10 +825,13 @@ func _bind_animation_to_skeleton(anim: Animation, source_clip: String = "") -> b
 					)
 					anim.remove_track(t)
 		elif is_3d_transform and sub_part == "":
-			var clean_node := node_part.get_file().replace("mixamorig:", "")
+			var clean_node := _strip_armature_prefix(node_part.get_file())
 			var tgt_bone: String = clean_node
 			if skeleton.find_bone(clean_node) == -1:
-				tgt_bone = bone_map.get(clean_node, "")
+				if _is_helper_bone(clean_node):
+					tgt_bone = ""
+				else:
+					tgt_bone = str(bone_map.get(clean_node, ""))
 			if tgt_bone != "" and skeleton.find_bone(tgt_bone) != -1:
 				var target_path := NodePath(skel_rel_path + ":" + tgt_bone)
 				anim.track_set_path(t, target_path)

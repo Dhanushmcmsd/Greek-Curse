@@ -1,10 +1,12 @@
 class_name MatchConfig
 extends RefCounted
+var career_styles: bool = false
 
 var fighter_ids: Array[String] = ["theron", "atalanta"]
 var controllers: Array[String] = ["human_kb1", "ai_normal"]
 var arena_id: String = "mount_olympus"
 var mode: String = "practice"
+@warning_ignore("shadowed_global_identifier") # Public serialized field; keep the existing save/replay API.
 var seed: int = 1
 var rules: Dictionary = {}
 var loadouts: Array = []
@@ -16,7 +18,7 @@ func validate() -> String:
 	if fighter_ids.size() != 2 or controllers.size() != 2:
 		return "Exactly two fighters and controllers required"
 	for id in fighter_ids:
-		if id not in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+		if id not in ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]:
 			return "Unknown fighter " + id
 	for controller in controllers:
 		if (

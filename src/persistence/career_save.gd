@@ -31,7 +31,7 @@ func validate(data: Variant) -> String:
 func _fighter_error(fighter: Dictionary) -> String:
 	if fighter.is_empty():
 		return ""
-	if fighter.get("id", "") not in ["theron", "atalanta", "pyrrhus", "sibyl"]:
+	if fighter.get("id", "") not in ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]:
 		return "Unknown fighter"
 	for key in ["unlocked_abilities", "traded_abilities", "offers_state"]:
 		if not fighter.get(key) is Array:
@@ -173,10 +173,10 @@ func _limb_error(slot: String, limb: Dictionary) -> String:
 	if not limb.get("regrown_id") is String:
 		return "Invalid replacement id"
 	if limb["regrown_id"] != "":
-		var path := "res://data/limbs/%s.json" % limb["regrown_id"]
-		if not FileAccess.file_exists(path):
+		var path_value := "res://data/limbs/%s.json" % limb["regrown_id"]
+		if not FileAccess.file_exists(path_value):
 			return "Unknown replacement"
-		var row: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+		var row: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path_value))
 		if not slot.begins_with(row["slot"]):
 			return "Incompatible replacement"
 	return ""

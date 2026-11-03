@@ -24,6 +24,7 @@ func test_all_twenty_one_abilities_have_valid_loadout_and_move_data() -> void:
 			var test := _world()
 			var fighter := test.fighters[0]
 			fighter.meter = 100
+			fighter.super_charge = 100
 			SimMovement._begin_named(
 				test,
 				fighter,
@@ -45,6 +46,7 @@ func test_ultimate_has_full_counterplay_window_and_spam_cannot_bypass_cooldown()
 	var world := _world()
 	var fighter := world.fighters[0]
 	fighter.meter = 100
+	fighter.super_charge = 100
 	SimMovement._begin_named(world, fighter, "zeus_wrath", "body")
 	assert_eq(fighter.startup_ticks, 42, "0.7 seconds")
 	assert_eq(fighter.meter, 0, "full meter spent")

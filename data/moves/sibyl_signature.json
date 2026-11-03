@@ -1,0 +1,48 @@
+{
+  "id": "sibyl_signature",
+  "display_name": "Oracle Spiral",
+  "startup_ticks": 10,
+  "active_ticks": 31,
+  "recovery_ticks": 18,
+  "damage": 11,
+  "limb_damage": 8,
+  "on_block_pushback": 90,
+  "hitstop_attacker": 3,
+  "hitstop_defender": 3,
+  "cancel_into": [
+    "sibyl_finisher"
+  ],
+  "cancel_start": 41,
+  "cancel_end": 49,
+  "armor_hits": 0,
+  "unblockable": false,
+  "is_grab": false,
+  "hit_count": 3,
+  "hit_interval": 14,
+  "launch_y": 0,
+  "wall_bounce": false,
+  "limb_side": "arm_r",
+  "zone_priority": 1,
+  "hitstun_ticks": 28,
+  "blockstun_ticks": 12,
+  "knockback_mm": 55,
+  "hitbox": {
+    "x": 170,
+    "y": 750,
+    "w": 560,
+    "h": 600
+  },
+  "cost": 20,
+  "can_cancel": true,
+  "hop_mm_per_tick": 0,
+  "category": "heavy",
+  "anim_set": "punch_heavy",
+  "owner": "sibyl",
+  "input_label": "Forward + Right Punch",
+  "required_limbs": [
+    "arm_l",
+    "arm_r",
+    "leg_l",
+    "leg_r"
+  ]
+}

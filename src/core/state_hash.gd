@@ -5,31 +5,31 @@ extends RefCounted
 
 
 static func hash_ints(values: Array) -> int:
-	var hash := _offset()
+	var hash_value := _offset()
 	for value in values:
-		hash = _feed(hash, int(value))
-	return hash
+		hash_value = _feed(hash_value, int(value))
+	return hash_value
 
 
 static func hash_string(value: String) -> int:
-	var hash := _offset()
+	var hash_value := _offset()
 	for byte in value.to_utf8_buffer():
-		hash = _mix(hash, byte)
-	return hash
+		hash_value = _mix(hash_value, byte)
+	return hash_value
 
 
 static func _offset() -> int:
 	return (0xCBF29CE4 << 32) | 0x84222325
 
 
-static func _feed(hash: int, value: int) -> int:
+static func _feed(hash_value: int, value: int) -> int:
 	var remaining := value
 	for _i in 8:
-		hash = _mix(hash, remaining & 255)
+		hash_value = _mix(hash_value, remaining & 255)
 		remaining = remaining >> 8
-	return hash
+	return hash_value
 
 
-static func _mix(hash: int, byte: int) -> int:
-	var mixed := (hash ^ (byte & 255)) * 1099511628211
+static func _mix(hash_value: int, byte: int) -> int:
+	var mixed := (hash_value ^ (byte & 255)) * 1099511628211
 	return mixed

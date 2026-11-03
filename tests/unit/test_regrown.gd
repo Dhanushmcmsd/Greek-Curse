@@ -114,7 +114,7 @@ func test_claw_chip_hold_and_seeded_whiff() -> void:
 	assert_eq(contact.fighters[1].health, 277, "actual pincer damage through block")
 
 
-func test_resever_removes_modifier_and_preserves_credit_limit() -> void:
+func test_resever_is_blocked_by_match_limit() -> void:
 	var world := ProtoFixture.world_with()
 	for i in 4:
 		SimSeverance.hit(world, 0, 1, "arm_l", 50, [])
@@ -123,6 +123,8 @@ func test_resever_removes_modifier_and_preserves_credit_limit() -> void:
 	for i in 4:
 		SimSeverance.hit(world, 0, 1, "arm_l", 50, [])
 	assert_eq(world.amputations.size(), 1, "no second credit")
-	assert_eq(world.fighters[0].limbs.parts["arm_l"].state, "severed", "replacement severed")
+	assert_eq(
+		world.fighters[0].limbs.parts["arm_l"].state, "cracked", "replacement remains attached"
+	)
 	for modifier in world.fighters[0].modifiers:
-		assert_true(modifier.id != "regrown:arm_l", "modifier removed")
+		assert_true(modifier.id != "amputation_status:leg_l", "no extra amputation modifier")

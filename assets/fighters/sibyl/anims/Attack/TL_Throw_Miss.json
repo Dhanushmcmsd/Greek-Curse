@@ -1,0 +1,4981 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_Throw_Miss",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss",
+    "Properties": {
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Throw_Miss:TimelineDataTrackFloat_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.67"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.70"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.71"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Throw_Miss:TimelineDataTrackInt_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.72"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Throw_Miss:TimelineDataTrackVector_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.83"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Throw_Miss:TimelineDataTrackVector_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.85"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Throw_Miss:TimelineDataTrackVector_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.84"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Throw_Miss:TimelineDataTrackVector_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.86"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Throw_Miss:TimelineDataTrackBool_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.56"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Throw_Miss:TimelineDataTrackBool_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.57"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Throw_Miss:TimelineDataTrackFloat_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Throw_Miss:TimelineDataTrackFloat_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.73"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.74"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.51"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.52"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.53"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.54"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.55"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_28'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_29'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_30'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.39"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_31'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_32'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.41"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_33'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.42"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_34'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_35'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_36'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_37'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_38'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.47"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_39'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.48"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.75"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Throw_Miss:TimelineDataTrackFName_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.63"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.76"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.77"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Throw_Miss:TimelineDataTrackFName_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.64"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.78"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.79"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Throw_Miss:TimelineDataTrackFName_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.65"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.80"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.81"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Throw_Miss:TimelineDataTrackFName_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.66"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Throw_Miss:TimelineDataTrackUObject_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.82"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Throw_Miss:TimelineDataTrackBool_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Throw_Miss:TimelineDataTrackBool_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.59"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Throw_Miss:TimelineCompressedTrack_Transform_40'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.50"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 162
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_28",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_29",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_30",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_31",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_32",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_33",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_34",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_35",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_36",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_37",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_38",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_39",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_40",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        2.8237085,
+        3.0262556,
+        3.2034397,
+        3.5419683,
+        3.2458658,
+        2.983921,
+        3.124857,
+        2.9936275,
+        3.4312859,
+        3.263277,
+        3.1454792,
+        2.9736128,
+        2.8303986,
+        2.6564207,
+        2.9083996,
+        3.0415678,
+        3.171132,
+        3.2754612,
+        3.4404116,
+        3.5812445,
+        3.7077894,
+        3.8817434,
+        3.710558,
+        3.5726824,
+        3.4659443,
+        3.3536472,
+        3.6593513,
+        3.8772516,
+        4.14373,
+        3.982994,
+        3.7960472,
+        3.626256,
+        3.4730082,
+        3.3310165,
+        3.2077627,
+        3.0984354,
+        2.9350615,
+        2.8267488,
+        2.8237085,
+        2.8237085
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        2.7,
+        2.7
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        2.7,
+        2.7
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        10
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        118
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        158
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Throw_Miss_Flip'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/Throw_Miss_Flip.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Throw_Miss'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/Throw_Miss.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.6"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.7"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.8"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.9"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.10"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.11"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.12"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.13"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.14"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'sfx_Crowd_Whoosh_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Char/JohnnyCage/SFX_JohnnyCage_Events/Gameplay/sfx_Crowd_Whoosh_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Whoosh_High_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COMBAT_Events/Combat/Whoosh/Whoosh_High_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.5"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Exert_Grab'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/GRUNT_Events/Grunt_Core_Events/Exert_Grab.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.3"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.4"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Fast_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Fast_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.1"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Throw_Miss:RtpcData_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.2"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.46276855,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.24158478,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6639175,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.9459686,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.226631,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 9.063278,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 15.175705,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.749237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 30.618095,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 34.452316,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 36.777645,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 38.68297,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 40.30209,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.667423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 42.755707,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.498783,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.95125,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.126354,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.137856,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.124634,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.999146,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.776203,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.44686,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.015205,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 42.481762,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.83741,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.1283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 40.243515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 39.10453,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 37.699154,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 35.960403,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 33.93283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 31.757843,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 29.520447,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 27.263123,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 25.04049,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.864677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.707878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 18.604324,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 16.62944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 14.675171,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 12.750198,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 10.936813,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 9.304878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 7.860428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.571274,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4356995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.893921,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4725266,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.428215,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.6828842,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.007095337,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.4718628,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.9002228,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2931213,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6511459,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.9736404,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.258133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.5043182,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.7119217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8795242,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.0471115,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1487198,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1889877,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.164772,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1151428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.0349884,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8414536,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.527481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.131134,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6826859,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1632996,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6230774,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.05760193,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.5304413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.100029,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6304398,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1185226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5703049,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.971817,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.296852,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.561798,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.7441406,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8549347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9483414,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9914093,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.019348,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.008644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.996849,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9758759,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.940422,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8659286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.6924286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.4625626,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.1918488,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.8254395,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.412094,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8924484,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2927017,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.56105804,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.18909454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.9402008,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6706009,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.3984375,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.121605,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.7658615,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.4226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.0316925,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.5907974,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.065857,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.4684753,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.776985,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.9799576,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.0781403,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.090973,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.9414597,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.65464,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.15831,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.4886475,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.814148,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.118248,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.3847427,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.5789413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.8236237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.196907,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6311722,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.14095306,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.28814697,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.64756775,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.9572983,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2388229,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4720764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6791306,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8667145,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0359192,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1819305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.2886963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.374504,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4362717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4776077,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4962463,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4874344,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4535904,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3969421,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3154144,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.2095413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0859375,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.9497223,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8062515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6639252,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5176773,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3689957,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.222702,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0766907,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.92768097,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.7815323,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.637825,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.49591827,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.36087036,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.22341919,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.10567474,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.882124,
+          "Y": 0.47101718,
+          "Z": 0.0
+        },
+        {
+          "X": 0.86722165,
+          "Y": 0.49792224,
+          "Z": 0.0
+        },
+        {
+          "X": 0.7967676,
+          "Y": 0.6042859,
+          "Z": 0.0
+        },
+        {
+          "X": 0.6059029,
+          "Y": 0.79553854,
+          "Z": 0.0
+        },
+        {
+          "X": 0.32697284,
+          "Y": 0.94503367,
+          "Z": 0.0
+        },
+        {
+          "X": -5.9604645E-07,
+          "Y": 0.99999994,
+          "Z": 0.0
+        },
+        {
+          "X": -0.2856599,
+          "Y": 0.95833105,
+          "Z": 0.0
+        },
+        {
+          "X": -0.4718716,
+          "Y": 0.8816673,
+          "Z": 0.0
+        },
+        {
+          "X": -0.48685014,
+          "Y": 0.8734855,
+          "Z": 0.0
+        },
+        {
+          "X": -0.32252872,
+          "Y": 0.9465597,
+          "Z": 0.0
+        },
+        {
+          "X": -0.10304642,
+          "Y": 0.9946766,
+          "Z": 0.0
+        },
+        {
+          "X": -0.00027441978,
+          "Y": 0.9999999,
+          "Z": 0.0
+        },
+        {
+          "X": 0.059477806,
+          "Y": 0.9982296,
+          "Z": 0.0
+        },
+        {
+          "X": 0.101719856,
+          "Y": 0.99481314,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13087595,
+          "Y": 0.9913987,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13831592,
+          "Y": 0.99038815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13449365,
+          "Y": 0.99091446,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12419307,
+          "Y": 0.99225813,
+          "Z": 0.0
+        },
+        {
+          "X": 0.106336,
+          "Y": 0.9943303,
+          "Z": 0.0
+        },
+        {
+          "X": 0.081452906,
+          "Y": 0.9966772,
+          "Z": 0.0
+        },
+        {
+          "X": 0.04183072,
+          "Y": 0.9991247,
+          "Z": 0.0
+        },
+        {
+          "X": -0.0024893284,
+          "Y": 0.99999684,
+          "Z": 0.0
+        },
+        {
+          "X": -0.04765463,
+          "Y": 0.99886394,
+          "Z": 0.0
+        },
+        {
+          "X": -0.09227109,
+          "Y": 0.9957339,
+          "Z": 0.0
+        },
+        {
+          "X": -0.13585722,
+          "Y": 0.9907284,
+          "Z": 0.0
+        },
+        {
+          "X": -0.17811203,
+          "Y": 0.9840103,
+          "Z": 0.0
+        },
+        {
+          "X": -0.21938002,
+          "Y": 0.9756396,
+          "Z": 0.0
+        },
+        {
+          "X": -0.25632584,
+          "Y": 0.9665904,
+          "Z": 0.0
+        },
+        {
+          "X": -0.29211366,
+          "Y": 0.9563836,
+          "Z": 0.0
+        },
+        {
+          "X": -0.32805753,
+          "Y": 0.9446576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.36618555,
+          "Y": 0.93054175,
+          "Z": 0.0
+        },
+        {
+          "X": -0.40639353,
+          "Y": 0.91369814,
+          "Z": 0.0
+        },
+        {
+          "X": -0.44643724,
+          "Y": 0.89481485,
+          "Z": 0.0
+        },
+        {
+          "X": -0.48396838,
+          "Y": 0.8750856,
+          "Z": 0.0
+        },
+        {
+          "X": -0.51696134,
+          "Y": 0.8560089,
+          "Z": 0.0
+        },
+        {
+          "X": -0.54468226,
+          "Y": 0.8386423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.57012355,
+          "Y": 0.821559,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5957581,
+          "Y": 0.803164,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6209841,
+          "Y": 0.78382313,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64722884,
+          "Y": 0.76229584,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6749065,
+          "Y": 0.73790306,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7026392,
+          "Y": 0.7115461,
+          "Z": 0.0
+        },
+        {
+          "X": -0.72841716,
+          "Y": 0.68513376,
+          "Z": 0.0
+        },
+        {
+          "X": -0.751284,
+          "Y": 0.65997905,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7727339,
+          "Y": 0.6347301,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7938539,
+          "Y": 0.6081085,
+          "Z": 0.0
+        },
+        {
+          "X": -0.815097,
+          "Y": 0.57932454,
+          "Z": 0.0
+        },
+        {
+          "X": -0.835538,
+          "Y": 0.5494328,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86167645,
+          "Y": 0.5074582,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8796853,
+          "Y": 0.47555625,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8949691,
+          "Y": 0.44612795,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90931094,
+          "Y": 0.41611725,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92287636,
+          "Y": 0.38509643,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9337183,
+          "Y": 0.3580082,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9440274,
+          "Y": 0.32986704,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95371425,
+          "Y": 0.30071425,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9625814,
+          "Y": 0.27099305,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9703697,
+          "Y": 0.2416247,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97698295,
+          "Y": 0.21331681,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9823803,
+          "Y": 0.18689173,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9865792,
+          "Y": 0.16328175,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98974824,
+          "Y": 0.14282353,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9921545,
+          "Y": 0.12501638,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99370956,
+          "Y": 0.11198767,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99456847,
+          "Y": 0.10408412,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9948609,
+          "Y": 0.10125098,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9947958,
+          "Y": 0.10188617,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9945651,
+          "Y": 0.104116075,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9941858,
+          "Y": 0.10767755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.993665,
+          "Y": 0.112382114,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99297786,
+          "Y": 0.118299894,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99208903,
+          "Y": 0.12553596,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99079335,
+          "Y": 0.13538274,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98908937,
+          "Y": 0.14731714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.986879,
+          "Y": 0.161461,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9840317,
+          "Y": 0.17799202,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9803549,
+          "Y": 0.19724172,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97560644,
+          "Y": 0.21952735,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96954155,
+          "Y": 0.244927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96218014,
+          "Y": 0.2724144,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9534918,
+          "Y": 0.30141926,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9434917,
+          "Y": 0.3313964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9333378,
+          "Y": 0.35899922,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9218633,
+          "Y": 0.387515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90823674,
+          "Y": 0.4184567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8937521,
+          "Y": 0.44856095,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8766744,
+          "Y": 0.48108423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8579457,
+          "Y": 0.5137404,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8358773,
+          "Y": 0.54891616,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81166494,
+          "Y": 0.58412313,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7854867,
+          "Y": 0.61887854,
+          "Z": 0.0
+        },
+        {
+          "X": -0.75728476,
+          "Y": 0.6530848,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7272539,
+          "Y": 0.68636847,
+          "Z": 0.0
+        },
+        {
+          "X": -0.69533265,
+          "Y": 0.7186879,
+          "Z": 0.0
+        },
+        {
+          "X": -0.66958404,
+          "Y": 0.7427363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6526427,
+          "Y": 0.7576656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64337444,
+          "Y": 0.7655516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6417297,
+          "Y": 0.76693076,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6482587,
+          "Y": 0.76142013,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6635643,
+          "Y": 0.7481191,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68732345,
+          "Y": 0.7263512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7160671,
+          "Y": 0.69803137,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7459867,
+          "Y": 0.6659609,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7728512,
+          "Y": 0.63458735,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7936088,
+          "Y": 0.608428,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8066071,
+          "Y": 0.5910879,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81378245,
+          "Y": 0.58116966,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8189148,
+          "Y": 0.5739152,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82352424,
+          "Y": 0.567281,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82865787,
+          "Y": 0.55975544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8340126,
+          "Y": 0.5517453,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83981764,
+          "Y": 0.54286873,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8456937,
+          "Y": 0.5336683,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84956646,
+          "Y": 0.5274817,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85000515,
+          "Y": 0.52677447,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8487171,
+          "Y": 0.5288467,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8483062,
+          "Y": 0.52950597,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8467603,
+          "Y": 0.5319748,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84401596,
+          "Y": 0.536318,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8389195,
+          "Y": 0.5442556,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8362869,
+          "Y": 0.5482919,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8367431,
+          "Y": 0.54759544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83775103,
+          "Y": 0.5460525,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83980966,
+          "Y": 0.54288083,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84300447,
+          "Y": 0.53790665,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84779894,
+          "Y": 0.53031784,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85336185,
+          "Y": 0.5213191,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8577697,
+          "Y": 0.5140342,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86074066,
+          "Y": 0.5090436,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8624768,
+          "Y": 0.50609636,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86417425,
+          "Y": 0.5031927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86535966,
+          "Y": 0.5011512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8660376,
+          "Y": 0.49997905,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86666834,
+          "Y": 0.49888453,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86691964,
+          "Y": 0.49844775,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8673885,
+          "Y": 0.4976317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8662853,
+          "Y": 0.49954927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8653474,
+          "Y": 0.5011727,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86433303,
+          "Y": 0.5029197,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8630401,
+          "Y": 0.5051355,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86154103,
+          "Y": 0.50768816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.860186,
+          "Y": 0.5099804,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8592224,
+          "Y": 0.5116024,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85835636,
+          "Y": 0.5130538,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8575909,
+          "Y": 0.51433223,
+          "Z": 0.0
+        },
+        {
+          "X": -0.857442,
+          "Y": 0.51458067,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8577497,
+          "Y": 0.5140675,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8591424,
+          "Y": 0.5117366,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8611659,
+          "Y": 0.508324,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8632269,
+          "Y": 0.504816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86513877,
+          "Y": 0.50153255,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8663881,
+          "Y": 0.49937117,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86800456,
+          "Y": 0.49655607,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8693454,
+          "Y": 0.49420503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8706553,
+          "Y": 0.49189377,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8720757,
+          "Y": 0.48937118,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87378514,
+          "Y": 0.48631203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87470233,
+          "Y": 0.48466074,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8774557,
+          "Y": 0.47965714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8791847,
+          "Y": 0.47648096,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8804717,
+          "Y": 0.47409815,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813281,
+          "Y": 0.47250432,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.46276855,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.24307251,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.4435577,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 8.333267,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 12.902245,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 17.965302,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 23.45691,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 27.859009,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 31.485733,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 34.452316,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 36.777645,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 38.68297,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 40.30209,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.667423,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 42.755707,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.498783,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.95125,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.126354,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.137856,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 44.124634,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.999146,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.776203,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.44686,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 43.015205,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 42.481762,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.83741,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 41.1283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 40.243515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 39.10453,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 37.699154,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 35.960403,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 33.93283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 31.757843,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 29.520447,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 27.263123,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 25.04049,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 22.864677,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 20.707878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 18.604324,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 16.62944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 14.675171,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 12.750198,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 10.936813,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 9.304878,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 7.860428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 6.571274,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 5.4356995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.893921,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4725266,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.428215,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.6828842,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.007095337,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.4718628,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.9002228,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.2931213,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6511459,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.9736404,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.258133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.5043182,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.7119217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8795242,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.0471115,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1487198,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1889877,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.164772,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.1151428,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.0349884,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.8414536,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.527481,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.131134,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6826859,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.1632996,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6230774,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.05760193,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.5304413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.100029,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6304398,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1185226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.5703049,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.971817,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.296852,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.561798,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.7441406,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8549347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9483414,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9914093,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.019348,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 4.008644,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.996849,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.9758759,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.940422,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.8659286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.6924286,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.4625626,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 3.1918488,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.8254395,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.412094,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8924484,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2927017,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.56105804,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.18909454,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.9402008,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.6706009,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.3984375,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.121605,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.7658615,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.4226,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.0316925,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.5907974,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.065857,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.4684753,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.776985,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.9799576,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.0781403,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -7.090973,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.9414597,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.65464,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -6.15831,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -5.4886475,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.814148,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -4.118248,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -3.3847427,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -2.5789413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.8236237,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -1.196907,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.6311722,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.14095306,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.28814697,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.64756775,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.9572983,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.2388229,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.4720764,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6791306,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8667145,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0359192,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.1819305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.2886963,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.374504,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4362717,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4776077,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4962463,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4874344,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.4535904,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3969421,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.3154144,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.2095413,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 2.0859375,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.9497223,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.8062515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.6639252,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.5176773,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.3689957,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.222702,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 1.0766907,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.92768097,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.7815323,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.637825,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.49591827,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.36087036,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.22341919,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 0.10567474,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": -0.0062942505,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Throw_Miss'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Attack/TL_Throw_Miss.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8672224,
+          "Y": 0.49792093,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83893144,
+          "Y": 0.5442369,
+          "Z": 0.0
+        },
+        {
+          "X": -0.79004395,
+          "Y": 0.61305004,
+          "Z": 0.0
+        },
+        {
+          "X": -0.75545144,
+          "Y": 0.6552045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.71745336,
+          "Y": 0.69660646,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68414915,
+          "Y": 0.72934186,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6432115,
+          "Y": 0.7656886,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5260451,
+          "Y": 0.8504567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.32252872,
+          "Y": 0.9465597,
+          "Z": 0.0
+        },
+        {
+          "X": -0.10304642,
+          "Y": 0.9946766,
+          "Z": 0.0
+        },
+        {
+          "X": -0.00027441978,
+          "Y": 0.9999999,
+          "Z": 0.0
+        },
+        {
+          "X": 0.059477806,
+          "Y": 0.9982296,
+          "Z": 0.0
+        },
+        {
+          "X": 0.101719856,
+          "Y": 0.99481314,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13087595,
+          "Y": 0.9913987,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13831592,
+          "Y": 0.99038815,
+          "Z": 0.0
+        },
+        {
+          "X": 0.13449365,
+          "Y": 0.99091446,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12419307,
+          "Y": 0.99225813,
+          "Z": 0.0
+        },
+        {
+          "X": 0.106336,
+          "Y": 0.9943303,
+          "Z": 0.0
+        },
+        {
+          "X": 0.081452906,
+          "Y": 0.9966772,
+          "Z": 0.0
+        },
+        {
+          "X": 0.04183072,
+          "Y": 0.9991247,
+          "Z": 0.0
+        },
+        {
+          "X": -0.0024893284,
+          "Y": 0.99999684,
+          "Z": 0.0
+        },
+        {
+          "X": -0.04765463,
+          "Y": 0.99886394,
+          "Z": 0.0
+        },
+        {
+          "X": -0.09227109,
+          "Y": 0.9957339,
+          "Z": 0.0
+        },
+        {
+          "X": -0.13585722,
+          "Y": 0.9907284,
+          "Z": 0.0
+        },
+        {
+          "X": -0.17811203,
+          "Y": 0.9840103,
+          "Z": 0.0
+        },
+        {
+          "X": -0.21938002,
+          "Y": 0.9756396,
+          "Z": 0.0
+        },
+        {
+          "X": -0.25632584,
+          "Y": 0.9665904,
+          "Z": 0.0
+        },
+        {
+          "X": -0.29211366,
+          "Y": 0.9563836,
+          "Z": 0.0
+        },
+        {
+          "X": -0.32805753,
+          "Y": 0.9446576,
+          "Z": 0.0
+        },
+        {
+          "X": -0.36618555,
+          "Y": 0.93054175,
+          "Z": 0.0
+        },
+        {
+          "X": -0.40639353,
+          "Y": 0.91369814,
+          "Z": 0.0
+        },
+        {
+          "X": -0.44643724,
+          "Y": 0.89481485,
+          "Z": 0.0
+        },
+        {
+          "X": -0.48396838,
+          "Y": 0.8750856,
+          "Z": 0.0
+        },
+        {
+          "X": -0.51696134,
+          "Y": 0.8560089,
+          "Z": 0.0
+        },
+        {
+          "X": -0.54468226,
+          "Y": 0.8386423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.57012355,
+          "Y": 0.821559,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5957581,
+          "Y": 0.803164,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6209841,
+          "Y": 0.78382313,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64722884,
+          "Y": 0.76229584,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6749065,
+          "Y": 0.73790306,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7026392,
+          "Y": 0.7115461,
+          "Z": 0.0
+        },
+        {
+          "X": -0.72841716,
+          "Y": 0.68513376,
+          "Z": 0.0
+        },
+        {
+          "X": -0.751284,
+          "Y": 0.65997905,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7727339,
+          "Y": 0.6347301,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7938539,
+          "Y": 0.6081085,
+          "Z": 0.0
+        },
+        {
+          "X": -0.815097,
+          "Y": 0.57932454,
+          "Z": 0.0
+        },
+        {
+          "X": -0.835538,
+          "Y": 0.5494328,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86167645,
+          "Y": 0.5074582,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8796853,
+          "Y": 0.47555625,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8949691,
+          "Y": 0.44612795,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90931094,
+          "Y": 0.41611725,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92287636,
+          "Y": 0.38509643,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9337183,
+          "Y": 0.3580082,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94404626,
+          "Y": 0.32981282,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95371425,
+          "Y": 0.30071425,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9625814,
+          "Y": 0.27099305,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9703697,
+          "Y": 0.2416247,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97698295,
+          "Y": 0.21331681,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9823803,
+          "Y": 0.18689173,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9865792,
+          "Y": 0.16328175,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98974824,
+          "Y": 0.14282353,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9921545,
+          "Y": 0.12501638,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99370956,
+          "Y": 0.11198767,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99456847,
+          "Y": 0.10408412,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9948609,
+          "Y": 0.10125098,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9947958,
+          "Y": 0.10188617,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9945651,
+          "Y": 0.104116075,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9941858,
+          "Y": 0.10767755,
+          "Z": 0.0
+        },
+        {
+          "X": -0.993665,
+          "Y": 0.112382114,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99297786,
+          "Y": 0.118299894,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99208903,
+          "Y": 0.12553596,
+          "Z": 0.0
+        },
+        {
+          "X": -0.99079335,
+          "Y": 0.13538274,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98908937,
+          "Y": 0.14731714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.986879,
+          "Y": 0.161461,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9840317,
+          "Y": 0.17799202,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9803549,
+          "Y": 0.19724172,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97560644,
+          "Y": 0.21952735,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96954155,
+          "Y": 0.244927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96218014,
+          "Y": 0.2724144,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9534918,
+          "Y": 0.30141926,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9434917,
+          "Y": 0.3313964,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9333378,
+          "Y": 0.35899922,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9218633,
+          "Y": 0.387515,
+          "Z": 0.0
+        },
+        {
+          "X": -0.90823674,
+          "Y": 0.4184567,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8937521,
+          "Y": 0.44856095,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8766744,
+          "Y": 0.48108423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8579457,
+          "Y": 0.5137404,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8358773,
+          "Y": 0.54891616,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81166494,
+          "Y": 0.58412313,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7854867,
+          "Y": 0.61887854,
+          "Z": 0.0
+        },
+        {
+          "X": -0.75728476,
+          "Y": 0.6530848,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7272539,
+          "Y": 0.68636847,
+          "Z": 0.0
+        },
+        {
+          "X": -0.69533265,
+          "Y": 0.7186879,
+          "Z": 0.0
+        },
+        {
+          "X": -0.66958404,
+          "Y": 0.7427363,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6526427,
+          "Y": 0.7576656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.64337444,
+          "Y": 0.7655516,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6417297,
+          "Y": 0.76693076,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6482587,
+          "Y": 0.76142013,
+          "Z": 0.0
+        },
+        {
+          "X": -0.6635643,
+          "Y": 0.7481191,
+          "Z": 0.0
+        },
+        {
+          "X": -0.68732345,
+          "Y": 0.7263512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7160671,
+          "Y": 0.69803137,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7459867,
+          "Y": 0.6659609,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7728512,
+          "Y": 0.63458735,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7936088,
+          "Y": 0.608428,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8066071,
+          "Y": 0.5910879,
+          "Z": 0.0
+        },
+        {
+          "X": -0.81378245,
+          "Y": 0.58116966,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8189148,
+          "Y": 0.5739152,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82352424,
+          "Y": 0.567281,
+          "Z": 0.0
+        },
+        {
+          "X": -0.82865787,
+          "Y": 0.55975544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8340126,
+          "Y": 0.5517453,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83981764,
+          "Y": 0.54286873,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8456937,
+          "Y": 0.5336683,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84956646,
+          "Y": 0.5274817,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85000515,
+          "Y": 0.52677447,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8487171,
+          "Y": 0.5288467,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8483062,
+          "Y": 0.52950597,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8467603,
+          "Y": 0.5319748,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84401596,
+          "Y": 0.536318,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8389195,
+          "Y": 0.5442556,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8362869,
+          "Y": 0.5482919,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8367431,
+          "Y": 0.54759544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83775103,
+          "Y": 0.5460525,
+          "Z": 0.0
+        },
+        {
+          "X": -0.83980966,
+          "Y": 0.54288083,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84300447,
+          "Y": 0.53790665,
+          "Z": 0.0
+        },
+        {
+          "X": -0.84779894,
+          "Y": 0.53031784,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85336185,
+          "Y": 0.5213191,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8577697,
+          "Y": 0.5140342,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86074066,
+          "Y": 0.5090436,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8624768,
+          "Y": 0.50609636,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86417425,
+          "Y": 0.5031927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86535966,
+          "Y": 0.5011512,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8660376,
+          "Y": 0.49997905,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86666834,
+          "Y": 0.49888453,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86691964,
+          "Y": 0.49844775,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8673885,
+          "Y": 0.4976317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8662853,
+          "Y": 0.49954927,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8653474,
+          "Y": 0.5011727,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86433303,
+          "Y": 0.5029197,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8630401,
+          "Y": 0.5051355,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86154103,
+          "Y": 0.50768816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.860186,
+          "Y": 0.5099804,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8592224,
+          "Y": 0.5116024,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85835636,
+          "Y": 0.5130538,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8575909,
+          "Y": 0.51433223,
+          "Z": 0.0
+        },
+        {
+          "X": -0.857442,
+          "Y": 0.51458067,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8577497,
+          "Y": 0.5140675,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8591424,
+          "Y": 0.5117366,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8611659,
+          "Y": 0.508324,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8632269,
+          "Y": 0.504816,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86513877,
+          "Y": 0.50153255,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8663881,
+          "Y": 0.49937117,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86800456,
+          "Y": 0.49655607,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8693454,
+          "Y": 0.49420503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8706553,
+          "Y": 0.49189377,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8720757,
+          "Y": 0.48937118,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87378514,
+          "Y": 0.48631203,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87470233,
+          "Y": 0.48466074,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8774557,
+          "Y": 0.47965714,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8791847,
+          "Y": 0.47648096,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8804717,
+          "Y": 0.47409815,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813281,
+          "Y": 0.47250432,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8821243,
+          "Y": 0.4710165,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

@@ -8,10 +8,12 @@ static func derive(row: Dictionary, curves: Dictionary) -> Dictionary:
 	var body: Dictionary = row["body"]
 	var weight := int(body["weight_kg"]) - int(rule["reference_weight"])
 	var muscle := int(body["muscle"]) - int(rule["reference_muscle"])
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var speed := Fx.percent(
 		int(curves["speed_mm_per_tick"][int(row["speed"])]),
 		100 - weight / int(rule["weight_speed_divisor"])
 	)
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	return {
 		"speed": maxi(8, speed),
 		"power":

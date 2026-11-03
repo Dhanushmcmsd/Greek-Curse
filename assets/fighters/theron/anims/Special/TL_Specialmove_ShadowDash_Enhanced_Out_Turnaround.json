@@ -1,0 +1,2284 @@
+[
+  {
+    "Type": "GameTimeline",
+    "Name": "TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'GameTimeline'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround",
+    "Properties": {
+      "TagContainer": [
+        "TL_Special"
+      ],
+      "TimelineEntityMap": [
+        {
+          "Key": {
+            "PathElements": [
+              "Primary"
+            ]
+          },
+          "Value": {
+            "EntityClass": {
+              "AssetPathName": "/Game/Disk/Char/JohnnyCage/Template/Blueprint/BP_JohnnyCage_Char.BP_JohnnyCage_Char_C",
+              "SubPathString": ""
+            },
+            "EntityClassHardLink": null,
+            "SpawnControl": "EEntitySpawnControl::NotSpawned",
+            "HiddenInCinema": false,
+            "bIsSubEntity": false
+          }
+        }
+      ],
+      "PathNodes": null,
+      "TrackVariantSets": null,
+      "TrackConfigurations": null,
+      "TrackVariants": [
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFloat_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.50"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackInt_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.56"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackInt_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.57"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.6"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.7"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.18"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.29"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.40"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.42"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.43"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.44"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.45"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_9'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.46"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.8"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.9"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.10"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.11"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.12"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_15'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.13"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_16'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.14"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_17'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.15"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_18'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.16"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_19'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.17"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_20'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.19"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_21'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.20"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_22'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.21"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_23'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.22"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_24'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.23"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_25'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.24"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_26'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.25"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_27'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.26"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_28'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.27"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_29'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.28"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_30'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.30"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_31'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.31"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_32'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.32"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_33'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.33"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_34'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.34"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_35'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.35"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_36'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.36"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_37'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.37"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_38'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.38"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_39'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.39"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackInt_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.58"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.60"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackBool_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.47"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFloat'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFloat_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.51"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackVector_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.69"
+        },
+        {
+          "ObjectName": "TimelineDataTrackInt'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackInt_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.59"
+        },
+        {
+          "ObjectName": "TimelineDataTrackVector'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackVector_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.70"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.61"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFName_0'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.52"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.62"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.63"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFName_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.53"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_4'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.64"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_5'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.65"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFName_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.54"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_6'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.66"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_7'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.67"
+        },
+        {
+          "ObjectName": "TimelineDataTrackFName'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackFName_3'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.55"
+        },
+        {
+          "ObjectName": "TimelineDataTrackUObject'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackUObject_8'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.68"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackBool_1'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.48"
+        },
+        {
+          "ObjectName": "TimelineDataTrackBool'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineDataTrackBool_2'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.49"
+        },
+        {
+          "ObjectName": "TimelineCompressedTrack_Transform'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:TimelineCompressedTrack_Transform_40'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.41"
+        }
+      ],
+      "CompiledPredicates": null,
+      "FrameCount": 82
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "RtpcData",
+    "Name": "RtpcData_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'RtpcData'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_10",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_11",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_12",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_13",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_14",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_15",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_16",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_17",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_18",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_19",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_20",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_21",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_22",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_23",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_24",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_25",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_26",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_27",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_28",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_29",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_30",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_31",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_32",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_33",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_34",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_35",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_36",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_37",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_38",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_39",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_40",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineCompressedTrack_Transform",
+    "Name": "TimelineCompressedTrack_Transform_9",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineCompressedTrack_Transform'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Location": null,
+      "Rotation": null,
+      "Scale": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        true
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackBool",
+    "Name": "TimelineDataTrackBool_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackBool'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        false
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        3.767641,
+        3.6565447,
+        3.7932148,
+        3.6206493,
+        3.4433327,
+        3.2605152,
+        3.8535957,
+        3.4620104,
+        3.0788832,
+        2.9512873,
+        2.5365438,
+        2.753148,
+        2.8521233,
+        2.8521233
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFloat",
+    "Name": "TimelineDataTrackFloat_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFloat'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        0.0,
+        1.3833333
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackFName",
+    "Name": "TimelineDataTrackFName_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackFName'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        83
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        45
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackInt",
+    "Name": "TimelineDataTrackInt_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackInt'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        2
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AnimSequence'Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:RtpcData_12'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.3"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:RtpcData_13'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.4"
+        },
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:RtpcData_14'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.5"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_2",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Foot_Scuff_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Scuff_Short.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        },
+        {
+          "ObjectName": "AkAudioEvent'Foot_Step'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/SURFACE_Events/Foot_Step.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_3",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_4",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_5",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:RtpcData_11'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.2"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_6",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Medium_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Medium_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_7",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "RtpcData'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround:RtpcData_10'",
+          "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.1"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackUObject",
+    "Name": "TimelineDataTrackUObject_8",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackUObject'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "ObjectName": "AkAudioEvent'Costume_Slow_Short'",
+          "ObjectPath": "/Game/WwiseAudio/Events/Disk/Shared/Audio/COSTUME_Events/Costume_Slow_Short.0"
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_0",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": 0.0,
+          "Y": 274.78546,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 279.73822,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 284.28906,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 288.68402,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 293.14276,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 297.50946,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 301.89368,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 306.64993,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 311.84515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 317.26532,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 322.85892,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 328.6434,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 335.13754,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 341.40057,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 347.40738,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 352.43057,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 357.03317,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 361.283,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 365.1675,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 368.55133,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 371.66986,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 374.7265,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 377.61035,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 380.28003,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 382.72253,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 384.912,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 386.8563,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 388.59973,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.15472,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.5003,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.66995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 393.69223,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 394.6212,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 395.3511,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 395.9028,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.29572,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.54083,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.66376,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.62305,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.46716,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 396.23868,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 395.94708,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 395.6019,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 395.22134,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 394.8181,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 394.40475,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 393.98874,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 393.569,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 393.15503,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.74347,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.33948,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.9479,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.57367,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.22556,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.9086,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.63086,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.40186,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.22784,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.1046,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.0077,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 389.93823,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 389.89484,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 389.87885,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 389.89478,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 389.93716,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.00366,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.09296,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.2085,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.33887,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.47998,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.62515,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.76755,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 390.9138,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.06247,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.20877,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.35483,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.50385,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.64996,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.79367,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 391.93555,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.07056,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.20804,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.32578,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0,
+          "Y": 392.32578,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  },
+  {
+    "Type": "TimelineDataTrackVector",
+    "Name": "TimelineDataTrackVector_1",
+    "Flags": "RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'TimelineDataTrackVector'",
+    "Outer": {
+      "ObjectName": "GameTimeline'TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/Special/TL_Specialmove_ShadowDash_Enhanced_Out_Turnaround.0"
+    },
+    "Properties": {
+      "Values": [
+        {
+          "X": -0.015012622,
+          "Y": 0.9998873,
+          "Z": 0.0
+        },
+        {
+          "X": 0.0110036135,
+          "Y": 0.99993944,
+          "Z": 0.0
+        },
+        {
+          "X": 0.056973517,
+          "Y": 0.9983757,
+          "Z": 0.0
+        },
+        {
+          "X": 0.12478936,
+          "Y": 0.99218327,
+          "Z": 0.0
+        },
+        {
+          "X": 0.2099126,
+          "Y": 0.97772014,
+          "Z": 0.0
+        },
+        {
+          "X": 0.33509755,
+          "Y": 0.9421835,
+          "Z": 0.0
+        },
+        {
+          "X": 0.4721771,
+          "Y": 0.88150376,
+          "Z": 0.0
+        },
+        {
+          "X": 0.60157394,
+          "Y": 0.79881716,
+          "Z": 0.0
+        },
+        {
+          "X": 0.72549284,
+          "Y": 0.6882297,
+          "Z": 0.0
+        },
+        {
+          "X": 0.84595215,
+          "Y": 0.53325886,
+          "Z": 0.0
+        },
+        {
+          "X": 0.9471056,
+          "Y": 0.32092217,
+          "Z": 0.0
+        },
+        {
+          "X": 0.99733275,
+          "Y": 0.07298918,
+          "Z": 0.0
+        },
+        {
+          "X": 0.9840266,
+          "Y": -0.17802154,
+          "Z": 0.0
+        },
+        {
+          "X": 0.917753,
+          "Y": -0.39715174,
+          "Z": 0.0
+        },
+        {
+          "X": 0.78852755,
+          "Y": -0.6149995,
+          "Z": 0.0
+        },
+        {
+          "X": 0.5841992,
+          "Y": -0.81161034,
+          "Z": 0.0
+        },
+        {
+          "X": 0.31677675,
+          "Y": -0.94850016,
+          "Z": 0.0
+        },
+        {
+          "X": 0.020109832,
+          "Y": -0.99979776,
+          "Z": 0.0
+        },
+        {
+          "X": -0.26374125,
+          "Y": -0.9645936,
+          "Z": 0.0
+        },
+        {
+          "X": -0.5340822,
+          "Y": -0.84543264,
+          "Z": 0.0
+        },
+        {
+          "X": -0.7006663,
+          "Y": -0.713489,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8068414,
+          "Y": -0.59076804,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88583505,
+          "Y": -0.4640001,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93103826,
+          "Y": -0.3649211,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96038985,
+          "Y": -0.2786603,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97731626,
+          "Y": -0.21178503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98520565,
+          "Y": -0.17137648,
+          "Z": 0.0
+        },
+        {
+          "X": -0.987916,
+          "Y": -0.15498956,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9883113,
+          "Y": -0.15244943,
+          "Z": 0.0
+        },
+        {
+          "X": -0.98754394,
+          "Y": -0.15734413,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9860567,
+          "Y": -0.16640928,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9832717,
+          "Y": -0.18214527,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97829616,
+          "Y": -0.20721206,
+          "Z": 0.0
+        },
+        {
+          "X": -0.97148216,
+          "Y": -0.23711294,
+          "Z": 0.0
+        },
+        {
+          "X": -0.96412444,
+          "Y": -0.26544985,
+          "Z": 0.0
+        },
+        {
+          "X": -0.95696867,
+          "Y": -0.29019073,
+          "Z": 0.0
+        },
+        {
+          "X": -0.94998455,
+          "Y": -0.31229717,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9429418,
+          "Y": -0.33295774,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9367436,
+          "Y": -0.350016,
+          "Z": 0.0
+        },
+        {
+          "X": -0.93116987,
+          "Y": -0.36458585,
+          "Z": 0.0
+        },
+        {
+          "X": -0.92562044,
+          "Y": -0.37845296,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9202548,
+          "Y": -0.3913196,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9142697,
+          "Y": -0.40510592,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9086611,
+          "Y": -0.41753435,
+          "Z": 0.0
+        },
+        {
+          "X": -0.9028746,
+          "Y": -0.42990404,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8973396,
+          "Y": -0.44134045,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8923223,
+          "Y": -0.45139897,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8867004,
+          "Y": -0.46234423,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8817451,
+          "Y": -0.47172606,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8774855,
+          "Y": -0.47960317,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8739698,
+          "Y": -0.48598012,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87165177,
+          "Y": -0.49012578,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86840534,
+          "Y": -0.49585503,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86620355,
+          "Y": -0.4996912,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86438644,
+          "Y": -0.5028281,
+          "Z": 0.0
+        },
+        {
+          "X": -0.862862,
+          "Y": -0.5054397,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8624023,
+          "Y": -0.50622356,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86091864,
+          "Y": -0.5087427,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8601773,
+          "Y": -0.5099953,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85969734,
+          "Y": -0.51080394,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8589319,
+          "Y": -0.5120897,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85800135,
+          "Y": -0.51364744,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85731685,
+          "Y": -0.514789,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8570025,
+          "Y": -0.51531225,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85670733,
+          "Y": -0.51580274,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8564689,
+          "Y": -0.5161985,
+          "Z": 0.0
+        },
+        {
+          "X": -0.85675323,
+          "Y": -0.5157267,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8573848,
+          "Y": -0.514676,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8590349,
+          "Y": -0.5119171,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86116076,
+          "Y": -0.5083327,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8632382,
+          "Y": -0.50479656,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86517775,
+          "Y": -0.50146544,
+          "Z": 0.0
+        },
+        {
+          "X": -0.86641824,
+          "Y": -0.49931923,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8680248,
+          "Y": -0.49652052,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8693594,
+          "Y": -0.49418014,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87070024,
+          "Y": -0.49181384,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8721038,
+          "Y": -0.4893211,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8738239,
+          "Y": -0.4862424,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8747457,
+          "Y": -0.48458195,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8774862,
+          "Y": -0.47960177,
+          "Z": 0.0
+        },
+        {
+          "X": -0.87921476,
+          "Y": -0.47642508,
+          "Z": 0.0
+        },
+        {
+          "X": -0.88050663,
+          "Y": -0.47403368,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813485,
+          "Y": -0.47246668,
+          "Z": 0.0
+        },
+        {
+          "X": -0.8813485,
+          "Y": -0.47246668,
+          "Z": 0.0
+        }
+      ],
+      "KeySampleData": null
+    }
+  }
+]

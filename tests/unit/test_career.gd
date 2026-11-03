@@ -1,6 +1,22 @@
 extends TestBase
 
 
+func test_dorian_career_roundtrip_and_fighter_styles() -> void:
+	var service := CareerService.new()
+	service.setup("user://")
+	service.save.path = "user://dorian_career_test.json"
+	service.data = {}
+	assert_eq(service.create("dorian", "Spotlight", "default", "2026-11-01"), "", "Dorian career creation")
+	assert_eq(service.save.load_data().fighter.id, "dorian", "renamed career persists")
+	for id in ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]:
+		var config := MatchConfig.new()
+		config.fighter_ids.assign([id, "theron"])
+		config.loadouts = [Loadout.starter(), Loadout.starter()]
+		config.career_styles = true
+		var world := MatchLauncher.make_world(config)
+		assert_false(world.fighters[0].moveset_aliases.is_empty(), "career uses fighter style: " + id)
+
+
 func _service() -> CareerService:
 	var service := CareerService.new()
 	service.setup("user://")

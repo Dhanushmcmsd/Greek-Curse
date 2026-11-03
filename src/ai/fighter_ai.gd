@@ -10,10 +10,10 @@ var last_mask: int = 0
 var rng := SimRng.new(1)
 
 
-func setup(config: Dictionary, archetype: Dictionary, seed: int) -> void:
+func setup(config: Dictionary, archetype: Dictionary, seed_value: int) -> void:
 	difficulty = config.duplicate(true)
 	weights = archetype.duplicate(true)
-	rng = SimRng.new(seed)
+	rng = SimRng.new(seed_value)
 	history = []
 	next_decision = 0
 	last_mask = 0
@@ -26,7 +26,10 @@ func decide(observation: Dictionary) -> int:
 	while history.size() > delay + 2:
 		history.pop_front()
 	if tick < next_decision:
-		return last_mask
+		var held := last_mask
+		for bit in SimInput.ATTACK_BITS:
+			held &= ~bit
+		return held
 	var seen: Dictionary = {}
 	for row in history:
 		if int(row["tick"]) <= tick - delay:

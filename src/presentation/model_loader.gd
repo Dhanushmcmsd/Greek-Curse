@@ -30,8 +30,8 @@ static func instantiate_scene(path: String, force_source: bool = false) -> Node3
 		or not FileAccess.file_exists(path)
 		or (not force_source and _import_matches_source(path))
 	):
-		var packed := load(path) as PackedScene
-		return packed.instantiate() as Node3D if packed != null else null
+		var imported_scene := load(path) as PackedScene
+		return imported_scene.instantiate() as Node3D if imported_scene != null else null
 	var digest := FileAccess.get_md5(path)
 	if _source_scenes.has(path) and _source_scenes[path]["digest"] == digest:
 		return (_source_scenes[path]["scene"] as PackedScene).instantiate() as Node3D

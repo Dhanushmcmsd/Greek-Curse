@@ -51,7 +51,19 @@ func refresh(path: String) -> bool:
 		data.wins = world.wins
 	if data.has("events"):
 		data.events = events
-	FileAccess.open(path, FileAccess.WRITE).store_string(JSON.stringify(data) + "\n")
+	var output: FileAccess = null
+	for attempt in 10:
+		output = FileAccess.open(path, FileAccess.WRITE)
+		if output != null:
+			break
+		OS.delay_msec(50)
+	if output == null:
+		push_error(
+			"Cannot write replay baseline: " + path + " error=" + str(FileAccess.get_open_error())
+		)
+		return false
+	output.store_string(JSON.stringify(data) + "\n")
+	output.close()
 	var error: String = checker.verify(path)
 	if error != "":
 		push_error(path + ": " + error)

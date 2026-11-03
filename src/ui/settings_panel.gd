@@ -87,10 +87,10 @@ func _display_changed(key: String, _value: Variant) -> void:
 	if restoring or key not in ["fullscreen", "resolution", "vsync"]:
 		return
 	if display_before.is_empty():
-		var size := DisplayServer.window_get_size()
+		var size_value := DisplayServer.window_get_size()
 		display_before = {
 			"fullscreen": DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN,
-			"resolution": "%dx%d" % [size.x, size.y],
+			"resolution": "%dx%d" % [size_value.x, size_value.y],
 			"vsync": DisplayServer.window_get_vsync_mode() != DisplayServer.VSYNC_DISABLED
 		}
 	_apply_display()

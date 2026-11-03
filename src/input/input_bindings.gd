@@ -60,6 +60,6 @@ func install() -> void:
 			InputMap.action_add_event(action, event)
 		if int(row.get("button", -1)) >= 0:
 			var event := InputEventJoypadButton.new()
-			event.button_index = int(row["button"])
+			event.button_index = int(row["button"]) as JoyButton
 			event.device = int(row["device"])
 			InputMap.action_add_event(action, event)

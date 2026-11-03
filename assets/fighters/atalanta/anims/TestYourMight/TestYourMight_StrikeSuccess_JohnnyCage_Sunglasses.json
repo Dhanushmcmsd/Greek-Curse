@@ -1,0 +1,134 @@
+[
+  {
+    "Type": "AnimSequence",
+    "Name": "TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses",
+    "Flags": "RF_Public | RF_Standalone | RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "UScriptClass'AnimSequence'",
+    "Package": "/Game/Disk/Char/JohnnyCage/Anim/TestYourMight/TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses",
+    "Properties": {
+      "NumFrames": 161,
+      "TrackToSkeletonMapTable": [
+        {
+          "BoneTreeIndex": 0
+        },
+        {
+          "BoneTreeIndex": 1
+        },
+        {
+          "BoneTreeIndex": 2
+        },
+        {
+          "BoneTreeIndex": 3
+        },
+        {
+          "BoneTreeIndex": 4
+        },
+        {
+          "BoneTreeIndex": 5
+        },
+        {
+          "BoneTreeIndex": 6
+        }
+      ],
+      "BoneCompressionSettings": {
+        "ObjectName": "AnimBoneCompressionSettings'ACLAnimBoneCompressionSettings'",
+        "ObjectPath": "/Engine/Animation/ACL/ACLAnimBoneCompressionSettings.2"
+      },
+      "CurveCompressionSettings": {
+        "ObjectName": "AnimCurveCompressionSettings'ACLAnimCurveCompressionSettings'",
+        "ObjectPath": "/Engine/Animation/ACL/ACLAnimCurveCompressionSettings.2"
+      },
+      "Notifies": [
+        {
+          "TriggerTimeOffset": 0.0,
+          "EndTriggerTimeOffset": 0.0,
+          "TriggerWeightThreshold": 1E-05,
+          "NotifyName": "BP_PlayManagedNiagaraParticle_C",
+          "Notify": {
+            "ObjectName": "BP_AnimNotify_PlayManagedNiagaraParticle_C'TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses:BP_AnimNotify_PlayManagedNiagaraParticle_C_0'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/TestYourMight/TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses.1"
+          },
+          "NotifyStateClass": null,
+          "Duration": 0.0,
+          "EndLink": {
+            "LinkedMontage": null,
+            "SlotIndex": 0,
+            "SegmentIndex": -1,
+            "LinkMethod": "EAnimLinkMethod::Absolute",
+            "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+            "SegmentBeginTime": 0.0,
+            "SegmentLength": 0.0,
+            "LinkValue": 1.7291424,
+            "LinkedSequence": null
+          },
+          "bConvertedFromBranchingPoint": false,
+          "MontageTickType": "EMontageNotifyTickType::Queued",
+          "NotifyTriggerChance": 1.0,
+          "NotifyFilterType": "ENotifyFilterType::NoFiltering",
+          "NotifyFilterLOD": 0,
+          "bTriggerOnDedicatedServer": true,
+          "bTriggerOnFollower": false,
+          "TrackIndex": 0,
+          "LinkedMontage": null,
+          "SlotIndex": 0,
+          "SegmentIndex": 0,
+          "LinkMethod": "EAnimLinkMethod::Absolute",
+          "CachedLinkMethod": "EAnimLinkMethod::Absolute",
+          "SegmentBeginTime": 0.0,
+          "SegmentLength": 2.6666667,
+          "LinkValue": 1.7291424,
+          "LinkedSequence": {
+            "ObjectName": "AnimSequence'TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses'",
+            "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/TestYourMight/TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses.0"
+          }
+        }
+      ],
+      "SequenceLength": 2.6666667,
+      "Skeleton": {
+        "ObjectName": "Skeleton'SK_JohnnyCage_Sunglasses_Skeleton'",
+        "ObjectPath": "/Game/Disk/Char/JohnnyCage/Prop/JohnnyCage_Sunglasses/Mesh/SK_JohnnyCage_Sunglasses_Skeleton.0"
+      }
+    },
+    "SkeletonGuid": "F75F1BCC-4A29562D-B89B7B9F-7BAED381",
+    "CompressedTrackToSkeletonMapTable": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "CompressedDataStructure": {
+      "CompressedNumberOfFrames": 161
+    },
+    "CompressedRawDataSize": 24212
+  },
+  {
+    "Type": "BP_AnimNotify_PlayManagedNiagaraParticle_C",
+    "Name": "BP_AnimNotify_PlayManagedNiagaraParticle_C_0",
+    "Flags": "RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Class": "BlueprintGeneratedClass'/Game/Disk/Shared/Base/Blueprint/BP_AnimNotify_PlayManagedNiagaraParticle.BP_AnimNotify_PlayManagedNiagaraParticle_C'",
+    "Outer": {
+      "ObjectName": "AnimSequence'TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses'",
+      "ObjectPath": "/Game/Disk/Char/JohnnyCage/Anim/TestYourMight/TestYourMight_StrikeSuccess_JohnnyCage_Sunglasses.0"
+    },
+    "Template": {
+      "ObjectName": "BP_AnimNotify_PlayManagedNiagaraParticle_C'Default__BP_AnimNotify_PlayManagedNiagaraParticle_C'",
+      "ObjectPath": "/Game/Disk/Shared/Base/Blueprint/BP_AnimNotify_PlayManagedNiagaraParticle.2"
+    },
+    "Properties": {
+      "EffectID": "TYM_Johnny_GlassesShines",
+      "Template": {
+        "ObjectName": "NiagaraSystem'NS_Jonny_Victory_Shine_Kiss'",
+        "ObjectPath": "/Game/Disk/Char/JohnnyCage/FX/CineFX/Systems/Victory/NS_Jonny_Victory_Shine_Kiss.12"
+      },
+      "LocationOffset": {
+        "X": 6.5,
+        "Y": -2.0,
+        "Z": -3.0
+      },
+      "SocketName": "Reference"
+    }
+  }
+]

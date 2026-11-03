@@ -2,12 +2,15 @@ class_name GoreManager
 extends Node3D
 ## Bounded cosmetic physics, never queried by the deterministic simulation.
 
+const STREAK_TEXTURE = preload("res://assets/vfx/impact_streak.png")
+
 var config: Dictionary
 var chunks: Array[Node] = []
 var floor_splats: Array[Node] = []
 var wall_splats: Array[Node] = []
 var particles: Array[Node] = []
 var arena_id: String = "mount_olympus"
+var fighter_tint := Color("ffc572")
 
 
 func _ready() -> void:
@@ -52,6 +55,8 @@ func _process(_delta: float) -> void:
 
 
 func _register(node: Node, pool: Array, cap: int, seconds: float) -> void:
+	if node is GeometryInstance3D:
+		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	while pool.size() >= cap:
 		var old: Node = pool.pop_front()
 		remove_child(old)
@@ -135,7 +140,9 @@ func debris(mesh: MeshInstance3D, pose: Transform3D, direction: float) -> void:
 	spray.mesh = spray_drop
 	body.add_child(spray)
 	spray.emitting = true
-	get_tree().create_timer(2.0).timeout.connect(func(): spray.emitting = false)
+	get_tree().create_timer(2.0).timeout.connect(func():
+		if is_instance_valid(spray):
+			spray.emitting = false)
 
 
 func burst(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int = 0) -> void:
@@ -156,12 +163,19 @@ func burst(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int = 
 	effect.initial_velocity_max = 2.0 if severed else 1.8
 	effect.gravity = Vector3(0, -9, 0)
 	effect.color = Color("a0ddff") if blocked else Color("e3bd76") if off else blood_color()
-	var drop := SphereMesh.new()
-	drop.radius = 0.014 if not severed else 0.018
-	drop.height = drop.radius * 2
+	var drop := QuadMesh.new()
+	drop.size = Vector2(0.022, 0.065) * (1.35 if severed else 1.0)
 	var material := StandardMaterial3D.new()
 	material.albedo_color = effect.color
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	material.albedo_texture = STREAK_TEXTURE if blocked or off else load("res://assets/vfx/blood_drop.png")
+	material.vertex_color_use_as_albedo = true
+	var fade := Gradient.new()
+	fade.set_color(0, Color.WHITE)
+	fade.set_color(1, Color(1, 1, 1, 0))
+	effect.color_ramp = fade
 	drop.material = material
 	effect.mesh = drop
 	_register(effect, particles, int(config["particle_cap"]), effect.lifetime + 0.1)
@@ -172,7 +186,7 @@ func burst(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int = 
 		if absf(at.x) > 3.9:
 			splat(Vector3(signf(at.x) * 4.6, at.y, at.z), true)
 	# For sever: extra secondary burst ring
-	if severed and not off:
+	if severed and not off and not bool(SettingsHooks.get_value("flash_reduction")):
 		_sever_ring(at)
 
 
@@ -182,9 +196,9 @@ func _sever_ring(at: Vector3) -> void:
 	ring.emitting = false
 	ring.one_shot = true
 	ring.explosiveness = 1.0
-	ring.amount = 32
+	ring.amount = 16
 	ring.lifetime = 0.55
-	ring.direction = Vector3(0, 0, 0)
+	ring.direction = Vector3(0, 1, 0)
 	ring.spread = 180.0
 	ring.initial_velocity_min = 2.0
 	ring.initial_velocity_max = 4.5
@@ -196,9 +210,13 @@ func _sever_ring(at: Vector3) -> void:
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.billboard_keep_scale = true
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = Color(1.0, 0.55, 0.1)
+	mat.albedo_texture = STREAK_TEXTURE
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	streak.material = mat
 	ring.mesh = streak
 	var gradient := Gradient.new()
@@ -221,11 +239,13 @@ func _sever_ring(at: Vector3) -> void:
 	smoke.initial_velocity_min = 0.4
 	smoke.initial_velocity_max = 1.2
 	smoke.gravity = Vector3(0, 0.5, 0)
-	var sph := SphereMesh.new()
-	sph.radius = 0.08
-	sph.height = 0.16
+	var sph := QuadMesh.new()
+	sph.size = Vector2(0.18, 0.18)
 	var smoke_mat := StandardMaterial3D.new()
-	smoke_mat.albedo_color = Color(0.18, 0.18, 0.18, 0.5)
+	smoke_mat.albedo_color = Color(0.22, 0.24, 0.26, 0.18)
+	smoke_mat.albedo_texture = load("res://assets/vfx/soft_flame.png")
+	smoke_mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	smoke_mat.billboard_keep_scale = true
 	smoke_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	smoke_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	sph.material = smoke_mat
@@ -291,6 +311,7 @@ func splat(at: Vector3, wall: bool) -> void:
 
 ## Main impact VFX — supports combo tier escalation (0-3) for Tekken-8-style color shifts
 func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int = 0) -> void:
+	_art_impact(at, blocked, combo_tier)
 	var reduced := bool(SettingsHooks.get_value("flash_reduction"))
 	# Combo tier color escalation: base→orange→magenta/purple→cyan
 	var color: Color
@@ -308,15 +329,15 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 		color = Color("ffb24f")  # Default gold
 	var effect := CPUParticles3D.new()
 	effect.emitting = false
-	var base_count := 60 if severed else (36 + combo_tier * 8)
+	var base_count := 48 if severed else (32 + combo_tier * 8)
 	effect.amount = 12 if reduced else base_count
-	effect.lifetime = 0.32 if blocked else (0.55 if severed else (0.42 + float(combo_tier) * 0.04))
+	effect.lifetime = 0.24 if blocked else 0.34
 	effect.one_shot = true
 	effect.explosiveness = 1.0
 	effect.local_coords = false
 	effect.direction = Vector3.UP
 	effect.spread = 180.0
-	effect.initial_velocity_min = 1.4
+	effect.initial_velocity_min = 0.7
 	effect.initial_velocity_max = 5.5 if severed else (3.8 + float(combo_tier) * 0.6)
 	effect.gravity = Vector3(0, -3.5, 0)
 	effect.angle_min = -180.0
@@ -324,25 +345,30 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	effect.damping_min = 2.0
 	effect.damping_max = 4.5
 	var streak := QuadMesh.new()
-	streak.size = Vector2(0.02 + float(combo_tier) * 0.004, 0.15 + float(combo_tier) * 0.02)
+	streak.size = Vector2(0.009, 0.09 + float(combo_tier) * 0.012)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	mat.billboard_keep_scale = true
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mat.vertex_color_use_as_albedo = true
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.albedo_color = color * (0.55 if reduced else 1.0)
+	mat.albedo_texture = STREAK_TEXTURE
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.no_depth_test = false
 	streak.material = mat
 	effect.mesh = streak
 	var gradient := Gradient.new()
-	gradient.set_color(0, Color(1, 1, 1, 1))
+	gradient.set_color(0, Color(1, 0.95, 0.8, 1))
+	gradient.add_point(0.25, Color(1, 0.65, 0.24, 0.8))
 	gradient.set_color(1, Color(1, 1, 1, 0))
 	effect.color_ramp = gradient
 	_register(effect, particles, int(config["particle_cap"]), 0.65)
 	effect.global_position = at
 	effect.emitting = true
 	# Flash disc — scale based on hit severity and combo tier
-	var disc_base_size := 1.3 if severed else (0.85 + float(combo_tier) * 0.12)
+	var disc_base_size := 0.65 if severed else (0.35 + float(combo_tier) * 0.06)
 	var flash := MeshInstance3D.new()
 	var disc := QuadMesh.new()
 	disc.size = Vector2.ONE * disc_base_size
@@ -354,21 +380,45 @@ func impact(at: Vector3, blocked: bool, severed: bool = false, combo_tier: int =
 	shader.set_shader_parameter("strength", base_strength)
 	shader.set_shader_parameter("guard", blocked)
 	shader.set_shader_parameter("combo_tier", combo_tier)
+	shader.set_shader_parameter("sparkle", load("res://assets/vfx/exported/spark_trail.png"))
 	flash.material_override = shader
 	_register(flash, particles, int(config["particle_cap"]), 0.36)
 	flash.global_position = at + Vector3(0, 0, 0.08)
 	var expand_scale := 2.5 if severed else (2.0 + float(combo_tier) * 0.22)
-	var tween := create_tween().set_parallel(true)
-	tween.tween_property(flash, "scale", Vector3.ONE * expand_scale, 0.28)
+	var tween := flash.create_tween().set_parallel(true)
+	tween.tween_property(flash, "scale", Vector3.ONE * expand_scale, 0.16)
 	tween.tween_method(
-		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.28
+		func(v: float): shader.set_shader_parameter("strength", v), base_strength, 0.0, 0.16
 	)
-	# Heavy hit or combo: spawn concentric shockwave ring
-	if not blocked and not reduced and (not severed or combo_tier >= 2):
-		_shockwave_ring(at, color)
-	# At high combo tiers, spawn extra outer energy ring
-	if not reduced and combo_tier >= 2:
-		_combo_energy_burst(at, color, combo_tier)
+	if not reduced and not blocked:
+		var haze := MeshInstance3D.new()
+		var cloud := QuadMesh.new()
+		cloud.size = Vector2(0.8, 0.65)
+		haze.mesh = cloud
+		var mist := ShaderMaterial.new()
+		mist.shader = load("res://assets/shaders/impact_dust.gdshader")
+		mist.set_shader_parameter(
+			"smoke_atlas", load("res://assets/vfx/exported/impact_dust_8x4.png")
+		)
+		mist.set_shader_parameter("grid", Vector2(8, 4))
+		haze.material_override = mist
+		_register(haze, particles, int(config["particle_cap"]), 0.35)
+		haze.global_position = at + Vector3(0, 0, 0.06)
+		var dissolve := haze.create_tween().set_parallel(true)
+		dissolve.tween_property(haze, "scale", Vector3.ONE * 1.8, 0.3)
+		dissolve.tween_method(func(v: float): mist.set_shader_parameter("age", v), 0.08, 0.99, 0.3)
+		dissolve.tween_method(
+			func(v: float): mist.set_shader_parameter("opacity", v), 0.24, 0.0, 0.3
+		)
+	# A brief local light binds the impact to the character materials.
+	if not reduced:
+		var light := OmniLight3D.new()
+		light.light_color = color
+		light.light_energy = 1.4 + float(combo_tier) * 0.25
+		light.omni_range = 1.2
+		_register(light, particles, int(config["particle_cap"]), 0.12)
+		light.global_position = at + Vector3(0, 0, 0.25)
+		light.create_tween().tween_property(light, "light_energy", 0.0, 0.1)
 
 
 ## Energy shockwave ring for heavy hits — Tekken-style impact emphasis
@@ -386,10 +436,10 @@ func _shockwave_ring(at: Vector3, color: Color) -> void:
 	mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	ring.material_override = mat
-	ring.global_position = at + Vector3(0, 0, 0.05)
+	ring.position = at + Vector3(0, 0, 0.05)
 	ring.rotation.x = PI / 2
 	add_child(ring)
-	var ring_tween := create_tween().set_parallel(true)
+	var ring_tween := ring.create_tween().set_parallel(true)
 	ring_tween.tween_property(ring, "scale", Vector3.ONE * 4.5, 0.22)
 	ring_tween.tween_method(
 		func(v: float): mat.albedo_color = Color(color.r, color.g, color.b, v), 0.7, 0.0, 0.22
@@ -414,11 +464,11 @@ func _combo_energy_burst(at: Vector3, color: Color, tier: int) -> void:
 		mat.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		ring.material_override = mat
-		ring.global_position = at + Vector3(0, float(i) * 0.12, 0.04 + float(i) * 0.02)
+		ring.position = at + Vector3(0, float(i) * 0.12, 0.04 + float(i) * 0.02)
 		ring.rotation.x = PI / 2
 		add_child(ring)
 		var delay := float(i) * 0.06
-		var ring_tween := create_tween().set_parallel(true)
+		var ring_tween := ring.create_tween().set_parallel(true)
 		(
 			ring_tween
 			. tween_property(ring, "scale", Vector3.ONE * (5.5 + float(tier) * 0.8), 0.28)
@@ -494,7 +544,7 @@ func ooze(at: Vector3) -> void:
 	splat(Vector3(at.x, 0.007, at.z), false)
 
 
-func trail(from: Vector3, to: Vector3) -> void:
+func trail(from: Vector3, to: Vector3, fighter_id: String = "theron") -> void:
 	if bool(SettingsHooks.get_value("flash_reduction")) or from.distance_to(to) < 0.025:
 		return
 	var mesh := MeshInstance3D.new()
@@ -505,12 +555,123 @@ func trail(from: Vector3, to: Vector3) -> void:
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	# Warmer, more vivid orange-amber trail for a Tekken-style energy look
-	mat.albedo_color = Color(1.0, 0.65, 0.15, 0.42)
-	var width := Vector3.UP * 0.042
+	mat.albedo_color = palette(fighter_id)
+	mat.albedo_color.a = 0.72
+	mat.albedo_texture = load("res://assets/vfx/exported/smoke_trail.png")
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+	var width := Vector3.UP * 0.075
 	ribbon.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
-	for point in [from - width, from + width, to + width, from - width, to + width, to - width]:
-		ribbon.surface_add_vertex(point)
+	var points := [from - width, from + width, to + width, from - width, to + width, to - width]
+	var uvs := [
+		Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 0), Vector2(1, 1), Vector2(0, 1)
+	]
+	for index in points.size():
+		ribbon.surface_set_uv(uvs[index])
+		ribbon.surface_add_vertex(points[index])
 	ribbon.surface_end()
 	mesh.mesh = ribbon
 	mesh.material_override = mat
-	_register(mesh, particles, int(config["particle_cap"]), 0.14)
+	_register(mesh, particles, int(config["particle_cap"]), 0.22)
+
+
+func detached_limb(pieces: Array, joint: Vector3, direction: float) -> void:
+	if SettingsHooks.get_value("gore") == "off":
+		return
+	var body := RigidBody3D.new()
+	body.collision_layer = 2
+	body.collision_mask = 2
+	body.mass = 2.5
+	body.linear_damp = 0.7
+	body.angular_damp = 1.2
+	body.physics_material_override = PhysicsMaterial.new()
+	body.physics_material_override.bounce = 0.15
+	body.physics_material_override.friction = 0.85
+	var bounds := AABB()
+	var first := true
+	for source: MeshInstance3D in pieces:
+		if str(source.name).begins_with("SEAM_"):
+			continue
+		var posed := LimbFinish.posed_mesh(source)
+		var visual := MeshInstance3D.new()
+		visual.mesh = posed if posed != null else source.mesh
+		visual.transform = Transform3D(Basis.IDENTITY, -joint) * source.global_transform
+		body.add_child(visual)
+		for surface in visual.mesh.get_surface_count():
+			visual.set_surface_override_material(surface, source.get_active_material(surface))
+		var box := visual.transform * visual.mesh.get_aabb()
+		bounds = box if first else bounds.merge(box)
+		first = false
+	if first:
+		body.free()
+		return
+	var collision := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = bounds.size.max(Vector3.ONE * 0.04)
+	collision.shape = shape
+	collision.position = bounds.get_center()
+	body.add_child(collision)
+	_register(body, chunks, int(config["chunk_cap"]), 12.0)
+	body.global_position = joint
+	body.linear_velocity = Vector3(direction * 1.6, 2.4, 0.35)
+	body.angular_velocity = Vector3(1.8, 0.6, direction * 3.2)
+	# A short outward spray stays at the exposed joint while the limb falls.
+	var spray := CPUParticles3D.new()
+	spray.amount = 36
+	spray.one_shot = true
+	spray.explosiveness = 0.7
+	spray.lifetime = 0.65
+	spray.direction = Vector3(direction, 0.3, 0.1)
+	spray.spread = 18
+	spray.initial_velocity_min = 1.2
+	spray.initial_velocity_max = 2.5
+	spray.gravity = Vector3(0, -6, 0)
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.025, 0.065)
+	var mat := StandardMaterial3D.new()
+	mat.albedo_texture = load("res://assets/vfx/blood_drop.png")
+	mat.albedo_color = blood_color()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	quad.material = mat
+	spray.mesh = quad
+	_register(spray, particles, int(config["particle_cap"]), 0.9)
+	spray.global_position = joint
+	spray.emitting = true
+
+
+static func palette(fighter_id: String) -> Color:
+	return {"theron": Color("ffc572"), "atalanta": Color("78e8cf"), "pyrrhus": Color("ff742d"), "sibyl": Color("ba92ff"), "dorian": Color("72dfff")}.get(fighter_id, Color("ffc572"))
+
+
+func _art_impact(at: Vector3, blocked: bool, tier: int) -> void:
+	var reduced := bool(SettingsHooks.get_value("flash_reduction"))
+	var tint := Color("9ddfff") if blocked else fighter_tint
+	for layer in (1 if reduced else 3):
+		var node := MeshInstance3D.new()
+		node.name = "GuardArtwork" if blocked else "ImpactArtwork"
+		node.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var quad := QuadMesh.new()
+		quad.size = Vector2.ONE * (0.9 + tier * 0.12)
+		node.mesh = quad
+		var mat := ShaderMaterial.new()
+		mat.shader = load("res://assets/shaders/combat_art.gdshader")
+		var file := "impact_flare.png" if layer == 0 else "impact_ring.png" if layer == 1 else "impact_spike.png"
+		if blocked and layer == 2:
+			file = "block_shield.png"
+		mat.set_shader_parameter("artwork", load("res://assets/vfx/exported/" + file))
+		mat.set_shader_parameter("tint", tint)
+		mat.set_shader_parameter("layer", layer)
+		mat.set_shader_parameter("opacity", 0.25 if reduced else 0.85)
+		node.material_override = mat
+		var duration := 0.24 + layer * 0.07
+		_register(node, particles, int(config["particle_cap"]), duration + 0.05)
+		node.global_position = at + Vector3(0, 0, 0.12 + layer * 0.015)
+		var camera := get_viewport().get_camera_3d()
+		if camera != null:
+			node.global_basis = camera.global_basis
+		node.rotate_object_local(Vector3.BACK, randf_range(-PI, PI))
+		node.scale = Vector3.ONE * (0.45 if layer == 1 else 0.8)
+		var tween := node.create_tween().set_parallel(true)
+		tween.tween_property(node, "scale", Vector3.ONE * (1.65 if layer == 1 else 1.18), duration)
+		tween.tween_method(func(v: float): mat.set_shader_parameter("age", v), 0.0, 1.0, duration)

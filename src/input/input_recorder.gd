@@ -5,6 +5,7 @@ var inputs: Array = []
 var hashes: Array = []
 var initial: Array = []
 var initial_meters: Array = []
+@warning_ignore("shadowed_global_identifier") # Public serialized field; keep the existing save/replay API.
 var seed: int = 1
 var fighter_ids: Array = ["theron", "atalanta"]
 

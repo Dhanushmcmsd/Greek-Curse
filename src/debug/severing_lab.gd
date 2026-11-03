@@ -59,11 +59,13 @@ func _action(title: String) -> void:
 	elif title == "Three-hit sever":
 		var events: Array = []
 		for hit in 3:
+			@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 			SimSeverance.hit(world, 1, 0, _selected_slot, limb.max_integrity / 3 + 1, events)
 		for entry in events:
 			print("LAB_EVENT ", SimEvent.Kind.keys()[entry.kind], " ", entry.payload)
 		_consume(events)
 	elif limb.state != "severed":
+		@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 		limb.integrity = limb.max_integrity * (50 if title == "Bruise 50%" else 25) / 100
 		limbs.integrity[_selected_slot] = limb.integrity
 		limb.refresh(world.limb_rules)

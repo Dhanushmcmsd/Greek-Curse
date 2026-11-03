@@ -74,6 +74,7 @@ func prepare_career() -> void:
 	config = MatchConfig.new()
 	config.mode = "career"
 	config.fighter_ids = [fighter["id"], opponent["fighter"]]
+	config.career_styles = true
 	config.controllers = ["human_kb1", "ai_" + opponent["difficulty"]]
 	config.palettes = [fighter["palette"], opponent["palette"]]
 	config.arena_id = opponent["arena"]

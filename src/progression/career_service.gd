@@ -22,7 +22,7 @@ func setup(directory: String = "user://") -> void:
 
 func create(id: String, name: String, palette: String, created: String) -> String:
 	if (
-		id not in ["theron", "atalanta", "pyrrhus", "sibyl"]
+		id not in ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]
 		or palette not in ["default", "ivory", "night"]
 	):
 		return "Invalid fighter or palette"

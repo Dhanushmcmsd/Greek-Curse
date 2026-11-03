@@ -1,7 +1,7 @@
 extends TestBase
 
 
-func test_normal_jabs_sever_an_arm_without_fixture_overrides() -> void:
+func test_normal_jabs_cannot_sever_in_first_round() -> void:
 	for id in ["theron", "atalanta", "pyrrhus", "sibyl"]:
 		var config := MatchConfig.new()
 		config.fighter_ids = ["theron", id]
@@ -15,7 +15,7 @@ func test_normal_jabs_sever_an_arm_without_fixture_overrides() -> void:
 			if world.fighters[1].limbs.losses > 0:
 				severed = true
 				break
-		assert_true(severed, "ordinary punches sever arm on " + id)
+		assert_false(severed, "round one cannot award a sever on " + id)
 
 
 func test_normal_kick_hits_leg_integrity() -> void:

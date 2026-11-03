@@ -1,0 +1,200 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  test_ability_replays.test_all_ability_replays_match
+PASS  test_animation.test_all_fighters_states_masks_are_finite_grounded_and_hidden
+ANIMATION_ATTACK_MATRIX cases=2432 maximum_reach_delta_mm=697
+PASS  test_animation.test_attack_pose_matrix_includes_body_fallbacks
+PASS  test_animation.test_facing_and_attack_phases_follow_sim
+PASS  test_animation.test_feet_touch_floor_in_standing_and_walk
+PASS  test_animation.test_match_buttons_reset_and_grant_replacements
+PASS  test_animation.test_pose_never_mutates_sim_and_hitstop_freezes_time
+PASS  test_attachment_matrix.test_all_forty_attachments
+PASS  test_attachment_matrix.test_selected_fighter_visual_data_matches_sim
+CONTENT_MATRIX_OK cases=144
+PASS  test_content_matrix.test_content_matrix_reduced_or_slow
+PASS  test_match_prototype.test_actual_match_integration_and_fighter_visibility
+PASS  test_scene_loading.test_every_scene_instantiates
+PASS  test_replays.test_body_state_replays_match
+PASS  test_replays.test_prototype_replay_matches
+PASS  test_replays.test_regrown_replays_match
+PASS  test_replays.test_severance_replay_matches
+PASS  test_abilities.test_all_twenty_one_abilities_have_valid_loadout_and_move_data
+PASS  test_abilities.test_presentation_references_and_data_only_fixture
+PASS  test_abilities.test_shared_effects_exact_values_and_refresh
+PASS  test_abilities.test_ultimate_has_full_counterplay_window_and_spam_cannot_bypass_cooldown
+PASS  test_ai.test_ai_inputs_legal_for_every_body_mask
+PASS  test_ai.test_delay_and_observation_does_not_mutate_world
+PASS  test_ai.test_dummies_and_config_validation
+PASS  test_ai.test_future_move_is_read_from_data
+PASS  test_ai.test_same_seed_same_full_simulation
+PASS  test_amputation_credit.test_credit_once_per_limb
+PASS  test_amputation_credit.test_most_damage_then_lowest_attacker_id
+PASS  test_anim_binding_regression.test_atalanta_idle_and_backward_walk_presentation
+PASS  test_anim_binding_regression.test_clip_track_binding_across_all_fighters_and_models
+PASS  test_anim_binding_regression.test_gore_debris_and_burst_joint_local
+PASS  test_anim_binding_regression.test_motion_playback_proves_active_bone_transform_changes
+PASS  test_anim_binding_regression.test_pilot_neck_and_head_continuity
+PASS  test_anim_binding_regression.test_simultaneous_fighters_two_instances_independent
+PASS  test_anim_binding_regression.test_visual_multi_frame_sequences
+PASS  test_arenas.test_camera_clamps_and_gore_caps
+PASS  test_arenas.test_hazard_presentation_states
+PASS  test_arenas.test_hazard_seed_determinism_and_off_switch
+PASS  test_arenas.test_telegraph_precedes_damage_and_hits_once
+PASS  test_body_states.test_all_masks_move_and_have_an_attack
+PASS  test_body_states.test_cracked_is_present_and_keys_select_side
+PASS  test_body_states.test_crawl_and_torso_attacks_connect
+PASS  test_body_states.test_hop_dodge_and_transition_stay_bounded
+PASS  test_career.test_guaranteed_offers_and_trade_invariants
+ERROR: Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'broken'
+   at: parse_string (core/io/json.cpp:629)
+   GDScript backtrace (most recent call first):
+       [0] load_data (res://src/persistence/career_save.gd:106)
+       [1] test_save_roundtrip_interruption_backup_and_migration (res://tests/unit/test_career.gd:24)
+       [2] _run (res://tests/run_all.gd:66)
+       [3] _execute (res://tests/run_all.gd:11)
+PASS  test_career.test_save_roundtrip_interruption_backup_and_migration
+PASS  test_career.test_structurally_corrupt_save_rejected_before_ui
+CAREER_FUZZ_OK iterations=10000 seed=901
+PASS  test_career.test_ten_thousand_seeded_progression_events
+PASS  test_character_fit.test_backward_walk_uses_forward_time_and_keeps_facing
+PASS  test_character_fit.test_cracked_limb_does_not_accumulate_rotation_during_hitstop
+PASS  test_character_fit.test_current_glb_can_bind_without_any_imported_skin_cache
+PASS  test_character_fit.test_mesh_height_matches_every_model_skeleton
+PASS  test_character_fit.test_retarget_preserves_rest_roll_even_with_equal_bone_counts
+PASS  test_combat_actions.test_dodge_iframes_cover_the_data_range
+PASS  test_combat_actions.test_empty_bar_refuses_the_attack_and_staggers
+PASS  test_combat_actions.test_grab_beats_block_and_loses_to_dodge
+PASS  test_combat_block.test_block_reduction_and_chip_are_exact
+PASS  test_combat_block.test_empty_stamina_on_block_staggers
+PASS  test_combat_block.test_stamina_regenerates_one_per_idle_tick
+PASS  test_combat_chain.test_cancel_window_is_half_open
+PASS  test_combat_chain.test_gap_of_90_continues_and_91_breaks
+PASS  test_combat_chain.test_hitstop_pauses_both_state_timers
+PASS  test_combat_continuation.test_all_roster_combo_contacts_at_common_height
+PASS  test_combat_continuation.test_ballistic_launch_rises_falls_and_recovers
+PASS  test_combat_continuation.test_block_cannot_wall_bounce
+PASS  test_combat_continuation.test_directional_commands_mirror_with_facing
+PASS  test_combat_continuation.test_held_attack_does_not_restart_and_recovery_has_timer
+PASS  test_combat_continuation.test_knee_rush_four_contacts_cancel_into_elbow
+PASS  test_combat_continuation.test_launch_survives_move_clear_and_lands_into_recovery
+PASS  test_combat_continuation.test_limb_tracker_is_hashed
+PASS  test_combat_continuation.test_one_match_sever_only_after_late_second_round
+PASS  test_combat_continuation.test_round_two_award_is_global_idempotent_and_limbs_stay_usable
+PASS  test_combat_depth.test_defender_can_guard_after_hit_against_stationary_pressure
+PASS  test_combat_depth.test_distinct_moves_and_crawl_clip_play_on_real_rig
+PASS  test_combat_depth.test_hit_spacing_and_wall_escape_gap
+PASS  test_combat_depth.test_landed_lunge_does_not_cancel_spacing
+PASS  test_combat_depth.test_leg_fractures_change_support_and_match_cap_stops_further_loss
+PASS  test_combat_hit.test_arm_hit_deals_less_main_and_more_limb
+PASS  test_combat_hit.test_head_beats_torso_and_limb_ties_use_order
+PASS  test_combat_hit.test_multi_hit_interval_lands_twice
+PASS  test_combat_hit.test_torso_hit_keeps_full_main_and_skips_integrity
+PASS  test_combat_presentation.test_camera_retains_stronger_sever_impact
+PASS  test_combat_presentation.test_effect_pools_and_accessibility
+PASS  test_combat_presentation.test_recessed_wounds_for_all_models
+PASS  test_combat_presentation.test_regrowth_bridge_preserves_skin_and_feathers_in_rest_space
+2026-10-28T22:54:44 [ERROR] data: res://tests/assets/malformed.json: malformed JSON at line 1: Expected key
+PASS  test_data_loader.test_malformed_json_does_not_crash
+2026-10-28T22:54:44 [ERROR] data: res://data/missing_file.json: file not found
+PASS  test_data_loader.test_missing_file_returns_error_and_logs
+2026-10-28T22:54:44 [ERROR] data: res://tests/assets/sample_bad.json: /name: missing required property; /ticks: below minimum; /tags/0: expected string
+PASS  test_data_loader.test_schema_violation_names_the_field
+PASS  test_data_loader.test_second_load_uses_the_cache
+PASS  test_data_loader.test_valid_smoke_file_converts_integer_fields
+PASS  test_desperate_fury.test_duration_refresh_and_meter
+PASS  test_desperate_fury.test_speed_uses_fury_and_expires_during_hitstop
+PASS  test_elemental_limbs.test_elemental_limbs_follow_skeleton_animation
+PASS  test_elemental_limbs.test_elemental_limbs_manifest_and_assets_exist
+PASS  test_elemental_limbs.test_elemental_limbs_shared_skeleton_binding_on_atalanta_and_theron
+PASS  test_fx.test_isqrt_sample_through_one_million
+PASS  test_fx.test_lerp_and_tick_conversion
+PASS  test_fx.test_mul_div_large_product_fits_in_64_bit
+PASS  test_fx.test_mul_div_rounds_half_away_from_zero
+PASS  test_fx.test_percent_exact_cases
+PASS  test_fx.test_sign_abs_and_clamp
+PASS  test_gate_a_pilot.test_gate_a_core_actions_looping_and_facing
+PASS  test_gate_a_pilot.test_gate_a_intact_pilot_and_bone_mapping
+PASS  test_gate_a_pilot.test_gate_a_regrowth_attachment_and_lifecycle
+PASS  test_generated_models.test_four_models_have_working_limbs_and_stumps
+PASS  test_generated_models.test_pipeline_fixture_has_socket_and_color_materials
+PASS  test_generated_models.test_three_arenas_load
+PASS  test_hud_flow.test_patterns_are_not_color_only_and_settings_scale
+PASS  test_hud_flow.test_round_flow_and_pause
+PASS  test_hud_flow.test_severance_hud_receives_credit
+PASS  test_hud_flow.test_widget_scenes_instantiate
+PASS  test_input_layer.test_buffer_preserves_direction_at_press
+PASS  test_input_layer.test_recording_replays_identically
+PASS  test_input_layer.test_toggle_and_binding_roundtrip
+PASS  test_limb_cap.test_cap_from_data
+PASS  test_limb_cap.test_random_chains_are_bounded_and_deterministic
+PASS  test_limb_controls.test_each_limb_key_is_disabled_until_regrowth
+PASS  test_limb_controls.test_loss_during_startup_cancels_hit_and_animation_state
+PASS  test_limb_controls.test_new_bindings_merge_into_existing_settings_and_buffer
+PASS  test_limb_controls.test_one_leg_hop_and_kick_recovery_both_sides
+PASS  test_limb_controls.test_severed_and_regrown_mesh_visibility_all_models
+PASS  test_limb_states.test_all_scaled_thresholds
+PASS  test_limb_states.test_cracked_cannot_attack_and_bruised_penalty
+PASS  test_limb_states.test_round_preserves_limbs_match_reset_restores_and_career_carries
+PASS  test_mixamo_models.test_mixamo_atalanta_and_vampire_limbs_stumps_and_regrown
+PASS  test_playtest_b_fixes.test_normal_jabs_cannot_sever_in_first_round
+PASS  test_playtest_b_fixes.test_normal_kick_hits_leg_integrity
+PASS  test_playtest_b_fixes.test_throw_updates_facing_on_same_tick
+PASS  test_playtest_b_fixes.test_visible_match_tools_offer_all_five_replacements
+PASS  test_proto_attack.test_heavy_and_kick_use_their_own_damage
+PASS  test_proto_attack.test_jab_active_window_and_single_hit
+PASS  test_proto_determinism.test_golden_final_hash
+PASS  test_proto_determinism.test_two_runs_match_every_tick
+PASS  test_proto_movement.test_bodies_stay_inside_the_arena
+PASS  test_proto_movement.test_push_apart_removes_overlap
+PASS  test_proto_movement.test_walk_speed_matches_the_curve
+PASS  test_proto_rounds.test_ko_ends_the_round_and_two_wins_end_the_match
+PASS  test_proto_rounds.test_tied_timeout_replays_once_then_uses_the_rng
+PASS  test_proto_rounds.test_timeout_gives_the_higher_health_the_round
+PASS  test_regrown.test_chicken_reach_and_missed_heavy_stagger
+PASS  test_regrown.test_claw_chip_hold_and_seeded_whiff
+PASS  test_regrown.test_giant_hand_heavy_damage_and_larger_hurtbox
+PASS  test_regrown.test_hermes_speed_dash_and_seeded_zoom
+PASS  test_regrown.test_marble_durability_damage_and_speed
+PASS  test_regrown.test_regrow_requires_missing_compatible_slot_and_eighty_percent
+PASS  test_regrown.test_resever_is_blocked_by_match_limit
+PASS  test_rig_deformation.test_all_40_replacements_have_real_deform_weights
+PASS  test_rig_deformation.test_all_models_keep_joint_offsets_and_healthy_animation
+PASS  test_rig_deformation.test_hitstop_freezes_clip_and_block_selects_block
+PASS  test_rig_deformation.test_pilot_bind_rest_space_matches_metre_limb
+PASS  test_roster.test_body_stats_and_cosmetic_neutrality
+PASS  test_roster.test_ladder_ramp_and_loadouts
+PASS  test_roster.test_mirror_palette_and_names
+PASS  test_router.test_transitions_reject_invalid_and_back_returns
+PASS  test_settings_audio.test_audio_event_map_complete
+PASS  test_settings_audio.test_caption_severance_event
+ERROR: ConfigFile parse error at user://settings_test.cfg:0: Unexpected EOF while parsing simple tag.
+   at: _parse (core/io/config_file.cpp:293)
+   GDScript backtrace (most recent call first):
+       [0] load_settings (res://src/persistence/settings_service.gd:59)
+       [1] test_settings_clamp_roundtrip_and_corrupt_recovery (res://tests/unit/test_settings_audio.gd:22)
+       [2] _run (res://tests/run_all.gd:66)
+       [3] _execute (res://tests/run_all.gd:11)
+2026-10-28T22:56:12 [WARN] settings: Unreadable settings backed up; defaults restored
+PASS  test_settings_audio.test_settings_clamp_roundtrip_and_corrupt_recovery
+PASS  test_severance.test_grace_exactly_30_not_31
+PASS  test_severance.test_head_never_severs_and_severed_hurtbox_disappears
+PASS  test_severance.test_three_hits_at_90_and_gap_91
+PASS  test_severance.test_two_hits_zero_then_next_same_limb
+PASS  test_sim_rng.test_chance_edges_do_not_consume_state
+PASS  test_sim_rng.test_outputs_stay_inside_32_bits
+PASS  test_sim_rng.test_range_stays_inside_bounds
+PASS  test_sim_rng.test_seed_one_matches_golden_sequence
+PASS  test_sim_rng.test_state_round_trip_repeats_the_sequence
+PASS  test_sim_rng.test_zero_seed_becomes_one
+2026-10-28T22:56:12 [ERROR] smoke: expected error
+PASS  test_smoke.test_log_error_increments_counter
+2026-10-28T22:56:12 [INFO] smoke: info line
+PASS  test_smoke.test_log_info_does_not_count_as_error
+2026-10-28T22:56:12 [ERROR] smoke: helper error
+PASS  test_smoke.test_logged_error_is_visible_to_helper
+PASS  test_smoke.test_physics_ticks_per_second_is_60
+PASS  test_state_hash.test_empty_stream_is_the_offset_basis
+PASS  test_state_hash.test_negative_one_is_not_zero
+PASS  test_state_hash.test_order_changes_the_hash
+PASS  test_state_hash.test_same_stream_matches_golden_fnv
+Summary: 173 passed, 0 failed, 0 skipped

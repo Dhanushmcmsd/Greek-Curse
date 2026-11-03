@@ -36,9 +36,11 @@ func show_match(world: SimWorld, banner: String) -> void:
 	var max_health := maxi(world.max_health, 1)
 	_set_bar(_left_fill, world.fighters[0].health, max_health)
 	_set_bar(_right_fill, world.fighters[1].health, max_health)
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	var seconds := (world.round_ticks - world.round_tick) / 60
 	if seconds < 0:
 		seconds = 0
+	@warning_ignore("integer_division") # Intentional fixed-point/tick truncation.
 	_timer.text = "%d:%02d" % [seconds / 60, seconds % 60]
 	_pips.text = (
 		"%s  %d   |   %d  %s"

@@ -24,12 +24,12 @@ func setup(row: Dictionary, combat: Dictionary, toughness: int) -> void:
 	integrity = {}
 	limb_damage_tracker = {"arm_l": 0, "arm_r": 0, "leg_l": 0, "leg_r": 0}
 	amputation_occurred = false
-	for name in LIMB_NAMES:
-		integrity[name] = max_integrity
+	for item_name in LIMB_NAMES:
+		integrity[item_name] = max_integrity
 		var limb := SimLimb.new()
 		limb.integrity = max_integrity
 		limb.max_integrity = max_integrity
-		parts[name] = limb
+		parts[item_name] = limb
 	profiles = row["hurtboxes"]
 
 
@@ -43,12 +43,12 @@ func register_limb_hit(limb_id: String, damage: int, is_block: bool) -> void:
 func highest_damaged_limb() -> String:
 	var best_limb: String = ""
 	var max_dmg: int = -1
-	for name in LIMB_NAMES:
-		if parts.has(name) and parts[name].state != "severed":
-			var dmg: int = int(limb_damage_tracker.get(name, 0))
+	for item_name in LIMB_NAMES:
+		if parts.has(item_name) and parts[item_name].state != "severed":
+			var dmg: int = int(limb_damage_tracker.get(item_name, 0))
 			if dmg > max_dmg:
 				max_dmg = dmg
-				best_limb = name
+				best_limb = item_name
 	return best_limb
 
 
@@ -165,8 +165,9 @@ func world_boxes(
 
 
 func hash_values() -> Array:
-	var values: Array = [max_integrity, losses]
-	for name in LIMB_NAMES:
-		values.append(int(integrity.get(name, 0)))
-		values.append_array(parts[name].hash_values())
+	var values: Array = [max_integrity, losses, int(amputation_occurred)]
+	for item_name in LIMB_NAMES:
+		values.append(int(limb_damage_tracker.get(item_name, 0)))
+		values.append(int(integrity.get(item_name, 0)))
+		values.append_array(parts[item_name].hash_values())
 	return values

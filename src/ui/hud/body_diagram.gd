@@ -60,7 +60,17 @@ func _draw() -> void:
 		draw_string(
 			font,
 			Vector2(104, 20 + i * 24),
-			"%s %s %d" % [slot, display[0], row["integrity"]],
+			(
+				"%s %s"
+				% [
+					slot,
+					(
+						"DETACHED"
+						if row["state"] == "severed"
+						else "FRACTURE" if row["state"] == "cracked" else str(row["integrity"])
+					)
+				]
+			),
 			HORIZONTAL_ALIGNMENT_LEFT,
 			-1,
 			14

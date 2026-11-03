@@ -7,6 +7,10 @@ var title_label: Label
 var close_btn: Button
 var grid: GridContainer
 var chains_container: VBoxContainer
+var fighter_selector: OptionButton
+var _all_moves: Array = []
+var selected_fighter: String = ""
+const ROSTER = ["theron", "atalanta", "pyrrhus", "sibyl", "dorian"]
 
 
 func _init() -> void:
@@ -60,6 +64,12 @@ func _build_ui() -> void:
 	close_btn.custom_minimum_size = Vector2(120, 36)
 	close_btn.pressed.connect(func(): closed.emit())
 	header.add_child(close_btn)
+	fighter_selector = OptionButton.new()
+	for id in ROSTER:
+		var row: Dictionary = DataLoader.new().load_json("res://data/fighters/" + id + ".json").value
+		fighter_selector.add_item(str(row.display_name))
+	fighter_selector.item_selected.connect(func(index: int): populate(_all_moves, ROSTER[index]))
+	root.add_child(fighter_selector)
 
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -83,42 +93,7 @@ func _build_ui() -> void:
 	chains_container.add_theme_constant_override("separation", 10)
 	content_box.add_child(chains_container)
 
-	# --- Titan Rush Chain ---
-	_add_combo_chain_entry(
-		"⚔ Titan Rush Chain",
-		"[Punch] + [Punch] + [Kick]  →  Titan Knee Rush  →  Olympian Thunder Elbow",
-		"Startup: 14 ticks | Cancel Window: 24–32 ticks | Wall Splat Finisher | Damage: ~86"
-	)
-	# --- Ghost Ambush Chain ---
-	_add_combo_chain_entry(
-		"👻 Ghost Ambush Chain",
-		"[Forward] + [Kick]  →  Ghost Sweep Chain  →  Phantom Flurry  →  Phantom Ambush",
-		"Startup: 8 ticks | Cancel Window: 14–20 ticks | High Stun Finisher | Damage: ~64"
-	)
-	# --- Spartan Blitz ---
-	_add_combo_chain_entry(
-		"🛡 Spartan Blitz",
-		"[Punch] + [Punch] + [Punch]  →  Spartan Flurry  →  Divine Uppercut  →  Thunder Elbow",
-		"Startup: 6 ticks | 3-stage escalation | Launcher + Wall Bounce | Damage: ~96"
-	)
-	# --- Lightning Assault ---
-	_add_combo_chain_entry(
-		"⚡ Lightning Assault",
-		"[Punch]×4 (Lightning Jab Chain)  →  Spartan Flurry  →  Muay Thai Flurry",
-		"Startup: 3 ticks | Ultra-fast 7-hit starter | Best cancel potential | Damage: ~72"
-	)
-	# --- Titan Combo Kick Loop ---
-	_add_combo_chain_entry(
-		"🦵 Titan Kick Loop",
-		"[Kick] + [Forward]  →  Titan Combo Kick  →  Muay Thai Flurry  →  Thunder Elbow",
-		"Startup: 12 ticks | Aerial juggle pressure | Leg-zone targeting | Damage: ~84"
-	)
-	# --- Divine Crusher ---
-	_add_combo_chain_entry(
-		"🌩 Divine Crusher (Super)",
-		"[Punch] (Heavy) + [Forward]  →  Divine Uppercut  →  Olympian Crusher",
-		"Startup: 10 ticks | Costs 25 meter | 2-Armor hits | Slowest but highest damage | Damage: ~72"
-	)
+	_add_combo_chain_entry("PLAYER 1 KEYS: facing right / facing left", _key_command("Forward · Back · Down"), _key_command("Left Punch · Right Punch · Left Kick · Right Kick · Grab · Equipped Super · Equipped Ultimate"))
 
 	# === INDIVIDUAL MOVES TABLE ===
 	var moves_header := Label.new()
@@ -128,14 +103,14 @@ func _build_ui() -> void:
 	content_box.add_child(moves_header)
 
 	grid = GridContainer.new()
-	grid.columns = 6
+	grid.columns = 4
 	grid.add_theme_constant_override("h_separation", 20)
 	grid.add_theme_constant_override("v_separation", 8)
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content_box.add_child(grid)
 
 	for hdr in [
-		"Move Name", "Input Command", "Startup (Ticks)", "Cancel Window", "Damage", "Cancels Into"
+		"Move", "Command", "Damage / hit", "Link window (frames)"
 	]:
 		var h := Label.new()
 		h.text = hdr
@@ -143,21 +118,6 @@ func _build_ui() -> void:
 		h.add_theme_font_size_override("font_size", 14)
 		grid.add_child(h)
 
-	# === AMPUTATION RULES ===
-	var amp_header := Label.new()
-	amp_header.text = "AMPUTATION SYSTEM"
-	amp_header.add_theme_font_size_override("font_size", 18)
-	amp_header.add_theme_color_override("font_color", Color("ff7744"))
-	content_box.add_child(amp_header)
-
-	_add_rule_entry(
-		"1 Amputation per match — triggered in round 2 when accumulated limb damage reaches 65+",
-		"• Leg loss: –25% movement speed  •  Arm loss: disables 2-handed cancel moves"
-	)
-	_add_rule_entry(
-		"Rage Compensation — amputated fighter gains +15% damage on all remaining attacks",
-		"• Full meter top-up on sever  •  20-tick wakeup invulnerability window"
-	)
 
 
 func _add_combo_chain_entry(title: String, sequence: String, details: String) -> void:
@@ -233,11 +193,61 @@ func _add_rule_entry(rule: String, sub: String) -> void:
 	chains_container.add_child(entry_panel)
 
 
-func populate(move_rows: Array) -> void:
+func populate(move_rows: Array, fighter_id: String = "") -> void:
+	_all_moves = move_rows
+	selected_fighter = fighter_id
+	if fighter_id != "":
+		fighter_selector.select(ROSTER.find(fighter_id))
+		var filtered: Array = []
+		for move in move_rows:
+			if str(move.id) == "grab" or str(move.get("owner", "")) == fighter_id or (fighter_id == "dorian" and str(move.id).begins_with("dorian_")):
+				filtered.append(move)
+		move_rows = filtered
 	for child in grid.get_children():
 		if child.get_meta("data_row", false):
 			grid.remove_child(child)
 			child.queue_free()
+
+	for child in chains_container.get_children():
+		if child.get_meta("live_chain", false):
+			chains_container.remove_child(child)
+			child.queue_free()
+	var by_id := {}
+	for move in move_rows:
+		by_id[str(move["id"])] = move
+	var catalog: Dictionary = DataLoader.new().load_json("res://data/animation/combo_catalog.json").value
+	var featured_index := 1
+	for combo in catalog.get(fighter_id, []):
+		_add_combo_chain_entry(combo.name, " → ".join(combo.inputs.map(func(command): return _key_command(str(command)))), combo.description)
+		var entry := chains_container.get_child(-1)
+		entry.set_meta("live_chain", true)
+		chains_container.move_child(entry, featured_index)
+		featured_index += 1
+	for move in move_rows:
+		if not bool(move.get("can_cancel", false)):
+			continue
+		for target_id in move.get("cancel_into", []):
+			if not by_id.has(target_id):
+				continue
+			var target: Dictionary = by_id[target_id]
+			_add_combo_chain_entry(
+				(
+					str(move.get("display_name", move["id"]))
+					+ " → "
+					+ str(target.get("display_name", target_id))
+				),
+				_format_input(move) + " → " + _format_input(target),
+				(
+					"Startup %d ticks | Cancel [%d, %d) | Follow-up cost %d stamina"
+					% [
+						int(move["startup_ticks"]),
+						int(move["cancel_start"]),
+						int(move["cancel_end"]),
+						int(target.get("cost", 0))
+					]
+				)
+			)
+			chains_container.get_child(-1).set_meta("live_chain", true)
 
 	for row in move_rows:
 		var name_lbl := Label.new()
@@ -284,62 +294,68 @@ func populate(move_rows: Array) -> void:
 		cancel_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		cancel_lbl.custom_minimum_size.x = 200
 
-		for lbl in [name_lbl, input_lbl, startup_lbl, cancel_window_lbl, dmg_lbl, cancel_lbl]:
+		startup_lbl.free()
+		cancel_lbl.free()
+		for lbl in [name_lbl, input_lbl, dmg_lbl, cancel_window_lbl]:
+			lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			lbl.custom_minimum_size.x = 240 if lbl == name_lbl or lbl == input_lbl else 130
 			grid.add_child(lbl)
 
 
 static func _format_input(row: Dictionary) -> String:
-	var cat: String = str(row.get("category", ""))
-	match row.get("id", ""):
-		"muay_thai_flurry":
-			return "[Kick] + [Forward]"
-		"thunder_elbow_strike":
-			return "[Punch] (Heavy)"
-		"phantom_flurry":
-			return "[Punch] + [Kick]"
-		"phantom_ambush":
-			return "[Forward] + [Punch]"
-		"spartan_flurry":
-			return "[Punch] × 3"
-		"divine_uppercut":
-			return "[Punch] (Heavy) ↑"
-		"ghost_sweep_chain":
-			return "[Forward] + [Kick] (Low)"
-		"olympian_crusher":
-			return "[Punch] + [Kick] (Super)"
-		"lightning_jab_chain":
-			return "[Punch] × 4 (Fast)"
-		"titan_combo_kick":
-			return "[Kick] + [Forward] ×3"
-		"jab_of_hermes":
-			return "[Punch] (Light)"
-		"spartan_cross":
-			return "[Punch] + [Forward]"
-		"cyclops_smash":
-			return "[Punch] (Heavy)"
-		"pegasus_kick":
-			return "[Kick] (Forward)"
-		"sweeping_hydra":
-			return "[Kick] (Sweep)"
-		"satyr_dropkick":
-			return "[Kick] (Down)"
-		"olympian_barrage":
-			return "[Punch] × 5"
+	var text := _semantic_input(row)
+	if text == "Combo follow-up":
+		text = "Right Punch" if str(row.get("owner", "")) in ["theron", "pyrrhus"] else "Right Kick"
+	return _key_command(text)
+
+
+static func _semantic_input(row: Dictionary) -> String:
+	if str(row.get("id", "")) in ["grab", "dorian_throw_forward"]:
+		return "Grab"
+	if row.has("input_label"):
+		return str(row.input_label)
+	var commands := {
+		"olympian_crusher": "Down + Right Kick",
+		"muay_thai_flurry": "Forward + Right Kick",
+		"thunder_elbow_strike": "Forward + Right Punch",
+		"phantom_flurry": "Back + Left Punch",
+		"phantom_ambush": "Back + Right Punch",
+		"spartan_flurry": "Down + Left Punch",
+		"divine_uppercut": "Down + Right Punch",
+		"ghost_sweep_chain": "Forward + Left Kick",
+		"hoplite_sweep_chain": "Down + Left Kick",
+		"olympian_heel_chain": "Back + Left Kick",
+		"lightning_jab_chain": "Forward + Left Punch",
+		"titan_combo_kick": "Back + Right Kick"
+	}
+	var id := str(row.get("id", ""))
+	if commands.has(id):
+		return commands[id]
+	match str(row.get("category", "")):
+		"superpower":
+			return "Equipped Super"
+		"ultimate":
+			return "Equipped Ultimate"
 		_:
-			match cat:
-				"light":
-					return "[Punch] (Light)"
-				"heavy":
-					return "[Punch] (Heavy)"
-				"kick":
-					return "[Kick]"
-				"special":
-					return "[Punch] + [Kick]"
-				"combo_special":
-					return "[Kick] + [Forward]"
-				"superpower":
-					return "[Super]"
-				"ultimate":
-					return "[Ultimate]"
-				_:
-					return "[Punch] / [Kick]"
+			return (
+				("Right Kick" if str(row.get("limb_side", "")).ends_with("r") else "Left Kick") if str(row.get("limb_side", "")).begins_with("leg") else ("Right Punch" if str(row.get("limb_side", "")).ends_with("r") else "Left Punch")
+			)
+
+
+static func bound_key(action: String, player: int = 0) -> String:
+	var id := "p%d_%s" % [player + 1, action]
+	if InputMap.has_action(id):
+		for event in InputMap.action_get_events(id):
+			if event is InputEventKey:
+				return OS.get_keycode_string(event.physical_keycode)
+	var defaults: Dictionary = DataLoader.new().load_json("res://data/ui/default_bindings.json").value
+	return str(defaults.get(id, {}).get("key", "—"))
+
+
+static func _key_command(command: String) -> String:
+	var actions := {"Left Punch": "light", "Right Punch": "heavy", "Left Kick": "kick", "Right Kick": "kick_right", "Equipped Super": "super", "Equipped Ultimate": "ultimate", "Down": "down", "Grab": "grab"}
+	for word in actions:
+		command = command.replace(word, "[" + bound_key(actions[word]) + "]")
+	command = command.replace("Forward", "[" + bound_key("right") + "/" + bound_key("left") + "]")
+	command = command.replace("Back", "[" + bound_key("left") + "/" + bound_key("right") + "]")
+	return command.replace("Kick", "[" + bound_key("kick") + "/" + bound_key("kick_right") + "]").replace(" (string follow-up)", "")
